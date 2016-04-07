@@ -1,0 +1,85 @@
+{
+  "name": "ss-octopus",
+  "version": "1.0.0",
+  "description": "React, Redux, Hapi, Babel, Browserify, Tcomb, Ava starter app",
+  "author": "Nate Geslin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n8rzz/ss-octopus.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp && node index.js",
+    "test": "nyc ava",
+    "report": "nyc report --reporter=html",
+    "coverage": "npm test && nyc check-coverage --lines 90"
+  },
+  "engines": {
+    "node": ">=4.2.4",
+    "npm": ">=2.14.12"
+  },
+  "ava": {
+    "files": [
+      "spec/shared/**/*.spec.js"
+    ],
+    "verbose": true,
+    "require": [
+      "babel-core/register",
+      "./spec/specHelper/globalConfig"
+    ]
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "src/scripts/shared/**/*.js"
+    ]
+  },
+  "devDependencies": {
+    "ava": "^0.12.0",
+    "babel-eslint": "4.1.8",
+    "babel-plugin-transform-react-jsx": "^6.5.2",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
+    "browserify": "^11.2.0",
+    "cors": "^2.7.1",
+    "eslint": "1.0.x",
+    "eslint-config-airbnb": "0.0.7",
+    "eslint-plugin-react": "3.2.x",
+    "faker": "^3.0.1",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^3.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "jest-cli": "^0.5.8",
+    "nock": "^7.2.2",
+    "nyc": "^5.6.0",
+    "run-sequence": "^1.1.5",
+    "sinon": "^1.17.3",
+    "swagger-mock-api": "^1.5.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "axios": "^0.9.1",
+    "babel": "^6.5.2",
+    "babel-core": "^6.5.2",
+    "babel-plugin-transform-class-properties": "^6.6.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.5.0",
+    "babel-polyfill": "^6.5.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "enzyme": "^2.1.0",
+    "express": "^4.13.4",
+    "path": "^0.12.7",
+    "react": "^0.14.7",
+    "react-addons-test-utils": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.4.0",
+    "react-router": "^2.0.0",
+    "redux": "^3.3.1",
+    "redux-create-reducer": "^1.1.0",
+    "redux-thunk": "^1.0.3",
+    "tcomb": "^2.7.0"
+  },
+  "license": "MIT"
+}

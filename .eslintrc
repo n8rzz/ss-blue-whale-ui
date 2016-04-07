@@ -1,0 +1,44 @@
+{
+    "extends": "airbnb",
+    "env": {
+        "node": true,
+        "browser": true
+    },
+    "rules": {
+        "arrow-body-style": 0,
+        "no-console": 0,
+        "comma-dangle": [2, "never"],
+        "id-length": [1, {"min": 1}],
+        "indent": [2, 4, {"SwitchCase": 1}],
+        "react/display-name": 2,
+        "react/sort-comp": [0, {         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
+            "order": [
+                "displayName",
+                "propTypes",
+                "contextTypes",
+                "childContextTypes",
+                "constructor",
+                "getDefaultProps",
+                "initialState",
+                "getChildContext",
+                "componentWillMount",
+                "componentDidMount",
+                "componentWillReceiveProps",
+                "componentReceivedProps",
+                "shouldComponentUpdate",
+                "componentWillUpdate",
+                "componentDidUpdate",
+                "componentWillUnmount",
+                "componentShouldRender",
+                "/^on.+$/",
+                "/^get.+$/",
+                "/^render.+$/",
+                "render",
+                "compose"
+            ]
+        }],
+        "semi": [2, "always"],
+        "space-after-keywords": 0, // deprecated but inherited- replaced by keyword-spacing
+        "space-return-throw-case": 0 // deprecated but inherited- replaced by keyword-spacing
+    }
+}

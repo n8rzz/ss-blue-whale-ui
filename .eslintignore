@@ -1,0 +1,6 @@
+**/.nyc_output/*
+**/docs/*
+**/coverage/*
+**/node_modules/*
+**/tools/*
+Gulpfile.js
