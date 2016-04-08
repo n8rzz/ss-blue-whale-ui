@@ -5,10 +5,7 @@ import { shallow } from 'enzyme';
 import { App } from '../../../src/scripts/shared/content';
 
 const props = {
-    books: [
-        { id: '', name: ''},
-        { id: '', name: ''}
-    ]
+    children: []
 };
 
 ava('App root component renders in DOM', t => {
@@ -17,6 +14,4 @@ ava('App root component renders in DOM', t => {
 
     t.ok(instance);
     t.ok(instance.find('div'));
-    t.ok(instance.find('ul'));
-    t.ok(instance.find('li'));
 });

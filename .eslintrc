@@ -6,7 +6,6 @@
     },
     "rules": {
         "arrow-body-style": 0,
-        "no-console": 0,
         "comma-dangle": [2, "never"],
         "id-length": [1, {"min": 1}],
         "indent": [2, 4, {"SwitchCase": 1}],
@@ -37,6 +36,7 @@
                 "compose"
             ]
         }],
+        "no-console": 0,
         "semi": [2, "always"],
         "space-after-keywords": 0, // deprecated but inherited- replaced by keyword-spacing
         "space-return-throw-case": 0 // deprecated but inherited- replaced by keyword-spacing

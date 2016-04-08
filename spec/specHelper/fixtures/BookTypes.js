@@ -1,5 +1,5 @@
 import faker from 'faker';
-import { VALID_POSITIVE, VALID_UUID } from './BaseTypes';
+import { VALID_POSITIVE, VALID_UUID } from '../mocks/BaseTypes';
 
 export const VALID_BOOK = {
     id: VALID_UUID,

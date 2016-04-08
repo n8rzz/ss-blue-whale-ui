@@ -1,6 +1,5 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { getBookList } from '../actions/books/BookActions';
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
 /**
  * React entry component
@@ -8,45 +7,29 @@ import { getBookList } from '../actions/books/BookActions';
  *
  * @class  App
  */
-export class App extends React.Component {
-
-    /**
-     * @method  composeBookList
-     * @return {JSX}
-     */
-    composeBookList() {
-        const { books } = this.props;
-
-        return books.map((book, index) => {
-            return (
-                <li key={ index }>
-                    <div>ID: { book.id }</div>
-                    <div>Title: { book.title }</div>
-                </li>
-            );
-        });
-    }
-
+export class App extends Component {
     /**
      * @method  render
      * @return {JSX}
      */
     render() {
-        if (this.props.books.length > 0) {
-            return (
-                <div>
-                    <h1>Books</h1>
-                    <h3>... with actions and reducers</h3>
-                    <ul>
-                        { this.composeBookList() }
-                    </ul>
-                </div>
-            );
-        }
-
         return (
             <div>
-                <h1>This is a React app!</h1>
+                <ul>
+                    <li>
+                        <Link to="/clients">Clients</Link>
+                    </li>
+                    <li>
+                        <Link to="/projects">Projects</Link>
+                    </li>
+                    <li>
+                        <Link to="/projectTypes">Project Types</Link>
+                    </li>
+                    <li>
+                        <Link to="/taskItems">Task Items</Link>
+                    </li>
+                </ul>
+                { this.props.children }
             </div>
         );
     }
@@ -65,47 +48,10 @@ App.displayName = 'App';
  */
 App.propTypes = {
     /**
-     * @props books
-     * @type Array
+     * @props children
+     * @type Object
      */
-    books: PropTypes.array
+    children: PropTypes.object
 };
 
-/**
- * @method mapStateToProps
- * @param {Object} state
- * @return {Object}
- */
-function mapStateToProps(state) {
-    return {
-        books: state.books.payload
-    };
-}
-
-/**
- * @method mapDispatchToProps
- * @param {Object} dispatch
- * @return {Object}
- */
-function mapDispatchToProps(dispatch) {
-    return {
-        books: dispatch(getBookList())
-    };
-}
-
-/**
- * @method mergeProps
- * @param {Object} state
- * @param {Object} dispatch
- * @param {Object} ownProps
- * @return {Object}
- */
-function mergeProps(state, dispatch, ownProps) {
-    return Object.assign({}, state, ownProps);
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    mergeProps
-)(App);
+export default App;
