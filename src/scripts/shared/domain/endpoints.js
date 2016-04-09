@@ -1,3 +1,3 @@
-global.ENDPOINT = 'http://localhost:3002';
+global.ENDPOINT = 'http://localhost:3000';
 
-export const ENDPOINTS = 'http://localhost:3002';
+export const ENDPOINTS = 'http://localhost:3000';

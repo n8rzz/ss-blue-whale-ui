@@ -9,3 +9,13 @@ export const Positive = t.refinement(t.Number, v => v > 0, 'Positive');
 export const UUID = t.refinement(t.String, s =>
     REGEX.UUID.test(s), 'UUID'
 );
+
+/**
+ * @property BaseStateType
+ * @type BaseStateType
+ * @return {BaseStateType}
+ */
+export const BaseStateType = t.struct({
+    isLoading: t.Boolean,
+    errors: t.maybe(t.Error)
+}, 'BaseStateType');
