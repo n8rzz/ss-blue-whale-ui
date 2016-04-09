@@ -71,6 +71,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "enzyme": "^2.1.0",
     "express": "^4.13.4",
+    "lodash": "^4.9.0",
     "path": "^0.12.7",
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
