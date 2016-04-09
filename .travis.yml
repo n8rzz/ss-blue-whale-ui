@@ -1,0 +1,11 @@
+sudo: false
+language: node_js
+node_js:
+  - '5'
+  - '4'
+branches:
+  only:
+  - develop
+  - master
+after_success:
+  - npm run coveralls
