@@ -6,7 +6,7 @@ import {
     GET_CLIENT_LIST_FAIL
 } from '../../../../../src/scripts/shared/domain/client/actions/ClientListActions';
 
-import reducer from '../../../../../src/scripts/shared/domain/client/reducers/ClientListReducer';
+import reducer from '../../../../../src/scripts/shared/domain/client/reducers/clientListReducer';
 
 import {
     ClientListType
