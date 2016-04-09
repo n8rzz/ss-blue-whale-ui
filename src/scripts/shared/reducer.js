@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import books from './reducers/books/BooksReducer.js';
+import clients from './domain/client/reducers/clientListReducer';
 
 export default () => combineReducers({
-    books
+    clients
 });

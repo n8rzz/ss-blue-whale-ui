@@ -51,7 +51,7 @@ App.propTypes = {
      * @props children
      * @type Object
      */
-    children: PropTypes.object
+    children: PropTypes.array
 };
 
 export default App;
