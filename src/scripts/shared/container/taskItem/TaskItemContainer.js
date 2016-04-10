@@ -15,7 +15,6 @@ class TaskItemContainer extends Component {
      * @return {JSX}
      */
     render() {
-        console.log(this.props);
         return (
             <div>
                 <h1>Task Items</h1>
@@ -68,7 +67,7 @@ function mapStateToProps(state) {
  */
 function mapDispatchToProps(dispatch) {
     return {
-        projects: dispatch(getTaskItemList())
+        getTaskItemList: dispatch(getTaskItemList())
     };
 }
 
@@ -80,7 +79,7 @@ function mapDispatchToProps(dispatch) {
  * @return {Object}
  */
 function mergeProps(state, dispatch, ownProps) {
-    return Object.assign({}, state, dispatch, ownProps);
+    return Object.assign({}, state, ownProps);
 }
 
 export default connect(

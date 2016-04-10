@@ -2,20 +2,20 @@ import React, { Component, PropTypes } from 'react';
 import { map as _map } from 'lodash';
 
 /**
- * @class TaskItemList
+ * @class ProjectTypeList
  */
-class TaskItemList extends Component {
+class ProjectTypeList extends Component {
     /**
-     * @method _composeTaskItemList
+     * @method _composeProjectTypeList
      * @return {JSX}
      */
-    _composeTaskItemList() {
-        return _map(this.props.taskItems, (task, index) => {
+    _composeProjectTypeList() {
+        return _map(this.props.projectTypes, (type, index) => {
             return (
                 <li key={ index }>
-                    <h2>{ task.name }</h2>
+                    <h2>{ type.name }</h2>
                     <div>
-                        { task.description }
+                        { type.description }
                     </div>
                 </li>
             );
@@ -27,13 +27,13 @@ class TaskItemList extends Component {
      * @return {JSX}
      */
     render() {
-        if (this.props.taskItems.length === 0) {
+        if (this.props.projectTypes.length === 0) {
             return null;
         }
 
         return (
             <ul>
-                { this._composeTaskItemList() }
+                { this._composeProjectTypeList() }
             </ul>
         );
     }
@@ -44,20 +44,20 @@ class TaskItemList extends Component {
  * @type {String}
  * @static
  */
-TaskItemList.displayName = 'TaskItemList';
+ProjectTypeList.displayName = 'ProjectTypeList';
 
 /**
  * @property propTypes
  * @type {Object}
  * @static
  */
-TaskItemList.propTypes = {
+ProjectTypeList.propTypes = {
     /**
-     * @props taskItems
-     * @type {TaskItemListType}
+     * @props projectTypes
+     * @type {ProjectTypeListType}
      * @required
      */
-    taskItems: PropTypes.array.isRequired
+    projectTypes: PropTypes.array.isRequired
 };
 
-export default TaskItemList;
+export default ProjectTypeList;
