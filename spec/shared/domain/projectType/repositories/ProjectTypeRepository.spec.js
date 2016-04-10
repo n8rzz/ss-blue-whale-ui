@@ -8,7 +8,7 @@ import ProjectTypeRepository from '../../../../../src/scripts/shared/domain/proj
 
 ava('getProjectTypeList returns a ProjectTypeListType', async t => {
     const getProjectTypeList = nock(global.NOCK_SCOPE)
-        .get('/project_types')
+        .get('/projectTypes')
         .reply(200, VALID_PROJECT_TYPE_LIST_API_RESPONSE);
 
     const response = await ProjectTypeRepository.getProjectTypeList();
@@ -21,7 +21,7 @@ ava('getProjectTypeList returns a ProjectTypeListType', async t => {
 ava('getProjectTypeList completes request if there is a network error', async t => {
     const errorToThrow = new Error();
     const getProjectTypeList = nock(global.NOCK_SCOPE)
-        .get('/project_types')
+        .get('/projectTypes')
         .reply(500, errorToThrow);
 
     const error = await ProjectTypeRepository.getProjectTypeList()
