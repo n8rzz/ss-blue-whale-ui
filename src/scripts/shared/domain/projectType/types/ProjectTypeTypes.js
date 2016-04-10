@@ -12,6 +12,7 @@ export const ProjectTypeType = t.struct({
     name: t.String,
     description: t.String,
     dueDate: t.maybe(t.String),
+    // TODO: update to reference TaskItemType
     task_items: t.maybe(t.list(t.String))
 }, 'ProjectTypeType');
 
