@@ -61,8 +61,6 @@ ava('getClientList dispatches fail action when there is a failure', async t => {
         t.ok(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        console.log(objectPassedToSecondDispatch, e);
-
         t.ok(objectPassedToSecondDispatch.type === GET_CLIENT_LIST_FAIL);
         t.ok(objectPassedToSecondDispatch.payload === null);
         t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
