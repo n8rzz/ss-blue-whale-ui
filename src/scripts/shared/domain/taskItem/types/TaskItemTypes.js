@@ -11,8 +11,8 @@ export const TaskItemType = t.struct({
     id: t.Number,
     name: t.String,
     description: t.String,
-    startDate: t.String,
-    endDate: t.String
+    startDate: t.maybe(t.String),
+    endDate: t.maybe(t.String)
 }, 'TaskItemType');
 
 /**

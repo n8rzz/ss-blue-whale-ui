@@ -10,7 +10,7 @@ export const VALID_TASK_ITEM_API_RESPONSE = {
     'description': 'Face to Face with client',
     'sortOrder': 0,
     'startDate': '2016-04-07T03:34:34.000Z',
-    'endDate': '',
+    'endDate': null,
     'project_type': []
 };
 
@@ -27,7 +27,7 @@ export const VALID_TASK_ITEM_LIST_API_RESPONSE = [
         'description': 'Submit E-File',
         'sortOrder': 1,
         'startDate': '2016-04-07T03:34:34.000Z',
-        'endDate': ''
+        'endDate': null
     },
     VALID_TASK_ITEM_API_RESPONSE
 ];

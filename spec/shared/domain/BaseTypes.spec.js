@@ -1,9 +1,11 @@
 /* eslint-disable */
 import ava from 'ava';
+import tcomb from 'tcomb';
 
 import {
     Positive,
-    BaseStateType
+    BaseStateType,
+    TypeOrNull
 } from '../../../src/scripts/shared/domain/BaseTypes';
 
 import {
