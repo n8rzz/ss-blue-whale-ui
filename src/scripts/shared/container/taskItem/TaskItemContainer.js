@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { getTaskItemList } from '../../domain/taskItem/actions/TaskItemListActions';
+import TaskItemList from '../../content/TaskItem/TaskItemList';
 
 /**
  * React entry component
@@ -16,6 +18,7 @@ class TaskItemContainer extends Component {
         return (
             <div>
                 <h1>Task Items</h1>
+                <TaskItemList taskItems={ this.props.taskItems } />
             </div>
         );
     }
@@ -32,44 +35,55 @@ TaskItemContainer.displayName = 'TaskItemContainer';
  * @type {Object}
  * @static
  */
-TaskItemContainer.propTypes = {};
+TaskItemContainer.propTypes = {
+    /**
+     * @props taskItems
+     * @type {TaskItemListType|Array}
+     */
+    taskItems: PropTypes.array,
 
-// /**
-//  * @method mapStateToProps
-//  * @param {Object} state
-//  * @return {Object}
-//  */
-// function mapStateToProps(state) {
-//     return {
-//         projects: state.projects.payload
-//     };
-// }
-//
-// /**
-//  * @method mapDispatchToProps
-//  * @param {Object} dispatch
-//  * @return {Object}
-//  */
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         projects: dispatch(getBookList())
-//     };
-// }
-//
-// /**
-//  * @method mergeProps
-//  * @param {Object} state
-//  * @param {Object} dispatch
-//  * @param {Object} ownProps
-//  * @return {Object}
-//  */
-// function mergeProps(state, dispatch, ownProps) {
-//     return Object.assign({}, state, ownProps);
-// }
-//
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps,
-//     mergeProps
-// )(TaskItemContainer);
-export default TaskItemContainer;
+    /**
+     * @props getTaskItemList
+     * @type {Function}
+     */
+    getTaskItemList: PropTypes.func
+};
+
+/**
+ * @method mapStateToProps
+ * @param {Object} state
+ * @return {Object}
+ */
+function mapStateToProps(state) {
+    return {
+        taskItems: state.taskItems.payload
+    };
+}
+
+/**
+ * @method mapDispatchToProps
+ * @param {Object} dispatch
+ * @return {Object}
+ */
+function mapDispatchToProps(dispatch) {
+    return {
+        getTaskItemList: dispatch(getTaskItemList())
+    };
+}
+
+/**
+ * @method mergeProps
+ * @param {Object} state
+ * @param {Object} dispatch
+ * @param {Object} ownProps
+ * @return {Object}
+ */
+function mergeProps(state, dispatch, ownProps) {
+    return Object.assign({}, state, ownProps);
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps
+)(TaskItemContainer);

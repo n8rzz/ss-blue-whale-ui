@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { getProjectTypeList } from '../../domain/projectType/actions/ProjectTypeListActions';
+import ProjectTypeList from '../../content/ProjectType/ProjectTypeList';
 
 /**
  * React entry component
@@ -16,6 +18,8 @@ class ProjectTypeContainer extends Component {
         return (
             <div>
                 <h1>Project Types</h1>
+
+                <ProjectTypeList projectTypes={ this.props.projectTypes } />
             </div>
         );
     }
@@ -32,44 +36,49 @@ ProjectTypeContainer.displayName = 'ProjectTypeContainer';
  * @type {Object}
  * @static
  */
-ProjectTypeContainer.propTypes = {};
+ProjectTypeContainer.propTypes = {
+    /**
+     * @props projectTypes
+     * @type {Array}
+     */
+    projectTypes: PropTypes.array
+};
 
-// /**
-//  * @method mapStateToProps
-//  * @param {Object} state
-//  * @return {Object}
-//  */
-// function mapStateToProps(state) {
-//     return {
-//         projects: state.projects.payload
-//     };
-// }
-//
-// /**
-//  * @method mapDispatchToProps
-//  * @param {Object} dispatch
-//  * @return {Object}
-//  */
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         projects: dispatch(getBookList())
-//     };
-// }
-//
-// /**
-//  * @method mergeProps
-//  * @param {Object} state
-//  * @param {Object} dispatch
-//  * @param {Object} ownProps
-//  * @return {Object}
-//  */
-// function mergeProps(state, dispatch, ownProps) {
-//     return Object.assign({}, state, ownProps);
-// }
-//
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps,
-//     mergeProps
-// )(ProjectTypeContainer);
-export default ProjectTypeContainer;
+/**
+ * @method mapStateToProps
+ * @param {Object} state
+ * @return {Object}
+ */
+function mapStateToProps(state) {
+    return {
+        projectTypes: state.projectTypes.payload
+    };
+}
+
+/**
+ * @method mapDispatchToProps
+ * @param {Object} dispatch
+ * @return {Object}
+ */
+function mapDispatchToProps(dispatch) {
+    return {
+        getProjectTypeList: dispatch(getProjectTypeList())
+    };
+}
+
+/**
+ * @method mergeProps
+ * @param {Object} state
+ * @param {Object} dispatch
+ * @param {Object} ownProps
+ * @return {Object}
+ */
+function mergeProps(state, dispatch, ownProps) {
+    return Object.assign({}, state, dispatch, ownProps);
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps
+)(ProjectTypeContainer);
