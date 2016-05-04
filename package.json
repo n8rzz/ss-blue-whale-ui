@@ -83,7 +83,8 @@
     "redux": "^3.3.1",
     "redux-create-reducer": "^1.1.0",
     "redux-thunk": "^1.0.3",
-    "tcomb": "^2.7.0"
+    "tcomb": "^2.7.0",
+    "tcomb-form": "^0.9.3"
   },
   "license": "MIT"
 }

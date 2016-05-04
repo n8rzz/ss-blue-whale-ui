@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getClientList } from '../../domain/client/actions/ClientListActions';
-import ClientList from '../../content/ClientList/ClientList';
+import ClientList from '../../content/Client/ClientList';
 
 /**
  * React entry component
@@ -17,8 +17,6 @@ export class ClientListContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Clients</h1>
-
                 <ClientList clients={ this.props.clients } />
             </div>
         );

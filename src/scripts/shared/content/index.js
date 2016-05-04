@@ -18,6 +18,11 @@ export class App extends Component {
                 <ul>
                     <li>
                         <Link to="/clients">Clients</Link>
+                        <ul>
+                            <li>
+                                <Link to="/clients/create">Create Client</Link>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <Link to="/projects">Projects</Link>

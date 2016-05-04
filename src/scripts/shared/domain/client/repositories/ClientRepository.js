@@ -1,6 +1,9 @@
 import request from 'axios';
 
-import { ClientListType } from '../types/ClientTypes';
+import {
+    ClientListType,
+    ClientType
+} from '../types/ClientTypes';
 
 import { ENDPOINTS } from '../../endpoints';
 
@@ -12,6 +15,14 @@ export default {
             .then(response => new ClientListType(response.data))
             .catch(error => {
                 throw error;
+            });
+    },
+
+    createClient: (createClientRequest) => {
+        return request.post(`${ENDPOINT}`, createClientRequest)
+            .then(response => new ClientType(response.data))
+            .catch(error => {
+                throw error
             });
     }
 };
