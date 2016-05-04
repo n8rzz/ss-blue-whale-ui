@@ -1,5 +1,7 @@
+import { pushPath } from 'redux-simple-router'
 import ClientRepository from '../repositories/ClientRepository';
 import { ClientCreationType } from '../types/ClientTypes';
+
 
 export const CREATE_CLIENT_START = 'CREATE_CLIENT_START';
 export const CREATE_CLIENT_SUCCESS = 'CREATE_CLIENT_SUCCESS';
@@ -29,7 +31,10 @@ export const createClient = (clientFormValues) => {
         dispatch(createClientStart());
 
         return ClientRepository.createClient(clientFormValues)
-            .then(response => dispatch(createClientSuccess(response)))
+            .then(response => {
+                dispatch(createClientSuccess(response))
+                return dispatch(pushPath('/clients'));
+            })
             .catch(error => dispatch(createClientError(error)));
     };
 };
