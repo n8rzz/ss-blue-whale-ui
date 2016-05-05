@@ -1,4 +1,15 @@
 /**
+ * VALID_CLIENT_CREATION_REQUEST
+ *
+ * @property VALID_CLIENT_API_RESPONSE
+ * @type {ClientType|Object}
+ */
+
+export const VALID_CLIENT_CREATION_REQUEST = {
+    'name': 'Closets, Closets, Closets, Closets'
+};
+
+/**
  * A valid client response from the api
  *
  * @property VALID_CLIENT_API_RESPONSE
@@ -17,6 +28,8 @@ export const VALID_CLIENT_API_RESPONSE = {
     'email': 'c4@example.com',
     'website': 'http://www.closetsallover.com'
 };
+
+export const VALID_CLIENT_REQUEST = VALID_CLIENT_API_RESPONSE;
 
 /**
  * A valid client list response from the api

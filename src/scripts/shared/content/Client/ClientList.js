@@ -1,24 +1,26 @@
 import React, { Component, PropTypes } from 'react';
-import { map as _map } from 'lodash';
+import { Link } from 'react-router';
+import _map from 'lodash/map';
 
 /**
  * @class ClientList
+ * @extends React/Component
  */
 class ClientList extends Component {
+
     /**
      * @method _composeClientList
      * @return {JSX}
      */
     _composeClientList() {
         return _map(this.props.clients, (client, index) => {
+            const singleClientLink = `/clients/${client.id}`;
+
             return (
-                <li key={index}>
-                    <h2>{ client.name }</h2>
-                    <div>
-                        { client.address_1 }<br />
-                        { client.address_2 }<br />
-                        { `${client.city}, ${client.state} ${client.zip}` }
-                    </div>
+                <li key={ index }>
+                    <h2>
+                        <Link to={ singleClientLink }>{ client.name }</Link>
+                    </h2>
                 </li>
             );
         });
