@@ -23,7 +23,7 @@ export default function(store) {
                     component={ ClientCreateContainer } />
                 <Route path=":id"
                     component={ ClientSingleContainer }
-                    onEnter={ (nextState) => store.dispatch(getSingleClient(nextState.params.id)) }/>
+                    onEnter={ nextState => store.dispatch(getSingleClient(nextState.params.id)) }/>
             </Route>
 
             <Route component={ ProjectContainer } path="projects" />

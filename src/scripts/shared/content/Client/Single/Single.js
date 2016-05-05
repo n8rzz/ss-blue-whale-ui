@@ -6,29 +6,42 @@ import { ClientType } from '../../../domain/client/types/ClientTypes';
 const Form = t.form.Form;
 
 /**
- * @class SaveCreate
+ * @class SaveClient
  * @extends React/Component
  */
-export default class SaveCreate extends Component {
+export default class SaveClient extends Component {
+    /**
+     * @constructor
+     * @for SaveClient
+     */
     constructor(props) {
         super(props);
 
         this.state = {
-            saveClientFormValues: props.client
+            clientFormValues: props.client
         };
     }
 
     /**
+     * @for SaveClient
+     * @method componentWillReceiveProps
+     * @param {Object} nextProps
+     */
+    componentWillReceiveProps(nextProps) {
+        this.setState({clientFormValues: nextProps.client});
+    }
+
+    /**
+     * @for SaveClient
      * @method render
      * @return {JSX}
      */
     render() {
-        console.log(this.props);
         return (
             <div>
                 <Form
-                    ref="saveClientForm"
-                    value={ this.state.saveClientFormValues }
+                    ref="clientForm"
+                    value={ this.state.clientFormValues }
                     type={ ClientType } />
 
                 <button type="submit" onClick={ this.onSubmit }>Update Client</button>
@@ -37,6 +50,7 @@ export default class SaveCreate extends Component {
     }
 
     /**
+     * @for SaveClient
      * @method onSubmit
      * @param {Event} event
      * @return {Function}
@@ -44,11 +58,11 @@ export default class SaveCreate extends Component {
     onSubmit = (event) => {
         event.preventDefault();
 
-        const saveClientFormValues = this.refs.saveClientForm.getValue();
-        // const saveClientFormValidation = this.refs.saveClientForm.validate();
+        const clientFormValues = this.refs.clientForm.getValue();
+        // const clientFormValidation = this.refs.clientForm.validate();
 
-        if (!t.Nil.is(saveClientFormValues) && ClientType.is(saveClientFormValues)) {
-            this.props.onSaveClient(saveClientFormValues);
+        if (!t.Nil.is(clientFormValues) && ClientType.is(clientFormValues)) {
+            this.props.onSaveClient(this.props.client.id, clientFormValues);
         }
     }
 }
@@ -58,14 +72,19 @@ export default class SaveCreate extends Component {
  * @type {String}
  * @static
  */
-SaveCreate.displayName = 'SaveCreate';
+SaveClient.displayName = 'SaveClient';
 
 /**
  * @property propTypes
  * @type {String}
  * @static
  */
-SaveCreate.propTypes = {
+SaveClient.propTypes = {
+    /**
+     * @property client
+     * @type {ClientType}
+     */
+    client: PropTypes.object,
     /**
      * @property onSaveClient
      * @type {Function}

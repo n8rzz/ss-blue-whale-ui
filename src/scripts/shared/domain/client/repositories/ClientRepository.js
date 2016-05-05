@@ -16,7 +16,7 @@ export default {
             });
     },
 
-    createClient: (createClientRequest) => {
+    createClient: createClientRequest => {
         return request.post(`${ENDPOINT}`, createClientRequest)
             .then(response => new ClientType(response.data))
             .catch(error => {
@@ -25,7 +25,7 @@ export default {
     },
 
     saveClient: (id, clientRequest) => {
-        return request.post(`${ENDPOINT}/${id}`, clientRequest)
+        return request.put(`${ENDPOINT}/${id}`, clientRequest)
             .then(response => new ClientType(response.data))
             .catch(error => {
                 throw error;

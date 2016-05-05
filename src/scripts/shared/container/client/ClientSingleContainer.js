@@ -9,6 +9,7 @@ import SingleClient from '../../content/Client/Single/Single';
  */
 class ClientSingleContainer extends Component {
     /**
+     * @for ClientSingleContainer
      * @method render
      * @return {JSX}
      */
