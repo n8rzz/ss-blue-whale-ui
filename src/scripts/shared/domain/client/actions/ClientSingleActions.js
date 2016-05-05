@@ -1,4 +1,4 @@
-import { pushPath } from 'redux-simple-router'
+import { push } from 'react-router-redux';
 import ClientRepository from '../repositories/ClientRepository';
 import { ClientCreationType } from '../types/ClientTypes';
 
@@ -32,8 +32,8 @@ export const createClient = (clientFormValues) => {
 
         return ClientRepository.createClient(clientFormValues)
             .then(response => {
-                dispatch(createClientSuccess(response))
-                return dispatch(pushPath('/clients'));
+                dispatch(createClientSuccess(response));
+                return dispatch(push('/clients'));
             })
             .catch(error => dispatch(createClientError(error)));
     };

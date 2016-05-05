@@ -13,6 +13,18 @@ import ClientRepository from '../../../../../src/scripts/shared/domain/client/re
 
 import { ValidClientCreationType } from '../../../../specHelper/fixtures/client/ClientTypes';
 
+const ROUTER_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
+
+ava('createClient throws if data is not `ClientCreateType`', async t => {
+    const dispatchSpy = sinon.spy();
+    ClientRepository.createClient = sinon.stub().resolves();
+    try {
+        await createClient('');
+    } catch (error) {
+        t.notOk(dispatchSpy.calledWith({ type: CREATE_CLIENT_START }));
+    }
+});
+
 ava('createClient dispatches start action', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.createClient = sinon.stub().resolves();
@@ -34,11 +46,22 @@ ava('createClient dispatches success action when data resolves successfully', as
     ClientRepository.createClient = sinon.stub().resolves(ValidClientCreationType);
     await createClient(ValidClientCreationType)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 2);
+    t.ok(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.ok(objectPassedToSecondDispatch.type === CREATE_CLIENT_SUCCESS);
     t.ok(objectPassedToSecondDispatch.payload === ValidClientCreationType);
+});
+
+ava('createClient dispatches react-router-redux `push` action that routes to `/clients` url', async t => {
+    const dispatchSpy = sinon.spy();
+    ClientRepository.createClient = sinon.stub().resolves(ValidClientCreationType);
+    await createClient(ValidClientCreationType)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.ok(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
+    t.ok(objectPassedToSecondDispatch.payload.args[0] === '/clients');
 });
 
 ava.before(() => {
