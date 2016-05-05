@@ -29,6 +29,8 @@ export const VALID_CLIENT_API_RESPONSE = {
     'website': 'http://www.closetsallover.com'
 };
 
+export const VALID_CLIENT_REQUEST = VALID_CLIENT_API_RESPONSE;
+
 /**
  * A valid client list response from the api
  *

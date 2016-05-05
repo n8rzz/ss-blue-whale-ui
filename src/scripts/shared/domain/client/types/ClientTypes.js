@@ -25,7 +25,8 @@ export const ClientCreationType = t.struct({
  * ClientType definition
  *
  * @type ClientType
- * @return {Client}
+ * @extends ClientCreationType
+ * @return {ClientType}
  */
 export const ClientType = ClientCreationType.extend({
     id: t.Number

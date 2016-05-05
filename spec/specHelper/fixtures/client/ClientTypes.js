@@ -19,7 +19,7 @@ import {
 
 export const ValidClientCreationType = new ClientCreationType(VALID_CLIENT_CREATION_REQUEST);
 
-export const ValidClient = new ClientType(VALID_CLIENT_API_RESPONSE);
+export const ValidClientType = new ClientType(VALID_CLIENT_API_RESPONSE);
 
 export const ValidClientList = new ClientListType(VALID_CLIENT_LIST_API_RESPONSE);
 

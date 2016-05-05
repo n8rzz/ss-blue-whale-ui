@@ -16,7 +16,7 @@ import {
 
 import {
     ValidClientCreationType,
-    ValidClient,
+    ValidClientType,
     ValidClientList,
     ValidClientListStateType
 } from '../../../../specHelper/fixtures/client/ClientTypes';
@@ -30,7 +30,7 @@ ava('ClientCreationType', t => {
 ava('ClientType', t => {
     t.notThrows(() => ClientType(VALID_CLIENT_API_RESPONSE));
     t.throws(() => ClientType(''));
-    t.ok(ClientType.is(ValidClient) === true);
+    t.ok(ClientType.is(ValidClientType) === true);
 });
 
 ava('ClientListType', t => {

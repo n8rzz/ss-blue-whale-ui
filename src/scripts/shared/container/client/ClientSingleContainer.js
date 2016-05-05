@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-// import { connect } from 'react-redux';
-// import { createClient } from '../../domain/client/actions/ClientSingleActions';
+import { connect } from 'react-redux';
+import { saveClient } from '../../domain/client/actions/ClientSingleActions';
 
 /**
  * @class ClientSingleContainer
@@ -25,33 +25,39 @@ class ClientSingleContainer extends Component {
  */
 ClientSingleContainer.displayName = 'ClientSingleContainer';
 
-// /**
-//  * @property propTypes
-//  * @type {Object}
-//  * @static
-//  */
-// ClientSingleContainer.propTypes = {
-//     /**
-//      * @property createClient
-//      * @type {Function}
-//      */
-//     createClient: PropTypes.function
-// };
+/**
+ * @property propTypes
+ * @type {Object}
+ * @static
+ */
+ClientSingleContainer.propTypes = {
+    /**
+     * @property saveClient
+     * @type {Function}
+     */
+    saveClient: PropTypes.func
+};
 
-// /**
-//  * @function mapStoreToProps
-//  * @return {Object}
-//  */
-// const mapStoreToProps = () => ({});
-//
-// /**
-//  * @function mapDispatchToProps
-//  * @return {Object}
-//  */
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         createClient: (formValues) => dispatch(createClient(formValues))
-//     };
-// };
+/**
+ * @function mapStoreToProps
+ * @param {Object}
+ * @return {Object}
+ */
+const mapStoreToProps = (state) => ({
+    client: state.client.payload
+});
 
-export default ClientSingleContainer;
+/**
+ * @function mapDispatchToProps
+ * @return {Object}
+ */
+const mapDispatchToProps = (dispatch) => {
+    return {
+        saveClient: (id, formValues) => dispatch(saveClient(id, formValues))
+    };
+};
+
+export default connect(
+    mapStoreToProps,
+    mapDispatchToProps
+)(ClientSingleContainer);

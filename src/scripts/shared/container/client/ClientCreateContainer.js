@@ -16,7 +16,6 @@ class ClientCreateContainer extends Component {
         console.log(this.props);
         return (
             <div>
-                ClientCreateContainer
                 <ClientCreate
                     onCreateClient={ this.onCreateClient }/>
             </div>
