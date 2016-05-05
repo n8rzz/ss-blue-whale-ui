@@ -16,6 +16,7 @@ export class App extends Component {
         return (
             <div>
                 <ul>
+                    <li>Dashboard</li>
                     <li>
                         <Link to="/clients">Clients</Link>
                         <ul>
@@ -26,12 +27,14 @@ export class App extends Component {
                     </li>
                     <li>
                         <Link to="/projects">Projects</Link>
-                    </li>
-                    <li>
-                        <Link to="/projectTypes">Project Types</Link>
-                    </li>
-                    <li>
-                        <Link to="/taskItems">Task Items</Link>
+                        <ul>
+                            <li>
+                                <Link to="/projectTypes">Project Types</Link>
+                            </li>
+                            <li>
+                                <Link to="/taskItems">Task Items</Link>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 { this.props.children }

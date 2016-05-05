@@ -39,6 +39,12 @@ export default class ClientSingle extends Component {
     render() {
         return (
             <div>
+                <ul>
+                    <li>Main</li>
+                    <li>Projects</li>
+                    <li>History</li>
+                </ul>
+                
                 <Form
                     ref="clientForm"
                     value={ this.state.clientFormValues }

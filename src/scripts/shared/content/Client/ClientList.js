@@ -21,11 +21,6 @@ class ClientList extends Component {
                     <h2>
                         <Link to={ singleClientLink }>{ client.name }</Link>
                     </h2>
-                    <div>
-                        { client.address_1 }<br />
-                        { client.address_2 }<br />
-                        { `${client.city}, ${client.state} ${client.zip}` }
-                    </div>
                 </li>
             );
         });

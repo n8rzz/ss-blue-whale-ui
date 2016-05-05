@@ -13,7 +13,6 @@ class ClientCreateContainer extends Component {
      * @return {JSX}
      */
     render() {
-        console.log(this.props);
         return (
             <div>
                 <ClientCreate

@@ -67,7 +67,7 @@ ClientSingleContainer.propTypes = {
  * @param {Object}
  * @return {Object}
  */
-const mapStoreToProps = (state) => ({
+const mapStoreToProps = state => ({
     client: state.client.payload
 });
 
@@ -75,7 +75,7 @@ const mapStoreToProps = (state) => ({
  * @function mapDispatchToProps
  * @return {Object}
  */
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         saveClient: (id, formValues) => dispatch(saveClient(id, formValues)),
         deleteClient: id => dispatch(deleteClient(id))
