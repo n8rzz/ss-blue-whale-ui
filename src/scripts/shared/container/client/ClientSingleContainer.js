@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { saveClient } from '../../domain/client/actions/ClientSingleActions';
+import SingleClient from '../../content/Client/Single/Single';
 
 /**
  * @class ClientSingleContainer
@@ -12,8 +13,14 @@ class ClientSingleContainer extends Component {
      * @return {JSX}
      */
     render() {
+        if (!this.props.client) {
+            return null;
+        }
+
         return (
-            <div>ClientSingleContainer</div>
+            <SingleClient
+                client={ this.props.client }
+                onSaveClient={ this.props.saveClient } />
         );
     }
 }
@@ -31,6 +38,17 @@ ClientSingleContainer.displayName = 'ClientSingleContainer';
  * @static
  */
 ClientSingleContainer.propTypes = {
+    /**
+     * @property client
+     * @type {ClientType}
+     */
+    client: PropTypes.object,
+    /**
+     * @property getSingleClient
+     * @type {Function}
+     */
+    getSingleClient: PropTypes.func,
+
     /**
      * @property saveClient
      * @type {Function}

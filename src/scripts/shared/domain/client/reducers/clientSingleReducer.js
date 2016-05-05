@@ -8,7 +8,11 @@ import {
 
     SAVE_CLIENT_START,
     SAVE_CLIENT_SUCCESS,
-    SAVE_CLIENT_FAIL
+    SAVE_CLIENT_FAIL,
+
+    GET_SINGLE_CLIENT_START,
+    GET_SINGLE_CLIENT_SUCCESS,
+    GET_SINGLE_CLIENT_FAIL
 } from '../actions/ClientSingleActions';
 
 const INITIAL_STATE = new ClientStateType({
@@ -59,6 +63,29 @@ export default createReducer(INITIAL_STATE, {
     ),
 
     [SAVE_CLIENT_FAIL]: (state, { errors }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            errors
+        }
+    ),
+
+    [GET_SINGLE_CLIENT_START]: (state) => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [GET_SINGLE_CLIENT_SUCCESS]: (state, { payload }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            payload
+        }
+    ),
+
+    [GET_SINGLE_CLIENT_FAIL]: (state, { errors }) => mergeState(
         state,
         {
             isLoading: false,

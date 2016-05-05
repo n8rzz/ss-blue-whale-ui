@@ -84,3 +84,38 @@ export const saveClient = (id, clientFormValues) => {
             .catch(error => dispatch(saveClientError(error)));
     };
 };
+
+export const GET_SINGLE_CLIENT_START = 'GET_SINGLE_CLIENT_START';
+export const GET_SINGLE_CLIENT_SUCCESS = 'GET_SINGLE_CLIENT_SUCCESS';
+export const GET_SINGLE_CLIENT_FAIL = 'GET_SINGLE_CLIENT_FAIL';
+
+const getSingleClientStart = () => ({
+    type: GET_SINGLE_CLIENT_START
+});
+
+const getSingleClientSuccess = payload => ({
+    type: GET_SINGLE_CLIENT_SUCCESS,
+    payload: payload
+});
+
+const getSingleClientError = errors => ({
+    type: GET_SINGLE_CLIENT_SUCCESS,
+    payload: null,
+    errors
+});
+
+/**
+ * @function getSingleClient
+ * @param {Number} id
+ * @param {ClientType|Object} clientFormValues
+ * @return {Function}
+ */
+export const getSingleClient = (id) => {
+    return dispatch => {
+        dispatch(getSingleClientStart());
+
+        return ClientRepository.getSingleClient(id)
+            .then(response => dispatch(getSingleClientSuccess(response)))
+            .catch(error => dispatch(getSingleClientError(error)));
+    };
+};

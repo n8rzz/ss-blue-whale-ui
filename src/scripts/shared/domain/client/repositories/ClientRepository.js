@@ -25,8 +25,15 @@ export default {
     },
 
     saveClient: (id, clientRequest) => {
-        console.log('saveClient: ', id, clientRequest);
         return request.post(`${ENDPOINT}/${id}`, clientRequest)
+            .then(response => new ClientType(response.data))
+            .catch(error => {
+                throw error;
+            });
+    },
+
+    getSingleClient: id => {
+        return request.get(`${ENDPOINT}/${id}`)
             .then(response => new ClientType(response.data))
             .catch(error => {
                 throw error;
