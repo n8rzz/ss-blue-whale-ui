@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { saveClient } from '../../domain/client/actions/ClientSingleActions';
+import {
+    saveClient,
+    deleteClient
+} from '../../domain/client/actions/ClientSingleActions';
 import SingleClient from '../../content/Client/Single/Single';
 
 /**
@@ -21,7 +24,8 @@ class ClientSingleContainer extends Component {
         return (
             <SingleClient
                 client={ this.props.client }
-                onSaveClient={ this.props.saveClient } />
+                onSaveClient={ this.props.saveClient }
+                onRemoveClient={ this.props.deleteClient } />
         );
     }
 }
@@ -44,17 +48,18 @@ ClientSingleContainer.propTypes = {
      * @type {ClientType}
      */
     client: PropTypes.object,
-    /**
-     * @property getSingleClient
-     * @type {Function}
-     */
-    getSingleClient: PropTypes.func,
 
     /**
      * @property saveClient
      * @type {Function}
      */
-    saveClient: PropTypes.func
+    saveClient: PropTypes.func,
+
+    /**
+     * @property deleteClient
+     * @type {Function}
+     */
+    deleteClient: PropTypes.func
 };
 
 /**
@@ -72,7 +77,8 @@ const mapStoreToProps = (state) => ({
  */
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveClient: (id, formValues) => dispatch(saveClient(id, formValues))
+        saveClient: (id, formValues) => dispatch(saveClient(id, formValues)),
+        deleteClient: id => dispatch(deleteClient(id))
     };
 };
 

@@ -12,7 +12,11 @@ import {
 
     GET_SINGLE_CLIENT_START,
     GET_SINGLE_CLIENT_SUCCESS,
-    GET_SINGLE_CLIENT_FAIL
+    GET_SINGLE_CLIENT_FAIL,
+
+    DELETE_CLIENT_START,
+    DELETE_CLIENT_SUCCESS,
+    DELETE_CLIENT_FAIL
 } from '../actions/ClientSingleActions';
 
 const INITIAL_STATE = new ClientStateType({
@@ -86,6 +90,28 @@ export default createReducer(INITIAL_STATE, {
     ),
 
     [GET_SINGLE_CLIENT_FAIL]: (state, { errors }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            errors
+        }
+    ),
+
+    [DELETE_CLIENT_START]: (state) => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [DELETE_CLIENT_SUCCESS]: (state) => mergeState(
+        state,
+        {
+            isLoading: false
+        }
+    ),
+
+    [DELETE_CLIENT_FAIL]: (state, { errors }) => mergeState(
         state,
         {
             isLoading: false,

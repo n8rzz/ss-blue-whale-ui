@@ -38,5 +38,13 @@ export default {
             .catch(error => {
                 throw error;
             });
+    },
+
+    deleteClient: id => {
+        return request.delete(`${ENDPOINT}/${id}`)
+            .then(response => response)
+            .catch(error => {
+                throw error
+            });
     }
 };

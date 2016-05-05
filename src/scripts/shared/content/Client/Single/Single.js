@@ -6,13 +6,13 @@ import { ClientType } from '../../../domain/client/types/ClientTypes';
 const Form = t.form.Form;
 
 /**
- * @class SaveClient
+ * @class ClientSingle
  * @extends React/Component
  */
-export default class SaveClient extends Component {
+export default class ClientSingle extends Component {
     /**
      * @constructor
-     * @for SaveClient
+     * @for ClientSingle
      */
     constructor(props) {
         super(props);
@@ -23,16 +23,16 @@ export default class SaveClient extends Component {
     }
 
     /**
-     * @for SaveClient
+     * @for ClientSingle
      * @method componentWillReceiveProps
      * @param {Object} nextProps
      */
     componentWillReceiveProps(nextProps) {
-        this.setState({clientFormValues: nextProps.client});
+        this.setState({ clientFormValues: nextProps.client });
     }
 
     /**
-     * @for SaveClient
+     * @for ClientSingle
      * @method render
      * @return {JSX}
      */
@@ -44,13 +44,25 @@ export default class SaveClient extends Component {
                     value={ this.state.clientFormValues }
                     type={ ClientType } />
 
+                <button onClick={ this.onRemoveClient }>Delete Client</button>
                 <button type="submit" onClick={ this.onSubmit }>Update Client</button>
             </div>
         );
     }
 
     /**
-     * @for SaveClient
+     * @method onRemoveClient
+     * @return {Function}
+     * @callback
+     */
+    onRemoveClient = (event) => {
+        event.preventDefault();
+
+        this.props.onRemoveClient(this.props.client.id);
+    }
+
+    /**
+     * @for ClientSingle
      * @method onSubmit
      * @param {Event} event
      * @return {Function}
@@ -72,23 +84,32 @@ export default class SaveClient extends Component {
  * @type {String}
  * @static
  */
-SaveClient.displayName = 'SaveClient';
+ClientSingle.displayName = 'ClientSingle';
 
 /**
  * @property propTypes
  * @type {String}
  * @static
  */
-SaveClient.propTypes = {
+ClientSingle.propTypes = {
+
     /**
      * @property client
      * @type {ClientType}
      */
     client: PropTypes.object,
+
     /**
      * @property onSaveClient
      * @type {Function}
      * @required
      */
-    onSaveClient: PropTypes.func.isRequired
+    onSaveClient: PropTypes.func.isRequired,
+
+    /**
+     * @property onRemoveClient
+     * @type {Function}
+     * @required
+     */
+    onRemoveClient: PropTypes.func.isRequired
 };

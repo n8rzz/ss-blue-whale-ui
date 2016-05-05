@@ -119,3 +119,39 @@ export const getSingleClient = (id) => {
             .catch(error => dispatch(getSingleClientError(error)));
     };
 };
+
+export const DELETE_CLIENT_START = 'DELETE_CLIENT_START';
+export const DELETE_CLIENT_SUCCESS = 'DELETE_CLIENT_SUCCESS';
+export const DELETE_CLIENT_FAIL = 'DELETE_CLIENT_FAIL';
+
+const deleteClientStart = () => ({
+    type: DELETE_CLIENT_START
+});
+
+const deleteClientSuccess = () => ({
+    type: DELETE_CLIENT_SUCCESS
+});
+
+const deleteClientError = errors => ({
+    type: DELETE_CLIENT_SUCCESS,
+    payload: null,
+    errors
+});
+
+/**
+ * @function deleteClient
+ * @param {ClientCreationType|Object} clientFormValues
+ * @return {Function}
+ */
+export const deleteClient = id => {
+    return dispatch => {
+        dispatch(deleteClientStart());
+
+        return ClientRepository.deleteClient(id)
+            .then(response => {
+                dispatch(deleteClientSuccess(response));
+                return dispatch(push('/clients'));
+            })
+            .catch(error => dispatch(deleteClientError(error)));
+    };
+};
