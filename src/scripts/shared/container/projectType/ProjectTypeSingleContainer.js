@@ -45,7 +45,12 @@ ProjectTypeSingleContainer.propTypes = {
  * @param {Object} state
  * @return {Object}
  */
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => {
+    debugger;
+    return {
+        projectType: state.projectType.payload
+    };
+};
 
 /**
  * @method mapDispatchToProps

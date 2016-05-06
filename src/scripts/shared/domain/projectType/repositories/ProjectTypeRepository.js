@@ -8,6 +8,9 @@ import { ENDPOINTS } from '../../endpoints';
 const ENDPOINT = `${ENDPOINTS}/projectTypes`;
 
 export default {
+    /**
+     * @function getProjectTypeList
+     */
     getProjectTypeList: () => {
         return request.get(`${ENDPOINT}`)
             .then(response => new ProjectTypeListType(response.data))
@@ -16,8 +19,22 @@ export default {
             });
     },
 
+    /**
+     * @function createProjectType
+     */
     createProjectType: createProjectTypeRequest => {
         return request.post(`${ENDPOINT}`, createProjectTypeRequest)
+            .then(response => new ProjectTypeType(response.data))
+            .catch(error => {
+                throw error;
+            });
+    },
+
+    /**
+     * @function getProjectType
+     */
+    getProjectType: id => {
+        return request.get(`${ENDPOINT}/${id}`)
             .then(response => new ProjectTypeType(response.data))
             .catch(error => {
                 throw error;

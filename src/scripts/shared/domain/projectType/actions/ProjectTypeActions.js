@@ -39,3 +39,30 @@ export const createProjectType = projectTypeFormValues => {
             .catch(error => dispatch(createProjectTypeError(error)));
     };
 };
+
+export const GET_PROJECT_TYPE_START = 'GET_PROJECT_TYPE_START';
+export const GET_PROJECT_TYPE_SUCCESS = 'GET_PROJECT_TYPE_SUCCESS';
+export const GET_PROJECT_TYPE_FAIL = 'GET_PROJECT_TYPE_FAIL';
+
+const getProjectTypeStart = () => ({
+    type: GET_PROJECT_TYPE_START
+});
+
+const getProjectTypeSuccess = payload => ({
+    type: GET_PROJECT_TYPE_SUCCESS,
+    payload: payload
+});
+
+const getProjectTypeError = errors => ({
+    type: GET_PROJECT_TYPE_SUCCESS,
+    payload: null,
+    errors
+});
+
+export const getProjectType = id => dispatch => {
+    dispatch(getProjectTypeStart());
+
+    return ProjectTypeRepository.getProjectType(id)
+        .then(response => dispatch(getProjectTypeSuccess(response)))
+        .catch(error => dispatch(getProjectTypeError(error)));
+};
