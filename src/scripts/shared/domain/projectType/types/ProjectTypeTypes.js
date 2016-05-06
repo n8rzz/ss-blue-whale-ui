@@ -19,7 +19,7 @@ export const ProjectTypeCreationType = t.struct({
  * @type ProjectTypeType
  * @return {ProjectTypeType}
  */
-export const ProjectTypeType = t.struct({
+export const ProjectTypeType = ProjectTypeCreationType.extend({
     id: t.Number
 }, 'ProjectTypeType');
 

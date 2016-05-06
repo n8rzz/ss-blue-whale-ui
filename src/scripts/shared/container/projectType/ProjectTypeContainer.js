@@ -15,10 +15,12 @@ class ProjectTypeContainer extends Component {
      * @return {JSX}
      */
     render() {
+        if (!this.props.projectTypes) {
+            return null;
+        }
+
         return (
             <div>
-                <h1>Project Types</h1>
-
                 <ProjectTypeList projectTypes={ this.props.projectTypes } />
             </div>
         );
