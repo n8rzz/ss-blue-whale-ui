@@ -21,7 +21,7 @@ ava('getProjectTypeList dispatches start action', async t => {
     t.ok(dispatchSpy.calledWith({ type: GET_PROJECT_TYPE_LIST_START }));
 });
 
-ava('getProjectTypeList calls the hierarchies repository', async t => {
+ava('getProjectTypeList calls the Client repository', async t => {
     const dispatchSpy = sinon.spy();
     ProjectTypeRepository.getProjectTypeList = sinon.stub().resolves(ValidProjectTypeList);
     await getProjectTypeList()(dispatchSpy);

@@ -31,7 +31,7 @@ const createClientError = errors => ({
  */
 export const createClient = (clientFormValues) => {
     if (!ClientCreationType.is(clientFormValues)) {
-        throw new TypeError('Invalid Client type. Form values must be a ClientCreateionType');
+        throw new TypeError('Invalid Client type. Form values must be a ClientCreationType');
     }
 
     return dispatch => {

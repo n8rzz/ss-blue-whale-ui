@@ -1,4 +1,5 @@
 import {
+    VALID_PROJECT_TYPE_CREATION_REQUEST,
     VALID_PROJECT_TYPE_API_RESPONSE,
     VALID_PROJECT_TYPE_LIST_API_RESPONSE
 } from '../../mocks/projectType/projectTypeMocks';
@@ -8,10 +9,13 @@ import {
 } from '../../mocks/BaseTypes';
 
 import {
+    ProjectTypeCreationType,
     ProjectTypeType,
     ProjectTypeListType,
     ProjectTypeListStateType
 } from '../../../../src/scripts/shared/domain/projectType/types/ProjectTypeTypes';
+
+export const ValidProjectTypeCreationType = new ProjectTypeCreationType(VALID_PROJECT_TYPE_CREATION_REQUEST);
 
 export const ValidProjectTypeType = new ProjectTypeType(VALID_PROJECT_TYPE_API_RESPONSE);
 

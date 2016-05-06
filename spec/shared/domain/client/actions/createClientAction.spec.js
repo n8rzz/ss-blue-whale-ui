@@ -33,7 +33,7 @@ ava('createClient dispatches start action', async t => {
     t.ok(dispatchSpy.calledWith({ type: CREATE_CLIENT_START }));
 });
 
-ava('createClient calls the hierarchies repository', async t => {
+ava('createClient calls the Client repository', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.createClient = sinon.stub().resolves(ValidClientCreationType);
     await createClient(ValidClientCreationType)(dispatchSpy);

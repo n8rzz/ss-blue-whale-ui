@@ -2,18 +2,25 @@ import t from 'tcomb';
 import { BaseStateType } from '../../BaseTypes';
 
 /**
+ * @type ProjectTypeCreationType
+ * @return {ProjectTypeCreationType}
+ */
+export const ProjectTypeCreationType = t.struct({
+    name: t.String,
+    description: t.String,
+    dueDate: t.maybe(t.String)
+    // TODO: update to reference TaskItemType
+    // task_items: t.maybe(t.list(t.String))
+}, 'ProjectTypeCreationType');
+
+/**
  * ProjectTypeType definition
  *
  * @type ProjectTypeType
  * @return {ProjectTypeType}
  */
 export const ProjectTypeType = t.struct({
-    id: t.Number,
-    name: t.String,
-    description: t.String,
-    dueDate: t.maybe(t.String),
-    // TODO: update to reference TaskItemType
-    task_items: t.maybe(t.list(t.String))
+    id: t.Number
 }, 'ProjectTypeType');
 
 /**
@@ -33,3 +40,13 @@ export const ProjectTypeListType = t.list(ProjectTypeType, 'ProjectTypeListType'
 export const ProjectTypeListStateType = BaseStateType.extend({
     payload: t.maybe(ProjectTypeListType)
 }, 'ProjectTypeListStateType');
+
+/**
+ * ProjectTypeStateType used in the `ProjectTypeReducer`
+ *
+ * @extends BaseStateType
+ * @return {ProjectTypeStateType}
+ */
+export const ProjectTypeStateType = BaseStateType.extend({
+    paylaod: t.maybe(ProjectTypeType)
+}, 'ProjectTypeStateType');
