@@ -37,8 +37,6 @@ export default class ClientCreate extends Component {
         const createClientFormValues = this.refs.createClientForm.getValue();
         // const createClientFormValidation = this.refs.createClientForm.validate();
 
-        console.log(createClientFormValues);
-
         if (!t.Nil.is(createClientFormValues) && ClientCreationType.is(createClientFormValues)) {
             this.props.onCreateClient(createClientFormValues);
         }

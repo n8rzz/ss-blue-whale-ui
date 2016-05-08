@@ -10,7 +10,13 @@ import ClientSingleContainer from './container/client/ClientSingleContainer';
 import { getSingleClient } from './domain/client/actions/ClientSingleActions';
 
 import ProjectContainer from './container/project/ProjectContainer';
+
+import ProjectTypeRoot from './content//ProjectType/ProjectTypeRoot';
 import ProjectTypeContainer from './container/projectType/ProjectTypeContainer';
+import ProjectTypeCreateContainer from './container/projectType/ProjectTypeCreateContainer';
+import ProjectTypeSingleContainer from './container/projectType/ProjectTypeSingleContainer';
+import { getProjectType } from './domain/projectType/actions/ProjectTypeActions';
+
 import TaskItemContainer from './container/taskItem/TaskItemContainer';
 
 export default function(store) {
@@ -27,7 +33,16 @@ export default function(store) {
             </Route>
 
             <Route component={ ProjectContainer } path="projects" />
-            <Route component={ ProjectTypeContainer } path="projectTypes" />
+
+            <Route component={ ProjectTypeRoot } path="projectTypes">
+                <IndexRoute component={ ProjectTypeContainer } />
+                <Route path="create"
+                    component={ ProjectTypeCreateContainer } />
+                <Route path=":id"
+                    component={ ProjectTypeSingleContainer }
+                    onEnter={ nextState => store.dispatch(getProjectType(nextState.params.id)) } />
+            </Route>
+
             <Route component={ TaskItemContainer } path="taskItems" />
         </Route>
     );

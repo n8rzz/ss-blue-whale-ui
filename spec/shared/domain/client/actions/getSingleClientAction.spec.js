@@ -28,7 +28,7 @@ ava('getSingleClient dispatches start action', async t => {
     t.ok(dispatchSpy.calledWith({ type: GET_SINGLE_CLIENT_START }));
 });
 
-ava('getSingleClient calls the hierarchies repository', async t => {
+ava('getSingleClient calls the Client repository', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.getSingleClient = sinon.stub().resolves(ValidClientType);
     await getSingleClient(ValidClientType.id)(dispatchSpy);

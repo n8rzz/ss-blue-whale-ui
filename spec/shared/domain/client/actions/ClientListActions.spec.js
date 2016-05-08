@@ -21,7 +21,7 @@ ava('getClientList dispatches start action', async t => {
     t.ok(dispatchSpy.calledWith({ type: GET_CLIENT_LIST_START }));
 });
 
-ava('getClientList calls the hierarchies repository', async t => {
+ava('getClientList calls the Client repository', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.getClientList = sinon.stub().resolves(ValidClientList);
     await getClientList()(dispatchSpy);

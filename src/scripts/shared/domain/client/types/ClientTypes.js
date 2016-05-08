@@ -30,6 +30,7 @@ export const ClientCreationType = t.struct({
  */
 export const ClientType = ClientCreationType.extend({
     id: t.Number
+    // TODO: add `client_contacts` and `notes`
 }, 'ClientType');
 
 /**

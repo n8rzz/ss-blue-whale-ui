@@ -30,6 +30,11 @@ export class App extends Component {
                         <ul>
                             <li>
                                 <Link to="/projectTypes">Project Types</Link>
+                                <ul>
+                                    <li>
+                                        <Link to="/projectTypes/create">Create Project Type</Link>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <Link to="/taskItems">Task Items</Link>

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { map as _map } from 'lodash';
+import { Link } from 'react-router';
+import _map from 'lodash/map';
 
 /**
  * @class ProjectTypeList
@@ -10,12 +11,16 @@ class ProjectTypeList extends Component {
      * @return {JSX}
      */
     _composeProjectTypeList() {
-        return _map(this.props.projectTypes, (type, index) => {
+        return _map(this.props.projectTypes, (projectType, index) => {
+            const projectTypeLink = `/projectTypes/${projectType.id}`;
+
             return (
                 <li key={ index }>
-                    <h2>{ type.name }</h2>
+                    <h2>
+                        <Link to={ projectTypeLink }>{ projectType.name }</Link>
+                    </h2>
                     <div>
-                        { type.description }
+                        { projectType.description }
                     </div>
                 </li>
             );

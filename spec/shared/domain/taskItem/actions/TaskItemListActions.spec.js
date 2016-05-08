@@ -21,7 +21,7 @@ ava('getTaskItemList dispatches start action', async t => {
     t.ok(dispatchSpy.calledWith({ type: GET_TASK_ITEM_LIST_START }));
 });
 
-ava('getTaskItemList calls the hierarchies repository', async t => {
+ava('getTaskItemList calls the Client repository', async t => {
     const dispatchSpy = sinon.spy();
     TaskItemRepository.getTaskItemList = sinon.stub().resolves(ValidTaskItemList);
     await getTaskItemList()(dispatchSpy);

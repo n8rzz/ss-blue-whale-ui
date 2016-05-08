@@ -28,7 +28,7 @@ ava('saveClient dispatches start action', async t => {
     t.ok(dispatchSpy.calledWith({ type: SAVE_CLIENT_START }));
 });
 
-ava('saveClient calls the hierarchies repository', async t => {
+ava('saveClient calls the Client repository', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.saveClient = sinon.stub().resolves(ValidClientType);
     await saveClient(ValidClientType.id, ValidClientType)(dispatchSpy);
