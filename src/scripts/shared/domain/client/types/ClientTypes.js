@@ -1,5 +1,6 @@
 import t from 'tcomb';
 import { BaseStateType } from '../../BaseTypes';
+// import { ClientContactType } from '../../ClientContactType';
 
 /**
  * @type ClientCreationType
@@ -18,7 +19,8 @@ export const ClientCreationType = t.struct({
     // TODO: create refinement for email address
     email: t.maybe(t.String),
     // TODO create refinement for urls
-    website: t.maybe(t.String)
+    website: t.maybe(t.String),
+    // client_contacts: t.list(t.maybe(ClientContactType))
 }, 'ClientCreationType');
 
 /**

@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
-
 import { ClientType } from '../../../domain/client/types/ClientTypes';
 
 const Form = t.form.Form;
@@ -43,8 +42,9 @@ export default class ClientSingle extends Component {
                     <li>Main</li>
                     <li>Projects</li>
                     <li>History</li>
+                    <li>Notes</li>
                 </ul>
-                
+
                 <Form
                     ref="clientForm"
                     value={ this.state.clientFormValues }
