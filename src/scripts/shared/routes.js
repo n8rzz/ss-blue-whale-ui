@@ -40,7 +40,7 @@ export default function(store) {
                     component={ ProjectTypeCreateContainer } />
                 <Route path=":id"
                     component={ ProjectTypeSingleContainer }
-                    onEnter={ nextState => store.dispatch(getProjectType(nextState.params.id)) }/>
+                    onEnter={ nextState => store.dispatch(getProjectType(nextState.params.id)) } />
             </Route>
 
             <Route component={ TaskItemContainer } path="taskItems" />

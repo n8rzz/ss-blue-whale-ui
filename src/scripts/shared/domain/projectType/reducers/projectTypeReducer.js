@@ -8,12 +8,20 @@ import {
 
     GET_PROJECT_TYPE_START,
     GET_PROJECT_TYPE_SUCCESS,
-    GET_PROJECT_TYPE_FAIL
+    GET_PROJECT_TYPE_FAIL,
+
+    SAVE_PROJECT_TYPE_START,
+    SAVE_PROJECT_TYPE_SUCCESS,
+    SAVE_PROJECT_TYPE_FAIL,
+
+    REMOVE_PROJECT_TYPE_START,
+    REMOVE_PROJECT_TYPE_SUCCESS,
+    REMOVE_PROJECT_TYPE_FAIL
 } from '../actions/ProjectTypeActions';
 
 const INITIAL_STATE = new ProjectTypeStateType({
     isLoading: false,
-    payload: [],
+    payload: null,
     errors: null
 });
 
@@ -59,6 +67,51 @@ export default createReducer(INITIAL_STATE, {
     ),
 
     [GET_PROJECT_TYPE_FAIL]: (state, { errors }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            errors
+        }
+    ),
+
+    [SAVE_PROJECT_TYPE_START]: state => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [SAVE_PROJECT_TYPE_SUCCESS]: (state, { payload }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            payload
+        }
+    ),
+
+    [SAVE_PROJECT_TYPE_FAIL]: (state, { errors }) => mergeState(
+        state,
+        {
+            isLoading: false,
+            errors
+        }
+    ),
+
+    [REMOVE_PROJECT_TYPE_START]: state => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [REMOVE_PROJECT_TYPE_SUCCESS]: state => mergeState(
+        state,
+        {
+            isLoading: false
+        }
+    ),
+
+    [REMOVE_PROJECT_TYPE_FAIL]: (state, { errors }) => mergeState(
         state,
         {
             isLoading: false,

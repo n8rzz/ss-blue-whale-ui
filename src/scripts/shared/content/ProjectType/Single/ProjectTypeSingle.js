@@ -9,6 +9,7 @@ const Form = t.form.Form;
  * @extends React/Component
  */
 export default class ProjectTypeSingle extends Component {
+
     /**
      * @constructor
      */
@@ -42,12 +43,14 @@ export default class ProjectTypeSingle extends Component {
                     value={ this.state.saveProjectTypeFormValues }
                     onChange={ this.onChange } />
 
+                <button onClick={ this.onRemoveProjectType }>Remove Project Type</button>
                 <button type="submit" onClick={ this.onSubmit }>Save Project Type</button>
             </div>
         );
     }
 
     /**
+     * @for ProjectTypeSingle
      * @method onChange
      * @param {Object} formValues
      * @callback
@@ -59,15 +62,33 @@ export default class ProjectTypeSingle extends Component {
     }
 
     /**
-     * @for onSubmit
-     * @method onSubmit
+     * @for ProjectTypeSingle
+     * @method onRemoveProjectType
+     * @param {Object} event
      * @return {Function}
      * @callback
      */
-    onSubmit = () => {
+    onRemoveProjectType = event => {
+        event.preventDefault();
+
+        this.props.onRemoveProjectType(this.props.projectType.id);
+    }
+
+    /**
+     * @for ProjectTypeSingle
+     * @method onSubmit
+     * @param {Object} event
+     * @return {Function}
+     * @callback
+     */
+    onSubmit = event => {
+        event.preventDefault();
+
         const saveProjectTypeFormValues = this.refs.saveProjectTypeForm.getValue();
 
-        this.props.onCreateProjectType(saveProjectTypeFormValues);
+        if (!t.Nil.is(saveProjectTypeFormValues)) {
+            this.props.onSaveProjectType(this.props.projectType.id, saveProjectTypeFormValues);
+        }
     }
 }
 
@@ -85,9 +106,21 @@ ProjectTypeSingle.displayName = 'ProjectTypeSingle';
  */
 ProjectTypeSingle.propTypes = {
     /**
-     * @property onCreateProjectType
+     * @property projectType
+     * @type {Object}
+     */
+    projectType: PropTypes.object,
+    /**
+     * @property onSaveProjectType
      * @type {Function}
      * @required
      */
-    onCreateProjectType: PropTypes.func.isRequired
+    onSaveProjectType: PropTypes.func.isRequired,
+
+    /**
+     * @property onRemoveProjectType
+     * @type {Function}
+     * @required
+     */
+    onRemoveProjectType: PropTypes.func.isRequired
 };

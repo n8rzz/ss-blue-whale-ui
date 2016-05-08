@@ -1,7 +1,8 @@
 import { push } from 'react-router-redux';
 import ProjectTypeRepository from '../repositories/ProjectTypeRepository';
 import {
-    ProjectTypeCreationType
+    ProjectTypeCreationType,
+    ProjectTypeType
 } from '../types/ProjectTypeTypes';
 
 export const CREATE_PROJECT_TYPE_START = 'CREATE_PROJECT_TYPE_START';
@@ -65,4 +66,69 @@ export const getProjectType = id => dispatch => {
     return ProjectTypeRepository.getProjectType(id)
         .then(response => dispatch(getProjectTypeSuccess(response)))
         .catch(error => dispatch(getProjectTypeError(error)));
+};
+
+export const SAVE_PROJECT_TYPE_START = 'SAVE_PROJECT_TYPE_START';
+export const SAVE_PROJECT_TYPE_SUCCESS = 'SAVE_PROJECT_TYPE_SUCCESS';
+export const SAVE_PROJECT_TYPE_FAIL = 'SAVE_PROJECT_TYPE_FAIL';
+
+const saveProjectTypeStart = () => ({
+    type: SAVE_PROJECT_TYPE_START
+});
+
+const saveProjectTypeSuccess = payload => ({
+    type: SAVE_PROJECT_TYPE_SUCCESS,
+    payload: payload
+});
+
+const saveProjectTypeError = errors => ({
+    type: SAVE_PROJECT_TYPE_SUCCESS,
+    payload: null,
+    errors
+});
+
+export const saveProjectType = (id, projectTypeFormValues) => {
+    if (!ProjectTypeType.is(projectTypeFormValues)) {
+        throw new TypeError('Invalid ProjectType. Form values must be a ProjectTypeType');
+    }
+
+    return dispatch => {
+        dispatch(saveProjectTypeStart());
+
+        return ProjectTypeRepository.saveProjectType(id, projectTypeFormValues)
+            .then(response => dispatch(saveProjectTypeSuccess(response)))
+            .catch(error => dispatch(saveProjectTypeError(error)));
+    };
+};
+
+export const REMOVE_PROJECT_TYPE_START = 'REMOVE_PROJECT_TYPE_START';
+export const REMOVE_PROJECT_TYPE_SUCCESS = 'REMOVE_PROJECT_TYPE_SUCCESS';
+export const REMOVE_PROJECT_TYPE_FAIL = 'REMOVE_PROJECT_TYPE_FAIL';
+
+const removeProjectTypeStart = () => ({
+    type: REMOVE_PROJECT_TYPE_START
+});
+
+const removeProjectTypeSuccess = () => ({
+    type: REMOVE_PROJECT_TYPE_SUCCESS,
+    payload: null
+});
+
+const removeProjectTypeError = errors => ({
+    type: REMOVE_PROJECT_TYPE_SUCCESS,
+    payload: null,
+    errors
+});
+
+export const removeProjectType = id => {
+    return dispatch => {
+        dispatch(removeProjectTypeStart());
+
+        return ProjectTypeRepository.removeProjectType(id)
+            .then(() => {
+                dispatch(removeProjectTypeSuccess());
+                return dispatch(push('/projectTypes'));
+            })
+            .catch(error => dispatch(removeProjectTypeError(error)));
+    };
 };

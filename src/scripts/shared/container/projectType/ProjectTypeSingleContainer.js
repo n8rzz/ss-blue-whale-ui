@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { saveProjectType } from '../../domain/projectType/actions/ProjectTypeActions';
-import ProjectTypeSingle from '../../content/ProjectType/Create/ProjectTypeCreate';
+import {
+    saveProjectType,
+    removeProjectType
+} from '../../domain/projectType/actions/ProjectTypeActions';
+import ProjectTypeSingle from '../../content/ProjectType/Single/ProjectTypeSingle';
 
 /**
  * @class ProjectTypeSingleContainer
  * @extends React/Component
  */
 class ProjectTypeSingleContainer extends Component {
+
     /**
      * @method  render
      * @return {JSX}
@@ -15,7 +19,10 @@ class ProjectTypeSingleContainer extends Component {
     render() {
         return (
             <div>
-                <ProjectTypeSingle />
+                <ProjectTypeSingle
+                    projectType={ this.props.projectType }
+                    onSaveProjectType={ this.props.saveProjectType }
+                    onRemoveProjectType={ this.props.removeProjectType }/>
             </div>
         );
     }
@@ -34,10 +41,22 @@ ProjectTypeSingleContainer.displayName = 'ProjectTypeSingleContainer';
  */
 ProjectTypeSingleContainer.propTypes = {
     /**
-     * @props saveProjectType
-     * @type {Array}
+     * @property projectType
+     * @type {Object}
      */
-    saveProjectType: PropTypes.func
+    projectType: PropTypes.object,
+
+    /**
+     * @props saveProjectType
+     * @type {Function}
+     */
+    saveProjectType: PropTypes.func,
+
+    /**
+     * @props removeProjectType
+     * @type {Function}
+     */
+    removeProjectType: PropTypes.func
 };
 
 /**
@@ -46,7 +65,6 @@ ProjectTypeSingleContainer.propTypes = {
  * @return {Object}
  */
 const mapStateToProps = (state) => {
-    debugger;
     return {
         projectType: state.projectType.payload
     };
@@ -59,7 +77,8 @@ const mapStateToProps = (state) => {
  */
 function mapDispatchToProps(dispatch) {
     return {
-        saveProjectType: (id, formValues) => dispatch(saveProjectType(id, formValues))
+        saveProjectType: (id, formValues) => dispatch(saveProjectType(id, formValues)),
+        removeProjectType: id => dispatch(removeProjectType(id))
     };
 }
 

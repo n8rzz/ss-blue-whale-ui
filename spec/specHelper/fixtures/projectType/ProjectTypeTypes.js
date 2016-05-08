@@ -12,7 +12,8 @@ import {
     ProjectTypeCreationType,
     ProjectTypeType,
     ProjectTypeListType,
-    ProjectTypeListStateType
+    ProjectTypeListStateType,
+    ProjectTypeStateType
 } from '../../../../src/scripts/shared/domain/projectType/types/ProjectTypeTypes';
 
 export const ValidProjectTypeCreationType = new ProjectTypeCreationType(VALID_PROJECT_TYPE_CREATION_REQUEST);
@@ -24,4 +25,9 @@ export const ValidProjectTypeListType = new ProjectTypeListType(VALID_PROJECT_TY
 export const ValidProjectTypeListStateType = new ProjectTypeListStateType({
     ...VALID_BASE_STATE_TYPE,
     payload: ValidProjectTypeListType
+});
+
+export const ValidProjectTypeStateType = new ProjectTypeStateType({
+    ...VALID_BASE_STATE_TYPE,
+    payload: ValidProjectTypeType
 });

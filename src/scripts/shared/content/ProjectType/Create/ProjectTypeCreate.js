@@ -35,7 +35,9 @@ export default class ProjectTypeCreate extends Component {
     onSubmit = () => {
         const createProjectTypeFormValues = this.refs.createProjectTypeForm.getValue();
 
-        this.props.onCreateProjectType(createProjectTypeFormValues);
+        if (!t.Nil.is(createProjectTypeFormValues)) {
+            this.props.onCreateProjectType(createProjectTypeFormValues);
+        }
     }
 }
 

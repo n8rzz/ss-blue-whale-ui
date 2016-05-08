@@ -48,5 +48,5 @@ export const ProjectTypeListStateType = BaseStateType.extend({
  * @return {ProjectTypeStateType}
  */
 export const ProjectTypeStateType = BaseStateType.extend({
-    paylaod: t.maybe(ProjectTypeType)
+    payload: t.maybe(ProjectTypeType)
 }, 'ProjectTypeStateType');

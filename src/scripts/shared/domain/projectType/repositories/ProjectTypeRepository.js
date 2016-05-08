@@ -39,5 +39,27 @@ export default {
             .catch(error => {
                 throw error;
             });
+    },
+
+    /**
+     * @function saveProjectType
+     */
+    saveProjectType: (id, projectTypeRequest) => {
+        return request.put(`${ENDPOINT}/${id}`, projectTypeRequest)
+            .then(response => new ProjectTypeType(response.data))
+            .catch(error => {
+                throw error;
+            });
+    },
+
+    /**
+     * @function removeProjectType
+     */
+    removeProjectType: id => {
+        return request.delete(`${ENDPOINT}/${id}`)
+            .then(response => response)
+            .catch(error => {
+                throw error;
+            });
     }
 };
