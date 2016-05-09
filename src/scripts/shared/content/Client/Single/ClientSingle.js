@@ -4,6 +4,7 @@ import {
     ClientCreationType,
     ClientPreviewType
 } from '../../../domain/client/types/ClientTypes';
+import { ClientContactCreationType } from '../../../domain/clientContact/types/ClientContactTypes';
 import ClientContactList from '../../ClientContact/ClientContactList/ClientContactList';
 
 const Form = t.form.Form;
@@ -48,7 +49,8 @@ export default class ClientSingle extends Component {
         return (
             <ClientContactList
                 clientId={ this.props.client.id }
-                contacts={ clientContacts } />
+                contacts={ clientContacts }
+                onRequestToAddContactToClient={ this.onRequestToAddContactToClient }/>
         );
     }
 
@@ -108,6 +110,21 @@ export default class ClientSingle extends Component {
             this.props.onSaveClient(this.props.client.id, clientFormValues);
         }
     }
+
+    /**
+     * @for ClientSingle
+     * @method onRequestToAddContactToClient
+     * @param {ClientContactCreationType} clientContactFormValues
+     * @return {Function}
+     */
+    onRequestToAddContactToClient = clientContactFormValues => {
+        const clientContactRequest = ClientContactCreationType.buildRequestParams(
+            this.props.client.id,
+            clientContactFormValues
+        );
+
+        this.props.onCreateContactForClient(this.props.client.id, clientContactRequest);
+    }
 }
 
 /**
@@ -142,5 +159,12 @@ ClientSingle.propTypes = {
      * @type {Function}
      * @required
      */
-    onRemoveClient: PropTypes.func.isRequired
+    onRemoveClient: PropTypes.func.isRequired,
+
+    /**
+     * @property onCreateContactForClient
+     * @type {Function}
+     * @required
+     */
+    onCreateContactForClient: PropTypes.func.isRequired
 };

@@ -31,8 +31,9 @@ export default class AddContactToClientForm extends Component {
 
         const addContactToClientFormValues = this.refs.addContactToClientForm.getValue();
 
-        console.log(addContactToClientFormValues);
-        // TODO: add props method here to add contact to client
+        if (addContactToClientFormValues !== null) {
+            this.props.onRequestToAddContactToClient(addContactToClientFormValues);
+        }
     }
 }
 
@@ -46,4 +47,11 @@ AddContactToClientForm.displayName = 'AddContactToClientForm';
  * @property propTypes
  * @type {Object}
  */
-AddContactToClientForm.propTypes = {};
+AddContactToClientForm.propTypes = {
+    /**
+     * @property onRequestToAddContactToClient
+     * @type {Function}
+     * @required
+     */
+    onRequestToAddContactToClient: PropTypes.func.isRequired
+};

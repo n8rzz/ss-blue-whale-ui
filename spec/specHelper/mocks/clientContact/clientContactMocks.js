@@ -1,13 +1,22 @@
 /**
- * @property VALID_CLIENT_CREATION_REQUEST
+ * @property VALID_CLIENT_CONTACT_CREATION_TYPE
  * @type {ClientContactCreationType|Object}
  */
-export const VALID_CLIENT_CONTACT_CREATION_REQUEST = {
+export const VALID_CLIENT_CONTACT_CREATION_TYPE = {
     'position': 'The Boss',
     'name': 'Jenny Doe',
     'businessPhone': '555-867-5309',
     'mobilePhone': '555-867-5309',
     'email': 'jenny_doe@example.com'
+};
+
+/**
+ * @property VALID_CLIENT_CONTACT_CREATION_REQUEST_TYPE
+ * @type {ClientContactCreationRequestType|Object}
+ */
+export const VALID_CLIENT_CONTACT_CREATION_REQUEST_TYPE = {
+    ...VALID_CLIENT_CONTACT_CREATION_TYPE,
+    'client_id': 1
 };
 
 /**

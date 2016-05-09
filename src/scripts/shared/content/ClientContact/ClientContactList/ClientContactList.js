@@ -20,6 +20,14 @@ export default class ClientContactList extends Component {
     }
 
     /**
+     * @method componentWillReceiveProps
+     * @param {Object} nextProps
+     */
+    componentWillReceiveProps() {
+        this.setState({ shouldShowAddContact: false });
+    }
+
+    /**
      * @for ClientContactList
      * @method _composeAddContactForm
      * @return {JSX}
@@ -31,7 +39,8 @@ export default class ClientContactList extends Component {
 
         return (
             <div>
-                <AddContactToClientForm />
+                <AddContactToClientForm
+                    onRequestToAddContactToClient={ this.props.onRequestToAddContactToClient } />
             </div>
         );
     }
@@ -109,5 +118,12 @@ ClientContactList.propTypes = {
      * @property clientId
      * @type {Number}
      */
-    clientId: PropTypes.number.isRequired
+    clientId: PropTypes.number.isRequired,
+
+    /**
+     * @property onRequestToAddContactToClient
+     * @type {Function}
+     * @required
+     */
+    onRequestToAddContactToClient: PropTypes.func.isRequired
 };

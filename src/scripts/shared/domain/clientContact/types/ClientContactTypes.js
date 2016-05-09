@@ -14,6 +14,40 @@ export const ClientContactCreationType = t.struct({
 }, 'ClientContactCreationType');
 
 /**
+ * @type ClientContactCreationRequestType
+ * @return {ClientContactCreationRequestType}
+ */
+export const ClientContactCreationRequestType = ClientContactCreationType.extend({
+    client_id: t.Number
+}, 'ClientContactCreationRequestType');
+
+/**
+ * @method buildRequestParams
+ * @extends ClientContactCreationType
+ * @param  {Number} clientId
+ * @param  {ClientContactCreationType} clientContact
+ * @return {ClientContactCreationRequestType}
+ */
+ClientContactCreationType.buildRequestParams = (clientId, clientContact) => {
+    if (t.Nil.is(clientId)) {
+        throw new TypeError('Missing ClientId.  Invalid parameters.');
+    }
+
+    if (t.Nil.is(clientContact) || !ClientContactCreationType.is(clientContact)) {
+        throw new TypeError('ClientContact must be a `ClientContactCreationType`');
+    }
+
+    const creationRequest = Object.assign(
+        { ...clientContact },
+        {
+            client_id: clientId
+        }
+    );
+
+    return new ClientContactCreationRequestType(creationRequest);
+};
+
+/**
  * @type ClientContactType
  * @return {ClientContactType}
  */

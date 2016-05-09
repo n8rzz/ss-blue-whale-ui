@@ -110,7 +110,7 @@ const getSingleClientError = errors => ({
  * @param {ClientType|Object} clientFormValues
  * @return {Function}
  */
-export const getSingleClient = (id) => {
+export const getSingleClient = id => {
     return dispatch => {
         dispatch(getSingleClientStart());
 
