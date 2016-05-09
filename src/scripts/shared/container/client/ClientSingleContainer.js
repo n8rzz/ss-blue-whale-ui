@@ -4,13 +4,14 @@ import {
     saveClient,
     deleteClient
 } from '../../domain/client/actions/ClientSingleActions';
-import SingleClient from '../../content/Client/Single/Single';
+import ClientSingle from '../../content/Client/Single/ClientSingle';
 
 /**
  * @class ClientSingleContainer
  * @extends React/Component
  */
 class ClientSingleContainer extends Component {
+
     /**
      * @for ClientSingleContainer
      * @method render
@@ -22,7 +23,7 @@ class ClientSingleContainer extends Component {
         }
 
         return (
-            <SingleClient
+            <ClientSingle
                 client={ this.props.client }
                 onSaveClient={ this.props.saveClient }
                 onRemoveClient={ this.props.deleteClient } />

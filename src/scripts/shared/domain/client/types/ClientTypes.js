@@ -1,6 +1,6 @@
 import t from 'tcomb';
 import { BaseStateType } from '../../BaseTypes';
-// import { ClientContactType } from '../../ClientContactType';
+import { ClientContactType } from '../../clientContact/types/ClientContactTypes';
 
 /**
  * @type ClientCreationType
@@ -19,9 +19,12 @@ export const ClientCreationType = t.struct({
     // TODO: create refinement for email address
     email: t.maybe(t.String),
     // TODO create refinement for urls
-    website: t.maybe(t.String),
-    // client_contacts: t.list(t.maybe(ClientContactType))
+    website: t.maybe(t.String)
 }, 'ClientCreationType');
+
+export const ClientPreviewType = ClientCreationType.extend({
+    id: t.Number
+}, 'ClientPreviewType');
 
 /**
  * ClientType definition
@@ -31,7 +34,8 @@ export const ClientCreationType = t.struct({
  * @return {ClientType}
  */
 export const ClientType = ClientCreationType.extend({
-    id: t.Number
+    id: t.Number,
+    client_contacts: t.list(t.maybe(ClientContactType))
     // TODO: add `client_contacts` and `notes`
 }, 'ClientType');
 
@@ -41,7 +45,7 @@ export const ClientType = ClientCreationType.extend({
  * @type ClientListType
  * @return {ClientListType}
  */
-export const ClientListType = t.list(ClientType, 'ClientListType');
+export const ClientListType = t.list(ClientPreviewType, 'ClientListType');
 
 /**
  * ClientListStateType used in the `ClientListReducer`

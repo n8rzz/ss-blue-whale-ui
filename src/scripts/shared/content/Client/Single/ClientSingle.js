@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
-import { ClientType } from '../../../domain/client/types/ClientTypes';
+import {
+    ClientCreationType,
+    ClientPreviewType
+} from '../../../domain/client/types/ClientTypes';
+import ClientContactList from '../../ClientContact/ClientContactList/ClientContactList';
 
 const Form = t.form.Form;
 
@@ -31,6 +35,24 @@ export default class ClientSingle extends Component {
     }
 
     /**
+     * @method _composeClientContacts
+     * @return {JSX}
+     */
+    _composeClientContacts() {
+        const clientContacts = this.props.client.client_contacts;
+
+        if (t.Nil.is(clientContacts)) {
+            return null;
+        }
+
+        return (
+            <ClientContactList
+                clientId={ this.props.client.id }
+                contacts={ clientContacts } />
+        );
+    }
+
+    /**
      * @for ClientSingle
      * @method render
      * @return {JSX}
@@ -48,10 +70,13 @@ export default class ClientSingle extends Component {
                 <Form
                     ref="clientForm"
                     value={ this.state.clientFormValues }
-                    type={ ClientType } />
+                    type={ ClientCreationType } />
 
                 <button onClick={ this.onRemoveClient }>Delete Client</button>
                 <button type="submit" onClick={ this.onSubmit }>Update Client</button>
+
+                { this._composeClientContacts() }
+
             </div>
         );
     }
@@ -79,7 +104,7 @@ export default class ClientSingle extends Component {
         const clientFormValues = this.refs.clientForm.getValue();
         // const clientFormValidation = this.refs.clientForm.validate();
 
-        if (!t.Nil.is(clientFormValues) && ClientType.is(clientFormValues)) {
+        if (clientFormValues !== null) {
             this.props.onSaveClient(this.props.client.id, clientFormValues);
         }
     }

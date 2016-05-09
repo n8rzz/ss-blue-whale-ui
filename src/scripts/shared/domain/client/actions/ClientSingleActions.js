@@ -2,7 +2,7 @@ import { push } from 'react-router-redux';
 import ClientRepository from '../repositories/ClientRepository';
 import {
     ClientCreationType,
-    ClientType
+    ClientPreviewType
 } from '../types/ClientTypes';
 
 export const CREATE_CLIENT_START = 'CREATE_CLIENT_START';
@@ -72,8 +72,8 @@ const saveClientError = errors => ({
  * @return {Function}
  */
 export const saveClient = (id, clientFormValues) => {
-    if (!ClientType.is(clientFormValues)) {
-        throw new TypeError('Invalid Client type. Form values must be a ClientType');
+    if (!ClientPreviewType.is(clientFormValues)) {
+        throw new TypeError('Invalid Client type. Form values must be a ClientPreviewType');
     }
 
     return dispatch => {
@@ -116,7 +116,10 @@ export const getSingleClient = (id) => {
 
         return ClientRepository.getSingleClient(id)
             .then(response => dispatch(getSingleClientSuccess(response)))
-            .catch(error => dispatch(getSingleClientError(error)));
+            .catch(error => {
+                console.error(error);
+                dispatch(getSingleClientError(error));
+            });
     };
 };
 
