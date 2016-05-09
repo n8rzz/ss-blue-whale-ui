@@ -5,14 +5,12 @@ import {
 
 import {
     VALID_CLIENT_CONTACT_CREATION_TYPE,
-    VALID_CLIENT_CONTACT_CREATION_REQUEST_TYPE,
     VALID_CLIENT_CONTACT_API_RESPONSE,
     VALID_CLIENT_CONTACT_LIST_API_RESPONSE
 } from '../../mocks/clientContact/clientContactMocks';
 
 import {
     ClientContactCreationType,
-    ClientContactCreationRequestType,
     ClientContactType,
     ClientContactListType,
     ClientContactListStateType,
@@ -20,8 +18,6 @@ import {
 } from '../../../../src/scripts/shared/domain/clientContact/types/ClientContactTypes';
 
 export const ValidClientContactCreationType = new ClientContactCreationType(VALID_CLIENT_CONTACT_CREATION_TYPE);
-
-export const ValidClientContactCreationRequestType = new ClientContactCreationRequestType(VALID_CLIENT_CONTACT_CREATION_REQUEST_TYPE);
 
 export const ValidClientContactType = new ClientContactType(VALID_CLIENT_CONTACT_API_RESPONSE);
 

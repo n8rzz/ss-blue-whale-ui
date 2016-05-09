@@ -10,41 +10,39 @@ export const ClientContactCreationType = t.struct({
     position: t.maybe(t.String),
     businessPhone: t.maybe(t.String),
     mobilePhone: t.maybe(t.String),
-    email: t.maybe(t.String)
+    email: t.maybe(t.String),
+    client_id: t.maybe(t.Number)
 }, 'ClientContactCreationType');
 
 /**
- * @type ClientContactCreationRequestType
- * @return {ClientContactCreationRequestType}
- */
-export const ClientContactCreationRequestType = ClientContactCreationType.extend({
-    client_id: t.Number
-}, 'ClientContactCreationRequestType');
-
-/**
- * @method buildRequestParams
- * @extends ClientContactCreationType
+ * Allow for a prototype method to call .update on a ClientContactCreationType instance.
+ *
+ * @method updateClientId
+ * @param  {ClientContactCreationType} current
  * @param  {Number} clientId
- * @param  {ClientContactCreationType} clientContact
- * @return {ClientContactCreationRequestType}
+ * @return {ClientContactCreationType}
  */
-ClientContactCreationType.buildRequestParams = (clientId, clientContact) => {
-    if (t.Nil.is(clientId)) {
-        throw new TypeError('Missing ClientId.  Invalid parameters.');
-    }
-
-    if (t.Nil.is(clientContact) || !ClientContactCreationType.is(clientContact)) {
-        throw new TypeError('ClientContact must be a `ClientContactCreationType`');
-    }
-
-    const creationRequest = Object.assign(
-        { ...clientContact },
-        {
+const updateClientId = (current, clientId) => ClientContactCreationType.update(
+    current,
+    {
+        $merge: {
             client_id: clientId
         }
-    );
+    }
+);
 
-    return new ClientContactCreationRequestType(creationRequest);
+
+/**
+ * Add a client_id to an existing ClientContactCreationType
+ *
+ * @method addClientIdToContact
+ * @param {Number} client_id
+ * @return {ClientContactCreationType}
+ */
+ClientContactCreationType.prototype.addClientIdToContact = function clientContactCreationTypeAddClientIdToContact(clientId) {
+    // We need access to the .update method of tcomb struct. This provides a way to encapsulate the update logic
+    // inside of an instance's own prototype.
+    return updateClientId(this, clientId);
 };
 
 /**

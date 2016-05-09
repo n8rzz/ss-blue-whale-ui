@@ -7,15 +7,7 @@ export const VALID_CLIENT_CONTACT_CREATION_TYPE = {
     'name': 'Jenny Doe',
     'businessPhone': '555-867-5309',
     'mobilePhone': '555-867-5309',
-    'email': 'jenny_doe@example.com'
-};
-
-/**
- * @property VALID_CLIENT_CONTACT_CREATION_REQUEST_TYPE
- * @type {ClientContactCreationRequestType|Object}
- */
-export const VALID_CLIENT_CONTACT_CREATION_REQUEST_TYPE = {
-    ...VALID_CLIENT_CONTACT_CREATION_TYPE,
+    'email': 'jenny_doe@example.com',
     'client_id': 1
 };
 
@@ -29,7 +21,8 @@ export const VALID_CLIENT_CONTACT_API_RESPONSE = {
     'name': 'Jenny Doe',
     'businessPhone': '555-867-5309',
     'mobilePhone': '555-867-5309',
-    'email': 'jenny_doe@example.com'
+    'email': 'jenny_doe@example.com',
+    'client_id': 1
 };
 
 /**
@@ -50,6 +43,7 @@ export const VALID_CLIENT_CONTACT_LIST_API_RESPONSE = [
         'name': 'Jenny Doe',
         'businessPhone': '555-867-5309',
         'mobilePhone': null,
-        'email': 'jenny_doe@example.com'
+        'email': 'jenny_doe@example.com',
+        'client_id': 1
     }
 ];

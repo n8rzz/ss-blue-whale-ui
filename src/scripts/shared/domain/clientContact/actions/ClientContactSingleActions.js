@@ -1,7 +1,7 @@
 // import { push } from 'react-router-redux';
 import ClientContactRepository from '../repositories/ClientContactRepository';
 import {
-    ClientContactCreationRequestType,
+    ClientContactCreationType,
 } from '../types/ClientContactTypes';
 
 import { getSingleClient } from '../../client/actions/ClientSingleActions';
@@ -29,12 +29,12 @@ const createContactForClientError = errors => ({
  * Create a new Client Contact then update the current Client store
  *
  * @function createContactForClient
- * @param {ClientContactCreationRequestType|Object} clientContactFormValues
+ * @param {ClientContactCreationType|Object} clientContactFormValues
  * @return {Function}
  */
 export const createContactForClient = (clientId, clientContactFormValues) => {
-    if (!ClientContactCreationRequestType.is(clientContactFormValues)) {
-        throw new TypeError('Invalid Client type. Form values must be a ClientContactCreationRequestType');
+    if (!ClientContactCreationType.is(clientContactFormValues)) {
+        throw new TypeError('Invalid Client type. Form values must be a ClientContactCreationType');
     }
 
     return dispatch => {

@@ -71,7 +71,7 @@ export default class ClientContactList extends Component {
                 <h2>Contacts</h2>
 
                 <button onClick={ this.onToggleAddContactForm }>
-                    { this.state.shouldShowAddContact ? 'Cancel' : 'Add Contact' }
+                    { this.state.shouldShowAddContact ? 'Cancel' : 'Add New Contact' }
                 </button>
 
                 { this._composeAddContactForm() }

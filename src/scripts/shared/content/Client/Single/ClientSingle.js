@@ -5,7 +5,7 @@ import {
     ClientPreviewType
 } from '../../../domain/client/types/ClientTypes';
 import { ClientContactCreationType } from '../../../domain/clientContact/types/ClientContactTypes';
-import ClientContactList from '../../ClientContact/ClientContactList/ClientContactList';
+import ClientContactList from '../../ClientContact/ClientContactList';
 
 const Form = t.form.Form;
 
@@ -118,10 +118,7 @@ export default class ClientSingle extends Component {
      * @return {Function}
      */
     onRequestToAddContactToClient = clientContactFormValues => {
-        const clientContactRequest = ClientContactCreationType.buildRequestParams(
-            this.props.client.id,
-            clientContactFormValues
-        );
+        const clientContactRequest = clientContactFormValues.addClientIdToContact(this.props.client.id);
 
         this.props.onCreateContactForClient(this.props.client.id, clientContactRequest);
     }

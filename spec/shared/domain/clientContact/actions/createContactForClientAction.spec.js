@@ -10,11 +10,9 @@ import {
 } from '../../../../../src/scripts/shared/domain/clientContact/actions/ClientContactSingleActions';
 import ClientRepository from '../../../../../src/scripts/shared/domain/clientContact/repositories/ClientContactRepository';
 import {
-    ValidClientContactCreationRequestType,
+    ValidClientContactCreationType,
     ValidClientContactType
 } from '../../../../specHelper/fixtures/clientContact/ClientContactFixtures';
-
-// const ROUTER_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
 
 const CLIENT_ID = 1;
 
@@ -31,7 +29,7 @@ ava('createContactForClient throws if data is not `ClientContactCreationType`', 
 ava('createContactForClient dispatches start action', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.createContactForClient = sinon.stub().resolves(ValidClientContactType);
-    await createContactForClient(CLIENT_ID, ValidClientContactCreationRequestType)(dispatchSpy);
+    await createContactForClient(CLIENT_ID, ValidClientContactCreationType)(dispatchSpy);
 
     t.ok(dispatchSpy.calledWith({ type: CREATE_CONTACT_FOR_CLIENT_START }));
 });
@@ -39,7 +37,7 @@ ava('createContactForClient dispatches start action', async t => {
 ava('createContactForClient calls the ClientContact repository', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.createContactForClient = sinon.stub().resolves(ValidClientContactType);
-    await createContactForClient(CLIENT_ID, ValidClientContactCreationRequestType)(dispatchSpy);
+    await createContactForClient(CLIENT_ID, ValidClientContactCreationType)(dispatchSpy);
 
     t.ok(ClientRepository.createContactForClient.called);
 });
@@ -47,7 +45,7 @@ ava('createContactForClient calls the ClientContact repository', async t => {
 ava('createContactForClient dispatches success action when data resolves successfully', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.createContactForClient = sinon.stub().resolves(ValidClientContactType);
-    await createContactForClient(CLIENT_ID, ValidClientContactCreationRequestType)(dispatchSpy);
+    await createContactForClient(CLIENT_ID, ValidClientContactCreationType)(dispatchSpy);
 
     t.ok(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
@@ -71,7 +69,7 @@ ava('createContactForClient dispatches fail action when there is a failure', asy
     ClientRepository.createContactForClient = sinon.stub().rejects(errorToThrow);
 
     try {
-        await createContactForClient(CLIENT_ID, ValidClientContactCreationRequestType)(dispatchSpy);
+        await createContactForClient(CLIENT_ID, ValidClientContactCreationType)(dispatchSpy);
     } catch (e) {
         t.ok(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];

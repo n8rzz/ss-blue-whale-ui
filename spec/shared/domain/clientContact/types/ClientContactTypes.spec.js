@@ -3,7 +3,6 @@ import ava from 'ava';
 
 import {
     ClientContactCreationType,
-    ClientContactCreationRequestType,
     ClientContactType,
     ClientContactListType,
     ClientContactListStateType,
@@ -20,7 +19,6 @@ import {
 
 import {
     ValidClientContactCreationType,
-    ValidClientContactCreationRequestType,
     ValidClientContactType,
     ValidClientContactListType,
     ValidClientContactListStateType,
@@ -33,28 +31,13 @@ ava('ClientContactCreationType', t => {
     t.ok(ClientContactCreationType.is(ValidClientContactCreationType) === true);
 });
 
-ava('ClientContactCreationType #buildRequestParams returns correct type', t => {
-    const CLIENT_ID = 1;
-    const result = ClientContactCreationType.buildRequestParams(CLIENT_ID, ValidClientContactCreationType);
+ava('ClientContactCreationType.addClientIdToContact', t => {
+    const initialContact = Object.assign({}, VALID_CLIENT_CONTACT_CREATION_TYPE, { client_id: null });
+    const clientContact = ClientContactCreationType(initialContact);
+    const result = clientContact.addClientIdToContact(1);
 
-    t.ok(result.client_id === CLIENT_ID);
-    t.ok(ClientContactCreationRequestType.is(result) === true);
-});
-
-ava('ClientContactCreationType #buildRequestParams throws if a param is missing', t => {
-    t.throws(() => ClientContactCreationType.buildRequestParams(''));
-});
-
-ava('ClientContactCreationType #buildRequestParams throws if `clientContact` is the wrong type', t => {
-    const CLIENT_ID = 1;
-
-    t.throws(() => ClientContactCreationType.buildRequestParams(CLIENT_ID, ValidClientContactType));
-});
-
-ava('ClientContactCreationRequestType', t => {
-    t.throws(() => ClientContactCreationRequestType(''));
-    t.notThrows(() => ClientContactCreationRequestType(VALID_CLIENT_CONTACT_CREATION_REQUEST_TYPE));
-    t.ok(ClientContactCreationRequestType.is(ValidClientContactCreationRequestType) === true);
+    t.ok(result.client_id === 1);
+    t.ok(ClientContactCreationType.is(result) === true);
 });
 
 ava('ClientContactType', t => {
