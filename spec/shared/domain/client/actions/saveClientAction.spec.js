@@ -8,9 +8,11 @@ import {
     saveClient
 } from '../../../../../src/scripts/shared/domain/client/actions/ClientSingleActions';
 import ClientRepository from '../../../../../src/scripts/shared/domain/client/repositories/ClientRepository';
-import { ValidClientType } from '../../../../specHelper/fixtures/client/ClientTypes';
+import { ValidClientType, ValidClientPreviewType } from '../../../../specHelper/fixtures/client/ClientTypes';
 
-ava('saveClient throws if data is not `ClientType`', async t => {
+const CLIENT_ID = ValidClientPreviewType.id;
+
+ava('saveClient throws if data is not `ClientPreviewType`', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.saveClient = sinon.stub().resolves();
     try {
@@ -23,7 +25,7 @@ ava('saveClient throws if data is not `ClientType`', async t => {
 ava('saveClient dispatches start action', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.saveClient = sinon.stub().resolves();
-    await saveClient(ValidClientType.id, ValidClientType)(dispatchSpy);
+    await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
 
     t.ok(dispatchSpy.calledWith({ type: SAVE_CLIENT_START }));
 });
@@ -31,7 +33,7 @@ ava('saveClient dispatches start action', async t => {
 ava('saveClient calls the Client repository', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.saveClient = sinon.stub().resolves(ValidClientType);
-    await saveClient(ValidClientType.id, ValidClientType)(dispatchSpy);
+    await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
 
     t.ok(ClientRepository.saveClient.called);
 });
@@ -39,7 +41,7 @@ ava('saveClient calls the Client repository', async t => {
 ava('saveClient dispatches success action when data resolves successfully', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.saveClient = sinon.stub().resolves(ValidClientType);
-    await saveClient(ValidClientType.id, ValidClientType)(dispatchSpy);
+    await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
 
     t.ok(dispatchSpy.callCount === 2);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
@@ -63,7 +65,7 @@ ava('saveClient dispatches fail action when there is a failure', async t => {
     ClientRepository.saveClient = sinon.stub().rejects(errorToThrow);
 
     try {
-        await saveClient(ValidClientType.id, ValidClientType)(dispatchSpy);
+        await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
     } catch (e) {
         t.ok(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
