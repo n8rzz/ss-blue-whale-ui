@@ -15,7 +15,8 @@ export default class ClientContactList extends Component {
         super(props);
 
         this.state = {
-            shouldShowAddContact: false
+            shouldShowAddContact: false,
+            isEditingContactId: -1
         };
     }
 
@@ -24,7 +25,10 @@ export default class ClientContactList extends Component {
      * @param {Object} nextProps
      */
     componentWillReceiveProps() {
-        this.setState({ shouldShowAddContact: false });
+        this.setState({
+            shouldShowAddContact: false,
+            isEditingContactId: -1
+        });
     }
 
     /**
@@ -54,8 +58,13 @@ export default class ClientContactList extends Component {
     _composeContacts() {
         return this.props.contacts.map((contact, index) => {
             return (
-                <SingleContactListItem key={ index }
-                    contact={ contact } />
+                <SingleContactListItem
+                    key={ index }
+                    contact={ contact }
+                    isEditingId={ this.state.isEditingContactId }
+                    onRequestToEditContact={ this.requestToEditClient }
+                    onCancelEdit={ this.cancelEdit }
+                    onSaveContactForClient={ this.props.onSaveContactForClient } />
             );
         });
     }
@@ -94,6 +103,21 @@ export default class ClientContactList extends Component {
 
         this.setState({ shouldShowAddContact: !this.state.shouldShowAddContact });
     }
+
+    cancelEdit = () => {
+        this.setState({ isEditingContactId: -1 });
+    }
+
+    /**
+     * @method requestToEditClient
+     * @param  {[type]} contactId
+     * @callback
+     */
+    requestToEditClient = (contactId) => {
+        console.log('requestToEditClient: ', contactId);
+
+        this.setState({ isEditingContactId: contactId });
+    }
 }
 
 /**
@@ -125,5 +149,12 @@ ClientContactList.propTypes = {
      * @type {Function}
      * @required
      */
-    onRequestToAddContactToClient: PropTypes.func.isRequired
+    onRequestToAddContactToClient: PropTypes.func.isRequired,
+
+    /**
+     * @property onSaveContactForClient
+     * @type {Function}
+     * @required
+     */
+    onSaveContactForClient: PropTypes.func.isRequired
 };

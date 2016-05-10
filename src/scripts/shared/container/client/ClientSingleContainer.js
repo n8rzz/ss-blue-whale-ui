@@ -4,7 +4,10 @@ import {
     saveClient,
     deleteClient
 } from '../../domain/client/actions/ClientSingleActions';
-import { createContactForClient } from '../../domain/clientContact/actions/ClientContactSingleActions';
+import {
+    createContactForClient,
+    saveContactForClient
+} from '../../domain/clientContact/actions/ClientContactSingleActions';
 import ClientSingle from '../../content/Client/Single/ClientSingle';
 
 /**
@@ -28,7 +31,8 @@ class ClientSingleContainer extends Component {
                 client={ this.props.client }
                 onSaveClient={ this.props.saveClient }
                 onRemoveClient={ this.props.deleteClient }
-                onCreateContactForClient={ this.props.createContactForClient }/>
+                onCreateContactForClient={ this.props.createContactForClient }
+                onSaveContactForClient={ this.props.saveContactForClient } />
         );
     }
 }
@@ -68,7 +72,13 @@ ClientSingleContainer.propTypes = {
      * @property createContactForClient
      * @type {Function}
      */
-    createContactForClient: PropTypes.func
+    createContactForClient: PropTypes.func,
+
+    /**
+     * @property saveContactForClient
+     * @type {Function}
+     */
+    saveContactForClient: PropTypes.func
 };
 
 /**
@@ -88,7 +98,8 @@ const mapDispatchToProps = dispatch => {
     return {
         saveClient: (id, formValues) => dispatch(saveClient(id, formValues)),
         deleteClient: id => dispatch(deleteClient(id)),
-        createContactForClient: (id, formValues) => dispatch(createContactForClient(id, formValues))
+        createContactForClient: (id, formValues) => dispatch(createContactForClient(id, formValues)),
+        saveContactForClient: (id, formValues) => dispatch(saveContactForClient(id, formValues))
     };
 };
 

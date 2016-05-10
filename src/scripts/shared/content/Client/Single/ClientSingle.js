@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
 import {
-    ClientCreationType,
-    ClientPreviewType
+    ClientCreationType
+    // ,
+    // ClientPreviewType
 } from '../../../domain/client/types/ClientTypes';
-import { ClientContactCreationType } from '../../../domain/clientContact/types/ClientContactTypes';
+// import { ClientContactCreationType } from '../../../domain/clientContact/types/ClientContactTypes';
 import ClientContactList from '../../ClientContact/ClientContactList';
 
 const Form = t.form.Form;
@@ -50,7 +51,8 @@ export default class ClientSingle extends Component {
             <ClientContactList
                 clientId={ this.props.client.id }
                 contacts={ clientContacts }
-                onRequestToAddContactToClient={ this.onRequestToAddContactToClient }/>
+                onRequestToAddContactToClient={ this.onRequestToAddContactToClient }
+                onSaveContactForClient={ this.onSaveContactForClient } />
         );
     }
 
@@ -117,10 +119,20 @@ export default class ClientSingle extends Component {
      * @param {ClientContactCreationType} clientContactFormValues
      * @return {Function}
      */
-    onRequestToAddContactToClient = clientContactFormValues => {
-        const clientContactRequest = clientContactFormValues.addClientIdToContact(this.props.client.id);
+    onRequestToAddContactToClient = clientContactCreationRequest => {
+        const clientContactRequest = clientContactCreationRequest.addClientIdToContact(this.props.client.id);
 
         this.props.onCreateContactForClient(this.props.client.id, clientContactRequest);
+    }
+
+    /**
+     * @for ClientSingle
+     * @method onSaveContactForClient
+     * @param {ClientContactType|Object} clientContactRequest
+     * @return {Function}
+     */
+    onSaveContactForClient = clientContactRequest => {
+        this.props.onSaveContactForClient(this.props.client.id, clientContactRequest);
     }
 }
 
@@ -163,5 +175,12 @@ ClientSingle.propTypes = {
      * @type {Function}
      * @required
      */
-    onCreateContactForClient: PropTypes.func.isRequired
+    onCreateContactForClient: PropTypes.func.isRequired,
+
+    /**
+     * @property onSaveContactForClient
+     * @type {Function}
+     * @required
+     */
+    onSaveContactForClient: PropTypes.func.isRequired
 };
