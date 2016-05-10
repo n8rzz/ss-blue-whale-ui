@@ -11,6 +11,7 @@ const Form = t.form.Form;
 export default class AddContactToClientForm extends Component {
 
     /**
+     * @for AddContactToClientForm
      * @method render
      * @return {JSX}
      */
@@ -26,6 +27,12 @@ export default class AddContactToClientForm extends Component {
         );
     }
 
+    /**
+     * @for AddContactToClientForm
+     * @method onSubmit
+     * @param {Event} event
+     * @callback
+     */
     onSubmit = event => {
         event.preventDefault();
 

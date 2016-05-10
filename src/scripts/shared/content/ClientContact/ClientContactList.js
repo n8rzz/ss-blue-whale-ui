@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import SingleContactListItem from './SingleContactListItem';
+import SingleContactItem from './SingleContactItem';
 import AddContactToClientForm from './AddContactToClientForm';
 
 /**
@@ -9,6 +9,7 @@ import AddContactToClientForm from './AddContactToClientForm';
 export default class ClientContactList extends Component {
     /**
      * @constructor
+     * @for ClientContactList
      * @param {Object} props
      */
     constructor(props) {
@@ -21,6 +22,7 @@ export default class ClientContactList extends Component {
     }
 
     /**
+     * @for ClientContactList
      * @method componentWillReceiveProps
      * @param {Object} nextProps
      */
@@ -32,6 +34,7 @@ export default class ClientContactList extends Component {
     }
 
     /**
+     * @private
      * @for ClientContactList
      * @method _composeAddContactForm
      * @return {JSX}
@@ -58,13 +61,14 @@ export default class ClientContactList extends Component {
     _composeContacts() {
         return this.props.contacts.map((contact, index) => {
             return (
-                <SingleContactListItem
+                <SingleContactItem
                     key={ index }
                     contact={ contact }
                     isEditingId={ this.state.isEditingContactId }
                     onRequestToEditContact={ this.requestToEditClient }
                     onCancelEdit={ this.cancelEdit }
-                    onSaveContactForClient={ this.props.onSaveContactForClient } />
+                    onSaveContactForClient={ this.props.onSaveContactForClient }
+                    onDeleteContactForClient={ this.props.onDeleteContactForClient } />
             );
         });
     }
@@ -104,18 +108,22 @@ export default class ClientContactList extends Component {
         this.setState({ shouldShowAddContact: !this.state.shouldShowAddContact });
     }
 
+    /**
+     * @for ClientContactList
+     * @method cancelEdit
+     * @callback
+     */
     cancelEdit = () => {
         this.setState({ isEditingContactId: -1 });
     }
 
     /**
+     * @for ClientContactList
      * @method requestToEditClient
-     * @param  {[type]} contactId
+     * @param {Number} contactId
      * @callback
      */
     requestToEditClient = (contactId) => {
-        console.log('requestToEditClient: ', contactId);
-
         this.setState({ isEditingContactId: contactId });
     }
 }
@@ -156,5 +164,12 @@ ClientContactList.propTypes = {
      * @type {Function}
      * @required
      */
-    onSaveContactForClient: PropTypes.func.isRequired
+    onSaveContactForClient: PropTypes.func.isRequired,
+
+    /**
+     * @property onDeleteContactForClient
+     * @type {Function}
+     * @required
+     */
+    onDeleteContactForClient: PropTypes.func.isRequired
 };

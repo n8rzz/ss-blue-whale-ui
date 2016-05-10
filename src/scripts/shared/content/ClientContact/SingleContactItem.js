@@ -4,8 +4,16 @@ import t from 'tcomb-form';
 
 const Form = t.form.Form;
 
-export default class SingleContactListItem extends Component {
-
+/**
+ * @class SingleContactItem
+ * @extends React/Component
+ */
+export default class SingleContactItem extends Component {
+    /**
+     * @constructor
+     * @for SingleContactItem
+     * @param {Object} props
+     */
     constructor(props) {
         super(props);
 
@@ -15,6 +23,8 @@ export default class SingleContactListItem extends Component {
     }
 
     /**
+     * @private
+     * @for SingleContactItem
      * @method _composeFormView
      * @return {JSX}
      */
@@ -26,6 +36,7 @@ export default class SingleContactListItem extends Component {
                     value={ this.state.editClientContactFormValues }
                     type={ ClientContactType } />
 
+                <button onClick={ this.deleteContactForClient }>Delete</button>
                 <button onClick={ this.props.onCancelEdit }>Cancel</button>
                 <button onClick={ this.saveContactForClient }>Update</button>
             </div>
@@ -33,6 +44,8 @@ export default class SingleContactListItem extends Component {
     }
 
     /**
+     * @private
+     * @for SingleContactItem
      * @method _composeStaticView
      * @return {JSX}
      */
@@ -56,6 +69,7 @@ export default class SingleContactListItem extends Component {
     }
 
     /**
+     * @for SingleContactItem
      * @method render
      * @return {JSX}
      */
@@ -73,6 +87,7 @@ export default class SingleContactListItem extends Component {
     }
 
     /**
+     * @for SingleContactItem
      * @method onFormChange
      * @param {ClientContactType|Object} formValues
      * @callback
@@ -82,6 +97,7 @@ export default class SingleContactListItem extends Component {
     };
 
     /**
+     * @for SingleContactItem
      * @method requestToEditClient
      * @callback
      */
@@ -90,6 +106,7 @@ export default class SingleContactListItem extends Component {
     };
 
     /**
+     * @for SingleContactItem
      * @method saveContactForClient
      * @callback
      */
@@ -100,19 +117,29 @@ export default class SingleContactListItem extends Component {
             this.props.onSaveContactForClient(editClientContactFormValues);
         }
     }
+
+    /**
+     * @for SingleContactItem
+     * @method deleteContactForClient
+     * @return {Function}
+     * @callback
+     */
+    deleteContactForClient = () => {
+        this.props.onDeleteContactForClient(this.props.contact.id);
+    }
 }
 
 /**
  * @property displayName
  * @type {String}
  */
-SingleContactListItem.displayName = 'SingleContactListItem';
+SingleContactItem.displayName = 'SingleContactItem';
 
 /**
  * @property propTypes
  * @type {Object}
  */
-SingleContactListItem.propTypes = {
+SingleContactItem.propTypes = {
     /**
      * @property contact
      * @type {Object}
@@ -145,5 +172,12 @@ SingleContactListItem.propTypes = {
      * @type {Function}
      * @required
      */
-    onSaveContactForClient: PropTypes.func.isRequired
+    onSaveContactForClient: PropTypes.func.isRequired,
+
+    /**
+     * @property onDeleteContactForClient
+     * @type {Function}
+     * @required
+     */
+    onDeleteContactForClient: PropTypes.func.isRequired
 };

@@ -6,11 +6,14 @@ import {
 } from '../../domain/client/actions/ClientSingleActions';
 import {
     createContactForClient,
-    saveContactForClient
+    saveContactForClient,
+    deleteContactForClient
 } from '../../domain/clientContact/actions/ClientContactSingleActions';
 import ClientSingle from '../../content/Client/Single/ClientSingle';
 
 /**
+ * Connected component that provides an entry point for all actions pertaining to `Client` concerns.
+ *
  * @class ClientSingleContainer
  * @extends React/Component
  */
@@ -32,7 +35,8 @@ class ClientSingleContainer extends Component {
                 onSaveClient={ this.props.saveClient }
                 onRemoveClient={ this.props.deleteClient }
                 onCreateContactForClient={ this.props.createContactForClient }
-                onSaveContactForClient={ this.props.saveContactForClient } />
+                onSaveContactForClient={ this.props.saveContactForClient }
+                onDeleteContactForClient={ this.props.deleteContactForClient } />
         );
     }
 }
@@ -78,7 +82,13 @@ ClientSingleContainer.propTypes = {
      * @property saveContactForClient
      * @type {Function}
      */
-    saveContactForClient: PropTypes.func
+    saveContactForClient: PropTypes.func,
+
+    /**
+     * @property deleteContactForClient
+     * @type {Function}
+     */
+    deleteContactForClient: PropTypes.func
 };
 
 /**
@@ -96,10 +106,11 @@ const mapStoreToProps = state => ({
  */
 const mapDispatchToProps = dispatch => {
     return {
-        saveClient: (id, formValues) => dispatch(saveClient(id, formValues)),
-        deleteClient: id => dispatch(deleteClient(id)),
-        createContactForClient: (id, formValues) => dispatch(createContactForClient(id, formValues)),
-        saveContactForClient: (id, formValues) => dispatch(saveContactForClient(id, formValues))
+        saveClient: (clientId, formValues) => dispatch(saveClient(clientId, formValues)),
+        deleteClient: clientId => dispatch(deleteClient(clientId)),
+        createContactForClient: (clientId, formValues) => dispatch(createContactForClient(clientId, formValues)),
+        saveContactForClient: (clientId, formValues) => dispatch(saveContactForClient(clientId, formValues)),
+        deleteContactForClient: (clientId, clientContactId) => dispatch(deleteContactForClient(clientId, clientContactId))
     };
 };
 

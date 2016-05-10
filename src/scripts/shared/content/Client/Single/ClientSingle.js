@@ -1,11 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
-import {
-    ClientCreationType
-    // ,
-    // ClientPreviewType
-} from '../../../domain/client/types/ClientTypes';
-// import { ClientContactCreationType } from '../../../domain/clientContact/types/ClientContactTypes';
+import { ClientCreationType } from '../../../domain/client/types/ClientTypes';
 import ClientContactList from '../../ClientContact/ClientContactList';
 
 const Form = t.form.Form;
@@ -37,6 +32,8 @@ export default class ClientSingle extends Component {
     }
 
     /**
+     * @private
+     * @for ClientSingle
      * @method _composeClientContacts
      * @return {JSX}
      */
@@ -52,7 +49,8 @@ export default class ClientSingle extends Component {
                 clientId={ this.props.client.id }
                 contacts={ clientContacts }
                 onRequestToAddContactToClient={ this.onRequestToAddContactToClient }
-                onSaveContactForClient={ this.onSaveContactForClient } />
+                onSaveContactForClient={ this.onSaveContactForClient }
+                onDeleteContactForClient={ this.onDeleteContactForClient } />
         );
     }
 
@@ -86,6 +84,7 @@ export default class ClientSingle extends Component {
     }
 
     /**
+     * @for ClientSingle
      * @method onRemoveClient
      * @return {Function}
      * @callback
@@ -133,6 +132,16 @@ export default class ClientSingle extends Component {
      */
     onSaveContactForClient = clientContactRequest => {
         this.props.onSaveContactForClient(this.props.client.id, clientContactRequest);
+    }
+
+    /**
+     * @for ClientSingle
+     * @method onDeleteContactForClient
+     * @param {Number} clientContactId
+     * @return {Function}
+     */
+    onDeleteContactForClient = clientContactId => {
+        this.props.onDeleteContactForClient(this.props.client.id, clientContactId);
     }
 }
 
@@ -182,5 +191,12 @@ ClientSingle.propTypes = {
      * @type {Function}
      * @required
      */
-    onSaveContactForClient: PropTypes.func.isRequired
+    onSaveContactForClient: PropTypes.func.isRequired,
+
+    /**
+     * @property onDeleteContactForClient
+     * @type {Function}
+     * @required
+     */
+    onDeleteContactForClient: PropTypes.func.isRequired
 };

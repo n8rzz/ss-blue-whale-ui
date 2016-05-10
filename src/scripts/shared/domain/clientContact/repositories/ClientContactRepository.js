@@ -19,9 +19,27 @@ export default {
             });
     },
 
+    /**
+     * @method saveContactForClient
+     * @param {Number} clientContactId
+     * @param {clientContactRequestType} clientContactRequest
+     */
     saveContactForClient: (clientContactId, clientContactRequest) => {
         return request.put(`${ENDPOINT}/${clientContactId}`, clientContactRequest)
             .then(response => new ClientContactType(response.data))
+            .catch(error => {
+                throw error;
+            });
+    },
+
+    /**
+     * @method deleteContactForClient
+     * @param {Number} clientContactId
+     * @param {clientContactRequestType} clientContactRequest
+     */
+    deleteContactForClient: clientContactId => {
+        return request.delete(`${ENDPOINT}/${clientContactId}`)
+            .then(response => response)
             .catch(error => {
                 throw error;
             });

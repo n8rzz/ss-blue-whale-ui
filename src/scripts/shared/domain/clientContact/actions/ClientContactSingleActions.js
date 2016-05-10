@@ -70,7 +70,7 @@ const saveContactForClientError = errors => ({
 });
 
 /**
- * Create a new Client Contact then update the current Client store
+ * Update and existing Client Contact then update the current Client store
  *
  * @function saveContactForClient
  * @param {ClientContactType|Object} clientContactFormValues
@@ -93,4 +93,41 @@ export const saveContactForClient = (clientId, clientContactFormValues) => {
             })
             .catch(error => dispatch(saveContactForClientError(error)));
     };
+};
+
+export const DELETE_CONTACT_FOR_CLIENT_START = 'DELETE_CONTACT_FOR_CLIENT_START';
+export const DELETE_CONTACT_FOR_CLIENT_SUCCESS = 'DELETE_CONTACT_FOR_CLIENT_SUCCESS';
+export const DELETE_CONTACT_FOR_CLIENT_FAIL = 'DELETE_CONTACT_FOR_CLIENT_FAIL';
+
+const deleteContactForClientStart = () => ({
+    type: DELETE_CONTACT_FOR_CLIENT_START
+});
+
+const deleteContactForClientSuccess = () => ({
+    type: DELETE_CONTACT_FOR_CLIENT_SUCCESS
+});
+
+const deleteContactForClientError = errors => ({
+    type: DELETE_CONTACT_FOR_CLIENT_SUCCESS,
+    payload: null,
+    errors
+});
+
+/**
+ * Delete and existing Client Contact then update the current Client store
+ *
+ * @function deleteContactForClient
+ * @param {Number} clientId
+ * @param {Number} clientContactId
+ * @return {Function}
+ */
+export const deleteContactForClient = (clientId, clientContactId) => dispatch => {
+    dispatch(deleteContactForClientStart());
+
+    return ClientContactRepository.deleteContactForClient(clientContactId)
+        .then(response => {
+            dispatch(getSingleClient(clientId));
+            return dispatch(deleteContactForClientSuccess(response));
+        })
+        .catch(error => dispatch(deleteContactForClientError(error)));
 };
