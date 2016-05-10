@@ -3,7 +3,7 @@ import nock from 'nock';
 
 import {
     VALID_CLIENT_CREATION_REQUEST,
-    VALID_CLIENT_API_RESPONSE
+    VALID_SINGLE_CLIENT_API_RESPONSE
 } from '../../../../specHelper/mocks/client/clientMocks';
 import {
     ClientCreationType,
@@ -15,7 +15,7 @@ import ClientRepository from '../../../../../src/scripts/shared/domain/client/re
 ava('createClient returns a ClientType', async t => {
     const createClient = nock(global.NOCK_SCOPE)
         .post('/clients')
-        .reply(200, VALID_CLIENT_API_RESPONSE);
+        .reply(200, VALID_SINGLE_CLIENT_API_RESPONSE);
 
     const response = await ClientRepository.createClient(VALID_CLIENT_CREATION_REQUEST);
 

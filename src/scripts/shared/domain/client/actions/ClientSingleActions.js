@@ -2,7 +2,7 @@ import { push } from 'react-router-redux';
 import ClientRepository from '../repositories/ClientRepository';
 import {
     ClientCreationType,
-    ClientType
+    ClientPreviewType
 } from '../types/ClientTypes';
 
 export const CREATE_CLIENT_START = 'CREATE_CLIENT_START';
@@ -31,7 +31,7 @@ const createClientError = errors => ({
  */
 export const createClient = (clientFormValues) => {
     if (!ClientCreationType.is(clientFormValues)) {
-        throw new TypeError('Invalid Client type. Form values must be a ClientCreateionType');
+        throw new TypeError('Invalid Client type. Form values must be a ClientCreationType');
     }
 
     return dispatch => {
@@ -72,8 +72,8 @@ const saveClientError = errors => ({
  * @return {Function}
  */
 export const saveClient = (id, clientFormValues) => {
-    if (!ClientType.is(clientFormValues)) {
-        throw new TypeError('Invalid Client type. Form values must be a ClientType');
+    if (!ClientPreviewType.is(clientFormValues)) {
+        throw new TypeError('Invalid Client type. Form values must be a ClientPreviewType');
     }
 
     return dispatch => {
@@ -110,13 +110,16 @@ const getSingleClientError = errors => ({
  * @param {ClientType|Object} clientFormValues
  * @return {Function}
  */
-export const getSingleClient = (id) => {
+export const getSingleClient = id => {
     return dispatch => {
         dispatch(getSingleClientStart());
 
         return ClientRepository.getSingleClient(id)
             .then(response => dispatch(getSingleClientSuccess(response)))
-            .catch(error => dispatch(getSingleClientError(error)));
+            .catch(error => {
+                console.error(error);
+                dispatch(getSingleClientError(error));
+            });
     };
 };
 

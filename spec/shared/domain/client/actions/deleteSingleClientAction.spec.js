@@ -22,7 +22,7 @@ ava('deleteClient dispatches start action', async t => {
     t.ok(dispatchSpy.calledWith({ type: DELETE_CLIENT_START }));
 });
 
-ava('deleteClient calls the hierarchies repository', async t => {
+ava('deleteClient calls the Client repository', async t => {
     const dispatchSpy = sinon.spy();
     ClientRepository.deleteClient = sinon.stub().resolves();
     await deleteClient(CLIENT_ID)(dispatchSpy);

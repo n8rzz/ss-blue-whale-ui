@@ -1,4 +1,17 @@
 /**
+ *
+ * @property VALID_PROJECT_TYPE_CREATION_REQUEST
+ * @type {ProjectTypeType}
+ */
+export const VALID_PROJECT_TYPE_CREATION_REQUEST = {
+    'name': '1040',
+    'description': 'Individual',
+    'dueDate': null,
+    'task_items': []
+};
+
+
+/**
  * Valid project type api response
  *
  * @property VALID_PROJECT_TYPE_API_RESPONSE
@@ -6,10 +19,7 @@
  */
 export const VALID_PROJECT_TYPE_API_RESPONSE = {
     'id': 2,
-    'name': '1040',
-    'description': 'Individual',
-    'dueDate': null,
-    'task_items': []
+    ...VALID_PROJECT_TYPE_CREATION_REQUEST
 };
 
 /**

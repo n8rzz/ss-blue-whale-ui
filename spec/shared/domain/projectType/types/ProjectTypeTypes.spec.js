@@ -4,7 +4,8 @@ import ava from 'ava';
 import {
     ProjectTypeType,
     ProjectTypeListType,
-    ProjectTypeListStateType
+    ProjectTypeListStateType,
+    ProjectTypeStateType
 } from '../../../../../src/scripts/shared/domain/projectType/types/ProjectTypeTypes';
 
 import {
@@ -12,7 +13,10 @@ import {
     VALID_PROJECT_TYPE_LIST_API_RESPONSE
 } from '../../../../specHelper/mocks/projectType/projectTypeMocks';
 
-import { ValidProjectTypeListStateType } from '../../../../specHelper/fixtures/projectType/ProjectTypeTypes';
+import {
+    ValidProjectTypeListStateType,
+    ValidProjectTypeStateType
+} from '../../../../specHelper/fixtures/projectType/ProjectTypeTypes';
 
 ava('ProjectTypeType', t => {
     t.notThrows(() => ProjectTypeType(VALID_PROJECT_TYPE_API_RESPONSE));
@@ -24,7 +28,12 @@ ava('ProjectTypeListType', t => {
     t.throws(() => ProjectTypeListType(''));
 });
 
-ava('ValidProjectTypeListStateType', t => {
+ava('ProjectTypeListStateType', t => {
     t.notThrows(() => ProjectTypeListStateType.is(ValidProjectTypeListStateType));
+    t.throws(() => ProjectTypeListStateType(''));
+});
+
+ava('ProjectTypeStateType', t => {
+    t.notThrows(() => ProjectTypeStateType.is(ValidProjectTypeStateType));
     t.throws(() => ProjectTypeListStateType(''));
 });
