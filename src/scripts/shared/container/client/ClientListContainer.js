@@ -17,12 +17,6 @@ export class ClientListContainer extends Component {
     render() {
         return (
             <div>
-                <ul>
-                    <li>
-                        <input type="text" name="s" placeholder="search" />
-                    </li>
-                </ul>
-
                 <ClientList clients={ this.props.clients } />
             </div>
         );
