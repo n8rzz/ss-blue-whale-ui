@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
 import { ClientCreationType } from '../../../domain/client/types/ClientTypes';
 import ClientContactList from '../../ClientContact/ClientContactList';
+import NoteList from '../../Note/NoteList';
 
 const Form = t.form.Form;
 
@@ -54,6 +55,20 @@ export default class ClientSingle extends Component {
         );
     }
 
+    _composeClientNotes() {
+        const notes = this.props.client.notes;
+
+        if (t.Nil.is(notes)) {
+            return null;
+        }
+
+        return (
+            <NoteList
+                notes={ notes }
+                onCreateNoteForClient={ this.onCreateNoteForClient } />
+        );
+    }
+
     /**
      * @for ClientSingle
      * @method render
@@ -78,6 +93,7 @@ export default class ClientSingle extends Component {
                 <button type="submit" onClick={ this.onSubmit }>Update Client</button>
 
                 { this._composeClientContacts() }
+                { this._composeClientNotes() }
 
             </div>
         );
@@ -143,6 +159,15 @@ export default class ClientSingle extends Component {
     onDeleteContactForClient = clientContactId => {
         this.props.onDeleteContactForClient(this.props.client.id, clientContactId);
     }
+
+    /**
+     * @method onCreateNoteForClient
+     * @param {NoteCreateRequestType}
+     * @return {Function}
+     */
+    onCreateNoteForClient = noteRequest => {
+        this.props.onCreateNoteForClient(this.props.client.id, noteRequest);
+    }
 }
 
 /**
@@ -198,5 +223,12 @@ ClientSingle.propTypes = {
      * @type {Function}
      * @required
      */
-    onDeleteContactForClient: PropTypes.func.isRequired
+    onDeleteContactForClient: PropTypes.func.isRequired,
+
+    /**
+     * @property onCreateNoteForClient
+     * @type {Function}
+     * @required
+     */
+    onCreateNoteForClient: PropTypes.func.isRequired
 };

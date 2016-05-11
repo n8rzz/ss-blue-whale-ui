@@ -1,10 +1,6 @@
-import t from 'tcomb';
 import NoteRepository from '../repositories/NoteRepository';
 import { getSingleClient } from '../../client/actions/ClientSingleActions';
-import {
-    NoteCreationRequestType,
-    NoteType
-} from '../types/NoteTypes';
+import { NoteCreationRequestType } from '../types/NoteTypes';
 
 export const CREATE_NOTE_START = 'CREATE_NOTE_START';
 export const CREATE_NOTE_SUCCESS = 'CREATE_NOTE_SUCCESS';
@@ -32,10 +28,10 @@ export const createNoteForClient = (clientId, noteCreationRequest) => {
     return dispatch => {
         dispatch(createNoteForClientStart());
 
-        return NoteRepository.createNoteForClient(noteCreationRequest)
+        return NoteRepository.createNoteForClient(clientId, noteCreationRequest)
             .then(response => {
                 dispatch(getSingleClient(clientId));
-                return dispatch(createNoteForClientSuccess(response))
+                return dispatch(createNoteForClientSuccess(response));
             })
             .catch(errors => dispatch(createNoteForClientFail(errors)));
     };

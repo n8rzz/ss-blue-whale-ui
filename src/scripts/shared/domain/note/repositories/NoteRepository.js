@@ -2,7 +2,7 @@ import request from 'axios';
 // import { NoteType } from '../types/NoteTypes';
 import { ENDPOINTS } from '../../endpoints';
 
-const ENDPOINT = `${ENDPOINTS}/notes`;
+// const ENDPOINT = `${ENDPOINTS}/notes`;
 
 export default {
     /**
@@ -10,8 +10,8 @@ export default {
      * @param {Number} id
      * @param {NoteCreationRequestType} noteRequest
      */
-    createNoteForClient: noteRequest => {
-        return request.post(`${ENDPOINT}`, noteRequest)
+    createNoteForClient: (clientId, noteRequest) => {
+        return request.post(`${ENDPOINTS}/clients/${clientId}/notes`, noteRequest)
             .then(response => response)
             .catch(error => {
                 throw error;
