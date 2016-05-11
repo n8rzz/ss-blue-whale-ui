@@ -1,6 +1,7 @@
 import t from 'tcomb';
 import { BaseStateType } from '../../BaseTypes';
 import { ClientContactType } from '../../clientContact/types/ClientContactTypes';
+import { NoteType } from '../../note/types/NoteTypes';
 
 /**
  * @type ClientCreationType
@@ -35,8 +36,8 @@ export const ClientPreviewType = ClientCreationType.extend({
  */
 export const ClientType = ClientCreationType.extend({
     id: t.Number,
-    client_contacts: t.list(t.maybe(ClientContactType))
-    // TODO: add `client_contacts` and `notes`
+    client_contacts: t.list(t.maybe(ClientContactType)),
+    notes: t.list(t.maybe(NoteType))
 }, 'ClientType');
 
 /**

@@ -42,20 +42,16 @@ export const VALID_SINGLE_CLIENT_API_RESPONSE = {
     ],
     'notes': [
         {
-            'id': 3,
-            'content': 'Long Before These Crowded Streets, here stood my Dreaming Tree.'
+            'id': 8,
+            'content': 'Grooving slowly',
+            'notable_id': 1,
+            'created_at': '2016-05-02T02:41:50.979Z'
         },
         {
             'id': 7,
-            'content': 'Long Before These Crowded Streets, here stood my Dreaming Tree.'
-        },
-        {
-            'id': 8,
-            'content': 'Grooving slowly'
-        },
-        {
-            'id': 6,
-            'content': 'booyah'
+            'content': 'Long Before These Crowded Streets, here stood my Dreaming Tree.',
+            'notable_id': 1,
+            'created_at': '2016-05-02T00:17:51.812Z'
         }
     ]
 };

@@ -1,19 +1,34 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+
+import _debounce from 'lodash/debounce';
+import _filter from 'lodash/filter';
 import _map from 'lodash/map';
+import _includes from 'lodash/includes';
+
+const SEARCH_DELAY_IN_MS = 80;
 
 /**
  * @class ClientList
  * @extends React/Component
  */
 class ClientList extends Component {
+    /**
+     * @method componentWillReceiveProps
+     * @param {Object} nextProps
+     */
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            filteredClientList: nextProps.clients
+        });
+    }
 
     /**
      * @method _composeClientList
      * @return {JSX}
      */
     _composeClientList() {
-        return _map(this.props.clients, (client, index) => {
+        return _map(this.state.filteredClientList, (client, index) => {
             const singleClientLink = `/clients/${client.id}`;
 
             return (
@@ -36,10 +51,40 @@ class ClientList extends Component {
         }
 
         return (
-            <ul>
-                { this._composeClientList() }
-            </ul>
+            <div>
+                <ul>
+                    <li>
+                        <input
+                            type="text"
+                            ref="searchQuery"
+                            placeholder="search"
+                            onChange={ this.onSearchChange } />
+                    </li>
+                </ul>
+
+                <ul>
+                    { this._composeClientList() }
+                </ul>
+            </div>
         );
+    }
+
+    onSearchChange = () => {
+        const searchQuery = this.refs.searchQuery.value;
+
+        this.onSearchChangeDebounced(searchQuery);
+    }
+
+    onSearchChangeDebounced = _debounce((serachQuery) => this.onSearchQueryChange(serachQuery), SEARCH_DELAY_IN_MS)
+
+    onSearchQueryChange = searchQuery => {
+        const filteredClientList = _filter(this.props.clients, (client) => {
+            return _includes(client.name.toLowerCase(), searchQuery.toLowerCase());
+        });
+
+        this.setState({
+            filteredClientList
+        });
     }
 }
 
