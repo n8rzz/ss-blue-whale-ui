@@ -6,10 +6,6 @@ import {
     deleteClient
 } from '../../domain/client/actions/ClientSingleActions';
 
-import {
-    createNoteForClient
-} from '../../domain/note/actions/NoteSingleActions';
-
 import ClientSingle from '../../content/Client/Single/ClientSingle';
 
 /**
@@ -34,8 +30,7 @@ class ClientSingleContainer extends Component {
             <ClientSingle
                 client={ this.props.client }
                 onSaveClient={ this.props.saveClient }
-                onRemoveClient={ this.props.deleteClient }
-                onCreateNoteForClient={ this.props.createNoteForClient } />
+                onRemoveClient={ this.props.deleteClient } />
         );
     }
 }
@@ -69,13 +64,7 @@ ClientSingleContainer.propTypes = {
      * @property deleteClient
      * @type {Function}
      */
-    deleteClient: PropTypes.func,
-
-    /**
-     * @property createNoteForClient
-     * @type {Function}
-     */
-    createNoteForClient: PropTypes.func
+    deleteClient: PropTypes.func
 };
 
 /**
@@ -94,8 +83,7 @@ const mapStoreToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         saveClient: (clientId, formValues) => dispatch(saveClient(clientId, formValues)),
-        deleteClient: clientId => dispatch(deleteClient(clientId)),
-        createNoteForClient: (clientId, noteRequest) => dispatch(createNoteForClient(clientId, noteRequest))
+        deleteClient: clientId => dispatch(deleteClient(clientId))
     };
 };
 

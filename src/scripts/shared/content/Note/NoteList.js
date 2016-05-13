@@ -7,6 +7,10 @@ import SingleNoteItem from './SingleNoteItem';
  * @extends React/Component
  */
 export default class NoteList extends Component {
+    /**
+     * @constructor
+     * @param  {Object} props
+     */
     constructor(props) {
         super(props);
 
@@ -17,6 +21,8 @@ export default class NoteList extends Component {
     }
 
     /**
+     * @private
+     * @for NoteList
      * @method _composeAddNote
      * @return {JSX}
      */
@@ -27,12 +33,28 @@ export default class NoteList extends Component {
 
         return (
             <AddNoteToClientForm
-                onCreateNoteForClient={ this.props.onCreateNoteForClient }/>
+                onCreateNoteForClient={ this.onCreateNoteForClient }/>
         );
     }
 
+    /**
+     * @private
+     * @for NoteList
+     * @method _composeNoteList
+     * @return {JSX}
+     */
     _composeNoteList() {
-        const nodeItems = this.props.notes.map((note, index) => {
+        if (this.props.notes.length === 0) {
+            return (
+                <ul>
+                    <li>
+                        <div>No Notes</div>
+                    </li>
+                </ul>
+            );
+        }
+
+        const noteItems = this.props.notes.map((note, index) => {
             return (
                 <SingleNoteItem note={ note } key={ index } />
             );
@@ -40,12 +62,13 @@ export default class NoteList extends Component {
 
         return (
             <ul>
-                { nodeItems }
+                { noteItems }
             </ul>
         );
     }
 
     /**
+     * @for NoteList
      * @method render
      * @return {JSX}
      */
@@ -67,13 +90,25 @@ export default class NoteList extends Component {
     }
 
     /**
+     * @for NoteList
      * @method onToggleAddNote
+     * @callback
      */
     onToggleAddNote = () => {
         this.setState({
             shouldShowCreate: !this.state.shouldShowCreate,
             isEditingNoteId: -1
         });
+    }
+
+    /**
+     * @for NoteList
+     * @method onCreateNoteForClient
+     * @param {NoteCreationRequestType}
+     * @return {Function}
+     */
+    onCreateNoteForClient = noteCreateRequest => {
+        this.props.onCreateNoteForClient(this.props.clientId, noteCreateRequest);
     }
 }
 
@@ -90,6 +125,14 @@ NoteList.displayName = 'NoteList';
  * @static
  */
 NoteList.propTypes = {
+    
+    /**
+     * @property
+     * @type {Number}
+     * @required
+     */
+    clientId: PropTypes.number.isRequired,
+
     /**
      * @property notes
      * @type {Object}

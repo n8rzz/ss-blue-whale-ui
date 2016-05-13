@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
 import { ClientPreviewType } from '../../../domain/client/types/ClientTypes';
-import ClientContactContainer from '../../../container/ClientContact/ClientContactContainer';
-import NoteList from '../../Note/NoteList';
+import ClientContactContainer from '../../../container/clientContact/ClientContactContainer';
+import NoteContainer from '../../../container/note/NoteContainer';
 
 const Form = t.form.Form;
 
@@ -48,17 +48,19 @@ export default class ClientSingle extends Component {
         );
     }
 
+    /**
+     * @private
+     * @for ClientSingle
+     * @method _composeClientNotes
+     * @return {JSX}
+     */
     _composeClientNotes() {
-        const notes = this.props.client.notes;
-
-        if (t.Nil.is(notes)) {
+        if (t.Nil.is(this.props.client.notes)) {
             return null;
         }
 
         return (
-            <NoteList
-                notes={ notes }
-                onCreateNoteForClient={ this.onCreateNoteForClient } />
+            <NoteContainer />
         );
     }
 
@@ -120,15 +122,6 @@ export default class ClientSingle extends Component {
             this.props.onSaveClient(this.props.client.id, clientFormValues);
         }
     }
-
-    /**
-     * @method onCreateNoteForClient
-     * @param {NoteCreateRequestType}
-     * @return {Function}
-     */
-    onCreateNoteForClient = noteRequest => {
-        this.props.onCreateNoteForClient(this.props.client.id, noteRequest);
-    }
 }
 
 /**
@@ -163,12 +156,5 @@ ClientSingle.propTypes = {
      * @type {Function}
      * @required
      */
-    onRemoveClient: PropTypes.func.isRequired,
-
-    /**
-     * @property onCreateNoteForClient
-     * @type {Function}
-     * @required
-     */
-    onCreateNoteForClient: PropTypes.func.isRequired
+    onRemoveClient: PropTypes.func.isRequired
 };
