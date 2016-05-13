@@ -1,0 +1,16 @@
+// ---------------------------------------------------------------------
+// hlist
+// ---------------------------------------------------------------------
+.hlist > * {
+    display: inline-block;
+}
+
+.hlist > * + * { margin-left: 5px; }
+
+.hlist_loose > * + * { margin-left: 15px; }
+
+.mix-hlist_divided > * + * {
+    margin-left: 12px;
+    padding-left: 12px;
+    border-left: 1px solid;
+}

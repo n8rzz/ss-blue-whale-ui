@@ -1,0 +1,94 @@
+// ------------------------------------------------------------------------
+// Mixins
+// ------------------------------------------------------------------------
+@mixin border-box() {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@mixin transition($direction, $duration) {
+    -webkit-transition: $direction $duration ease-in-out;
+    -moz-transition:  $direction $duration ease-in-out;
+    -ms-transition: $direction $duration ease-in-out;
+    -o-transition: $direction $duration ease-in-out;
+    transition: $direction $duration ease-in-out;
+}
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        display: table;
+        content: ' ';
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin isVisuallyHidden() {
+    width: 1px !important;
+    height: 1px !important;
+    position: absolute !important;
+    left: -9999px;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+}
+
+@mixin isHidden() {
+    display: none !important;
+}
+
+// opacity mixin
+@mixin opacity($float, $integer) {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$integer)"; /* IE 8 */
+    filter: alpha(opacity=$integer); /* IE 5-7 */
+    opacity: $float; /* W3C */
+}
+
+// rem mixin w/ fallback
+@mixin font-size($val) {
+    font-size: $val + px;
+    font-size: $val / $BASE_FONT_SIZE + rem;
+}
+
+// ------------------------------------------------------------------------
+// Utilities
+// ------------------------------------------------------------------------
+.u-isHidden {
+    display: none !important;
+}
+
+.u-isVisuallyHidden {
+    @include isVisuallyHidden();
+}
+
+.u-isTruncated {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.u-breakWord { word-break: break-word; }
+
+@media screen and (max-width: $SCREEN_WIDTH_MD) {
+    .u-isNotScrollable {
+        overflow: hidden;
+    }
+}
+
+// ------------------------------------------------------------------------
+// Visibility
+// ------------------------------------------------------------------------
+@media screen and (min-width: ($SCREEN_WIDTH_MD + 1px)) {
+    .u-isHiddenMD { display: none !important; }
+}
+
+@media screen and (max-width: $SCREEN_WIDTH_MD) {
+    .u-isHiddenSM { display: none !important; }
+}

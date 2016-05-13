@@ -1,0 +1,23 @@
+// ---------------------------------------------------------------------
+// Text
+// ---------------------------------------------------------------------
+.txt { font-size: $BASE_FONT_SIZE; }
+
+.txt-left { text-align: left; }
+
+.txt-center { text-align: center; }
+
+.txt-right { text-align: right; }
+
+.mix-txt_light {
+    color: $COLOR_MID_GREY;
+}
+
+.mix-txt_cursive {
+    font-family: $FONT_CURSIVE;
+}
+
+.mix-txt_italic {
+    font-style: italic;
+}
+

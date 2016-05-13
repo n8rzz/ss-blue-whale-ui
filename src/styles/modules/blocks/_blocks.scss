@@ -1,0 +1,27 @@
+// ---------------------------------------------------------------------
+// Blocks
+// ---------------------------------------------------------------------
+.blocks {
+    margin: -20px 0 0 -20px;
+    font-size: 0;
+}
+
+.blocks > * {
+    display: inline-block;
+    padding: 20px 0 0 20px;
+    vertical-align: top;
+    font-size: $BASE_FONT_SIZE;
+    box-sizing: border-box;
+}
+
+.blocks_2up > * {
+    width: 50%;
+}
+
+.blocks_3up > * {
+    width: 33.3334%;
+}
+
+.blocks_4up > * {
+    width: 25%;
+}

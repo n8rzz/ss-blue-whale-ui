@@ -1,0 +1,10 @@
+// ---------------------------------------------------------------------
+// 6 Column Grid - Small screen
+// ---------------------------------------------------------------------
+@import 'helpers';
+
+@for $i from 1 through $GRID_COLUMNS {
+    @include buildGrid($GRID_BREAKPOINT_SM, $i);
+    @include buildGridPush($GRID_BREAKPOINT_SM, $i);
+    @include buildGridPull($GRID_BREAKPOINT_SM, $i);
+}

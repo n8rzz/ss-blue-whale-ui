@@ -1,0 +1,28 @@
+// ---------------------------------------------------------------------
+// Headings
+// ---------------------------------------------------------------------
+.hdg {
+    font-family: $FONT_SERIF;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.hdg > a:hover {
+    text-decoration: none;
+}
+
+.hdg_1 {
+    font-size: $BASE_FONT_SIZE + 10px;
+}
+
+.hdg_2 {
+    font-size: $BASE_FONT_SIZE + 6px;
+}
+
+.mix-hdg_sans {
+    font-family: $FONT;
+}
+
+.mix-hdg_caps {
+    text-transform: uppercase;
+}

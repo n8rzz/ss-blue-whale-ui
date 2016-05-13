@@ -1,0 +1,27 @@
+*,
+*:after,
+*:before {
+    @include border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a,
+a:visited { text-decoration: none; }
+
+// a:hover {}
+
+// ul {}
+// ol {}
+
+img { max-width: 100%; }
+
+// p {}
+// mark {}
+// del {}
+// s {}
+// ins {}
+// u {}
+// small {}
+// strong {}
+// em {}

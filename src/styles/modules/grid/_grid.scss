@@ -1,0 +1,39 @@
+// ---------------------------------------------------------------------
+// 6 Column Grid
+// ---------------------------------------------------------------------
+@import 'helpers';
+
+.grid:before,
+.grid:after {
+    display: table;
+    content: ' ';
+}
+
+.grid:after {
+    clear: both;
+}
+
+.grid-col {
+    float: left;
+}
+
+.grid-col-pull {
+    float: right;
+}
+
+.grid-col + .grid-col {
+    // margin-top: 20px;
+    // margin-left: 2.127663%;
+}
+
+@media only screen and (min-width: 0) {
+    @import 'grid_sm';
+}
+
+@media only screen and (min-width: $SCREEN_WIDTH_MD) {
+    @import 'grid_md';
+}
+
+@media only screen and (min-width: $SCREEN_WIDTH_LG) {
+    @import 'grid_lg';
+}
