@@ -6,6 +6,10 @@ import _filter from 'lodash/filter';
 import _map from 'lodash/map';
 import _includes from 'lodash/includes';
 
+/**
+ * @property SEARCH_DELAY_IN_MS
+ * @type {Number}
+ */
 const SEARCH_DELAY_IN_MS = 80;
 
 /**
@@ -13,7 +17,22 @@ const SEARCH_DELAY_IN_MS = 80;
  * @extends React/Component
  */
 class ClientList extends Component {
+
     /**
+     * @for ClientList
+     * @constructor
+     * @param  {Object} props
+     */
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            filteredClientList: props.clients
+        };
+    }
+
+    /**
+     * @for ClientList
      * @method componentWillReceiveProps
      * @param {Object} nextProps
      */
@@ -24,6 +43,7 @@ class ClientList extends Component {
     }
 
     /**
+     * @for ClientList
      * @method _composeClientList
      * @return {JSX}
      */
@@ -42,6 +62,7 @@ class ClientList extends Component {
     }
 
     /**
+     * @for ClientList
      * @method render
      * @return {JSX}
      */
@@ -69,6 +90,7 @@ class ClientList extends Component {
         );
     }
 
+    // TODO: abstract into another component
     onSearchChange = () => {
         const searchQuery = this.refs.searchQuery.value;
 
