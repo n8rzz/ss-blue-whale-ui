@@ -47,7 +47,7 @@ export default class ClientContactList extends Component {
         return (
             <div>
                 <AddContactToClientForm
-                    onRequestToAddContactToClient={ this.props.onRequestToAddContactToClient } />
+                    onRequestToAddContactToClient={ this.onRequestToAddContactToClient } />
             </div>
         );
     }
@@ -67,8 +67,8 @@ export default class ClientContactList extends Component {
                     isEditingId={ this.state.isEditingContactId }
                     onRequestToEditContact={ this.requestToEditClient }
                     onCancelEdit={ this.cancelEdit }
-                    onSaveContactForClient={ this.props.onSaveContactForClient }
-                    onDeleteContactForClient={ this.props.onDeleteContactForClient } />
+                    onSaveContactForClient={ this.onSaveContactForClient }
+                    onDeleteContactForClient={ this.onDeleteContactForClient } />
             );
         });
     }
@@ -102,7 +102,7 @@ export default class ClientContactList extends Component {
      * @param  {Object} event
      * @callback
      */
-    onToggleAddContactForm = (event) => {
+    onToggleAddContactForm = event => {
         event.preventDefault();
 
         this.setState({ shouldShowAddContact: !this.state.shouldShowAddContact });
@@ -123,8 +123,40 @@ export default class ClientContactList extends Component {
      * @param {Number} contactId
      * @callback
      */
-    requestToEditClient = (contactId) => {
+    requestToEditClient = contactId => {
         this.setState({ isEditingContactId: contactId });
+    }
+
+    /**
+     * @for ClientContactList
+     * @method onRequestToAddContactToClient
+     * @param {ClientContactCreationType} clientContactCreationRequest
+     * @return {Function}
+     */
+    onRequestToAddContactToClient = clientContactCreationRequest => {
+        const clientContactRequest = clientContactCreationRequest.addClientIdToContact(this.props.client.id);
+
+        this.props.onCreateContactForClient(this.props.client.id, clientContactRequest);
+    }
+
+    /**
+     * @for ClientContactList
+     * @method onSaveContactForClient
+     * @param {ClientContactType|Object} clientContactRequest
+     * @return {Function}
+     */
+    onSaveContactForClient = clientContactRequest => {
+        this.props.onSaveContactForClient(this.props.client.id, clientContactRequest);
+    }
+
+    /**
+     * @for ClientContactList
+     * @method onDeleteContactForClient
+     * @param {Number} clientContactId
+     * @return {Function}
+     */
+    onDeleteContactForClient = clientContactId => {
+        this.props.onDeleteContactForClient(this.props.client.id, clientContactId);
     }
 }
 
@@ -140,6 +172,12 @@ ClientContactList.displayName = 'ClientContactList';
  */
 ClientContactList.propTypes = {
     /**
+     * @property client
+     * @type {ClientType|Object}
+     */
+    client: PropTypes.object.isRequired,
+
+    /**
      * @property contacts
      * @type {Array}
      * @required
@@ -147,17 +185,11 @@ ClientContactList.propTypes = {
     contacts: PropTypes.array.isRequired,
 
     /**
-     * @property clientId
-     * @type {Number}
-     */
-    clientId: PropTypes.number.isRequired,
-
-    /**
-     * @property onRequestToAddContactToClient
+     * @property onCreateContactForClient
      * @type {Function}
      * @required
      */
-    onRequestToAddContactToClient: PropTypes.func.isRequired,
+    onCreateContactForClient: PropTypes.func.isRequired,
 
     /**
      * @property onSaveContactForClient

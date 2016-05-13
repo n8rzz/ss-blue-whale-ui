@@ -1,6 +1,6 @@
 {
   "name": "ss-blue-whale-ui",
-  "version": "1.0.0",
+  "version": "0.4.2",
   "description": "",
   "author": "Nate Geslin",
   "repository": {
@@ -9,11 +9,12 @@
   },
   "main": "index.js",
   "scripts": {
+    "build": "gulp build",
+    "coverage": "npm test && nyc check-coverage --lines 90",
     "coveralls": "nyc report -r text-lcov | coveralls",
     "start": "gulp && node index.js",
     "test": "nyc ava --serial",
-    "report": "nyc report --reporter=html",
-    "coverage": "npm test && nyc check-coverage --lines 90"
+    "report": "nyc report --reporter=html"
   },
   "engines": {
     "node": ">=4.2.4",

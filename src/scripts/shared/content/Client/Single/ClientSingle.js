@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
-import { ClientCreationType } from '../../../domain/client/types/ClientTypes';
-import ClientContactList from '../../ClientContact/ClientContactList';
+import { ClientPreviewType } from '../../../domain/client/types/ClientTypes';
+import ClientContactContainer from '../../../container/ClientContact/ClientContactContainer';
 import NoteList from '../../Note/NoteList';
 
 const Form = t.form.Form;
@@ -39,19 +39,12 @@ export default class ClientSingle extends Component {
      * @return {JSX}
      */
     _composeClientContacts() {
-        const clientContacts = this.props.client.client_contacts;
-
-        if (t.Nil.is(clientContacts)) {
+        if (t.Nil.is(this.props.client.client_contacts)) {
             return null;
         }
 
         return (
-            <ClientContactList
-                clientId={ this.props.client.id }
-                contacts={ clientContacts }
-                onRequestToAddContactToClient={ this.onRequestToAddContactToClient }
-                onSaveContactForClient={ this.onSaveContactForClient }
-                onDeleteContactForClient={ this.onDeleteContactForClient } />
+            <ClientContactContainer />
         );
     }
 
@@ -87,7 +80,7 @@ export default class ClientSingle extends Component {
                 <Form
                     ref="clientForm"
                     value={ this.state.clientFormValues }
-                    type={ ClientCreationType } />
+                    type={ ClientPreviewType } />
 
                 <button onClick={ this.onRemoveClient }>Delete Client</button>
                 <button type="submit" onClick={ this.onSubmit }>Update Client</button>
@@ -126,38 +119,6 @@ export default class ClientSingle extends Component {
         if (clientFormValues !== null) {
             this.props.onSaveClient(this.props.client.id, clientFormValues);
         }
-    }
-
-    /**
-     * @for ClientSingle
-     * @method onRequestToAddContactToClient
-     * @param {ClientContactCreationType} clientContactFormValues
-     * @return {Function}
-     */
-    onRequestToAddContactToClient = clientContactCreationRequest => {
-        const clientContactRequest = clientContactCreationRequest.addClientIdToContact(this.props.client.id);
-
-        this.props.onCreateContactForClient(this.props.client.id, clientContactRequest);
-    }
-
-    /**
-     * @for ClientSingle
-     * @method onSaveContactForClient
-     * @param {ClientContactType|Object} clientContactRequest
-     * @return {Function}
-     */
-    onSaveContactForClient = clientContactRequest => {
-        this.props.onSaveContactForClient(this.props.client.id, clientContactRequest);
-    }
-
-    /**
-     * @for ClientSingle
-     * @method onDeleteContactForClient
-     * @param {Number} clientContactId
-     * @return {Function}
-     */
-    onDeleteContactForClient = clientContactId => {
-        this.props.onDeleteContactForClient(this.props.client.id, clientContactId);
     }
 
     /**
@@ -203,27 +164,6 @@ ClientSingle.propTypes = {
      * @required
      */
     onRemoveClient: PropTypes.func.isRequired,
-
-    /**
-     * @property onCreateContactForClient
-     * @type {Function}
-     * @required
-     */
-    onCreateContactForClient: PropTypes.func.isRequired,
-
-    /**
-     * @property onSaveContactForClient
-     * @type {Function}
-     * @required
-     */
-    onSaveContactForClient: PropTypes.func.isRequired,
-
-    /**
-     * @property onDeleteContactForClient
-     * @type {Function}
-     * @required
-     */
-    onDeleteContactForClient: PropTypes.func.isRequired,
 
     /**
      * @property onCreateNoteForClient

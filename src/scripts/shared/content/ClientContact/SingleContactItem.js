@@ -23,6 +23,15 @@ export default class SingleContactItem extends Component {
     }
 
     /**
+     * @for SingleContactItem
+     * @method componentWillReceiveProps
+     * @param {Object} nextProps
+     */
+    componentWillReceiveProps(nextProps) {
+        this.setState({ editClientContactFormValues: nextProps.contact });
+    }
+
+    /**
      * @private
      * @for SingleContactItem
      * @method _composeFormView
@@ -62,6 +71,7 @@ export default class SingleContactItem extends Component {
                 <div>mobile: { contact.mobilePhone }</div>
                 <div>email: { contact.email }</div>
                 <div>
+                    <button onClick={ this.deleteContactForClient }>Delete</button>
                     <button onClick={ this.requestToEditClient }>Edit Contact</button>
                 </div>
             </div>
@@ -75,6 +85,7 @@ export default class SingleContactItem extends Component {
      */
     render() {
         let children = this._composeStaticView();
+
         if (this.props.isEditingId === this.props.contact.id) {
             children = this._composeFormView();
         }
