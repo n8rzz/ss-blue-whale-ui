@@ -204,7 +204,7 @@ rules:
     - 2
     -
       allow-leading-underscore: false
-      convention: ^[a-zA-Z\_]+$
+      convention: ^[a-zA-Z0-9\_]+$
   zero-unit:
     - 1
     -

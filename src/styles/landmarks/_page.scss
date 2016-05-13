@@ -10,9 +10,17 @@
 }
 
 .page-hd {
-    border-bottom: 4px solid $COLOR_SECONDARY;
+    // TODO: move to .sidebar
+    width: $SIDEBAR_WIDTH_EXPANDED;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
 }
 
-// .page-bd {}
+.page-bd {
+    margin-left: $SIDEBAR_WIDTH_EXPANDED;
+}
 
 // .page-ft {}

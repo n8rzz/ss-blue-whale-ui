@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import Navigation from './Navigation/Navigation';
 
 /**
  * React entry component
@@ -14,35 +14,13 @@ export class App extends Component {
      */
     render() {
         return (
-            <div>
-                <ul>
-                    <li>Dashboard</li>
-                    <li>
-                        <Link to="/clients">Clients</Link>
-                        <ul>
-                            <li>
-                                <Link to="/clients/create">Create Client</Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <Link to="/projects">Projects</Link>
-                        <ul>
-                            <li>
-                                <Link to="/projectTypes">Project Types</Link>
-                                <ul>
-                                    <li>
-                                        <Link to="/projectTypes/create">Create Project Type</Link>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <Link to="/taskItems">Task Items</Link>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                { this.props.children }
+            <div className="page">
+                <div className="page-hd">
+                    <Navigation />
+                    </div>
+                <div className="page-bd">
+                    { this.props.children }
+                </div>
             </div>
         );
     }
