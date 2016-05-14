@@ -9,18 +9,19 @@
     line-height: 1.2;
 }
 
-.page-hd {
-    // TODO: move to .sidebar
-    width: $SIDEBAR_WIDTH_EXPANDED;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-}
+// .page-hd {}
 
 .page-bd {
     margin-left: $SIDEBAR_WIDTH_EXPANDED;
+
+    @include base-transition;
+    @include wrapper;
+}
+
+// this mixin is applied to the sidebar when it is in a collapsed state. Thus, we need to
+// modify the `margin-left` of the body to match the small width of the sidebar.
+.mix-sidebar_collapsed + .page-bd {
+    margin-left: $SIDEBAR_WIDTH_COLLAPSED;
 }
 
 // .page-ft {}

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Navigation from './Navigation/Navigation';
+import Sidebar from './Sidebar/Sidebar';
 
 /**
  * React entry component
@@ -15,9 +15,7 @@ export class App extends Component {
     render() {
         return (
             <div className="page">
-                <div className="page-hd">
-                    <Navigation />
-                    </div>
+                <Sidebar />
                 <div className="page-bd">
                     { this.props.children }
                 </div>

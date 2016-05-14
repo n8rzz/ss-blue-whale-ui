@@ -1,0 +1,40 @@
+// ------------------------------------------------------------------------
+// Sidebar
+// ------------------------------------------------------------------------
+.sidebar {
+    width: $SIDEBAR_WIDTH_EXPANDED;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    border: 1px solid red;
+    white-space: nowrap;
+
+    @include base-transition;
+    @include wrapper;
+}
+
+.sidebar-trigger {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #cccccc; // TODO: replace with theme color
+}
+
+.sidebar-trigger > button {
+    padding: 15px 39%;
+    background-color: #cccccc;
+    border: 0;
+
+    @include base-transition;
+}
+
+.mix-sidebar_collapsed > .sidebar-trigger > * {
+    padding-left: 17%;
+}
+
+.mix-sidebar_collapsed {
+    width: $SIDEBAR_WIDTH_COLLAPSED;
+}

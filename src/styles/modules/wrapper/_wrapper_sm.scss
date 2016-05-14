@@ -2,5 +2,5 @@
 // Wrapper - Small
 // ---------------------------------------------------------------------
 .wrapper {
-    padding: 10px;
+    @include wrapper
 }

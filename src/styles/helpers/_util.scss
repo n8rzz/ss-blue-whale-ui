@@ -17,6 +17,10 @@
     transition: $direction $duration ease-in-out;
 }
 
+@mixin base-transition() {
+    @include transition(all, 0.3s);
+}
+
 @mixin clearfix() {
     &:before,
     &:after {
@@ -56,6 +60,10 @@
 @mixin font-size($val) {
     font-size: $val + px;
     font-size: $val / $BASE_FONT_SIZE + rem;
+}
+
+@mixin wrapper() {
+    padding: $HORIZONTAL_SPACING_1X;
 }
 
 // ------------------------------------------------------------------------
