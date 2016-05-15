@@ -1,23 +1,23 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './content';
+import App from './components';
 
-import ClientRoot from './content/Client/ClientRoot';
-import ClientListContainer from './container/client/ClientListContainer';
-import ClientCreateContainer from './container/client/ClientCreateContainer';
-import ClientSingleContainer from './container/client/ClientSingleContainer';
+import ClientRoot from './components/content/Client/ClientRoot';
+import ClientListContainer from './components/container/client/ClientListContainer';
+import ClientCreateContainer from './components/container/client/ClientCreateContainer';
+import ClientSingleContainer from './components/container/client/ClientSingleContainer';
 import { getSingleClient } from './domain/client/actions/ClientSingleActions';
 
-import ProjectContainer from './container/project/ProjectContainer';
+import ProjectContainer from './components/container/project/ProjectContainer';
 
-import ProjectTypeRoot from './content//ProjectType/ProjectTypeRoot';
-import ProjectTypeContainer from './container/projectType/ProjectTypeContainer';
-import ProjectTypeCreateContainer from './container/projectType/ProjectTypeCreateContainer';
-import ProjectTypeSingleContainer from './container/projectType/ProjectTypeSingleContainer';
+import ProjectTypeRoot from './components/content//ProjectType/ProjectTypeRoot';
+import ProjectTypeContainer from './components/container/projectType/ProjectTypeContainer';
+import ProjectTypeCreateContainer from './components/container/projectType/ProjectTypeCreateContainer';
+import ProjectTypeSingleContainer from './components/container/projectType/ProjectTypeSingleContainer';
 import { getProjectType } from './domain/projectType/actions/ProjectTypeActions';
 
-import TaskItemContainer from './container/taskItem/TaskItemContainer';
+import TaskItemContainer from './components/container/taskItem/TaskItemContainer';
 
 export default function(store) {
     return (
