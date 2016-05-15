@@ -54,6 +54,6 @@ module.exports = function(gulp, config) {
     gulp.task('build:sass', ['sass']);
 
     gulp.task('watch:sass', function() {
-        gulp.watch(OPTIONS.GLOB.SASS, ['sass']);
+        gulp.watch(OPTIONS.GLOB.SASS, ['sass', 'lint:sass']);
     });
 };

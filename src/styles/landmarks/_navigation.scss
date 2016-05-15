@@ -1,0 +1,28 @@
+// ---------------------------------------------------------------------
+// Navigation
+// ---------------------------------------------------------------------
+// .naigation {}
+
+.navigation-item {
+    text-align: center;
+}
+
+.navigation-item-link,
+.navigation-item-link:visited {
+    display: block;
+    padding-top: $VERTICAL_SPACING_1X;
+    padding-bottom: $VERTICAL_SPACING_1X;
+    color: #ededed;
+}
+
+.navigation-item-link:hover {
+    background-color: #303030;
+
+    @include base-transition;
+}
+
+.navigation-item > ul {
+    display: none;
+    margin-top: $VERTICAL_SPACING_1X;
+    background-color: #505050;
+}

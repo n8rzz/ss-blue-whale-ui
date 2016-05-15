@@ -1,0 +1,54 @@
+// ------------------------------------------------------------------------
+// Sidebar
+// ------------------------------------------------------------------------
+@mixin sidebar-action-bar {
+    width: 100%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #303030;
+    color: #ededed;
+    border: 0;
+    cursor: pointer;
+}
+
+.sidebar {
+    width: $SIDEBAR_WIDTH_EXPANDED;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #606060;
+    white-space: nowrap;
+
+    @include base-transition;
+}
+
+.sidebar-hd > button {
+    @include sidebar-action-bar;
+}
+
+// .sidebar-bd {}
+
+.sidebar-ft {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+// .sidebar-trigger {}
+
+.sidebar-trigger > button {
+    @include sidebar-action-bar;
+    @include base-transition;
+}
+
+.mix-sidebar_collapsed > .sidebar-trigger > * {
+    padding-left: 17%;
+}
+
+.mix-sidebar_collapsed {
+    width: $SIDEBAR_WIDTH_COLLAPSED;
+}

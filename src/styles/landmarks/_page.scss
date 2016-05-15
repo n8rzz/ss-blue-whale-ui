@@ -3,16 +3,25 @@
 // ------------------------------------------------------------------------
 .page {
     background-color: #fefffd;
-    font-size: $BASE_FONT_SIZE;
+    font-size: $FONT_SIZE_1X;
     font-family: $FONT;
     letter-spacing: 1px;
     line-height: 1.2;
 }
 
-.page-hd {
-    border-bottom: 4px solid $COLOR_SECONDARY;
+// .page-hd {}
+
+.page-bd {
+    margin-left: $SIDEBAR_WIDTH_EXPANDED;
+
+    @include base-transition;
+    @include wrapper;
 }
 
-// .page-bd {}
+// this mixin is applied to the sidebar when it is in a collapsed state. Thus, we need to
+// modify the `margin-left` of the body to match the small width of the sidebar.
+.mix-sidebar_collapsed + .page-bd {
+    margin-left: $SIDEBAR_WIDTH_COLLAPSED;
+}
 
 // .page-ft {}
