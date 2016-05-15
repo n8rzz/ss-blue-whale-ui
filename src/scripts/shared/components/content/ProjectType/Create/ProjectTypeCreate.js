@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
+import Button from '../../../layout/Button/Button';
 import { ProjectTypeCreationType } from '../../../../domain/projectType/types/ProjectTypeTypes';
 
 const Form = t.form.Form;
@@ -21,7 +22,7 @@ export default class ProjectTypeCreate extends Component {
                     ref="createProjectTypeForm"
                     type={ ProjectTypeCreationType } />
 
-                <button type="submit" onClick={ this.onSubmit }>Save Project Type</button>
+                <Button isSubmit onClick={ this.onSubmit }>Save Project Type</Button>
             </div>
         );
     }

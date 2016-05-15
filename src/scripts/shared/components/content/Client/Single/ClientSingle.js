@@ -3,6 +3,8 @@ import t from 'tcomb-form';
 import { ClientPreviewType } from '../../../../domain/client/types/ClientTypes';
 import ClientContactContainer from '../../../container/clientContact/ClientContactContainer';
 import NoteContainer from '../../../container/note/NoteContainer';
+import Button from '../../../layout/Button/Button';
+
 
 const Form = t.form.Form;
 
@@ -84,8 +86,8 @@ export default class ClientSingle extends Component {
                     value={ this.state.clientFormValues }
                     type={ ClientPreviewType } />
 
-                <button onClick={ this.onRemoveClient }>Delete Client</button>
-                <button type="submit" onClick={ this.onSubmit }>Update Client</button>
+                <Button isSubmit onClick={ this.onRemoveClient }>Delete Client</Button>
+                <Button isSubmit onClick={ this.onSubmit } >Update Client</Button>
 
                 { this._composeClientContacts() }
                 { this._composeClientNotes() }

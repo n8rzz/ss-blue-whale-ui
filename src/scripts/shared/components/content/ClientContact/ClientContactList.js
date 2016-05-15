@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import SingleContactItem from './SingleContactItem';
 import AddContactToClientForm from './AddContactToClientForm';
+import Button from '../../layout/Button/Button';
 
 /**
  * @class ClientContactList
@@ -83,9 +84,9 @@ export default class ClientContactList extends Component {
             <div>
                 <h2 className="hdg hdg_2">Contacts</h2>
 
-                <button onClick={ this.onToggleAddContactForm }>
+                <Button onClick={ this.onToggleAddContactForm }>
                     { this.state.shouldShowAddContact ? 'Cancel' : 'Add New Contact' }
-                </button>
+                </Button>
 
                 { this._composeAddContactForm() }
 

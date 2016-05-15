@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { ClientContactType } from '../../../domain/clientContact/types/ClientContactTypes';
 import t from 'tcomb-form';
+import { ClientContactType } from '../../../domain/clientContact/types/ClientContactTypes';
+import Button from '../../layout/Button/Button';
 
 const Form = t.form.Form;
 
@@ -45,9 +46,9 @@ export default class SingleContactItem extends Component {
                     value={ this.state.editClientContactFormValues }
                     type={ ClientContactType } />
 
-                <button onClick={ this.deleteContactForClient }>Delete</button>
-                <button onClick={ this.props.onCancelEdit }>Cancel</button>
-                <button onClick={ this.saveContactForClient }>Update</button>
+                <Button onClick={ this.deleteContactForClient }>Delete</Button>
+                <Button onClick={ this.props.onCancelEdit }>Cancel</Button>
+                <Button onClick={ this.saveContactForClient }>Update</Button>
             </div>
         );
     }
@@ -71,8 +72,8 @@ export default class SingleContactItem extends Component {
                 <div>mobile: { contact.mobilePhone }</div>
                 <div>email: { contact.email }</div>
                 <div>
-                    <button onClick={ this.deleteContactForClient }>Delete</button>
-                    <button onClick={ this.requestToEditClient }>Edit Contact</button>
+                    <Button onClick={ this.deleteContactForClient }>Delete</Button>
+                    <Button onClick={ this.requestToEditClient }>Edit Contact</Button>
                 </div>
             </div>
         );

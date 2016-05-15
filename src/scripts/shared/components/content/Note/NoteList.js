@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import AddNoteToClientForm from './AddNoteToClientForm';
 import SingleNoteItem from './SingleNoteItem';
+import Button from '../../layout/Button/Button';
 
 /**
  * @class NoteList
@@ -78,9 +79,9 @@ export default class NoteList extends Component {
                 <h3 className="hdg hdg_3">Notes</h3>
 
                 <div>
-                    <button onClick={ this.onToggleAddNote }>
+                    <Button onClick={ this.onToggleAddNote }>
                         { this.state.shouldShowCreate ? 'Cancel' : 'Add New Note' }
-                    </button>
+                    </Button>
                 </div>
 
                 { this._composeAddNote() }
@@ -125,7 +126,7 @@ NoteList.displayName = 'NoteList';
  * @static
  */
 NoteList.propTypes = {
-    
+
     /**
      * @property
      * @type {Number}

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
 import { ClientContactCreationType } from '../../../domain/clientContact/types/ClientContactTypes';
+import Button from '../../layout/Button/Button';
 
 const Form = t.form.Form;
 
@@ -22,7 +23,9 @@ export default class AddContactToClientForm extends Component {
                     ref="addContactToClientForm"
                     type={ ClientContactCreationType } />
 
-                <button onClick={ this.onSubmit }>Save new contact</button>
+                <Button onClick={ this.onSubmit }>
+                    Save new contact
+                </Button>
             </div>
         );
     }

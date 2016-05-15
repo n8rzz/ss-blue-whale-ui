@@ -2,25 +2,24 @@
 // Button
 // ---------------------------------------------------------------------
 .btn {
-    @include border-box;
-    @include transition(all, 0.12s);
-
     display: inline-block;
     margin: 0;
     padding: 8px 16px;
     border: 0;
-    background: rgba(0, 128, 0, 1);
-    color: #eeeeee; // fallback for non rgba browsers
-    color: rgba(255, 255, 255, 0.9);
-    font-size: $FONT_SIZE_1X;
-    font-family: $FONT;
+    // background: rgba(0, 128, 0, 1);
+    // color: #eeeeee; // fallback for non rgba browsers
+    // color: rgba(255, 255, 255, 0.9);
+    font-size: $FONT_SIZE_HALF;
     line-height: normal; // set to normal so .btn can be usd on inputs in firefox with consistency
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 2px;
+
+    @include border-box;
+    @include transition(all, 0.12s);
 }
 
 .btn:hover {
-    background: rgba(0, 100, 0, 0.7);
+    background: #aaaaaa;
 }

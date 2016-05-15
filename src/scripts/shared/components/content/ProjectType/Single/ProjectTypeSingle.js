@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
+import Button from '../../../layout/Button/Button';
 import { ProjectTypeType } from '../../../../domain/projectType/types/ProjectTypeTypes';
 
 const Form = t.form.Form;
@@ -43,8 +44,8 @@ export default class ProjectTypeSingle extends Component {
                     value={ this.state.saveProjectTypeFormValues }
                     onChange={ this.onChange } />
 
-                <button onClick={ this.onRemoveProjectType }>Remove Project Type</button>
-                <button type="submit" onClick={ this.onSubmit }>Save Project Type</button>
+                <Button onClick={ this.onRemoveProjectType }>Remove Project Type</Button>
+            <Button isSubmit onClick={ this.onSubmit }>Save Project Type</Button>
             </div>
         );
     }

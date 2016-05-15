@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
+import Button from '../../layout/Button/Button';
 import { NoteCreationRequestType } from '../../../domain/note/types/NoteTypes';
 
 const Form = t.form.Form;
@@ -21,7 +22,7 @@ export default class AddNoteToClientForm extends Component {
                     ref="addNoteForm"
                     type={ NoteCreationRequestType } />
 
-                <button type="submit" onClick={ this.onSubmit }>Add Note</button>
+                <Button isSubmit onClick={ this.onSubmit }>Add Note</Button>
             </div>
         );
     }
