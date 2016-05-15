@@ -59,7 +59,7 @@
 // rem mixin w/ fallback
 @mixin font-size($val) {
     font-size: $val + px;
-    font-size: $val / $BASE_FONT_SIZE + rem;
+    font-size: $val / $FONT_SIZE_1X + rem;
 }
 
 @mixin wrapper() {

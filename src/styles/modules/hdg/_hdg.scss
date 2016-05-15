@@ -2,7 +2,7 @@
 // Headings
 // ---------------------------------------------------------------------
 .hdg {
-    font-family: $FONT_SERIF;
+    font-family: $FONT;
     font-weight: normal;
     line-height: 1.2;
 }
@@ -12,11 +12,11 @@
 }
 
 .hdg_1 {
-    font-size: $BASE_FONT_SIZE + 10px;
+    font-size: $FONT_SIZE_3X;
 }
 
 .hdg_2 {
-    font-size: $BASE_FONT_SIZE + 6px;
+    font-size: $FONT_SIZE_2X;
 }
 
 .mix-hdg_sans {

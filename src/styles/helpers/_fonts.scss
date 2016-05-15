@@ -1,7 +1,10 @@
 // ------------------------------------------------------------------------
 // Fonts
 // ------------------------------------------------------------------------
-$BASE_FONT_SIZE: 16px;
+$FONT_SIZE_1X: 16px;
+$FONT_SIZE_2X: $FONT_SIZE_1X * 1.25;
+$FONT_SIZE_3X: $FONT_SIZE_1X * 1.5;
+$FONT_SIZE_4X: $FONT_SIZE_1X * 2;
 
 // ------------------------------------------------------------------------
 // Font stack
@@ -9,7 +12,5 @@ $BASE_FONT_SIZE: 16px;
 @import url('https://fonts.googleapis.com/css?family=Raleway|Lora:400,700|Indie+Flower');
 
 $FONT: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$FONT_SERIF: 'Lora', 'Georgia' serif;
-$FONT_CURSIVE: 'Indie Flower', cursive;
-
-
+// $FONT_SERIF: 'Lora', 'Georgia', serif;
+// $FONT_CURSIVE: 'Indie Flower', cursive;

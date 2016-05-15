@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import PageTitle from '../../layout/PageTitle/PageTitle';
 
 /**
  * Top level wrapper for ProjectType copmonents
@@ -14,7 +15,7 @@ export default class ProjectTypeRoot extends Component {
     render() {
         return (
             <div>
-                <h1>ProjectTypes</h1>
+                <PageTitle title="ProjectTypes" />
                 { this.props.children }
             </div>
         );

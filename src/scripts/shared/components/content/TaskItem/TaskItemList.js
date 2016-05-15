@@ -13,7 +13,7 @@ class TaskItemList extends Component {
         return _map(this.props.taskItems, (task, index) => {
             return (
                 <li key={ index }>
-                    <h2>{ task.name }</h2>
+                    <h2 className="hdg hdg_2">{ task.name }</h2>
                     <div>
                         { task.description }
                     </div>

@@ -12,7 +12,7 @@
     background: rgba(0, 128, 0, 1);
     color: #eeeeee; // fallback for non rgba browsers
     color: rgba(255, 255, 255, 0.9);
-    font-size: $BASE_FONT_SIZE;
+    font-size: $FONT_SIZE_1X;
     font-family: $FONT;
     line-height: normal; // set to normal so .btn can be usd on inputs in firefox with consistency
     text-align: center;

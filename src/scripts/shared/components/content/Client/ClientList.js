@@ -53,7 +53,7 @@ class ClientList extends Component {
 
             return (
                 <li key={ index }>
-                    <h2>
+                    <h2 className="hdg hdg_2">
                         <Link to={ singleClientLink }>{ client.name }</Link>
                     </h2>
                 </li>

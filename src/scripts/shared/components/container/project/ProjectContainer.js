@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 // import { connect } from 'react-redux';
+import PageTitle from '../../layout/PageTitle/PageTitle';
 
 /**
  * React entry component
@@ -15,7 +16,7 @@ class ProjectContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Projects</h1>
+                <PageTitle title="Projects" />
             </div>
         );
     }

@@ -16,7 +16,7 @@ class ProjectTypeList extends Component {
 
             return (
                 <li key={ index }>
-                    <h2>
+                    <h2 className="hdg hdg_2">
                         <Link to={ projectTypeLink }>{ projectType.name }</Link>
                     </h2>
                     <div>

@@ -64,7 +64,7 @@ export default class SingleContactItem extends Component {
         return (
             <div>
                 <div>
-                    <h4>{ contact.name }</h4>
+                    <h4 className="hdg">{ contact.name }</h4>
                 </div>
                 <div>position: { contact.position }</div>
                 <div>main: { contact.businessPhone }</div>

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import PageTitle from '../../layout/PageTitle/PageTitle';
 
 /**
  * Top level wrapper for Client copmonents
@@ -14,7 +15,7 @@ export default class ClientRoot extends Component {
     render() {
         return (
             <div>
-                <h1>Clients</h1>
+                <PageTitle title="Clients" />
                 { this.props.children }
             </div>
         );

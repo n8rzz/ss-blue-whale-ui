@@ -75,7 +75,7 @@ export default class NoteList extends Component {
     render() {
         return (
             <div>
-                <h3>Notes</h3>
+                <h3 className="hdg hdg_3">Notes</h3>
 
                 <div>
                     <button onClick={ this.onToggleAddNote }>

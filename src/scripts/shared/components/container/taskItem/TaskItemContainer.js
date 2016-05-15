@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getTaskItemList } from '../../../domain/taskItem/actions/TaskItemListActions';
 import TaskItemList from '../../content/TaskItem/TaskItemList';
+import PageTitle from '../../layout/PageTitle/PageTitle';
 
 /**
  * React entry component
@@ -17,7 +18,7 @@ class TaskItemContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Task Items</h1>
+                <PageTitle title="Task Items" />
                 <TaskItemList taskItems={ this.props.taskItems } />
             </div>
         );

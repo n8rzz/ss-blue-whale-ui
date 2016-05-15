@@ -81,7 +81,7 @@ export default class ClientContactList extends Component {
     render() {
         return (
             <div>
-                <h2>Contacts</h2>
+                <h2 className="hdg hdg_2">Contacts</h2>
 
                 <button onClick={ this.onToggleAddContactForm }>
                     { this.state.shouldShowAddContact ? 'Cancel' : 'Add New Contact' }
