@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
+import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
 import { ProjectTypeCreationType } from '../../../../domain/projectType/types/ProjectTypeTypes';
 
@@ -18,9 +19,11 @@ export default class ProjectTypeCreate extends Component {
     render() {
         return (
             <div>
-                <Form
-                    ref="createProjectTypeForm"
-                    type={ ProjectTypeCreationType } />
+                <VerticalRhythm increment={ 1 }>
+                    <Form
+                        ref="createProjectTypeForm"
+                        type={ ProjectTypeCreationType } />
+                </VerticalRhythm>
 
                 <Button isSubmit onClick={ this.onSubmit }>Save Project Type</Button>
             </div>

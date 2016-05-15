@@ -1,18 +1,10 @@
 // ---------------------------------------------------------------------
 // Vertical Rhythm
 // ------------------------------------------------------------------------
-.vr {
-    margin-bottom: 4px;
-}
+.vr_1x { margin-bottom: $VERTICAL_SPACING_1X; }
 
-.vr_x2 {
-    margin-bottom: 8px;
-}
+.vr_2x { margin-bottom: $VERTICAL_SPACING_2X; }
 
-.vr_x4 {
-    margin-bottom: 16px;
-}
+.vr_3x { margin-bottom: $VERTICAL_SPACING_3X; }
 
-.vr_x6 {
-    margin-bottom: 24px;
-}
+.vr_4x { margin-bottom: $VERTICAL_SPACING_4X; }

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
+import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
 import { ProjectTypeType } from '../../../../domain/projectType/types/ProjectTypeTypes';
 
@@ -38,14 +39,16 @@ export default class ProjectTypeSingle extends Component {
     render() {
         return (
             <div>
-                <Form
-                    ref="saveProjectTypeForm"
-                    type={ ProjectTypeType }
-                    value={ this.state.saveProjectTypeFormValues }
-                    onChange={ this.onChange } />
+                <VerticalRhythm increment={ 1 }>
+                    <Form
+                        ref="saveProjectTypeForm"
+                        type={ ProjectTypeType }
+                        value={ this.state.saveProjectTypeFormValues }
+                        onChange={ this.onChange } />
+                </VerticalRhythm>
 
                 <Button onClick={ this.onRemoveProjectType }>Remove Project Type</Button>
-            <Button isSubmit onClick={ this.onSubmit }>Save Project Type</Button>
+                <Button isSubmit onClick={ this.onSubmit }>Save Project Type</Button>
             </div>
         );
     }

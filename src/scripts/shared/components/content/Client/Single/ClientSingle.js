@@ -3,8 +3,8 @@ import t from 'tcomb-form';
 import { ClientPreviewType } from '../../../../domain/client/types/ClientTypes';
 import ClientContactContainer from '../../../container/clientContact/ClientContactContainer';
 import NoteContainer from '../../../container/note/NoteContainer';
+import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
-
 
 const Form = t.form.Form;
 
@@ -46,7 +46,9 @@ export default class ClientSingle extends Component {
         }
 
         return (
-            <ClientContactContainer />
+            <VerticalRhythm increment={ 1 }>
+                <ClientContactContainer />
+            </VerticalRhythm>
         );
     }
 
@@ -62,7 +64,10 @@ export default class ClientSingle extends Component {
         }
 
         return (
-            <NoteContainer />
+            <VerticalRhythm increment={ 1 }>
+                <NoteContainer />
+            </VerticalRhythm>
+
         );
     }
 
@@ -74,20 +79,26 @@ export default class ClientSingle extends Component {
     render() {
         return (
             <div>
-                <ul>
-                    <li>Main</li>
-                    <li>Projects</li>
-                    <li>History</li>
-                    <li>Notes</li>
-                </ul>
+                <VerticalRhythm increment={ 2 }>
+                    <ul className="hlist">
+                        <li>Main</li>
+                        <li>Projects</li>
+                        <li>History</li>
+                        <li>Notes</li>
+                    </ul>
+                </VerticalRhythm>
 
-                <Form
-                    ref="clientForm"
-                    value={ this.state.clientFormValues }
-                    type={ ClientPreviewType } />
+                <VerticalRhythm increment={ 2 }>
+                    <VerticalRhythm increment={ 1 }>
+                        <Form
+                            ref="clientForm"
+                            value={ this.state.clientFormValues }
+                            type={ ClientPreviewType } />
+                    </VerticalRhythm>
 
-                <Button isSubmit onClick={ this.onRemoveClient }>Delete Client</Button>
-                <Button isSubmit onClick={ this.onSubmit } >Update Client</Button>
+                    <Button isSubmit onClick={ this.onRemoveClient }>Delete Client</Button>
+                    <Button isSubmit onClick={ this.onSubmit } >Update Client</Button>
+                </VerticalRhythm>
 
                 { this._composeClientContacts() }
                 { this._composeClientNotes() }

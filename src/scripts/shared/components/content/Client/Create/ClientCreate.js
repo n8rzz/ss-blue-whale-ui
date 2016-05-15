@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
+import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
 
 import { ClientCreationType } from '../../../../domain/client/types/ClientTypes';
@@ -18,9 +19,11 @@ export default class ClientCreate extends Component {
     render() {
         return (
             <div>
-                <Form
-                    ref="createClientForm"
-                    type={ ClientCreationType } />
+                <VerticalRhythm increment={ 1 }>
+                    <Form
+                        ref="createClientForm"
+                        type={ ClientCreationType } />
+                </VerticalRhythm>
 
                 <Button isSubmit onClick={ this.onSubmit } >
                     Add Client

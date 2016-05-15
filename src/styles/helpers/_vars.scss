@@ -3,18 +3,21 @@
 // ---------------------------------------------------------------------
 // ---------------------------------------------------------------------
 // SPACING
-// ----------------------------------------------------------------------
+// ---------------------------------------------------------------------
 $SCREEN_WIDTH_SM: 328px;
 $SCREEN_WIDTH_MD: 767px;
 $SCREEN_WIDTH_LG: 1027px;
+
+$HORIZONTAL_SPACING_1X: 12px;
 
 $VERTICAL_SPACING_1X: 12px;
 $VERTICAL_SPACING_2X: $VERTICAL_SPACING_1X * 2;
 $VERTICAL_SPACING_3X: $VERTICAL_SPACING_1X * 3;
 $VERTICAL_SPACING_4X: $VERTICAL_SPACING_1X * 4;
 
-$HORIZONTAL_SPACING_1X: 12px;
-
+// ---------------------------------------------------------------------
+// SIDEBAR WIDTHS
+// ---------------------------------------------------------------------
 $SIDEBAR_WIDTH_EXPANDED: 240px;
 $SIDEBAR_WIDTH_COLLAPSED: 80px;
 
