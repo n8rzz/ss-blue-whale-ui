@@ -16,6 +16,7 @@ export default class ClientRoot extends Component {
         return (
             <div>
                 <PageTitle title="Clients" />
+
                 { this.props.children }
             </div>
         );

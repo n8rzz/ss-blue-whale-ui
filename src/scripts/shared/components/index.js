@@ -7,7 +7,7 @@ import Sidebar from './content/Sidebar/Sidebar';
  *
  * @class  App
  */
-export class App extends Component {
+export default class App extends Component {
     /**
      * @method  render
      * @return {JSX}
@@ -27,6 +27,7 @@ export class App extends Component {
 /**
  * @props displayName
  * @type {String}
+ * @static
  */
 App.displayName = 'App';
 
@@ -42,5 +43,3 @@ App.propTypes = {
      */
     children: PropTypes.object
 };
-
-export default App;

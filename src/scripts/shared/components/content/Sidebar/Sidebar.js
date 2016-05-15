@@ -30,10 +30,18 @@ export default class Sidebar extends Component {
 
         return (
             <div className={ sidebarClassnames }>
-                <Navigation
-                    isCollapsed={ this.state.isCollapsed } />
+                <div className="sidebar-hd">
+                    <button>DASHBOARD</button>
+                </div>
 
-                <SidebarTrigger onToggleSidebar={ this.onToggleSidebar } />
+                <div className="sidebar-bd">
+                    <Navigation isCollapsed={ this.state.isCollapsed } />
+                </div>
+
+                <div className="sidebar-ft">
+                    <SidebarTrigger onToggleSidebar={ this.onToggleSidebar } />
+                </div>
+
             </div>
         );
     }

@@ -1,35 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+
 /**
  * @class Navigation
+ * @extends React/Component
  */
 export default class Navigation extends Component {
     render() {
         return (
-            <div>
+            <div className="navigation">
                 <ul>
-                    <li>Dashboard</li>
-                    <li>
-                        <Link to="/clients">Clients</Link>
+                    <li className="navigation-item">
+                        <Link className="navigation-item-link" to="/clients">Clients</Link>
                         <ul>
-                            <li>
-                                <Link to="/clients/create">Create Client</Link>
+                            <li className="navigation-item">
+                                <Link className="navigation-item-link" to="/clients/create">Create Client</Link>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <Link to="/projects">Projects</Link>
+                    <li className="navigation-item">
+                        <Link className="navigation-item-link" to="/projects">Projects</Link>
                         <ul>
-                            <li>
-                                <Link to="/projectTypes">Project Types</Link>
-                                <ul>
-                                    <li>
-                                        <Link to="/projectTypes/create">Create Project Type</Link>
-                                    </li>
-                                </ul>
+                            <li className="navigation-item">
+                                <Link className="navigation-item-link" to="/projectTypes">Project Types</Link>
                             </li>
-                            <li>
-                                <Link to="/taskItems">Task Items</Link>
+                            <li className="navigation-item">
+                                <Link className="navigation-item-link" to="/taskItems">Task Items</Link>
                             </li>
                         </ul>
                     </li>
@@ -38,3 +34,10 @@ export default class Navigation extends Component {
         );
     }
 }
+
+/**
+ * @property displayName
+ * @type {String}
+ * @static
+ */
+Navigation.displayName = 'Navigation';

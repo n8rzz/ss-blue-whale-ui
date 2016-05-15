@@ -73,6 +73,10 @@ class ClientList extends Component {
 
         return (
             <div>
+                <div>
+                    [  ALERT / FLASH MESSAGE ]
+                </div>
+
                 <ul>
                     <li>
                         <input
