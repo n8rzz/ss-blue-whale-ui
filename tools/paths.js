@@ -50,7 +50,8 @@ options.DIR = {
 
 options.FILE = {
     JS_SRC_CLIENT: './src/scripts/client/index.js',
-    SASS_LINT_CONFIG: './sass-lint.yml'
+    SASS_LINT_CONFIG: './sass-lint.yml',
+    PKG_JSON: './package.json'
 };
 
 
