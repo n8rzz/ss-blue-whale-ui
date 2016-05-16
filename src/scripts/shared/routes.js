@@ -19,7 +19,7 @@ import { getProjectType } from './domain/projectType/actions/ProjectTypeActions'
 
 import TaskItemContainer from './components/container/taskItem/TaskItemContainer';
 
-import Tabs from './components/layout/Tabs/Tabs';
+import TabsTest from './components/layout/Tabs/TabsTest';
 
 export default function(store) {
     return (
@@ -47,7 +47,7 @@ export default function(store) {
 
             <Route component={ TaskItemContainer } path="taskItems" />
 
-            <Route component={ Tabs } path="tabs" />
+        <Route component={ TabsTest } path="tabs" />
         </Route>
     );
 }

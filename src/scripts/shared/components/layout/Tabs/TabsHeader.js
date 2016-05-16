@@ -1,60 +1,48 @@
 import React, { Component, PropTypes } from 'react';
-import _map from 'lodash/map';
 
 /**
- * @class TabsHeader
+ * @class TabsHead
  * @extends React/Component
  */
-export default class TabsHeader extends Component {
+export default class TabsHead extends Component {
     /**
-     * @for TabsHeader
+     * @for TabsHead
+     * @param {Object} props
      * @constructor
      */
-    constructor() {
+    constructor(props) {
         super(props);
     }
 
     /**
-     * TODO: abstract to Tabs.header (TabHeader)
-     *
-     * @for TabHeader
-     * @method _composeTabHeader
-     * @return {JSX}
-     */
-    _composeTabHeader() {
-        const headerItems = _map(this.props., (child, index) => {
-            const headerClassnames = this.state.selectedTabId === index ?
-                'tab-hd-item tab-hd-item_isSelected' :
-                'tab-hd-item';
-
-            return (
-                <li className={ headerClassnames } key={ index }>
-                    <a href="#" onClick={ (event) => this.onChangeActiveTab(event, index) }>
-                        { child.title }
-                    </a>
-                </li>
-            );
-        });
-
-        return (
-            <ul className="tab-hd">
-                { headerItems }
-            </ul>
-        );
-    }
-
-    /**
-     * @for TabsHeader
+     * @for TabsHead
      * @method render
      * @return {JSX}
      */
     render() {
+        // TODO: implement classnames pkg here
+        const headerClassnames = this.props.isSelected ?
+            'tab-hd-item tab-hd-item_isSelected' :
+            'tab-hd-item';
+
         return (
-            <ul>
-                { this._composeTabHeader() }
-            </ul>
+            <li className={ headerClassnames }>
+                <a href="#" onClick={ this.onClick }>
+                    { this.props.title }
+                </a>
+            </li>
         );
     }
+
+    /**
+     * @for TabsHead
+     * @method onClick
+     * @param  {Reac.SyntheticEvent|Object} event
+     * @return {Function}
+     */
+    onClick = event => {
+        this.props.onRequestToChangeTab(event, this.props.index);
+    };
 }
 
 /**
@@ -62,11 +50,38 @@ export default class TabsHeader extends Component {
  * @type {String}
  * @static
  */
-TabsHeader.displayName = 'TabsHeader';
+TabsHead.displayName = 'TabsHead';
 
 /**
  * @property propTypes
  * @type {String}
  * @static
  */
-TabsHeader.propTypes = {};
+TabsHead.propTypes = {
+
+    /**
+     * @property index
+     * @type {Number}
+     * @required
+     */
+    index: PropTypes.number.isRequired,
+
+    /**
+     * @property title
+     * @type {String}
+     * @required
+     */
+    title: PropTypes.string.isRequired,
+
+    /**
+     * @property iSselected
+     * @type {Boolean}
+     */
+    isSelected: PropTypes.bool,
+
+    /**
+     * @property onRequestToChangeTab
+     * @type {Function}
+     */
+    onRequestToChangeTab: PropTypes.func
+};

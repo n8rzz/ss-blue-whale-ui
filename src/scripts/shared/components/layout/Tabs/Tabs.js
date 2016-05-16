@@ -1,31 +1,24 @@
 import React, { Component, PropTypes } from 'react';
-import _map from 'lodash/map';
+import Tab from './Tab';
+import TabsHeader from './TabsHeader';
+import TabsBody from './TabsBody';
 
-const PROPS = [
-    {
-        title: 'one',
-        content: 'one content'
-    },
-    {
-        title: 'two',
-        content: 'two content'
-    },
-    {
-        title: 'three',
-        content: 'three content'
-    },
-    {
-        title: 'four',
-        content: 'four content'
-    }
-];
+import _map from 'lodash/map';
 
 /**
  * @class Tabs
  * @extends React/Component
  */
 export default class Tabs extends Component {
+
     /**
+     * @property Tab
+     * @static
+     */
+    static Tab = Tab;
+
+    /**
+     * @for Tabs
      * @constructor
      * @param {Object} props
      */
@@ -38,23 +31,19 @@ export default class Tabs extends Component {
     }
 
     /**
-     * TODO: abstract to Tabs.header (TabHeader)
-     *
+     * @for Tabs
      * @method _composeTabHeader
      * @return {JSX}
      */
     _composeTabHeader() {
-        const headerItems = _map(PROPS, (child, index) => {
-            const headerClassnames = this.state.selectedTabId === index ?
-                'tab-hd-item tab-hd-item_isSelected' :
-                'tab-hd-item';
-
+        const headerItems = _map(this.props.children, ({ props }, index) => {
             return (
-                <li className={ headerClassnames } key={ index }>
-                    <a href="#" onClick={ (event) => this.onChangeActiveTab(event, index) }>
-                        { child.title }
-                    </a>
-                </li>
+                <TabsHeader
+                    key={ index }
+                    index={ index }
+                    title={ props.title }
+                    isSelected={ this.state.selectedTabId === index }
+                    onRequestToChangeTab={ (event) => this.onChangeActiveTab(event, index) } />
             );
         });
 
@@ -66,20 +55,17 @@ export default class Tabs extends Component {
     }
 
     /**
-     * // TODO: abstract to Tabs.body (TabBody)
-     *
+     * @for Tabs
      * @method _composeTabBody
      * @param {Number} selectedTabId
      * @return {JSX}
      */
     _composeTabBody(selectedTabId) {
-        const bodyItems = _map(PROPS, (child, index) => {
+        const bodyItems = _map(this.props.children, ({ props }, index) => {
             return (
-                <li key={ index }>
-                    <div>
-                        { child.content }
-                    </div>
-                </li>
+                <TabsBody id={ index } key={ index }>
+                    { props.children }
+                </TabsBody>
             );
         });
 
@@ -91,6 +77,7 @@ export default class Tabs extends Component {
     }
 
     /**
+     * @for Tabs
      * @method render
      * @return {JSX}
      */
@@ -98,13 +85,13 @@ export default class Tabs extends Component {
         return (
             <div className="tab">
                 { this._composeTabHeader() }
-
                 { this._composeTabBody(this.state.selectedTabId) }
             </div>
         );
     }
 
     /**
+     * @for Tabs
      * @method onChangeActiveTab
      * @param {React.SyntheticEvent|Object} event
      * @param {Number} nextSelectedTabId
@@ -117,7 +104,6 @@ export default class Tabs extends Component {
             return;
         }
 
-        console.log('selected: ', nextSelectedTabId);
         this.setState({ selectedTabId: nextSelectedTabId });
     };
 }
@@ -134,4 +120,11 @@ Tabs.displayName = 'Tabs';
  * @type {String}
  * @static
  */
-Tabs.propTypes = {};
+Tabs.propTypes = {
+
+    /**
+     * @property children
+     * @type {node}
+     */
+    children: PropTypes.node
+};

@@ -8,8 +8,9 @@ export default class TabsBody extends Component {
     /**
      * @for TabsBody
      * @constructor
+     * @param {Object} props
      */
-    constructor() {
+    constructor(props) {
         super(props);
     }
 
@@ -20,7 +21,9 @@ export default class TabsBody extends Component {
      */
     render() {
         return (
-            <div>BodyItem</div>
+            <li>
+                { this.props.children }
+            </li>
         );
     }
 }
@@ -37,4 +40,18 @@ TabsBody.displayName = 'TabsBody';
  * @type {String}
  * @static
  */
-TabsBody.propTypes = {};
+TabsBody.propTypes = {
+    /**
+     * @property id
+     * @type {Number}
+     * @required
+     */
+    id: PropTypes.number.isRequired,
+
+    /**
+     * @property children
+     * @type {node}
+     * @required
+     */
+    children: PropTypes.node
+};
