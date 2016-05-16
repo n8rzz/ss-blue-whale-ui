@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import VerticalRhythm from '../../repeater/VerticalRhythm/VerticalRhythm';
 
 /**
  * @class PageTitle
@@ -7,7 +8,9 @@ import React, { Component, PropTypes } from 'react';
 export default class PageTitle extends Component {
     render() {
         return (
-            <h1 className="hdg hdg_1">{ this.props.title }</h1>
+            <VerticalRhythm increment={ 2 }>
+                <h1 className="hdg hdg_1">{ this.props.title }</h1>
+            </VerticalRhythm>
         );
     }
 }
