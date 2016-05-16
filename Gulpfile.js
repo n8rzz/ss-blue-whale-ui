@@ -32,4 +32,3 @@ gulp.task('build', function() {
 gulp.task('watch', ['watch:sass', 'watch:scripts']);
 gulp.task('default', ['build']);
 gulp.task('lint', ['lint:sass']);
-gulp.task('release', ['bulp', 'bump', 'tag']);

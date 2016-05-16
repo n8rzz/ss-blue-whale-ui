@@ -51,34 +51,6 @@ module.exports = function(gulp, config) {
     // });
 
     ////////////////////////////////////////////////////////////////////
-    // BUMP PROJECT VERSION NUMBER
-    ////////////////////////////////////////////////////////////////////
-    var bump = require('gulp-bump');
-
-    gulp.task('bump', function() {
-        return gulp.src([OPTIONS.FILE.PKG_JSON])
-            .pipe(bump())
-            .pipe(gulp.dest(OPTIONS.ROOT));
-    });
-
-    ////////////////////////////////////////////////////////////////////
-    // PUSH TAG TO GIT
-    ////////////////////////////////////////////////////////////////////
-    var git = require('gulp-git');
-
-    gulp.task('tag', function() {
-        var pkg = require(OPTIONS.FILE.PKG_JSON);
-        var version = 'v' + pkg.version;
-        var commitMessage = 'Release ' + version;
-
-        return gulp.src(OPTIONS.ROOT)
-            .pipe(git.commit(commitMessage))
-            .pipe(git.tag(version, commitMessage))
-            .pipe(git.push('origin', 'master', '--tags'))
-            .pipe(gulp.dest(OPTIONS.ROOT));
-    });
-
-    ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
     var runSequence = require('run-sequence');
