@@ -1,0 +1,30 @@
+// ---------------------------------------------------------------------
+// Tabs
+// ---------------------------------------------------------------------
+// .tab {}
+// .tab-hd {}
+
+.tab-hd > * {
+    display: inline-block;
+}
+
+.tab-hd-item {
+    padding: $HORIZONTAL_SPACING_1X $VERTICAL_SPACING_1X;
+    border-top: 1px solid;
+    border-bottom: 0;
+}
+
+.tab-hd-item + .tab-hd-item {
+    border-left: 1px solid;
+}
+
+.tab-hd-item_isSelected {
+    border-top: 0;
+    border-bottom: 1px solid;
+    cursor: default;
+}
+
+.tab-bd {
+    padding-top: $VERTICAL_SPACING_1X;
+    padding-bottom: $VERTICAL_SPACING_1X;
+}
