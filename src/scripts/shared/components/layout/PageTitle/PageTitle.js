@@ -8,8 +8,10 @@ import VerticalRhythm from '../../repeater/VerticalRhythm/VerticalRhythm';
 export default class PageTitle extends Component {
     render() {
         return (
-            <VerticalRhythm increment={ 2 }>
-                <h1 className="hdg hdg_1">{ this.props.title }</h1>
+            <VerticalRhythm increment={ 1 }>
+                <div className="pageTitle">
+                    <h1 className="hdg hdg_1">{ this.props.title }</h1>
+                </div>
             </VerticalRhythm>
         );
     }

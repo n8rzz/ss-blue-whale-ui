@@ -27,7 +27,9 @@ export default class TabsHead extends Component {
 
         return (
             <li className={ headerClassnames }>
-                <a href="#" onClick={ this.onClick }>
+                <a href="#"
+                    className="link"
+                    onClick={ this.onClick }>
                     { this.props.title }
                 </a>
             </li>

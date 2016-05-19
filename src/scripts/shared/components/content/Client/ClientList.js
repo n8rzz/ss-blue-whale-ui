@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import VerticalRhythm from '../../repeater/VerticalRhythm/VerticalRhythm';
 import Table from '../../layout/Table/Table';
 
-
 import _debounce from 'lodash/debounce';
 import _filter from 'lodash/filter';
 import _map from 'lodash/map';
@@ -75,12 +74,15 @@ class ClientList extends Component {
         }
 
         return (
-            <div>
-                <div>
+            <div className="wrapper">
+
+                {/* TODO: Abatract to Alert component */}
+                <div className="alert">
                     [  ALERT / FLASH MESSAGE ]
                 </div>
 
-                <VerticalRhythm increment={ 2 }>
+                {/* TODO: Abstract to SearchComponent */}
+                <VerticalRhythm increment={ 1 }>
                     <ul>
                         <li>
                             <input

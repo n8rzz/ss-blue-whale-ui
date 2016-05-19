@@ -2,7 +2,8 @@
 // Page
 // ------------------------------------------------------------------------
 .page {
-    background-color: #fefffd;
+    min-height: 100vh;
+    background-color: $COLOR_GREY_239;
     font-size: $FONT_SIZE_1X;
     font-family: $FONT;
     letter-spacing: 1px;
@@ -14,10 +15,8 @@
 .page-bd {
     height: 100%;
     margin-left: $SIDEBAR_WIDTH_EXPANDED;
-    background-color: $COLOR_GREY_239;
 
     @include base-transition;
-    @include wrapper;
 }
 
 // this mixin is applied to the sidebar when it is in a collapsed state. Thus, we need to

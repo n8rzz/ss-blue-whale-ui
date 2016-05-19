@@ -66,7 +66,7 @@ export default class Table extends Component {
      */
     render() {
         return (
-            <table>
+            <table className="table">
                 { this._composeTableHead() }
                 { this._composeTableBody() }
             </table>
