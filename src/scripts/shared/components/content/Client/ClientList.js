@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import VerticalRhythm from '../../repeater/VerticalRhythm/VerticalRhythm';
 import FlashMessage from '../FlashMessage/FlashMessage';
 import Table from '../../layout/Table/Table';
@@ -6,6 +7,7 @@ import Table from '../../layout/Table/Table';
 import _debounce from 'lodash/debounce';
 import _filter from 'lodash/filter';
 import _includes from 'lodash/includes';
+import _map from 'lodash/map';
 
 /**
  * @property SEARCH_DELAY_IN_MS
@@ -44,6 +46,35 @@ class ClientList extends Component {
     }
 
     /**
+     *
+     * @method _composeTableBody
+     * @return {JSX}
+     */
+    _composeTableBody() {
+        const bodyRowChildren = _map(this.props.clients, (row, index) => {
+            const clientLinkString = `/clients/${row.id}`;
+
+            return (
+                <tr key={ index } onClick={ () => this.onRowClick(index) }>
+                    <td>{ row.id }</td>
+                    <td>{ row.status }</td>
+                    <td>
+                        <Link className="link" to={ clientLinkString  }>{ row.name }</Link>
+                    </td>
+                    <td>{ row.city }</td>
+                    <td>{ row.state }</td>
+                </tr>
+            );
+        });
+
+        return (
+            <tbody>
+                { bodyRowChildren }
+            </tbody>
+        );
+    }
+
+    /**
      * @for ClientList
      * @method render
      * @return {JSX}
@@ -55,8 +86,6 @@ class ClientList extends Component {
 
         return (
             <div className="wrapper">
-
-                {/* TODO: Abatract to Alert component */}
                 <FlashMessage />
 
                 {/* TODO: Abstract to SearchComponent */}
@@ -72,12 +101,22 @@ class ClientList extends Component {
                     </ul>
                 </VerticalRhythm>
 
-                <Table
-                    headings={ ['id', 'status', 'name', 'city', 'state'] }
-                    data={ this.state.filteredClientList } />
+                <Table headingList={ ['id', 'status', 'name', 'city', 'state'] } >
+                    { this._composeTableBody() }
+                </Table>
             </div>
         );
     }
+
+    /**
+     * @method onRowClick
+     * @param  {Number} rowIndex
+     * @callback
+     */
+    onRowClick(rowIndex) {
+        console.log(this.props.clients[rowIndex]);
+    }
+
 
     // TODO: abstract into another component
     onSearchChange = () => {
