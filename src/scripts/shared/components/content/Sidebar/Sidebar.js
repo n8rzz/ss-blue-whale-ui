@@ -15,9 +15,14 @@ export default class Sidebar extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            isCollapsed: false
-        };
+        const stateUpdates = {};
+
+        stateUpdates.isCollapsed = false;
+        if (localStorage.getItem('sidebar-state')) {
+            stateUpdates.isCollapsed = localStorage.getItem('sidebar-state');
+        }
+
+        this.state = stateUpdates;
     }
 
     /**
@@ -52,6 +57,8 @@ export default class Sidebar extends Component {
      * @callback
      */
     onToggleSidebar = () => {
+        localStorage.setItem('sidebar-state', !this.state.isCollapsed);
+
         this.setState({
             isCollapsed: !this.state.isCollapsed
         });
