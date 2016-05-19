@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
 import VerticalRhythm from '../../repeater/VerticalRhythm/VerticalRhythm';
+import FlashMessage from '../FlashMessage/FlashMessage';
 import Table from '../../layout/Table/Table';
 
 import _debounce from 'lodash/debounce';
 import _filter from 'lodash/filter';
-import _map from 'lodash/map';
 import _includes from 'lodash/includes';
 
 /**
@@ -46,25 +45,6 @@ class ClientList extends Component {
 
     /**
      * @for ClientList
-     * @method _composeClientList
-     * @return {JSX}
-     */
-    _composeClientList() {
-        return _map(this.state.filteredClientList, (client, index) => {
-            const singleClientLink = `/clients/${client.id}`;
-
-            return (
-                <li key={ index }>
-                    <h2 className="hdg hdg_2">
-                        <Link to={ singleClientLink }>{ client.name }</Link>
-                    </h2>
-                </li>
-            );
-        });
-    }
-
-    /**
-     * @for ClientList
      * @method render
      * @return {JSX}
      */
@@ -77,9 +57,7 @@ class ClientList extends Component {
             <div className="wrapper">
 
                 {/* TODO: Abatract to Alert component */}
-                <div className="alert">
-                    [  ALERT / FLASH MESSAGE ]
-                </div>
+                <FlashMessage />
 
                 {/* TODO: Abstract to SearchComponent */}
                 <VerticalRhythm increment={ 1 }>

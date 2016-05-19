@@ -13,7 +13,7 @@ export default class Table extends Component {
      * @return {JSX}
      */
     _composeTableHead() {
-        const theadChildren = _map(this.props.headings, (heading, index) => {
+        const headerItems = _map(this.props.headings, (heading, index) => {
             return (
                 <th key={ index }>
                     <a className="link" href="#" onClick={ (event) => this.onHeaderClick(event, index) }>
@@ -26,7 +26,7 @@ export default class Table extends Component {
         return (
             <thead>
                 <tr>
-                    { theadChildren }
+                    { headerItems }
                 </tr>
             </thead>
         );
