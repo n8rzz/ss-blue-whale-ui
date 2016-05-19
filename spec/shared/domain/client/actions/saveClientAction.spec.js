@@ -27,7 +27,7 @@ ava('saveClient dispatches start action', async t => {
     ClientRepository.saveClient = sinon.stub().resolves();
     await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: SAVE_CLIENT_START }));
+    t.truthy(dispatchSpy.calledWith({ type: SAVE_CLIENT_START }));
 });
 
 ava('saveClient calls the Client repository', async t => {
@@ -35,7 +35,7 @@ ava('saveClient calls the Client repository', async t => {
     ClientRepository.saveClient = sinon.stub().resolves(ValidClientType);
     await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
 
-    t.ok(ClientRepository.saveClient.called);
+    t.truthy(ClientRepository.saveClient.called);
 });
 
 ava('saveClient dispatches success action when data resolves successfully', async t => {
@@ -43,11 +43,11 @@ ava('saveClient dispatches success action when data resolves successfully', asyn
     ClientRepository.saveClient = sinon.stub().resolves(ValidClientType);
     await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 2);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === SAVE_CLIENT_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidClientType);
+    t.truthy(objectPassedToSecondDispatch.type === SAVE_CLIENT_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidClientType);
 });
 
 ava.before(() => {
@@ -67,11 +67,11 @@ ava('saveClient dispatches fail action when there is a failure', async t => {
     try {
         await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === SAVE_CLIENT_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === SAVE_CLIENT_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

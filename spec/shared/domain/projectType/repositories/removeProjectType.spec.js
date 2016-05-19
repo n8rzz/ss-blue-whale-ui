@@ -15,8 +15,8 @@ ava('removeProjectType returns a ProjectTypeType', async t => {
 
     const response = await ProjectTypeRepository.removeProjectType(PROJECT_TYPE_ID);
 
-    t.ok(removeProjectType.isDone());
-    t.ok(response);
+    t.truthy(removeProjectType.isDone());
+    t.truthy(response);
 });
 
 ava('removeProjectType completes request if there is a network error', async t => {
@@ -29,6 +29,6 @@ ava('removeProjectType completes request if there is a network error', async t =
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(removeProjectType.isDone());
-    t.ok(error);
+    t.truthy(removeProjectType.isDone());
+    t.truthy(error);
 });

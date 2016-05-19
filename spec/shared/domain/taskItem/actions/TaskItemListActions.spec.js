@@ -18,7 +18,7 @@ ava('getTaskItemList dispatches start action', async t => {
     TaskItemRepository.getTaskItemList = sinon.stub().resolves();
     await getTaskItemList()(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: GET_TASK_ITEM_LIST_START }));
+    t.truthy(dispatchSpy.calledWith({ type: GET_TASK_ITEM_LIST_START }));
 });
 
 ava('getTaskItemList calls the Client repository', async t => {
@@ -26,7 +26,7 @@ ava('getTaskItemList calls the Client repository', async t => {
     TaskItemRepository.getTaskItemList = sinon.stub().resolves(ValidTaskItemList);
     await getTaskItemList()(dispatchSpy);
 
-    t.ok(TaskItemRepository.getTaskItemList.called);
+    t.truthy(TaskItemRepository.getTaskItemList.called);
 });
 
 ava('getTaskItemList dispatches success action when data resolves successfully', async t => {
@@ -34,11 +34,11 @@ ava('getTaskItemList dispatches success action when data resolves successfully',
     TaskItemRepository.getTaskItemList = sinon.stub().resolves(ValidTaskItemList);
     await getTaskItemList()(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 2);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === GET_TASK_ITEM_LIST_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidTaskItemList);
+    t.truthy(objectPassedToSecondDispatch.type === GET_TASK_ITEM_LIST_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidTaskItemList);
 });
 
 ava.before(() => {
@@ -58,11 +58,11 @@ ava('getTaskItemList dispatches fail action when there is a failure', async t =>
     try {
         await getTaskItemList()(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === GET_TASK_ITEM_LIST_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === GET_TASK_ITEM_LIST_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

@@ -30,7 +30,7 @@ ava('createClient dispatches start action', async t => {
     ClientRepository.createClient = sinon.stub().resolves();
     await createClient(ValidClientCreationType)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: CREATE_CLIENT_START }));
+    t.truthy(dispatchSpy.calledWith({ type: CREATE_CLIENT_START }));
 });
 
 ava('createClient calls the Client repository', async t => {
@@ -38,7 +38,7 @@ ava('createClient calls the Client repository', async t => {
     ClientRepository.createClient = sinon.stub().resolves(ValidClientCreationType);
     await createClient(ValidClientCreationType)(dispatchSpy);
 
-    t.ok(ClientRepository.createClient.called);
+    t.truthy(ClientRepository.createClient.called);
 });
 
 ava('createClient dispatches success action when data resolves successfully', async t => {
@@ -46,11 +46,11 @@ ava('createClient dispatches success action when data resolves successfully', as
     ClientRepository.createClient = sinon.stub().resolves(ValidClientCreationType);
     await createClient(ValidClientCreationType)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === CREATE_CLIENT_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidClientCreationType);
+    t.truthy(objectPassedToSecondDispatch.type === CREATE_CLIENT_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidClientCreationType);
 });
 
 ava('createClient dispatches react-router-redux `push` action that routes to `/clients` url', async t => {
@@ -60,8 +60,8 @@ ava('createClient dispatches react-router-redux `push` action that routes to `/c
 
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
-    t.ok(objectPassedToSecondDispatch.payload.args[0] === '/clients');
+    t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
+    t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/clients');
 });
 
 ava.before(() => {
@@ -81,11 +81,11 @@ ava('createClient dispatches fail action when there is a failure', async t => {
     try {
         await createClient(ValidClientCreationType)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === CREATE_CLIENT_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === CREATE_CLIENT_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

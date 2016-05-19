@@ -16,8 +16,8 @@ ava('createNoteForClient completes a request', async t => {
 
     const response = await NoteRepository.createNoteForClient(CLIENT_ID, VALID_NOTE_CREATION_TYPE);
 
-    t.ok(createNoteForClient.isDone());
-    t.ok(response);
+    t.truthy(createNoteForClient.isDone());
+    t.truthy(response);
 });
 
 ava('createNoteForClient completes request if there is a network error', async t => {
@@ -30,6 +30,6 @@ ava('createNoteForClient completes request if there is a network error', async t
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(createNoteForClient.isDone());
-    t.ok(error);
+    t.truthy(createNoteForClient.isDone());
+    t.truthy(error);
 });

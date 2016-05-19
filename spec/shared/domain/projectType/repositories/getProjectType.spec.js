@@ -19,9 +19,9 @@ ava('getProjectType returns a ProjectTypeType', async t => {
 
     const response = await ProjectTypeRepository.getProjectType(PROJECT_TYPE_ID);
 
-    t.ok(getProjectType.isDone());
-    t.ok(response);
-    t.ok(ProjectTypeType.is(response));
+    t.truthy(getProjectType.isDone());
+    t.truthy(response);
+    t.truthy(ProjectTypeType.is(response));
 });
 
 ava('getProjectType completes request if there is a network error', async t => {
@@ -34,6 +34,6 @@ ava('getProjectType completes request if there is a network error', async t => {
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(getProjectType.isDone());
-    t.ok(error);
+    t.truthy(getProjectType.isDone());
+    t.truthy(error);
 });

@@ -31,7 +31,7 @@ ava('createContactForClient dispatches start action', async t => {
     ClientRepository.createContactForClient = sinon.stub().resolves(ValidClientContactType);
     await createContactForClient(CLIENT_ID, ValidClientContactCreationType)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: CREATE_CONTACT_FOR_CLIENT_START }));
+    t.truthy(dispatchSpy.calledWith({ type: CREATE_CONTACT_FOR_CLIENT_START }));
 });
 
 ava('createContactForClient calls the ClientContact repository', async t => {
@@ -39,7 +39,7 @@ ava('createContactForClient calls the ClientContact repository', async t => {
     ClientRepository.createContactForClient = sinon.stub().resolves(ValidClientContactType);
     await createContactForClient(CLIENT_ID, ValidClientContactCreationType)(dispatchSpy);
 
-    t.ok(ClientRepository.createContactForClient.called);
+    t.truthy(ClientRepository.createContactForClient.called);
 });
 
 ava('createContactForClient dispatches success action when data resolves successfully', async t => {
@@ -47,11 +47,11 @@ ava('createContactForClient dispatches success action when data resolves success
     ClientRepository.createContactForClient = sinon.stub().resolves(ValidClientContactType);
     await createContactForClient(CLIENT_ID, ValidClientContactCreationType)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === CREATE_CONTACT_FOR_CLIENT_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidClientContactType);
+    t.truthy(objectPassedToSecondDispatch.type === CREATE_CONTACT_FOR_CLIENT_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidClientContactType);
 });
 
 ava.before(() => {
@@ -71,11 +71,11 @@ ava('createContactForClient dispatches fail action when there is a failure', asy
     try {
         await createContactForClient(CLIENT_ID, ValidClientContactCreationType)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === CREATE_CONTACT_FOR_CLIENT_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === CREATE_CONTACT_FOR_CLIENT_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

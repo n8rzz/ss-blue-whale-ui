@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import VerticalRhythm from '../../repeater/VerticalRhythm/VerticalRhythm';
+import Table from '../../layout/Table/Table';
+
 
 import _debounce from 'lodash/debounce';
 import _filter from 'lodash/filter';
@@ -77,19 +80,21 @@ class ClientList extends Component {
                     [  ALERT / FLASH MESSAGE ]
                 </div>
 
-                <ul>
-                    <li>
-                        <input
-                            type="text"
-                            ref="searchQuery"
-                            placeholder="search"
-                            onChange={ this.onSearchChange } />
-                    </li>
-                </ul>
+                <VerticalRhythm increment={ 2 }>
+                    <ul>
+                        <li>
+                            <input
+                                type="text"
+                                ref="searchQuery"
+                                placeholder="search"
+                                onChange={ this.onSearchChange } />
+                        </li>
+                    </ul>
+                </VerticalRhythm>
 
-                <ul>
-                    { this._composeClientList() }
-                </ul>
+                <Table
+                    headings={ ['id', 'status', 'name', 'city', 'state'] }
+                    data={ this.state.filteredClientList } />
             </div>
         );
     }

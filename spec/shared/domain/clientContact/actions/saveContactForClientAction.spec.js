@@ -30,7 +30,7 @@ ava('saveContactForClient dispatches start action', async t => {
     ClientRepository.saveContactForClient = sinon.stub().resolves(ValidClientContactType);
     await saveContactForClient(CLIENT_ID, ValidClientContactType)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: SAVE_CONTACT_FOR_CLIENT_START }));
+    t.truthy(dispatchSpy.calledWith({ type: SAVE_CONTACT_FOR_CLIENT_START }));
 });
 
 ava('saveContactForClient calls the ClientContact repository', async t => {
@@ -38,7 +38,7 @@ ava('saveContactForClient calls the ClientContact repository', async t => {
     ClientRepository.saveContactForClient = sinon.stub().resolves(ValidClientContactType);
     await saveContactForClient(CLIENT_ID, ValidClientContactType)(dispatchSpy);
 
-    t.ok(ClientRepository.saveContactForClient.called);
+    t.truthy(ClientRepository.saveContactForClient.called);
 });
 
 ava('saveContactForClient dispatches success action when data resolves successfully', async t => {
@@ -46,11 +46,11 @@ ava('saveContactForClient dispatches success action when data resolves successfu
     ClientRepository.saveContactForClient = sinon.stub().resolves(ValidClientContactType);
     await saveContactForClient(CLIENT_ID, ValidClientContactType)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === SAVE_CONTACT_FOR_CLIENT_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidClientContactType);
+    t.truthy(objectPassedToSecondDispatch.type === SAVE_CONTACT_FOR_CLIENT_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidClientContactType);
 });
 
 ava.before(() => {
@@ -70,11 +70,11 @@ ava('saveContactForClient dispatches fail action when there is a failure', async
     try {
         await saveContactForClient(CLIENT_ID, ValidClientContactType)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === SAVE_CONTACT_FOR_CLIENT_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === SAVE_CONTACT_FOR_CLIENT_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

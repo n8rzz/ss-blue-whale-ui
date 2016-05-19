@@ -25,7 +25,7 @@ ava('getSingleClient dispatches start action', async t => {
     ClientRepository.getSingleClient = sinon.stub().resolves();
     await getSingleClient(ValidClientType.id)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: GET_SINGLE_CLIENT_START }));
+    t.truthy(dispatchSpy.calledWith({ type: GET_SINGLE_CLIENT_START }));
 });
 
 ava('getSingleClient calls the Client repository', async t => {
@@ -33,7 +33,7 @@ ava('getSingleClient calls the Client repository', async t => {
     ClientRepository.getSingleClient = sinon.stub().resolves(ValidClientType);
     await getSingleClient(ValidClientType.id)(dispatchSpy);
 
-    t.ok(ClientRepository.getSingleClient.called);
+    t.truthy(ClientRepository.getSingleClient.called);
 });
 
 ava('getSingleClient dispatches success action when data resolves successfully', async t => {
@@ -41,11 +41,11 @@ ava('getSingleClient dispatches success action when data resolves successfully',
     ClientRepository.getSingleClient = sinon.stub().resolves(ValidClientType);
     await getSingleClient(ValidClientType.id)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 2);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === GET_SINGLE_CLIENT_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidClientType);
+    t.truthy(objectPassedToSecondDispatch.type === GET_SINGLE_CLIENT_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidClientType);
 });
 
 ava.before(() => {
@@ -65,11 +65,11 @@ ava('getSingleClient dispatches fail action when there is a failure', async t =>
     try {
         await getSingleClient(ValidClientType.id)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === GET_SINGLE_CLIENT_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === GET_SINGLE_CLIENT_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

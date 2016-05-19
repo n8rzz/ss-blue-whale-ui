@@ -23,7 +23,7 @@ ava('Positive refinement is a number greater than 0', t => {
 });
 
 ava('BaseStateType', t => {
-    t.ok(new BaseStateType(VALID_BASE_STATE_TYPE));
+    t.truthy(new BaseStateType(VALID_BASE_STATE_TYPE));
 
     t.throws(() => new BaseStateType(INVALID_BASE_STATE_TYPE));
 });

@@ -18,9 +18,9 @@ ava('createProjectType returns a ProjectTypeType', async t => {
 
     const response = await ProjectTypeRepository.createProjectType(VALID_PROJECT_TYPE_CREATION_REQUEST);
 
-    t.ok(createProjectType.isDone());
-    t.ok(response);
-    t.ok(ProjectTypeType.is(response));
+    t.truthy(createProjectType.isDone());
+    t.truthy(response);
+    t.truthy(ProjectTypeType.is(response));
 });
 
 ava('createProjectType completes request if there is a network error', async t => {
@@ -33,6 +33,6 @@ ava('createProjectType completes request if there is a network error', async t =
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(createProjectType.isDone());
-    t.ok(error);
+    t.truthy(createProjectType.isDone());
+    t.truthy(error);
 });

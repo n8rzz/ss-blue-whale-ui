@@ -18,9 +18,9 @@ ava('createContactForClient returns a ClientType', async t => {
 
     const response = await ClientContactRepository.createContactForClient(VALID_CLIENT_CONTACT_CREATION_REQUEST_TYPE);
 
-    t.ok(createContactForClient.isDone());
-    t.ok(response);
-    t.ok(ClientContactType.is(response));
+    t.truthy(createContactForClient.isDone());
+    t.truthy(response);
+    t.truthy(ClientContactType.is(response));
 });
 
 ava('createContactForClient completes request if there is a network error', async t => {
@@ -33,6 +33,6 @@ ava('createContactForClient completes request if there is a network error', asyn
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(createContactForClient.isDone());
-    t.ok(error);
+    t.truthy(createContactForClient.isDone());
+    t.truthy(error);
 });

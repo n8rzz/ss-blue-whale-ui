@@ -15,9 +15,9 @@ ava('getSingleClient returns a ClientType', async t => {
 
     const response = await ClientRepository.getSingleClient(CLIENT_ID);
 
-    t.ok(getSingleClient.isDone());
-    t.ok(response);
-    t.ok(ClientType.is(response));
+    t.truthy(getSingleClient.isDone());
+    t.truthy(response);
+    t.truthy(ClientType.is(response));
 });
 
 ava('getSingleClient completes request if there is a network error', async t => {
@@ -30,6 +30,6 @@ ava('getSingleClient completes request if there is a network error', async t => 
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(getSingleClient.isDone());
-    t.ok(error);
+    t.truthy(getSingleClient.isDone());
+    t.truthy(error);
 });

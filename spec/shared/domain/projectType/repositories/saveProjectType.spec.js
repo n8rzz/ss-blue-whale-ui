@@ -19,9 +19,9 @@ ava('saveProjectType returns a ProjectTypeType', async t => {
 
     const response = await ProjectTypeRepository.saveProjectType(PROJECT_TYPE_ID, VALID_PROJECT_TYPE_API_RESPONSE);
 
-    t.ok(saveProjectType.isDone());
-    t.ok(response);
-    t.ok(ProjectTypeType.is(response));
+    t.truthy(saveProjectType.isDone());
+    t.truthy(response);
+    t.truthy(ProjectTypeType.is(response));
 });
 
 ava('saveProjectType completes request if there is a network error', async t => {
@@ -34,6 +34,6 @@ ava('saveProjectType completes request if there is a network error', async t => 
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(saveProjectType.isDone());
-    t.ok(error);
+    t.truthy(saveProjectType.isDone());
+    t.truthy(error);
 });

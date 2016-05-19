@@ -27,7 +27,7 @@ ava('getProjectType dispatches start action', async t => {
     ProjectTypeRepository.getProjectType = sinon.stub().resolves();
     await getProjectType(PROJECT_TYPE_ID)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: GET_PROJECT_TYPE_START }));
+    t.truthy(dispatchSpy.calledWith({ type: GET_PROJECT_TYPE_START }));
 });
 
 ava('getProjectType calls the Client repository', async t => {
@@ -35,7 +35,7 @@ ava('getProjectType calls the Client repository', async t => {
     ProjectTypeRepository.getProjectType = sinon.stub().resolves(ValidProjectTypeType);
     await getProjectType(PROJECT_TYPE_ID)(dispatchSpy);
 
-    t.ok(ProjectTypeRepository.getProjectType.called);
+    t.truthy(ProjectTypeRepository.getProjectType.called);
 });
 
 ava('getProjectType dispatches success action when data resolves successfully', async t => {
@@ -43,11 +43,11 @@ ava('getProjectType dispatches success action when data resolves successfully', 
     ProjectTypeRepository.getProjectType = sinon.stub().resolves(ValidProjectTypeType);
     await getProjectType(PROJECT_TYPE_ID)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 2);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === GET_PROJECT_TYPE_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidProjectTypeType);
+    t.truthy(objectPassedToSecondDispatch.type === GET_PROJECT_TYPE_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidProjectTypeType);
 });
 
 ava.before(() => {
@@ -67,11 +67,11 @@ ava('getProjectType dispatches fail action when there is a failure', async t => 
     try {
         await getProjectType(PROJECT_TYPE_ID)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === GET_PROJECT_TYPE_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === GET_PROJECT_TYPE_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

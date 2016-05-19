@@ -28,7 +28,7 @@ import {
 ava('ClientContactCreationType', t => {
     t.throws(() => ClientContactCreationType(''));
     t.notThrows(() => ClientContactCreationType(VALID_CLIENT_CONTACT_CREATION_TYPE));
-    t.ok(ClientContactCreationType.is(ValidClientContactCreationType) === true);
+    t.truthy(ClientContactCreationType.is(ValidClientContactCreationType) === true);
 });
 
 ava('ClientContactCreationType.addClientIdToContact', t => {
@@ -36,20 +36,20 @@ ava('ClientContactCreationType.addClientIdToContact', t => {
     const clientContact = ClientContactCreationType(initialContact);
     const result = clientContact.addClientIdToContact(1);
 
-    t.ok(result.client_id === 1);
-    t.ok(ClientContactCreationType.is(result) === true);
+    t.truthy(result.client_id === 1);
+    t.truthy(ClientContactCreationType.is(result) === true);
 });
 
 ava('ClientContactType', t => {
     t.throws(() => ClientContactType(''));
     t.notThrows(() => ClientContactType(VALID_CLIENT_CONTACT_API_RESPONSE));
-    t.ok(ClientContactType.is(ValidClientContactType) === true);
+    t.truthy(ClientContactType.is(ValidClientContactType) === true);
 });
 
 ava('ClientContactListType', t => {
     t.throws(() => ClientContactListType(''));
     t.notThrows(() => ClientContactListType(VALID_CLIENT_CONTACT_LIST_API_RESPONSE));
-    t.ok(ClientContactListType.is(ValidClientContactListType) === true);
+    t.truthy(ClientContactListType.is(ValidClientContactListType) === true);
 });
 
 ava('ClientContactListStateType', t => {

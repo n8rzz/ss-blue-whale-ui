@@ -19,11 +19,11 @@ import {
 ava('NoteCreationRequestType', t => {
     t.throws(() => NoteCreationRequestType(''));
     t.notThrows(() => NoteCreationRequestType(VALID_NOTE_CREATION_TYPE));
-    t.ok(NoteCreationRequestType.is(ValidNoteCreationRequestType) === true);
+    t.truthy(NoteCreationRequestType.is(ValidNoteCreationRequestType) === true);
 });
 
 ava('NoteType', t => {
     t.throws(() => NoteType(''));
     t.notThrows(() => NoteType(VALID_NOTE_API_RESPONSE));
-    t.ok(NoteType.is(ValidNoteType) === true);
+    t.truthy(NoteType.is(ValidNoteType) === true);
 });

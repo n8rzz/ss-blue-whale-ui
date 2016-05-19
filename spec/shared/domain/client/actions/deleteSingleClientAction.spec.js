@@ -19,7 +19,7 @@ ava('deleteClient dispatches start action', async t => {
     ClientRepository.deleteClient = sinon.stub().resolves();
     await deleteClient(CLIENT_ID)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: DELETE_CLIENT_START }));
+    t.truthy(dispatchSpy.calledWith({ type: DELETE_CLIENT_START }));
 });
 
 ava('deleteClient calls the Client repository', async t => {
@@ -27,7 +27,7 @@ ava('deleteClient calls the Client repository', async t => {
     ClientRepository.deleteClient = sinon.stub().resolves();
     await deleteClient(CLIENT_ID)(dispatchSpy);
 
-    t.ok(ClientRepository.deleteClient.called);
+    t.truthy(ClientRepository.deleteClient.called);
 });
 
 ava('deleteClient dispatches success action when data resolves successfully', async t => {
@@ -35,10 +35,10 @@ ava('deleteClient dispatches success action when data resolves successfully', as
     ClientRepository.deleteClient = sinon.stub().resolves();
     await deleteClient(CLIENT_ID)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === DELETE_CLIENT_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.type === DELETE_CLIENT_SUCCESS);
 });
 
 ava('deleteClient dispatches react-router-redux `push` action that routes to `/clients` url', async t => {
@@ -48,8 +48,8 @@ ava('deleteClient dispatches react-router-redux `push` action that routes to `/c
 
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
-    t.ok(objectPassedToSecondDispatch.payload.args[0] === '/clients');
+    t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
+    t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/clients');
 });
 
 ava.before(() => {
@@ -69,11 +69,11 @@ ava('deleteClient dispatches fail action when there is a failure', async t => {
     try {
         await deleteClient(CLIENT_ID)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === DELETE_CLIENT_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === DELETE_CLIENT_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });
