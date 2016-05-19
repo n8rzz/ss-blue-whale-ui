@@ -12,8 +12,8 @@ ava('deleteClient accepts and id and sends the request', async t => {
 
     const response = await ClientRepository.deleteClient(CLIENT_ID);
 
-    t.ok(deleteClient.isDone());
-    t.ok(response);
+    t.truthy(deleteClient.isDone());
+    t.truthy(response);
 });
 
 ava('deleteClient completes request if there is a network error', async t => {
@@ -26,6 +26,6 @@ ava('deleteClient completes request if there is a network error', async t => {
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(deleteClient.isDone());
-    t.ok(error);
+    t.truthy(deleteClient.isDone());
+    t.truthy(error);
 });

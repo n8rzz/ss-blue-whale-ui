@@ -21,7 +21,7 @@ ava('deleteContactForClient dispatches start action', async t => {
     ClientRepository.deleteContactForClient = sinon.stub().resolves();
     await deleteContactForClient(CLIENT_ID, CLIENT_CONTACT_ID)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: DELETE_CONTACT_FOR_CLIENT_START }));
+    t.truthy(dispatchSpy.calledWith({ type: DELETE_CONTACT_FOR_CLIENT_START }));
 });
 
 ava('deleteContactForClient calls the ClientContact repository', async t => {
@@ -29,7 +29,7 @@ ava('deleteContactForClient calls the ClientContact repository', async t => {
     ClientRepository.deleteContactForClient = sinon.stub().resolves();
     await deleteContactForClient(CLIENT_ID, CLIENT_CONTACT_ID)(dispatchSpy);
 
-    t.ok(ClientRepository.deleteContactForClient.called);
+    t.truthy(ClientRepository.deleteContactForClient.called);
 });
 
 ava('deleteContactForClient dispatches success action when data resolves successfully', async t => {
@@ -37,10 +37,10 @@ ava('deleteContactForClient dispatches success action when data resolves success
     ClientRepository.deleteContactForClient = sinon.stub().resolves();
     await deleteContactForClient(CLIENT_ID, CLIENT_CONTACT_ID)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === DELETE_CONTACT_FOR_CLIENT_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.type === DELETE_CONTACT_FOR_CLIENT_SUCCESS);
 });
 
 ava.before(() => {
@@ -60,11 +60,11 @@ ava('deleteContactForClient dispatches fail action when there is a failure', asy
     try {
         await deleteContactForClient(CLIENT_ID, CLIENT_CONTACT_ID)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === DELETE_CONTACT_FOR_CLIENT_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === DELETE_CONTACT_FOR_CLIENT_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

@@ -13,9 +13,9 @@ ava('getClientList returns a ClientListType', async t => {
 
     const response = await ClientRepository.getClientList();
 
-    t.ok(getClientList.isDone());
-    t.ok(response);
-    t.ok(ClientListType.is(response));
+    t.truthy(getClientList.isDone());
+    t.truthy(response);
+    t.truthy(ClientListType.is(response));
 });
 
 ava('getClientList completes request if there is a network error', async t => {
@@ -28,6 +28,6 @@ ava('getClientList completes request if there is a network error', async t => {
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(getClientList.isDone());
-    t.ok(error);
+    t.truthy(getClientList.isDone());
+    t.truthy(error);
 });

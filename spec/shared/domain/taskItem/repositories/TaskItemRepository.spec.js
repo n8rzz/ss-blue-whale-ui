@@ -13,9 +13,9 @@ ava('getTaskItemList returns a TaskItemListType', async t => {
 
     const response = await TaskItemRepository.getTaskItemList();
 
-    t.ok(getTaskItemList.isDone());
-    t.ok(response);
-    t.ok(TaskItemListType.is(response));
+    t.truthy(getTaskItemList.isDone());
+    t.truthy(response);
+    t.truthy(TaskItemListType.is(response));
 });
 
 ava('getTaskItemList completes request if there is a network error', async t => {
@@ -28,6 +28,6 @@ ava('getTaskItemList completes request if there is a network error', async t => 
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(getTaskItemList.isDone());
-    t.ok(error);
+    t.truthy(getTaskItemList.isDone());
+    t.truthy(error);
 });

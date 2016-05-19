@@ -35,7 +35,7 @@ ava('createNoteForClient dispatches start action', async t => {
     NoteRepository.createNoteForClient = sinon.stub().resolves(ValidClientType);
     await createNoteForClient(CLIENT_ID, ValidNoteCreationRequestType)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: CREATE_NOTE_START }));
+    t.truthy(dispatchSpy.calledWith({ type: CREATE_NOTE_START }));
 });
 
 ava('createNoteForClient calls the Note repository', async t => {
@@ -43,7 +43,7 @@ ava('createNoteForClient calls the Note repository', async t => {
     NoteRepository.createNoteForClient = sinon.stub().resolves(ValidClientType);
     await createNoteForClient(CLIENT_ID, ValidNoteCreationRequestType)(dispatchSpy);
 
-    t.ok(NoteRepository.createNoteForClient.called);
+    t.truthy(NoteRepository.createNoteForClient.called);
 });
 
 ava('createNoteForClient dispatches success action when data resolves successfully', async t => {
@@ -51,10 +51,10 @@ ava('createNoteForClient dispatches success action when data resolves successful
     NoteRepository.createNoteForClient = sinon.stub().resolves(ValidClientType);
     await createNoteForClient(CLIENT_ID, ValidNoteCreationRequestType)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === CREATE_NOTE_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.type === CREATE_NOTE_SUCCESS);
 });
 
 ava.before(() => {
@@ -74,11 +74,11 @@ ava('createNoteForClient dispatches fail action when there is a failure', async 
     try {
         await createNoteForClient(CLIENT_ID, ValidNoteCreationRequestType)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === CREATE_NOTE_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === CREATE_NOTE_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

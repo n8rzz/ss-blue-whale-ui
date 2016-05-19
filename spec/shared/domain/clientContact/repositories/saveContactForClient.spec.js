@@ -20,9 +20,9 @@ ava('saveContactForClient returns a ClientType', async t => {
 
     const response = await ClientContactRepository.saveContactForClient(CLIENT_CONTACT_ID, VALID_CLIENT_CONTACT_REQUEST_TYPE);
 
-    t.ok(saveContactForClient.isDone());
-    t.ok(response);
-    t.ok(ClientContactType.is(response));
+    t.truthy(saveContactForClient.isDone());
+    t.truthy(response);
+    t.truthy(ClientContactType.is(response));
 });
 
 ava('saveContactForClient completes request if there is a network error', async t => {
@@ -35,6 +35,6 @@ ava('saveContactForClient completes request if there is a network error', async 
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(saveContactForClient.isDone());
-    t.ok(error);
+    t.truthy(saveContactForClient.isDone());
+    t.truthy(error);
 });

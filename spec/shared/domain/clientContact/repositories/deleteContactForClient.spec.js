@@ -12,8 +12,8 @@ ava('deleteContactForClient requires a clientId and a clientContactId', async t 
 
     const response = await ClientContactRepository.deleteContactForClient(CLIENT_CONTACT_ID);
 
-    t.ok(deleteContactForClient.isDone());
-    t.ok(response);
+    t.truthy(deleteContactForClient.isDone());
+    t.truthy(response);
 });
 
 ava('deleteContactForClient completes request if there is a network error', async t => {
@@ -26,6 +26,6 @@ ava('deleteContactForClient completes request if there is a network error', asyn
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(deleteContactForClient.isDone());
-    t.ok(error);
+    t.truthy(deleteContactForClient.isDone());
+    t.truthy(error);
 });

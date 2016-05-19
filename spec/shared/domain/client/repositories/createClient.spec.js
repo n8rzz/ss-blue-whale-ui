@@ -19,9 +19,9 @@ ava('createClient returns a ClientType', async t => {
 
     const response = await ClientRepository.createClient(VALID_CLIENT_CREATION_REQUEST);
 
-    t.ok(createClient.isDone());
-    t.ok(response);
-    t.ok(ClientType.is(response));
+    t.truthy(createClient.isDone());
+    t.truthy(response);
+    t.truthy(ClientType.is(response));
 });
 
 ava('createClient completes request if there is a network error', async t => {
@@ -34,6 +34,6 @@ ava('createClient completes request if there is a network error', async t => {
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(createClient.isDone());
-    t.ok(error);
+    t.truthy(createClient.isDone());
+    t.truthy(error);
 });

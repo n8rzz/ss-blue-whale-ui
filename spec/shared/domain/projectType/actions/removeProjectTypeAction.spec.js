@@ -22,7 +22,7 @@ ava('removeProjectType dispatches start action', async t => {
     ProjectTypeRepository.removeProjectType = sinon.stub().resolves();
     await removeProjectType(PROJECT_TYPE_ID)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: REMOVE_PROJECT_TYPE_START }));
+    t.truthy(dispatchSpy.calledWith({ type: REMOVE_PROJECT_TYPE_START }));
 });
 
 ava('removeProjectType calls the ProjectType repository', async t => {
@@ -30,7 +30,7 @@ ava('removeProjectType calls the ProjectType repository', async t => {
     ProjectTypeRepository.removeProjectType = sinon.stub().resolves();
     await removeProjectType(PROJECT_TYPE_ID)(dispatchSpy);
 
-    t.ok(ProjectTypeRepository.removeProjectType.called);
+    t.truthy(ProjectTypeRepository.removeProjectType.called);
 });
 
 ava('removeProjectType dispatches success action when data resolves successfully', async t => {
@@ -38,10 +38,10 @@ ava('removeProjectType dispatches success action when data resolves successfully
     ProjectTypeRepository.removeProjectType = sinon.stub().resolves();
     await removeProjectType(PROJECT_TYPE_ID)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === REMOVE_PROJECT_TYPE_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.type === REMOVE_PROJECT_TYPE_SUCCESS);
 });
 
 ava('removeProjectType dispatches success action with a `null` payload', async t => {
@@ -51,7 +51,7 @@ ava('removeProjectType dispatches success action with a `null` payload', async t
 
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.payload === null);
+    t.truthy(objectPassedToSecondDispatch.payload === null);
 });
 
 ava('removeProjectType dispatches react-router-redux `push` action that routes to `/projectTypes` url', async t => {
@@ -61,8 +61,8 @@ ava('removeProjectType dispatches react-router-redux `push` action that routes t
 
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
-    t.ok(objectPassedToSecondDispatch.payload.args[0] === '/projectTypes');
+    t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
+    t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/projectTypes');
 });
 
 ava.before(() => {
@@ -82,11 +82,11 @@ ava('removeProjectType dispatches fail action when there is a failure', async t 
     try {
         await removeProjectType(ValidProjectTypeType)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === REMOVE_PROJECT_TYPE_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === REMOVE_PROJECT_TYPE_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

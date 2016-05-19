@@ -30,7 +30,7 @@ ava('createProjectType dispatches start action', async t => {
     ProjectTypeRepository.createProjectType = sinon.stub().resolves();
     await createProjectType(ValidProjectTypeCreationType)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: CREATE_PROJECT_TYPE_START }));
+    t.truthy(dispatchSpy.calledWith({ type: CREATE_PROJECT_TYPE_START }));
 });
 
 ava('createProjectType calls the ProjectType repository', async t => {
@@ -38,7 +38,7 @@ ava('createProjectType calls the ProjectType repository', async t => {
     ProjectTypeRepository.createProjectType = sinon.stub().resolves(ValidProjectTypeCreationType);
     await createProjectType(ValidProjectTypeCreationType)(dispatchSpy);
 
-    t.ok(ProjectTypeRepository.createProjectType.called);
+    t.truthy(ProjectTypeRepository.createProjectType.called);
 });
 
 ava('createProjectType dispatches success action when data resolves successfully', async t => {
@@ -46,11 +46,11 @@ ava('createProjectType dispatches success action when data resolves successfully
     ProjectTypeRepository.createProjectType = sinon.stub().resolves(ValidProjectTypeCreationType);
     await createProjectType(ValidProjectTypeCreationType)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === CREATE_PROJECT_TYPE_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidProjectTypeCreationType);
+    t.truthy(objectPassedToSecondDispatch.type === CREATE_PROJECT_TYPE_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidProjectTypeCreationType);
 });
 
 ava('createProjectType dispatches react-router-redux `push` action that routes to `/projectTypes` url', async t => {
@@ -60,8 +60,8 @@ ava('createProjectType dispatches react-router-redux `push` action that routes t
 
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
-    t.ok(objectPassedToSecondDispatch.payload.args[0] === '/projectTypes');
+    t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
+    t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/projectTypes');
 });
 
 ava.before(() => {
@@ -81,11 +81,11 @@ ava('createProjectType dispatches fail action when there is a failure', async t 
     try {
         await createProjectType(ValidProjectTypeCreationType)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === CREATE_PROJECT_TYPE_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === CREATE_PROJECT_TYPE_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

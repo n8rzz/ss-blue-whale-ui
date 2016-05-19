@@ -18,7 +18,7 @@ ava('getClientList dispatches start action', async t => {
     ClientRepository.getClientList = sinon.stub().resolves();
     await getClientList()(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: GET_CLIENT_LIST_START }));
+    t.truthy(dispatchSpy.calledWith({ type: GET_CLIENT_LIST_START }));
 });
 
 ava('getClientList calls the Client repository', async t => {
@@ -26,7 +26,7 @@ ava('getClientList calls the Client repository', async t => {
     ClientRepository.getClientList = sinon.stub().resolves(ValidClientList);
     await getClientList()(dispatchSpy);
 
-    t.ok(ClientRepository.getClientList.called);
+    t.truthy(ClientRepository.getClientList.called);
 });
 
 ava('getClientList dispatches success action when data resolves successfully', async t => {
@@ -34,11 +34,11 @@ ava('getClientList dispatches success action when data resolves successfully', a
     ClientRepository.getClientList = sinon.stub().resolves(ValidClientList);
     await getClientList()(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 2);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === GET_CLIENT_LIST_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidClientList);
+    t.truthy(objectPassedToSecondDispatch.type === GET_CLIENT_LIST_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidClientList);
 });
 
 ava.before(() => {
@@ -58,11 +58,11 @@ ava('getClientList dispatches fail action when there is a failure', async t => {
     try {
         await getClientList()(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === GET_CLIENT_LIST_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === GET_CLIENT_LIST_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

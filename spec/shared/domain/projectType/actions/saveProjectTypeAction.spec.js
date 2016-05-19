@@ -27,7 +27,7 @@ ava('saveProjectType dispatches start action', async t => {
     ProjectTypeRepository.saveProjectType = sinon.stub().resolves(ValidProjectTypeType);
     await saveProjectType(PROJECT_TYPE_ID, ValidProjectTypeType)(dispatchSpy);
 
-    t.ok(dispatchSpy.calledWith({ type: SAVE_PROJECT_TYPE_START }));
+    t.truthy(dispatchSpy.calledWith({ type: SAVE_PROJECT_TYPE_START }));
 });
 
 ava('saveProjectType calls the ProjectType repository', async t => {
@@ -35,7 +35,7 @@ ava('saveProjectType calls the ProjectType repository', async t => {
     ProjectTypeRepository.saveProjectType = sinon.stub().resolves(ValidProjectTypeType);
     await saveProjectType(PROJECT_TYPE_ID, ValidProjectTypeType)(dispatchSpy);
 
-    t.ok(ProjectTypeRepository.saveProjectType.called);
+    t.truthy(ProjectTypeRepository.saveProjectType.called);
 });
 
 ava('saveProjectType dispatches success action when data resolves successfully', async t => {
@@ -43,11 +43,11 @@ ava('saveProjectType dispatches success action when data resolves successfully',
     ProjectTypeRepository.saveProjectType = sinon.stub().resolves(ValidProjectTypeType);
     await saveProjectType(PROJECT_TYPE_ID, ValidProjectTypeType)(dispatchSpy);
 
-    t.ok(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 2);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-    t.ok(objectPassedToSecondDispatch.type === SAVE_PROJECT_TYPE_SUCCESS);
-    t.ok(objectPassedToSecondDispatch.payload === ValidProjectTypeType);
+    t.truthy(objectPassedToSecondDispatch.type === SAVE_PROJECT_TYPE_SUCCESS);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidProjectTypeType);
 });
 
 ava.before(() => {
@@ -67,11 +67,11 @@ ava('saveProjectType dispatches fail action when there is a failure', async t =>
     try {
         await saveProjectType(PROJECT_TYPE_ID, ValidProjectTypeType)(dispatchSpy);
     } catch (e) {
-        t.ok(dispatchSpy.callCount === 2);
+        t.truthy(dispatchSpy.callCount === 2);
         const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
-        t.ok(objectPassedToSecondDispatch.type === SAVE_PROJECT_TYPE_FAIL);
-        t.ok(objectPassedToSecondDispatch.payload === null);
-        t.ok(objectPassedToSecondDispatch.errors === errorToThrow);
+        t.truthy(objectPassedToSecondDispatch.type === SAVE_PROJECT_TYPE_FAIL);
+        t.truthy(objectPassedToSecondDispatch.payload === null);
+        t.truthy(objectPassedToSecondDispatch.errors === errorToThrow);
     }
 });

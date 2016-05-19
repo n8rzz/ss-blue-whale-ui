@@ -16,9 +16,9 @@ ava('saveClient returns a ClientType', async t => {
 
     const response = await ClientRepository.saveClient(CLIENT_ID, VALID_CLIENT_REQUEST);
 
-    t.ok(saveClient.isDone());
-    t.ok(response);
-    // t.ok(ClientType.is(response));
+    t.truthy(saveClient.isDone());
+    t.truthy(response);
+    // t.truthy(ClientType.is(response));
 });
 
 ava('saveClient completes request if there is a network error', async t => {
@@ -31,6 +31,6 @@ ava('saveClient completes request if there is a network error', async t => {
         .then(() => false)
         .catch(response => response.status === 500);
 
-    t.ok(saveClient.isDone());
-    t.ok(error);
+    t.truthy(saveClient.isDone());
+    t.truthy(error);
 });
