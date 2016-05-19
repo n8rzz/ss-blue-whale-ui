@@ -1,0 +1,35 @@
+// ---------------------------------------------------------------------
+// Table
+// ---------------------------------------------------------------------
+.table {
+    width: 100%;
+    border: 1px solid #f0f0f0;
+}
+
+thead {
+    text-align: left;
+    background-color: #dddddd;
+    border-bottom: 10px solid $COLOR_GREY_239;
+}
+
+th {
+    padding: 16px;
+    font-size: 14px;
+}
+
+tbody > tr {
+    background: #fefefe;
+    border-bottom: 2px solid #fcfcfc;
+}
+
+tbody > tr:hover {
+    border-right: 4px solid #e4da39;
+    background-color: #efefef;
+    cursor: pointer;
+}
+
+td {
+    padding: 13px 13px;
+    border-bottom: 3px solid #f0f0f0;
+    font-size: 12px;
+}

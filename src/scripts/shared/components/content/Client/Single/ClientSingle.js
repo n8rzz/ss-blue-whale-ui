@@ -79,38 +79,36 @@ export default class ClientSingle extends Component {
      */
     render() {
         return (
-            <div>
-                <Tabs>
-                    <Tabs.Tab title="Main">
-                        <VerticalRhythm increment={ 2 }>
-                            <VerticalRhythm increment={ 1 }>
-                                <Form
-                                    ref="clientForm"
-                                    value={ this.state.clientFormValues }
-                                    type={ ClientPreviewType } />
-                            </VerticalRhythm>
-
-                            <Button isSubmit onClick={ this.onRemoveClient }>Delete Client</Button>
-                            <Button isSubmit onClick={ this.onSubmit } >Update Client</Button>
+            <Tabs>
+                <Tabs.Tab title="Main">
+                    <VerticalRhythm increment={ 2 }>
+                        <VerticalRhythm increment={ 1 }>
+                            <Form
+                                ref="clientForm"
+                                value={ this.state.clientFormValues }
+                                type={ ClientPreviewType } />
                         </VerticalRhythm>
 
-                            { this._composeClientContacts() }
-                    </Tabs.Tab>
-                    <Tabs.Tab title="Projects">
-                        <div>
-                            PROJECTS
-                        </div>
-                    </Tabs.Tab>
-                    <Tabs.Tab title="History">
-                        <div>
-                            CLOSED PROJECTS
-                        </div>
-                    </Tabs.Tab>
-                    <Tabs.Tab title="Notes">
-                        { this._composeClientNotes() }
-                    </Tabs.Tab>
-                </Tabs>
-            </div>
+                        <Button isSubmit onClick={ this.onRemoveClient }>Delete Client</Button>
+                        <Button isSubmit onClick={ this.onSubmit } >Update Client</Button>
+                    </VerticalRhythm>
+
+                        { this._composeClientContacts() }
+                </Tabs.Tab>
+                <Tabs.Tab title="Projects">
+                    <div>
+                        PROJECTS
+                    </div>
+                </Tabs.Tab>
+                <Tabs.Tab title="History">
+                    <div>
+                        CLOSED PROJECTS
+                    </div>
+                </Tabs.Tab>
+                <Tabs.Tab title="Notes">
+                    { this._composeClientNotes() }
+                </Tabs.Tab>
+            </Tabs>
         );
     }
 

@@ -155,7 +155,7 @@ rules:
   property-units:
     - 2
     -
-      global: ['em', 'px', 'rem']
+      global: ['em', 'px', 'rem', 'vh']
   quotes:
     - 2
     -

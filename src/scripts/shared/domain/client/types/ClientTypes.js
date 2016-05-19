@@ -9,6 +9,8 @@ import { NoteType } from '../../note/types/NoteTypes';
  */
 export const ClientCreationType = t.struct({
     name: t.String,
+    // TODO: replace with enum
+    status: t.String,
     address_1: t.maybe(t.String),
     address_2: t.maybe(t.String),
     city: t.maybe(t.String),
