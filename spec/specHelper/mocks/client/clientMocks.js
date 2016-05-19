@@ -6,7 +6,8 @@
  */
 
 export const VALID_CLIENT_CREATION_REQUEST = {
-    'name': 'Closets, Closets, Closets, Closets'
+    'name': 'Closets, Closets, Closets, Closets',
+    'status': 'Active'
 };
 
 /**
@@ -18,6 +19,7 @@ export const VALID_CLIENT_CREATION_REQUEST = {
 export const VALID_SINGLE_CLIENT_API_RESPONSE = {
     'id': 1,
     'name': 'Leonie Kling',
+    'status': 'Active',
     'address_1': '745 Wiza Gardens',
     'address_2': 'Suite 877',
     'city': 'Gislasonton',
@@ -63,6 +65,7 @@ export const VALID_SINGLE_CLIENT_API_RESPONSE = {
 export const VALID_CLIENT_REQUEST = {
     'id': 1,
     'name': 'Jim Bob\'s Auto & Detailing',
+    'status': 'Active',
     'address_1': null,
     'address_2': null,
     'city': null,
@@ -84,6 +87,7 @@ export const VALID_CLIENT_LIST_API_RESPONSE = [
     {
         'id': 1,
         'name': 'Jim Bob\'s Auto & Detailing',
+        'status': 'Active',
         'address_1': null,
         'address_2': null,
         'city': null,
@@ -97,6 +101,7 @@ export const VALID_CLIENT_LIST_API_RESPONSE = [
     {
         'id': 2,
         'name': 'Closets, Closets, Closets, Closets',
+        'status': 'Active',
         'address_1': '123 Wallaby Way',
         'address_2': null,
         'city': 'Sydney',

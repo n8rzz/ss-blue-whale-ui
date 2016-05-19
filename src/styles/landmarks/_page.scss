@@ -12,7 +12,9 @@
 // .page-hd {}
 
 .page-bd {
+    height: 100vh;
     margin-left: $SIDEBAR_WIDTH_EXPANDED;
+    background-color: $COLOR_GREY_239;
 
     @include base-transition;
     @include wrapper;
