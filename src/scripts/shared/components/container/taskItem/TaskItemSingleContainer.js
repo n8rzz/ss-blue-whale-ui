@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-
+import TaskItemSingle from '../../content/TaskItem/Single/TaskItemSingle';
 
 /**
  * @class TaskItemSingleContainer
@@ -13,8 +13,13 @@ class TaskItemSingleContainer extends Component {
      * @return {JSX}
      */
     render() {
+        if (!this.props.taskItem) {
+            return null;
+        }
+
         return (
-            <div>TaskItemSingleContainer</div>
+            <TaskItemSingle
+                taskItem={ this.props.taskItem } />
         );
     }
 }
@@ -31,28 +36,33 @@ TaskItemSingleContainer.displayName = 'TaskItemSingleContainer';
  * @type {Object}
  * @static
  */
-TaskItemSingleContainer.propTypes = {};
+TaskItemSingleContainer.propTypes = {
+    /**
+     * @property taskItem
+     * @type {TaskItem|Object}
+     */
+    taskItem: PropTypes.object
+};
 
 /**
  * @function mapStoreToProps
  * @param {Object} state
  * @return {Function}
  */
-const mapStoreToProps = state => {
+const mapStoreToProps = state => ({
     taskItem: state.taskItem.payload
-};
+});
 
 /**
  * @function mapStoreToProps
  * @param {Function} dispatch
  * @return {Function}
  */
-const mapDispatchToProps = dispatch => {
-    
-};
+// const mapDispatchToProps = dispatch => {
+//
+// };
 
 
 export default connect(
-    mapStoreToProps,
-    mapDispatchToProps
+    mapStoreToProps
 )(TaskItemSingleContainer);

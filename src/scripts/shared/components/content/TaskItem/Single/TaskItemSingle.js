@@ -1,4 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+// import t from 'tcomb-form';
+// import TaskItemType from '../../../../domain/taskItem/types/TaskItemTypes';
+import Button from '../../../layout/Button/Button';
+
+// const Form = t.form.Form;
 
 /**
  * @class TaskItemSingle
@@ -12,7 +17,19 @@ export default class TaskItemSingle extends Component {
      */
     render() {
         return (
-            <div>TaskItemSingle</div>
+            <div className="wrapper">
+                <ul>
+                    <li>ID: { this.props.taskItem.id }</li>
+                    <li>Name: { this.props.taskItem.name }</li>
+                    <li>Description: { this.props.taskItem.description }</li>
+                    <li>Start Date: { this.props.taskItem.startDate }</li>
+                    <li>End Date: { this.props.taskItem.endDate }</li>
+                    <li>Sort Order: { this.props.taskItem.sortOrder }</li>
+                </ul>
+
+
+                <Button>Add Task Item</Button>
+            </div>
         );
     }
 }
@@ -29,4 +46,10 @@ TaskItemSingle.displayName = 'TaskItemSingle';
  * @type {Object}
  * @static
  */
-TaskItemSingle.propTypes = {};
+TaskItemSingle.propTypes = {
+    /**
+     * @property
+     * @type {Object}
+     */
+    taskItem: PropTypes.object
+};

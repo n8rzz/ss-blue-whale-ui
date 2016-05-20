@@ -1,16 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getTaskItemList } from '../../../domain/taskItem/actions/TaskItemListActions';
-import TaskItemList from '../../content/TaskItem/TaskItemList';
 import PageTitle from '../../layout/PageTitle/PageTitle';
 
 /**
  * React entry component
  * All other components will inherit from this component
  *
- * @class TaskItemContainer
+ * @class TaskItemRoot
  */
-class TaskItemContainer extends Component {
+class TaskItemRoot extends Component {
     /**
      * @method  render
      * @return {JSX}
@@ -29,14 +27,14 @@ class TaskItemContainer extends Component {
  * @props displayName
  * @type {String}
  */
-TaskItemContainer.displayName = 'TaskItemContainer';
+TaskItemRoot.displayName = 'TaskItemRoot';
 
 /**
  * @property {Object} propTypes
  * @type {Object}
  * @static
  */
-TaskItemContainer.propTypes = {
+TaskItemRoot.propTypes = {
     /**
      * @props taskItems
      * @type {TaskItemListType|Array}
@@ -44,10 +42,10 @@ TaskItemContainer.propTypes = {
     taskItems: PropTypes.array,
 
     /**
-     * @props getTaskItemList
-     * @type {Function}
+     * @props children
+     * @type {node}
      */
-    getTaskItemList: PropTypes.func
+    children: PropTypes.node
 };
 
 /**
@@ -59,28 +57,6 @@ const mapStateToProps = state => ({
     taskItems: state.taskItems.payload
 });
 
-/**
- * @method mapDispatchToProps
- * @param {Object} dispatch
- * @return {Object}
- */
-const mapDispatchToProps = dispatch => ({
-    getTaskItemList: dispatch(getTaskItemList())
-});
-
-/**
- * @method mergeProps
- * @param {Object} state
- * @param {Object} dispatch
- * @param {Object} ownProps
- * @return {Object}
- */
-function mergeProps(state, dispatch, ownProps) {
-    return Object.assign({}, state, ownProps);
-}
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    mergeProps
-)(TaskItemContainer);
+    mapStateToProps
+)(TaskItemRoot);

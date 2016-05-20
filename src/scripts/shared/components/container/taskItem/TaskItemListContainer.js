@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getTaskItemList } from '../../../domain/taskItem/actions/TaskItemListActions';
 import TaskItemList from '../../content/TaskItem/TaskItemList';
-import PageTitle from '../../layout/PageTitle/PageTitle';
 
 /**
  * React entry component
@@ -17,10 +16,8 @@ class TaskItemContainer extends Component {
      */
     render() {
         return (
-            <div>
-                <PageTitle title="Task Items" />
-                { this.props.children }
-            </div>
+            <TaskItemList
+                taskItems={ this.props.taskItems } />
         );
     }
 }
@@ -55,32 +52,12 @@ TaskItemContainer.propTypes = {
  * @param {Object} state
  * @return {Object}
  */
-const mapStateToProps = state => ({
-    taskItems: state.taskItems.payload
-});
-
-/**
- * @method mapDispatchToProps
- * @param {Object} dispatch
- * @return {Object}
- */
-const mapDispatchToProps = dispatch => ({
-    getTaskItemList: dispatch(getTaskItemList())
-});
-
-/**
- * @method mergeProps
- * @param {Object} state
- * @param {Object} dispatch
- * @param {Object} ownProps
- * @return {Object}
- */
-function mergeProps(state, dispatch, ownProps) {
-    return Object.assign({}, state, ownProps);
+function mapStateToProps(state) {
+    return {
+        taskItems: state.taskItems.payload
+    };
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    mergeProps
+    mapStateToProps
 )(TaskItemContainer);
