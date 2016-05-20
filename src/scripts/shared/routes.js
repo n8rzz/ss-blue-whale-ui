@@ -18,6 +18,7 @@ import ProjectTypeSingleContainer from './components/container/projectType/Proje
 import { getProjectType } from './domain/projectType/actions/ProjectTypeActions';
 
 import TaskItemContainer from './components/container/taskItem/TaskItemContainer';
+import TaskItemSingleContainer from './components/container/taskItem/TaskItemSingleContainer';
 
 export default function(store) {
     return (
@@ -43,7 +44,10 @@ export default function(store) {
                     onEnter={ nextState => store.dispatch(getProjectType(nextState.params.id)) } />
             </Route>
 
-            <Route component={ TaskItemContainer } path="taskItems" />
+            <Route component={ TaskItemContainer } path="taskItems">
+                <Route path=":id"
+                    component={ TaskItemSingleContainer } />
+            </Route>
         </Route>
     );
 }

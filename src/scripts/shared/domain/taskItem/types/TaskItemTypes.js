@@ -2,15 +2,25 @@ import t from 'tcomb';
 import { BaseStateType } from '../../BaseTypes';
 
 /**
+ * TaskItemCreationType definition
+ *
+ * @type TaskItemCreationType
+ * @return {TaskItemCreationType}
+ */
+export const TaskItemCreationType = t.struct({
+    name: t.String,
+    description: t.String,
+    sortOrder: t.maybe(t.Number)
+}, 'TaskItemCreationType');
+
+/**
  * TaskItemType definition
  *
  * @type TaskItemType
  * @return {TaskItemType}
  */
-export const TaskItemType = t.struct({
+export const TaskItemType = TaskItemCreationType.extend({
     id: t.Number,
-    name: t.String,
-    description: t.String,
     startDate: t.maybe(t.String),
     endDate: t.maybe(t.String)
 }, 'TaskItemType');
@@ -32,3 +42,8 @@ export const TaskItemListType = t.list(TaskItemType, 'TaskItemListType');
 export const TaskItemListStateType = BaseStateType.extend({
     payload: t.maybe(TaskItemListType)
 }, 'TaskItemListStateType');
+
+
+export const TaskItemStateType = BaseStateType.extend({
+    payload: t.maybe(TaskItemType)
+}, 'TaskItemStateType');
