@@ -1,5 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import {
+    saveTaskItem,
+    deleteTaskItem
+} from '../../../domain/taskItem/actions/TaskItemSingleActions';
 import TaskItemSingle from '../../content/TaskItem/Single/TaskItemSingle';
 
 /**
@@ -19,7 +23,9 @@ class TaskItemSingleContainer extends Component {
 
         return (
             <TaskItemSingle
-                taskItem={ this.props.taskItem } />
+                taskItem={ this.props.taskItem }
+                onSaveTaskItem={ this.props.saveTaskItem }
+                onDeleteTaskItem={ this.props.deleteTaskItem }/>
         );
     }
 }
@@ -41,7 +47,21 @@ TaskItemSingleContainer.propTypes = {
      * @property taskItem
      * @type {TaskItem|Object}
      */
-    taskItem: PropTypes.object
+    taskItem: PropTypes.object,
+
+    /**
+     * @property saveTaskItem
+     * @type {Function}
+     * @required
+     */
+    saveTaskItem: PropTypes.func.isRequired,
+
+    /**
+     * @property deleteTaskItem
+     * @type {Function}
+     * @required
+     */
+    deleteTaskItem: PropTypes.func.isRequired
 };
 
 /**
@@ -58,11 +78,12 @@ const mapStoreToProps = state => ({
  * @param {Function} dispatch
  * @return {Function}
  */
-// const mapDispatchToProps = dispatch => {
-//
-// };
-
+const mapDispatchToProps = dispatch => ({
+    saveTaskItem: (...args) => dispatch(saveTaskItem(...args)),
+    deleteTaskItem: (...args) => dispatch(deleteTaskItem(...args))
+});
 
 export default connect(
-    mapStoreToProps
+    mapStoreToProps,
+    mapDispatchToProps
 )(TaskItemSingleContainer);

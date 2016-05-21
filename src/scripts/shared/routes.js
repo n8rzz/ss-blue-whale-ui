@@ -19,6 +19,7 @@ import { getProjectType } from './domain/projectType/actions/ProjectTypeActions'
 
 import TaskItemRoot from './components/content/taskItem/TaskItemRoot';
 import TaskItemListContainer from './components/container/taskItem/TaskItemListContainer';
+import TaskItemCreateContainer from './components/container/taskItem/TaskItemCreateContainer';
 import TaskItemSingleContainer from './components/container/taskItem/TaskItemSingleContainer';
 import { getTaskItemList } from './domain/taskItem/actions/TaskItemListActions';
 import { getSingleTaskItem } from './domain/taskItem/actions/TaskItemSingleActions';
@@ -50,6 +51,8 @@ export default function(store) {
             <Route component={ TaskItemRoot } path="taskItems">
                 <IndexRoute component={ TaskItemListContainer }
                     onEnter={ () => store.dispatch(getTaskItemList()) } />
+                <Route path="create"
+                    component={ TaskItemCreateContainer } />
                 <Route path=":id"
                     component={ TaskItemSingleContainer }
                     onEnter={ nextState => store.dispatch(getSingleTaskItem(nextState.params.id)) }/>

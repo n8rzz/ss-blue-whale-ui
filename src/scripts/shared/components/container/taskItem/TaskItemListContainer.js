@@ -1,15 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getTaskItemList } from '../../../domain/taskItem/actions/TaskItemListActions';
 import TaskItemList from '../../content/TaskItem/TaskItemList';
 
 /**
- * React entry component
- * All other components will inherit from this component
- *
- * @class TaskItemContainer
+ * @class TaskItemListContainer
  */
-class TaskItemContainer extends Component {
+class TaskItemListContainer extends Component {
     /**
      * @method  render
      * @return {JSX}
@@ -26,14 +22,14 @@ class TaskItemContainer extends Component {
  * @props displayName
  * @type {String}
  */
-TaskItemContainer.displayName = 'TaskItemContainer';
+TaskItemListContainer.displayName = 'TaskItemListContainer';
 
 /**
  * @property {Object} propTypes
  * @type {Object}
  * @static
  */
-TaskItemContainer.propTypes = {
+TaskItemListContainer.propTypes = {
     /**
      * @props taskItems
      * @type {TaskItemListType|Array}
@@ -60,4 +56,4 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps
-)(TaskItemContainer);
+)(TaskItemListContainer);

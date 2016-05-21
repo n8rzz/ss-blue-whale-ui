@@ -20,7 +20,7 @@ export default {
         return request.post(`${ENDPOINT}`, taskItemCreationRequest)
             .then(response => new TaskItemType(response.data))
             .catch(error => {
-                throw error
+                throw error;
             });
     },
 
@@ -40,7 +40,7 @@ export default {
      * @param {TaskItemRequestType} taskItemRequest
      * @return {TaskItemType}
      */
-    saveClient: (id, taskItemRequest) => {
+    saveTaskItem: (id, taskItemRequest) => {
         return request.put(`${ENDPOINT}/${id}`, taskItemRequest)
             .then(response => new TaskItemType(response.data))
             .catch(error => {
