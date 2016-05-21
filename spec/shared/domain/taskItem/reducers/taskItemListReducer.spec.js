@@ -10,7 +10,7 @@ import reducer from '../../../../../src/scripts/shared/domain/taskItem/reducers/
 
 import {
     TaskItemListType
-} from '../../../../specHelper/fixtures/taskItem/TaskItemTypes';
+} from '../../../../specHelper/fixtures/taskItem/TaskItemFixtures';
 
 ava('TaskItemList reducer goes into loading state until data is resolved', t => {
     t.notThrows(() => {

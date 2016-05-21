@@ -11,7 +11,7 @@ import {
 
 import TaskItemRepository from '../../../../../src/scripts/shared/domain/taskItem/repositories/TaskItemRepository';
 
-import { ValidTaskItemList } from '../../../../specHelper/fixtures/taskItem/TaskItemTypes';
+import { ValidTaskItemList } from '../../../../specHelper/fixtures/taskItem/TaskItemFixtures';
 
 ava('getTaskItemList dispatches start action', async t => {
     const dispatchSpy = sinon.spy();

@@ -18,7 +18,7 @@ import {
 import {
     ValidTaskItemListStateType,
     ValidTaskItemStateType
-} from '../../../../specHelper/fixtures/taskItem/TaskItemTypes';
+} from '../../../../specHelper/fixtures/taskItem/TaskItemFixtures';
 
 ava('TaskItemCreationType', t => {
     t.notThrows(() => TaskItemCreationType(VALID_TASK_ITEM_CREATION_REQUEST));

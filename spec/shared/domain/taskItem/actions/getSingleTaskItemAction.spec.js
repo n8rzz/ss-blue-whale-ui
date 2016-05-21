@@ -8,7 +8,7 @@ import {
     getSingleTaskItem
 } from '../../../../../src/scripts/shared/domain/taskItem/actions/TaskItemSingleActions';
 import TaskItemRepository from '../../../../../src/scripts/shared/domain/taskItem/repositories/TaskItemRepository';
-import { ValidTaskItemType } from '../../../../specHelper/fixtures/taskItem/TaskItemTypes';
+import { ValidTaskItemType } from '../../../../specHelper/fixtures/taskItem/TaskItemFixtures';
 
 ava('getSingleTaskItem throws if data is not `TaskItemType`', async t => {
     const dispatchSpy = sinon.spy();
