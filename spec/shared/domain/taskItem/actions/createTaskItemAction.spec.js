@@ -15,7 +15,7 @@ import { ValidTaskItemCreationType } from '../../../../specHelper/fixtures/taskI
 
 const ROUTER_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
 
-ava('createTaskItem throws if data is not `ClientCreateType`', async t => {
+ava('createTaskItem throws if data is not `TaskItemCreationType`', async t => {
     const dispatchSpy = sinon.spy();
     TaskItemRepository.createTaskItem = sinon.stub().resolves();
     try {
@@ -53,7 +53,7 @@ ava('createTaskItem dispatches success action when data resolves successfully', 
     t.truthy(objectPassedToSecondDispatch.payload === ValidTaskItemCreationType);
 });
 
-ava('createTaskItem dispatches react-router-redux `push` action that routes to `/clients` url', async t => {
+ava('createTaskItem dispatches react-router-redux `push` action that routes to `/taskITems` url', async t => {
     const dispatchSpy = sinon.spy();
     TaskItemRepository.createTaskItem = sinon.stub().resolves(ValidTaskItemCreationType);
     await createTaskItem(ValidTaskItemCreationType)(dispatchSpy);
@@ -61,7 +61,7 @@ ava('createTaskItem dispatches react-router-redux `push` action that routes to `
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
-    t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/clients');
+    t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/taskItems');
 });
 
 ava.before(() => {

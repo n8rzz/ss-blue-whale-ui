@@ -10,7 +10,7 @@ import { BaseStateType } from '../../BaseTypes';
 export const TaskItemCreationType = t.struct({
     name: t.String,
     description: t.String,
-    sortOrder: t.maybe(t.Number)
+    // sortOrder: t.Number
 }, 'TaskItemCreationType');
 
 /**

@@ -30,6 +30,7 @@ const createTaskItemError = errors => ({
  * @return {Function}
  */
 export const createTaskItem = taskItemFormValues => {
+    debugger;
     if (!TaskItemCreationType.is(taskItemFormValues)) {
         throw new TypeError('Invalid TaskItem type. Form values must be a TaskItemCreationType');
     }
@@ -40,7 +41,7 @@ export const createTaskItem = taskItemFormValues => {
         return TaskItemRepository.createTaskItem(taskItemFormValues)
             .then(response => {
                 dispatch(createTaskItemSuccess(response));
-                return dispatch(push('/clients'));
+                return dispatch(push('/taskItems'));
             })
             .catch(error => dispatch(createTaskItemError(error)));
     };

@@ -52,7 +52,7 @@ const mapStoreToProps = () => ({});
  * @return {Object}
  */
 const mapDispatchToProps = dispatch => ({
-    createTaskItem: (...args) => dispatch(createTaskItem(args))
+    createTaskItem: taskItemCreationRequest => dispatch(createTaskItem(taskItemCreationRequest))
 });
 
 export default connect(

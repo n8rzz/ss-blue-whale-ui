@@ -52,9 +52,10 @@ export default class TaskItemSingle extends Component {
     /**
      * @for TaskItemSingle
      * @method onFormChange
+     * @param {Object} formValues
      * @callback
      */
-    onFormChange = (formValues) => {
+    onFormChange = formValues => {
         this.setState({ taskItemFormValues: formValues });
     };
 
