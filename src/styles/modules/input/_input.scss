@@ -1,37 +1,54 @@
 // ---------------------------------------------------------------------
 // Inputs
 // ---------------------------------------------------------------------
-.input {
-    width: 100%;
-    max-width: 600px;
-    padding-right: 10px;
-    padding-left: 10px;
-    border: 1px solid #222222;
+// TDOO: create custom tcomb-form templates and apply custom classes to form
+.form-group {
+    margin-bottom: $VERTICAL_SPACING_1X;
+}
+
+input {
+    min-width: 200px;
+    padding: 4px 7px;
     border-radius: 2px;
-    font-size: $FONT_SIZE_1X;
+    border: 1px solid #cccccc;
 }
 
-.input-sm {
-    padding-top: 8px;
-    padding-bottom: 8px;
+.control-label {
+    padding-right: $HORIZONTAL_SPACING_1X;
 }
 
-.input-md {
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
 
-.input-lg {
-    padding-top: 18px;
-    padding-bottom: 18px;
-}
-
-.input-textarea {
-    height: 160px;
-    resize: none;
-}
-
-.mix-input_block {
-    width: 95%;
-    display: block;
-}
+// .input {
+//     width: 100%;
+//     max-width: 600px;
+//     padding-right: 10px;
+//     padding-left: 10px;
+//     border: 1px solid #222222;
+//     border-radius: 2px;
+//     font-size: $FONT_SIZE_1X;
+// }
+//
+// .input-sm {
+//     padding-top: 8px;
+//     padding-bottom: 8px;
+// }
+//
+// .input-md {
+//     padding-top: 12px;
+//     padding-bottom: 12px;
+// }
+//
+// .input-lg {
+//     padding-top: 18px;
+//     padding-bottom: 18px;
+// }
+//
+// .input-textarea {
+//     height: 160px;
+//     resize: none;
+// }
+//
+// .mix-input_block {
+//     width: 95%;
+//     display: block;
+// }

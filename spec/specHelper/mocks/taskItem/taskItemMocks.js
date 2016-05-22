@@ -1,8 +1,20 @@
 /**
+ * Valid Task Item Creation request
+ *
+ * @property VALID_TASK_ITEM_API_RESPONSE
+ * @type {TaskItemCreationType|Object}
+ */
+export const VALID_TASK_ITEM_CREATION_REQUEST = {
+    'name': 'Client Review',
+    'description': 'Face to Face with client',
+    'sortOrder': 0
+};
+
+/**
  * Valid Task Item api response
  *
  * @property VALID_TASK_ITEM_API_RESPONSE
- * @type {Object|TaskItemType}
+ * @type {TaskItemType|Object}
  */
 export const VALID_TASK_ITEM_API_RESPONSE = {
     'id': 2,
@@ -18,7 +30,7 @@ export const VALID_TASK_ITEM_API_RESPONSE = {
  * Valid Task Item list api response
  *
  * @property VALID_TASK_ITEM_LIST_API_RESPONSE
- * @type {Object|TaskItemListType}
+ * @type {TaskItemListType|Object}
  */
 export const VALID_TASK_ITEM_LIST_API_RESPONSE = [
     {

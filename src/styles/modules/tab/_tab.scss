@@ -1,30 +1,37 @@
 // ---------------------------------------------------------------------
 // Tabs
 // ---------------------------------------------------------------------
-// .tab {}
-// .tab-hd {}
+.tab {
+    margin-right: $HORIZONTAL_SPACING_1X;
+    margin-left: $HORIZONTAL_SPACING_1X;
+}
+
+.tab-hd {
+    background-color: #ffffff;
+    border-radius: 3px;
+}
 
 .tab-hd > * {
     display: inline-block;
 }
 
 .tab-hd-item {
-    padding: $HORIZONTAL_SPACING_1X $VERTICAL_SPACING_1X;
-    border-top: 1px solid;
-    border-bottom: 0;
+    padding: $HORIZONTAL_SPACING_1X $VERTICAL_SPACING_2X;
+    font-size: 14px;
 }
 
-.tab-hd-item + .tab-hd-item {
-    border-left: 1px solid;
-}
+// .tab-hd-item + .tab-hd-item {}
 
 .tab-hd-item_isSelected {
-    border-top: 0;
-    border-bottom: 1px solid;
+    border-bottom: 3px solid;
     cursor: default;
 }
 
 .tab-bd {
-    padding-top: $VERTICAL_SPACING_1X;
-    padding-bottom: $VERTICAL_SPACING_1X;
+    margin-top: $VERTICAL_SPACING_1X;
+    // padding-bottom: $VERTICAL_SPACING_1X;
+    background-color: #ffffff;
+    border-radius: 3px;
+
+    @include wrapper;
 }
