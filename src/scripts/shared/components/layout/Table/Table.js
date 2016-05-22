@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import _map from 'lodash/map';
 
 /**
@@ -13,7 +13,7 @@ export default class Table extends Component {
      * @return {JSX}
      */
     _composeTableHead() {
-        const theadChildren = _map(this.props.headings, (heading, index) => {
+        const headerItems = _map(this.props.headingList, (heading, index) => {
             return (
                 <th key={ index }>
                     <a className="link" href="#" onClick={ (event) => this.onHeaderClick(event, index) }>
@@ -26,37 +26,9 @@ export default class Table extends Component {
         return (
             <thead>
                 <tr>
-                    { theadChildren }
+                    { headerItems }
                 </tr>
             </thead>
-        );
-    }
-
-    /**
-     * @method _composeTableBody
-     * @return {JSX}
-     */
-    _composeTableBody() {
-        const bodyRowChildren = _map(this.props.data, (row, index) => {
-            const clientLinkString = `/clients/${row.id}`;
-
-            return (
-                <tr key={ index } onClick={ () => this.onRowClick(index) }>
-                    <td>{ row.id }</td>
-                    <td>{ row.status }</td>
-                    <td>
-                        <Link className="link" to={ clientLinkString  }>{ row.name }</Link>
-                    </td>
-                    <td>{ row.city }</td>
-                    <td>{ row.state }</td>
-                </tr>
-            );
-        });
-
-        return (
-            <tbody>
-                { bodyRowChildren }
-            </tbody>
         );
     }
 
@@ -68,7 +40,8 @@ export default class Table extends Component {
         return (
             <table className="table">
                 { this._composeTableHead() }
-                { this._composeTableBody() }
+
+                { this.props.children}
             </table>
         );
     }
@@ -80,17 +53,8 @@ export default class Table extends Component {
      * @callback
      */
     onHeaderClick(event, headerIndex) {
-        console.log(this.props.headings[headerIndex]);
         event.preventDefault();
-    }
-
-    /**
-     * @method onRowClick
-     * @param  {Number} rowIndex
-     * @callback
-     */
-    onRowClick(rowIndex) {
-        console.log(this.props.data[rowIndex]);
+        console.log(this.props.headingList[headerIndex]);
     }
 }
 
@@ -107,6 +71,15 @@ Table.displayName = 'Table';
  * @static
  */
 Table.propTypes = {
-    headings: PropTypes.node,
-    data: PropTypes.any
+    /**
+     * @property headingList
+     * @type {node}
+     * @required
+     */
+    headingList: PropTypes.node.isRequired,
+    /**
+     * @property children
+     * @type {node}
+     */
+    children: PropTypes.node
 };

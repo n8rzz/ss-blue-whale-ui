@@ -78,7 +78,7 @@ export default {
         return request.delete(`${ENDPOINT}/${id}`)
             .then(response => response)
             .catch(error => {
-                throw error
+                throw error;
             });
     }
 };

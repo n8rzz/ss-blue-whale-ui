@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import VerticalRhythm from '../../repeater/VerticalRhythm/VerticalRhythm';
+import FlashMessage from '../FlashMessage/FlashMessage';
 import Table from '../../layout/Table/Table';
 
 import _debounce from 'lodash/debounce';
 import _filter from 'lodash/filter';
-import _map from 'lodash/map';
 import _includes from 'lodash/includes';
+import _map from 'lodash/map';
 
 /**
  * @property SEARCH_DELAY_IN_MS
@@ -45,22 +46,32 @@ class ClientList extends Component {
     }
 
     /**
-     * @for ClientList
-     * @method _composeClientList
+     *
+     * @method _composeTableBody
      * @return {JSX}
      */
-    _composeClientList() {
-        return _map(this.state.filteredClientList, (client, index) => {
-            const singleClientLink = `/clients/${client.id}`;
+    _composeTableBody() {
+        const bodyRowChildren = _map(this.props.clients, (row, index) => {
+            const clientLinkString = `/clients/${row.id}`;
 
             return (
-                <li key={ index }>
-                    <h2 className="hdg hdg_2">
-                        <Link to={ singleClientLink }>{ client.name }</Link>
-                    </h2>
-                </li>
+                <tr key={ index } onClick={ () => this.onRowClick(index) }>
+                    <td>{ row.id }</td>
+                    <td>{ row.status }</td>
+                    <td>
+                        <Link className="link" to={ clientLinkString  }>{ row.name }</Link>
+                    </td>
+                    <td>{ row.city }</td>
+                    <td>{ row.state }</td>
+                </tr>
             );
         });
+
+        return (
+            <tbody>
+                { bodyRowChildren }
+            </tbody>
+        );
     }
 
     /**
@@ -75,11 +86,7 @@ class ClientList extends Component {
 
         return (
             <div className="wrapper">
-
-                {/* TODO: Abatract to Alert component */}
-                <div className="alert">
-                    [  ALERT / FLASH MESSAGE ]
-                </div>
+                <FlashMessage />
 
                 {/* TODO: Abstract to SearchComponent */}
                 <VerticalRhythm increment={ 1 }>
@@ -94,12 +101,22 @@ class ClientList extends Component {
                     </ul>
                 </VerticalRhythm>
 
-                <Table
-                    headings={ ['id', 'status', 'name', 'city', 'state'] }
-                    data={ this.state.filteredClientList } />
+                <Table headingList={ ['id', 'status', 'name', 'city', 'state'] } >
+                    { this._composeTableBody() }
+                </Table>
             </div>
         );
     }
+
+    /**
+     * @method onRowClick
+     * @param  {Number} rowIndex
+     * @callback
+     */
+    onRowClick(rowIndex) {
+        console.log(this.props.clients[rowIndex]);
+    }
+
 
     // TODO: abstract into another component
     onSearchChange = () => {

@@ -1,60 +1,60 @@
 import ava from 'ava';
 
 import {
-    GET_TASK_ITEM_LIST_START,
-    GET_TASK_ITEM_LIST_SUCCESS,
-    GET_TASK_ITEM_LIST_FAIL
-} from '../../../../../src/scripts/shared/domain/taskItem/actions/TaskItemListActions';
+    SAVE_TASK_ITEM_START,
+    SAVE_TASK_ITEM_SUCCESS,
+    SAVE_TASK_ITEM_FAIL
+} from '../../../../../src/scripts/shared/domain/taskItem/actions/TaskItemSingleActions';
 
-import reducer from '../../../../../src/scripts/shared/domain/taskItem/reducers/taskItemListReducer';
+import reducer from '../../../../../src/scripts/shared/domain/taskItem/reducers/taskItemSingleReducer';
 
 import {
-    TaskItemListType
+    ValidTaskItemType
 } from '../../../../specHelper/fixtures/taskItem/TaskItemFixtures';
 
-ava('TaskItemList reducer goes into loading state until data is resolved', t => {
+ava('saveTaskItem reducer goes into loading state until data is resolved', t => {
     t.notThrows(() => {
         reducer(undefined, {
-            type: GET_TASK_ITEM_LIST_START
+            type: SAVE_TASK_ITEM_START
         });
     });
 
     const loadingState = reducer(undefined, {
-        type: GET_TASK_ITEM_LIST_START
+        type: SAVE_TASK_ITEM_START
     });
 
     t.true(loadingState.isLoading);
     t.is(loadingState.errors, null);
 });
 
-ava('TaskItemList reducer sets payload', t => {
+ava('saveTaskItem reducer sets payload', t => {
     t.notThrows(() => {
         reducer(undefined, {
-            type: GET_TASK_ITEM_LIST_SUCCESS,
-            payload: TaskItemListType
+            type: SAVE_TASK_ITEM_SUCCESS,
+            payload: ValidTaskItemType
         });
     });
 
     const loadingState = reducer(undefined, {
-        type: GET_TASK_ITEM_LIST_SUCCESS,
-        payload: TaskItemListType
+        type: SAVE_TASK_ITEM_SUCCESS,
+        payload: ValidTaskItemType
     });
 
     t.false(loadingState.isLoading);
     t.is(loadingState.errors, null);
 });
 
-ava('TaskItemList reducer handles network errors by returning error state', t => {
+ava('saveTaskItem reducer handles network errors by returning error state', t => {
     const networkError = new Error('network error');
     t.notThrows(() => {
         reducer(undefined, {
-            type: GET_TASK_ITEM_LIST_FAIL,
+            type: SAVE_TASK_ITEM_FAIL,
             errors: networkError
         });
     });
 
     const errorState = reducer(undefined, {
-        type: GET_TASK_ITEM_LIST_FAIL,
+        type: SAVE_TASK_ITEM_FAIL,
         errors: networkError
     });
 

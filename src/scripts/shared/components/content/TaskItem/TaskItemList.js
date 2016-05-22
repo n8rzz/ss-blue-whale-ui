@@ -1,25 +1,40 @@
 import React, { Component, PropTypes } from 'react';
-import { map as _map } from 'lodash';
+import { Link } from 'react-router';
+import FlashMessage from '../FlashMessage/FlashMessage';
+import Table from '../../layout/Table/Table';
+
+import _map from 'lodash/map';
 
 /**
  * @class TaskItemList
  */
 class TaskItemList extends Component {
+
     /**
-     * @method _composeTaskItemList
+     *
+     * @method _composeTableBody
      * @return {JSX}
      */
-    _composeTaskItemList() {
-        return _map(this.props.taskItems, (task, index) => {
+    _composeTableBody() {
+        const bodyRowChildren = _map(this.props.taskItems, (taskItem, index) => {
+            const taskItemUrlString = `/taskItems/${taskItem.id}`;
+
             return (
-                <li key={ index }>
-                    <h2 className="hdg hdg_2">{ task.name }</h2>
-                    <div>
-                        { task.description }
-                    </div>
-                </li>
+                <tr key={ index } onClick={ () => this.onRowClick(index) }>
+                    <td>{ taskItem.id }</td>
+                    <td>
+                        <Link className="link" to={ taskItemUrlString  }>{ taskItem.name }</Link>
+                    </td>
+                    <td>{ taskItem.startDate }</td>
+                </tr>
             );
         });
+
+        return (
+            <tbody>
+                { bodyRowChildren }
+            </tbody>
+        );
     }
 
     /**
@@ -32,10 +47,24 @@ class TaskItemList extends Component {
         }
 
         return (
-            <ul>
-                { this._composeTaskItemList() }
-            </ul>
+            <div className="wrapper">
+                <FlashMessage />
+
+                <Table headingList={ ['id', 'name', 'start date'] } >
+                    { this._composeTableBody() }
+                </Table>
+            </div>
         );
+    }
+
+    /**
+     * @for TaskItemList
+     * @method onRowClick
+     * @param  {Number} rowIndex
+     * @callback
+     */
+    onRowClick(rowIndex) {
+        console.log(this.props.taskItems[rowIndex]);
     }
 }
 
