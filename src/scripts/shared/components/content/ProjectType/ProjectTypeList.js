@@ -1,30 +1,40 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import _map from 'lodash/map';
+import FlashMessage from '../FlashMessage/FlashMessage';
+import Table from '../../layout/Table/Table';
 
 /**
  * @class ProjectTypeList
+ * @extends React/Component
  */
-class ProjectTypeList extends Component {
+export default class ProjectTypeList extends Component {
+
     /**
-     * @method _composeProjectTypeList
+     * @method _composeTableBody
      * @return {JSX}
      */
-    _composeProjectTypeList() {
-        return _map(this.props.projectTypes, (projectType, index) => {
+    _composeTableBody() {
+        const bodyRowChildren = _map(this.props.projectTypes, (projectType, index) => {
             const projectTypeLink = `/projectTypes/${projectType.id}`;
 
             return (
-                <li key={ index }>
-                    <h2 className="hdg hdg_2">
-                        <Link to={ projectTypeLink }>{ projectType.name }</Link>
-                    </h2>
-                    <div>
-                        { projectType.description }
-                    </div>
-                </li>
+                <tr key={ index } onClick={ () => this.onRowClick(index) }>
+                    <td>{ projectType.id }</td>
+                    <td>
+                        <Link className="link" to={ projectTypeLink  }>{ projectType.name }</Link>
+                    </td>
+                    <td>{ projectType.description }</td>
+                    <td>{ projectType.dueDate }</td>
+                </tr>
             );
         });
+
+        return (
+            <tbody>
+                { bodyRowChildren }
+            </tbody>
+        );
     }
 
     /**
@@ -37,9 +47,13 @@ class ProjectTypeList extends Component {
         }
 
         return (
-            <ul>
-                { this._composeProjectTypeList() }
-            </ul>
+            <div className="wrapper">
+                <FlashMessage />
+
+                <Table headingList={ ['id', 'name', 'description', 'due date'] }>
+                    { this._composeTableBody() }
+                </Table>
+            </div>
         );
     }
 }
@@ -64,5 +78,3 @@ ProjectTypeList.propTypes = {
      */
     projectTypes: PropTypes.array.isRequired
 };
-
-export default ProjectTypeList;

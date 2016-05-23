@@ -29,7 +29,7 @@ const LINK_CONTENT = {
     },
     TASK_ITEMS: {
         TEXT: 'Task Items',
-        ICON: <span className="entypo-list-add"></span>
+        ICON: <span className="entypo-list"></span>
     }
 };
 
