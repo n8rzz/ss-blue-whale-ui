@@ -15,3 +15,12 @@ $FONT_SIZE_4X: $FONT_SIZE_1X * 2;
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 $FONT: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// ------------------------------------------------------------------------
+// Icon Fonts
+// ------------------------------------------------------------------------
+@import url('http://weloveiconfonts.com/api/?family=entypo');
+
+[class*='entypo-']:before {
+    font-family: 'entypo', sans-serif;
+}

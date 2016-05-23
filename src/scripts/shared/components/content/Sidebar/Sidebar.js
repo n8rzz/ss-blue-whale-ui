@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import SidebarTrigger from './SidebarTrigger';
 import Navigation from '../../content/Navigation/Navigation';
 
+const STORAGE_ITEM = 'sidebar-isCollapsed';
+
 /**
  * @class Siebar
  * @extends React/Component
@@ -18,8 +20,15 @@ export default class Sidebar extends Component {
         const stateUpdates = {};
 
         stateUpdates.isCollapsed = false;
-        if (localStorage.getItem('sidebar-state')) {
-            stateUpdates.isCollapsed = localStorage.getItem('sidebar-state');
+        if (localStorage.getItem(STORAGE_ITEM)) {
+            const storedIsCollapsed = localStorage.getItem(STORAGE_ITEM) === 'true'
+                ? true :
+                localStorage.getItem(STORAGE_ITEM) === 'false'
+                    ? false :
+                    null;
+
+            debugger;
+            stateUpdates.isCollapsed = storedIsCollapsed;
         }
 
         this.state = stateUpdates;
@@ -57,7 +66,12 @@ export default class Sidebar extends Component {
      * @callback
      */
     onToggleSidebar = () => {
-        localStorage.setItem('sidebar-state', !this.state.isCollapsed);
+        // FIXME:  ICKY!!
+        if (this.state.isCollapsed) {
+            localStorage.setItem(STORAGE_ITEM, false);
+        } else {
+            localStorage.setItem(STORAGE_ITEM, true);
+        }
 
         this.setState({
             isCollapsed: !this.state.isCollapsed
