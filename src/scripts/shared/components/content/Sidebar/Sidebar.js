@@ -27,7 +27,6 @@ export default class Sidebar extends Component {
                     ? false :
                     null;
 
-            debugger;
             stateUpdates.isCollapsed = storedIsCollapsed;
         }
 
