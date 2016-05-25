@@ -3,6 +3,9 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './components';
 
+import RegistrationContainer from './components/container/registration/RegistrationContainer';
+import CreateUser from './components/content/Registration/CreateUser';
+
 import ClientRoot from './components/content/Client/ClientRoot';
 import ClientListContainer from './components/container/client/ClientListContainer';
 import ClientCreateContainer from './components/container/client/ClientCreateContainer';
@@ -27,6 +30,10 @@ import { getSingleTaskItem } from './domain/taskItem/actions/TaskItemSingleActio
 export default function(store) {
     return (
         <Route component={ App } path="/">
+
+            <Route path="users" component={ RegistrationContainer }>
+                <Route path="new" component={ CreateUser } />
+            </Route>
 
             <Route path="clients" component={ ClientRoot }>
                 <IndexRoute component={ ClientListContainer } />
