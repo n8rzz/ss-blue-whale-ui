@@ -57,10 +57,10 @@ class ClientList extends Component {
             return (
                 <tr key={ index } onClick={ () => this.onRowClick(index) }>
                     <td>{ row.id }</td>
-                    <td>{ row.status }</td>
                     <td>
                         <Link className="link" to={ clientLinkString  }>{ row.name }</Link>
                     </td>
+                    <td>{ row.status }</td>
                     <td>{ row.city }</td>
                     <td>{ row.state }</td>
                 </tr>
@@ -101,7 +101,7 @@ class ClientList extends Component {
                     </ul>
                 </VerticalRhythm>
 
-                <Table headingList={ ['id', 'status', 'name', 'city', 'state'] } >
+                <Table headingList={ ['id', 'name', 'status', 'city', 'state'] } >
                     { this._composeTableBody() }
                 </Table>
             </div>

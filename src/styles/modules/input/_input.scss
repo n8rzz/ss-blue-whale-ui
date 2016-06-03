@@ -14,7 +14,10 @@ input {
 }
 
 .control-label {
+    display: block;
     padding-right: $HORIZONTAL_SPACING_1X;
+    padding-bottom: 2px;
+    font-size: $FONT_SIZE_HALF;
 }
 
 

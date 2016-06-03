@@ -1,6 +1,6 @@
 {
   "name": "ss-blue-whale-ui",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "",
   "author": "Nate Geslin",
   "repository": {
@@ -13,7 +13,7 @@
     "coverage": "npm test && nyc check-coverage --lines 90",
     "coveralls": "nyc report -r text-lcov | coveralls",
     "start": "gulp && node index.js",
-    "test": "nyc ava --serial",
+    "test": "nyc --cache ava --serial --concurrency=5",
     "report": "nyc report --reporter=html"
   },
   "engines": {
@@ -37,7 +37,7 @@
     ]
   },
   "devDependencies": {
-    "ava": "^0.14.0",
+    "ava": "^0.15.0",
     "babel-eslint": "4.1.8",
     "babel-plugin-transform-react-jsx": "^6.5.2",
     "babel-preset-react": "^6.5.0",

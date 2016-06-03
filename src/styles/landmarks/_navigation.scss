@@ -21,8 +21,15 @@
     @include base-transition;
 }
 
+.navigation-item-link_isActive {
+    background-color: #505050;
+}
+
 .navigation-item > ul {
     display: none;
-    margin-top: $VERTICAL_SPACING_1X;
-    background-color: #505050;
+    background-color: #303030;
+}
+
+.navigation-item-link_isActive + ul {
+    display: block;
 }
