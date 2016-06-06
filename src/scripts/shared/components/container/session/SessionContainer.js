@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { createSession } from '../../../domain/session/actions/SessionActions';
+import FlashMessage from '../../content/FlashMessage/FlashMessage';
+import Login from '../../content/Login/Login';
 
 /**
  * @class SessionContainer
@@ -13,8 +16,10 @@ class SessionContainer extends Component {
      */
     render() {
         return (
-            <div>
-                SessionContainer
+            <div className="wrapper">
+                <FlashMessage />
+
+                <Login onCreateSession={ this.props.createSession }/>
             </div>
         );
     }
@@ -32,21 +37,32 @@ SessionContainer.displayName = 'SessionContainer';
  * @type {Object}
  * @static
  */
-SessionContainer.propTypes = {};
+SessionContainer.propTypes = {
+    /**
+     * @property createSession
+     * @type {Function}
+     * @required
+     */
+    createSession: PropTypes.func.isRequired
+};
 
 /**
  * @function mapStoreToProps
  * @param  {Object} state
  * @return {Object}
  */
-const mapStoreToProps = state => ({});
+const mapStoreToProps = state => ({
+    sessionErrors: state.session.errors
+});
 
 /**
  * @function mapDispatchToProps
  * @param {Function} dispatch
  * @return {Object}
  */
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+    createSession: sessionRequest => dispatch(createSession(sessionRequest))
+});
 
 export default connect(
     mapStoreToProps,

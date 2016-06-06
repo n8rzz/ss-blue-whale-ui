@@ -4,7 +4,7 @@ import { ErrorType } from '../../BaseTypes';
 import {
     SessionRequestType
 } from '../types/SessionTypes';
-//
+
 export const CREATE_SESSION_START = 'CREATE_SESSION_START';
 export const CREATE_SESSION_SUCCESS = 'CREATE_SESSION_SUCCESS';
 export const CREATE_SESSION_FAIL = 'CREATE_SESSION_FAIL';
