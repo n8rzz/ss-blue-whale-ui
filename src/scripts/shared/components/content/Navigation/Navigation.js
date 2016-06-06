@@ -34,6 +34,10 @@ const LINK_CONTENT = {
     DASHBOARD: {
         TEXT: 'Dashboard',
         ICON: <span className="entypo-cog"></span>
+    },
+    LOGOUT: {
+        TEXT: 'Logout',
+        ICON: <span className="entypo-logout"></span>
     }
 };
 
@@ -53,6 +57,18 @@ export default class Navigation extends Component {
             : LINK_CONTENT[linkName].TEXT;
     }
 
+    // TODO: abstract out to new component
+    _composeNavigationItemLink(url, linkItem) {
+        return (
+            <Link
+                to={ `/${url}` }
+                className="navigation-item-link"
+                activeClassName="navigation-item-link_isActive">
+                { this._composeTextOrIcon(linkItem) }
+            </Link>
+        );
+    }
+
     /**
      * @method render
      * @return {JSX}
@@ -62,59 +78,48 @@ export default class Navigation extends Component {
             <div className="navigation">
                 <ul>
                     <li className="navigation-item">
-                        <Link
-                            to="/clients"
-                            className="navigation-item-link"
-                            activeClassName="navigation-item-link_isActive">
-                            { this._composeTextOrIcon('CLIENTS') }
-                        </Link>
+                        { this._composeNavigationItemLink('clients', 'CLIENTS') }
                         <ul>
                             <li className="navigation-item">
-                                <Link
-                                    className="navigation-item-link"
-                                    to="/clients/create"
-                                    activeClassName="navigation-item-link_isActive">
-                                    { this._composeTextOrIcon('CREATE_CLIENT') }
-                                </Link>
+                                { this._composeNavigationItemLink('clients/create', 'CREATE_CLIENT') }
                             </li>
                         </ul>
                     </li>
                     <li className="navigation-item">
-                        <Link
-                            to="/projects"
-                            className="navigation-item-link"
-                            activeClassName="navigation-item-link_isActive">
-                            { this._composeTextOrIcon('PROJECTS') }
-                        </Link>
+                        { this._composeNavigationItemLink('projects', 'PROJECTS') }
                     </li>
                     <li className="navigation-item">
-                        <Link
-                            to="/projectTypes"
-                            className="navigation-item-link"
-                            activeClassName="navigation-item-link_isActive">
-                            { this._composeTextOrIcon('PROJECT_TYPES') }
-                        </Link>
+                        { this._composeNavigationItemLink('projectTypes', 'PROJECT_TYPES') }
                     </li>
                     <li className="navigation-item">
-                        <Link
-                            to="/taskItems"
-                            className="navigation-item-link"
-                            activeClassName="navigation-item-link_isActive">
-                            { this._composeTextOrIcon('TASK_ITEMS') }
-                        </Link>
+                        { this._composeNavigationItemLink('taskItems', 'TASK_ITEMS') }
                     </li>
                     <li className="navigation-item">
                         {/* TODO: change link to 'dashboard' */}
-                        <Link
-                            to="/login"
+                        { this._composeNavigationItemLink('login', 'DASHBOARD') }
+                    </li>
+                    <li className="navigation-item">
+                        <a
                             className="navigation-item-link"
-                            activeClassName="navigation-item-link_isActive">
-                            { this._composeTextOrIcon('DASHBOARD') }
-                        </Link>
+                            onClick={ this.onRequestToLogout }>
+                            { this._composeTextOrIcon('LOGOUT') }
+                        </a>
                     </li>
                 </ul>
             </div>
         );
+    }
+
+    /**
+     * @method onRequestToLogout
+     * @param {React.SyntheticEvent} event
+     * @return {Function}
+     * @callback
+     */
+    onRequestToLogout = event => {
+        event.preventDefault();
+
+        console.log('onRequestToLogout');
     }
 }
 

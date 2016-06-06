@@ -39,6 +39,11 @@ export default class FlashMessage extends Component {
      * @return {JSX}
      */
     render() {
+        if (this.props.content.length === 0 || this.props.type === '') {
+            console.warn('DEPRECATION WARNING: The FlashMessage component will require both `type` and `content` props in v0.8.0. Please update the calling component');
+            return null;
+        }
+
         return (
             <div className={ this.buildClassNames() }>
                 { this._composeFlashContent() }
@@ -71,7 +76,8 @@ FlashMessage.propTypes = {
      * @type{String|Object|Array}
      * @required
      */
-    content: PropTypes.oneOf([PropTypes.string, PropTypes.object, PropTypes.array]).isRequired
+    // content: PropTypes.oneOf([PropTypes.string, PropTypes.object, PropTypes.array]).isRequired
+    content: PropTypes.any
 };
 
 /**
@@ -81,5 +87,5 @@ FlashMessage.propTypes = {
  */
 FlashMessage.defaultProps = {
     type: 'error',
-    content: ''
+    content: []
 };

@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+// import { destroySession } from '../domain/session/actions/SessionActions';
 import Sidebar from './content/Sidebar/Sidebar';
 
 /**
@@ -16,6 +18,7 @@ export default class App extends Component {
         return (
             <div className="page">
                 <Sidebar />
+
                 <div className="page-bd">
                     { this.props.children }
                 </div>

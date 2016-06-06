@@ -6,7 +6,6 @@ import App from './components';
 import SessionContainer from './components/container/session/SessionContainer';
 
 import RegistrationContainer from './components/container/registration/RegistrationContainer';
-// import CreateUser from './components/content/Registration/CreateUser';
 
 import ClientRoot from './components/content/Client/ClientRoot';
 import ClientListContainer from './components/container/client/ClientListContainer';
