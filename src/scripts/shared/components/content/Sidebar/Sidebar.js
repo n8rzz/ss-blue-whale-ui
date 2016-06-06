@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames  from 'classNames';
 import SidebarTrigger from './SidebarTrigger';
 import Navigation from '../../content/Navigation/Navigation';
 
@@ -35,14 +36,24 @@ export default class Sidebar extends Component {
 
     /**
      * @for Sidebar
+     * @method buildClassNames
+     * @return {Function|String} classNames
+     */
+    buildClassNames() {
+        return classNames({
+            sidebar: true,
+            'mix-sidebar_collapsed': this.state.isCollapsed
+        });
+    }
+
+    /**
+     * @for Sidebar
      * @method render
      * @return {JSX}
      */
     render() {
-        const sidebarClassnames = this.state.isCollapsed ? 'sidebar mix-sidebar_collapsed' : 'sidebar';
-
         return (
-            <div className={ sidebarClassnames }>
+            <div className={ this.buildClassNames() }>
                 <div className="sidebar-hd">
                     <button>DASHBOARD</button>
                 </div>

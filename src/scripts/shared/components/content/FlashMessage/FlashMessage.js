@@ -28,7 +28,7 @@ export default class FlashMessage extends Component {
     render() {
         return (
             <div className={ this.buildClassNames() }>
-                [  ALERT / FLASH MESSAGE ]
+                [  FLASH MESSAGE ]
             </div>
         );
     }

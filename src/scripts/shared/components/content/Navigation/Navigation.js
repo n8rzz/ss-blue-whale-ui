@@ -30,6 +30,10 @@ const LINK_CONTENT = {
     TASK_ITEMS: {
         TEXT: 'Task Items',
         ICON: <span className="entypo-list"></span>
+    },
+    DASHBOARD: {
+        TEXT: 'Dashboard',
+        ICON: <span className="entypo-cog"></span>
     }
 };
 
@@ -97,6 +101,15 @@ export default class Navigation extends Component {
                             className="navigation-item-link"
                             activeClassName="navigation-item-link_isActive">
                             { this._composeTextOrIcon('TASK_ITEMS') }
+                        </Link>
+                    </li>
+                    <li className="navigation-item">
+                        {/* TODO: change link to 'dashboard' */}
+                        <Link
+                            to="/login"
+                            className="navigation-item-link"
+                            activeClassName="navigation-item-link_isActive">
+                            { this._composeTextOrIcon('DASHBOARD') }
                         </Link>
                     </li>
                 </ul>
