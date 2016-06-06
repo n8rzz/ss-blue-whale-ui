@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import t from 'tcomb';
 import { createSession } from '../../../domain/session/actions/SessionActions';
 import FlashMessage from '../../content/FlashMessage/FlashMessage';
 import Login from '../../content/Login/Login';
@@ -9,6 +10,24 @@ import Login from '../../content/Login/Login';
  * @extends React/Component
  */
 class SessionContainer extends Component {
+
+    /**
+     * @for SessionContainer
+     * @method _composeErrors
+     * @return {JSX}
+     */
+    _composeErrors() {
+        if (t.Nil.is(this.props.sessionErrors)) {
+            return null;
+        }
+
+        return (
+            <FlashMessage
+                type="error"
+                content={ this.props.sessionErrors.statusText }/>
+        );
+    }
+
     /**
      * @for SessionContainer
      * @method render
@@ -17,7 +36,7 @@ class SessionContainer extends Component {
     render() {
         return (
             <div className="wrapper">
-                <FlashMessage />
+                { this._composeErrors() }
 
                 <Login onCreateSession={ this.props.createSession }/>
             </div>
@@ -38,6 +57,14 @@ SessionContainer.displayName = 'SessionContainer';
  * @static
  */
 SessionContainer.propTypes = {
+    /**
+     * Any errors encountered while creating a new session
+     *
+     * @property sessionErrors
+     * @type {Object}
+     */
+    sessionErrors: PropTypes.object,
+
     /**
      * @property createSession
      * @type {Function}

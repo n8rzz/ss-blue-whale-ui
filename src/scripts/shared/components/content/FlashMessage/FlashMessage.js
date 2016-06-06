@@ -8,6 +8,19 @@ import classNames from 'classNames';
 export default class FlashMessage extends Component {
     /**
      * @for FlashMessage
+     * @method _composeFlashContent
+     * @return {JSX}
+     */
+    _composeFlashContent() {
+        return (
+            <div>
+                { this.props.content }
+            </div>
+        );
+    }
+
+    /**
+     * @for FlashMessage
      * @method buildClassNames
      * @return {Object}
      */
@@ -28,7 +41,7 @@ export default class FlashMessage extends Component {
     render() {
         return (
             <div className={ this.buildClassNames() }>
-                [  FLASH MESSAGE ]
+                { this._composeFlashContent() }
             </div>
         );
     }
@@ -51,9 +64,14 @@ FlashMessage.propTypes = {
      * @property type
      * @type {String}
      */
-    type: PropTypes.oneOf(['success', 'error', 'warning'])
+    type: PropTypes.oneOf(['success', 'error', 'warning']),
 
-
+    /**
+     * @property content
+     * @type{String|Object|Array}
+     * @required
+     */
+    content: PropTypes.oneOf([PropTypes.string, PropTypes.object, PropTypes.array]).isRequired
 };
 
 /**
@@ -62,5 +80,6 @@ FlashMessage.propTypes = {
  * @static
  */
 FlashMessage.defaultProps = {
-    type: 'error'
+    type: 'error',
+    content: ''
 };
