@@ -1,5 +1,6 @@
-// import { push } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import RegistrationRepository from '../repositories/RegistrationRepository';
+import { ErrorType } from '../../BaseTypes';
 import {
     RegistrationRequestType
 } from '../types/RegistrationTypes';
@@ -18,7 +19,7 @@ const createUserSuccess = payload => ({
 });
 
 const createUserError = errors => ({
-    type: CREATE_USER_SUCCESS,
+    type: CREATE_USER_FAIL,
     payload: null,
     errors
 });
@@ -30,7 +31,7 @@ const createUserError = errors => ({
  */
 export const createUser = registrationFormValues => {
     if (!RegistrationRequestType.is(registrationFormValues)) {
-        throw new TypeError('Invalid TaskItem type. Form values must be a RegistrationRequestType');
+        throw new TypeError('Invalid Registration type. Form values must be a RegistrationRequestType');
     }
 
     return dispatch => {
@@ -39,8 +40,8 @@ export const createUser = registrationFormValues => {
         return RegistrationRepository.createUser(registrationFormValues)
             .then(response => {
                 dispatch(createUserSuccess(response));
-                // return dispatch(push('/'));
+                return dispatch(push('/clients'));
             })
-            .catch(error => dispatch(createUserError(error)));
+            .catch(error => dispatch(createUserError(new ErrorType(error))));
     };
 };

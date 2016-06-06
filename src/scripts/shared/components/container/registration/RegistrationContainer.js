@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createUser } from '../../../domain/registration/actions/RegistrationActions';
+import CreateUser from '../../content/Registration/CreateUser';
 
 /**
  * @class RegistrationContainer
@@ -14,7 +15,9 @@ class RegistrationContainer extends Component {
     render() {
         return (
             <div className="wrapper">
-                { this.props.children }
+                <CreateUser
+                    userErrors={ this.props.userErrors }
+                    onCreateUser={ this.props.createUser }/>
             </div>
         );
     }
@@ -34,10 +37,10 @@ RegistrationContainer.displayName = 'RegistrationContainer';
  */
 RegistrationContainer.propTypes = {
     /**
-     * @property children
-     * @type {node}
+     * @property userErrors
+     * @type {Object}
      */
-    children: PropTypes.node,
+    userErrors: PropTypes.object,
 
     /**
      * @property createUser
@@ -52,7 +55,9 @@ RegistrationContainer.propTypes = {
  * @param  state {Object}
  * @return {Function}
  */
-const mapStoreToProps = state => ({});
+const mapStoreToProps = state => ({
+    userErrors: state.createUser.errors
+});
 
 /**
  * @method mapDispatchToProps

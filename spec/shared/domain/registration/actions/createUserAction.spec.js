@@ -13,7 +13,7 @@ import RegistrationRepository from '../../../../../src/scripts/shared/domain/reg
 
 import { ValidRegistrationRequestType } from '../../../../specHelper/fixtures/registration/RegistrationFixtures';
 
-// const ROUTER_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
+const ROUTER_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
 
 ava('createUser throws if data is not `RegistrationRequestType`', async t => {
     const dispatchSpy = sinon.spy();
@@ -46,23 +46,23 @@ ava('createUser dispatches success action when data resolves successfully', asyn
     RegistrationRepository.createUser = sinon.stub().resolves(ValidRegistrationRequestType);
     await createUser(ValidRegistrationRequestType)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === CREATE_USER_SUCCESS);
     t.truthy(objectPassedToSecondDispatch.payload === ValidRegistrationRequestType);
 });
 
-// ava('createUser dispatches react-router-redux `push` action that routes to `/registrations` url', async t => {
-//     const dispatchSpy = sinon.spy();
-//     RegistrationRepository.createUser = sinon.stub().resolves(ValidRegistrationRequestType);
-//     await createUser(ValidRegistrationRequestType)(dispatchSpy);
-//
-//     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
-//
-//     t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
-//     t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/registrations');
-// });
+ava('createUser dispatches react-router-redux `push` action that routes to `/clients` url', async t => {
+    const dispatchSpy = sinon.spy();
+    RegistrationRepository.createUser = sinon.stub().resolves(ValidRegistrationRequestType);
+    await createUser(ValidRegistrationRequestType)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
+    t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/clients');
+});
 
 ava.before(() => {
     sinon.stub(global.console, 'error', ()=> {});
@@ -73,7 +73,7 @@ ava.after(() => {
 });
 
 ava('createUser dispatches fail action when there is a failure', async t => {
-    const errorToThrow = new Error();
+    const errorToThrow = { data: {}, status: 123, statusText: 'Some Error Code' };
     const dispatchSpy = sinon.spy();
 
     RegistrationRepository.createUser = sinon.stub().rejects(errorToThrow);

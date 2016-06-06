@@ -11,11 +11,22 @@ export const UUID = t.refinement(t.String, s =>
 );
 
 /**
+ * @property ErrorType
+ * @type ErrorType
+ * @return {ErrorType}
+ */
+export const ErrorType = t.struct({
+    data: t.Object,
+    status: t.Number,
+    statusText: t.String
+}, 'ErrorType');
+
+/**
  * @property BaseStateType
  * @type BaseStateType
  * @return {BaseStateType}
  */
 export const BaseStateType = t.struct({
     isLoading: t.Boolean,
-    errors: t.maybe(t.Error)
+    errors: t.maybe(t.Object)
 }, 'BaseStateType');

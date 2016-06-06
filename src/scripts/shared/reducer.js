@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
+import createUser from './domain/registration/reducers/registrationReducer';
 import clients from './domain/client/reducers/clientListReducer';
 import client from './domain/client/reducers/ClientSingleReducer';
 import projectTypes from './domain/projectType/reducers/projectTypeListReducer';
@@ -9,6 +10,7 @@ import taskItems from './domain/taskItem/reducers/taskItemListReducer';
 import taskItem from './domain/taskItem/reducers/taskItemSingleReducer';
 
 export default () => combineReducers({
+    createUser,
     clients,
     client,
     projectTypes,

@@ -1,35 +1,65 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
 import { RegistrationRequestType } from '../../../domain/registration/types/RegistrationTypes';
+import FlashMessage from '../FlashMessage/FlashMessage';
 import Button from '../../layout/Button/Button';
 
 const Form = t.form.Form;
+
+/**
+ * @property FORM_OPTIONS
+ * @type {Object}
+ * @final
+ */
+const FORM_OPTIONS = {
+    fields: {
+        password: {
+            type: 'password'
+        },
+        password_confirmation: {
+            type: 'password'
+        }
+    }
+};
 
 /**
  * @class CreateUser
  * @extends React/Component
  */
 export default class CreateUser extends Component {
+
     /**
      * @method render
      * @return {JSX}
      */
     render() {
         return (
-            <div className="grid">
-                <div className="grid-col grid-col-md_4of6 mix-grid-col-md_push1of6">
-                    <Form
-                        ref="createUserForm"
-                        type={ RegistrationRequestType } />
+            <div>
+                {/* TODO: move to RegistrationContainer component */}
+                <FlashMessage />
 
-                    <Button onClick={ () => this.onSubmit() }>Add User</Button>
-                </div>
+                <Form
+                    ref="createUserForm"
+                    options={ FORM_OPTIONS }
+                    type={ RegistrationRequestType } />
+
+                <Button onClick={ this.onSubmit }>Add User</Button>
             </div>
         );
     }
 
-    onClick = event => {
-        console.log(this.refs.createUserForm.getValue());
+    /**
+     * @for CreateUser
+     * @method onSubmit
+     * @return {Function}
+     * @callback
+     */
+    onSubmit = () => {
+        const createUserFormValues = this.refs.createUserForm.getValue();
+
+        if (!t.Nil.is(createUserFormValues)) {
+            this.props.onCreateUser(createUserFormValues);
+        }
     }
 }
 
@@ -45,4 +75,17 @@ CreateUser.displayName = 'CreateUser';
  * @type {Object}
  * @static
  */
-CreateUser.propTypes = {};
+CreateUser.propTypes = {
+    /**
+     * @property userErrors
+     * @type {Object}
+     */
+    userErrors: PropTypes.object,
+
+    /**
+     * @property onCreateUser
+     * @type {Function}
+     * @required
+     */
+    onCreateUser: PropTypes.func.isRequired
+};

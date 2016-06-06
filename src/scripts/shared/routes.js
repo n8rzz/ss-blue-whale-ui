@@ -31,9 +31,7 @@ export default function(store) {
     return (
         <Route component={ App } path="/">
 
-            <Route path="users" component={ RegistrationContainer }>
-                <Route path="new" component={ CreateUser } />
-            </Route>
+            <Route path="users/new" component={ RegistrationContainer } />
 
             <Route path="clients" component={ ClientRoot }>
                 <IndexRoute component={ ClientListContainer } />
