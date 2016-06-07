@@ -33,7 +33,7 @@ const writeAuthenticationMiddlewareLog = (action, token, session) => {
     }
 
     console.groupCollapsed('AuthenticationMiddleware: ', action.type);
-    console.log('authenticated:\t\t ', token !== null, token);
+    console.log('isAuthenticated:\t\t ', token !== null, token);
     console.log('sessionState:\t\t ', session.payload);
     console.log('sessionStateErrors:\t ', session.errors);
     console.groupEnd();
@@ -63,15 +63,15 @@ export const authenticationMiddleware = (push, shouldUseLogger = true) => {
             type === CREATE_SESSION_SUCCESS ||
             type === UNAUTHORIZED_SESSION;
 
+        if (shouldUseLogger) {
+            writeAuthenticationMiddlewareLog(action, token, session);
+        }
+
         if (isLoginPathname || isAllowedActionWithoutToken) {
             return next(action);
         }
 
         if (t.Nil.is(token) && t.Nil.is(session.payload)) {
-            if (shouldUseLogger) {
-                writeAuthenticationMiddlewareLog(action, token, session);
-            }
-
             dispatch(unauthorizedSession(authError));
             return dispatch(push('/login'));
         }
