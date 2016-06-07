@@ -11,7 +11,10 @@ import {
 
 import SessionRepository from '../../../../../src/scripts/shared/domain/session/repositories/SessionRepository';
 
-import { ValidSessionRequestType } from '../../../../specHelper/fixtures/session/SessionFixutes';
+import {
+    ValidSessionRequestType,
+    ValidSessionResponseType
+} from '../../../../specHelper/fixtures/session/SessionFixutes';
 
 const ROUTER_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
 
@@ -27,7 +30,7 @@ ava('createSession throws if data is not `SessionRequestType`', async t => {
 
 ava('createSession dispatches start action', async t => {
     const dispatchSpy = sinon.spy();
-    SessionRepository.createSession = sinon.stub().resolves();
+    SessionRepository.createSession = sinon.stub().resolves(ValidSessionResponseType);
     await createSession(ValidSessionRequestType)(dispatchSpy);
 
     t.truthy(dispatchSpy.calledWith({ type: CREATE_SESSION_START }));
@@ -35,7 +38,7 @@ ava('createSession dispatches start action', async t => {
 
 ava('createSession calls the Registration repository', async t => {
     const dispatchSpy = sinon.spy();
-    SessionRepository.createSession = sinon.stub().resolves(ValidSessionRequestType);
+    SessionRepository.createSession = sinon.stub().resolves(ValidSessionResponseType);
     await createSession(ValidSessionRequestType)(dispatchSpy);
 
     t.truthy(SessionRepository.createSession.called);
@@ -43,19 +46,19 @@ ava('createSession calls the Registration repository', async t => {
 
 ava('createSession dispatches success action when data resolves successfully', async t => {
     const dispatchSpy = sinon.spy();
-    SessionRepository.createSession = sinon.stub().resolves(ValidSessionRequestType);
+    SessionRepository.createSession = sinon.stub().resolves(ValidSessionResponseType);
     await createSession(ValidSessionRequestType)(dispatchSpy);
 
     t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === CREATE_SESSION_SUCCESS);
-    t.truthy(objectPassedToSecondDispatch.payload === ValidSessionRequestType);
+    t.truthy(objectPassedToSecondDispatch.payload === ValidSessionResponseType);
 });
 
 ava('createSession dispatches react-router-redux `push` action that routes to `/clients` url', async t => {
     const dispatchSpy = sinon.spy();
-    SessionRepository.createSession = sinon.stub().resolves(ValidSessionRequestType);
+    SessionRepository.createSession = sinon.stub().resolves(ValidSessionResponseType);
     await createSession(ValidSessionRequestType)(dispatchSpy);
 
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];

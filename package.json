@@ -27,7 +27,8 @@
     "verbose": true,
     "require": [
       "babel-core/register",
-      "./spec/specHelper/globalConfig"
+      "./spec/specHelper/globalConfig",
+      "./spec/specHelper/localStorageMock"
     ]
   },
   "nyc": {

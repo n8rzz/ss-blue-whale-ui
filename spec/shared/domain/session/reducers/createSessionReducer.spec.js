@@ -12,7 +12,7 @@ import {
     ValidSessionResponseType
 } from '../../../../specHelper/fixtures/session/SessionFixutes';
 
-ava('createUser reducer goes into loading state until data is resolved', t => {
+ava('createSession reducer goes into loading state until data is resolved', t => {
     t.notThrows(() => {
         reducer(undefined, {
             type: CREATE_SESSION_START
@@ -27,7 +27,26 @@ ava('createUser reducer goes into loading state until data is resolved', t => {
     t.is(loadingState.errors, null);
 });
 
-ava('createUser reducer sets payload', t => {
+ava('createSession reducer clears errors when in loading state', t => {
+    const networkError = new Error('network error');
+
+    reducer(undefined, {
+        type: CREATE_SESSION_FAIL,
+        errors: networkError
+    });
+
+    t.notThrows(() => {
+        reducer(undefined, {
+            type: CREATE_SESSION_START
+        });
+    });
+
+    const loadingState = reducer(undefined, { type: CREATE_SESSION_START });
+
+    t.is(loadingState.errors, null);
+});
+
+ava('createSession reducer sets payload', t => {
     t.notThrows(() => {
         reducer(undefined, {
             type: CREATE_SESSION_SUCCESS,
@@ -44,7 +63,7 @@ ava('createUser reducer sets payload', t => {
     t.is(loadingState.errors, null);
 });
 
-ava('createUser reducer handles network errors by returning error state', t => {
+ava('createSession reducer handles network errors by returning error state', t => {
     const networkError = new Error('network error');
     t.notThrows(() => {
         reducer(undefined, {

@@ -2,7 +2,8 @@ import { push } from 'react-router-redux';
 import SessionRepository from '../repositories/SessionRepository';
 import { ErrorType } from '../../BaseTypes';
 import {
-    SessionRequestType
+    SessionRequestType,
+    SessionResponseType
 } from '../types/SessionTypes';
 
 export const CREATE_SESSION_START = 'CREATE_SESSION_START';
@@ -39,9 +40,33 @@ export const createSession = sessionFormValues => {
 
         return SessionRepository.createSession(sessionFormValues)
             .then(response => {
-                dispatch(createSessionSuccess(response));
+                dispatch(createSessionSuccess(new SessionResponseType(response)));
+                // TODO: abstract to utility
+                localStorage.setItem('token', response.access_token);
                 return dispatch(push('/clients'));
             })
             .catch(error => dispatch(createSessionError(new ErrorType(error))));
+    };
+};
+
+export const UNAUTHORIZED_SESSION = 'UNAUTHORIZED_SESSION';
+
+const unauthorizedSessionError = error => ({
+    type: UNAUTHORIZED_SESSION,
+    errors: error
+});
+
+/**
+ * @function unauthorizedSession
+ * @param {ErrorType|Object} error
+ * @return {Function} dispatch
+ */
+export const unauthorizedSession = error => {
+    if (!ErrorType.is(error)) {
+        throw new TypeError('Invalid paramater. Expected `error` to be an `ErrorType`');
+    }
+
+    return dispatch => {
+        dispatch(unauthorizedSessionError(error));
     };
 };

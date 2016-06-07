@@ -5,6 +5,8 @@ import {
     CREATE_SESSION_START,
     CREATE_SESSION_SUCCESS,
     CREATE_SESSION_FAIL,
+
+    UNAUTHORIZED_SESSION
 } from '../actions/SessionActions';
 
 const INITIAL_STATE = new SessionStateType({
@@ -35,6 +37,13 @@ export default createReducer(INITIAL_STATE, {
         state,
         {
             isLoading: false,
+            errors
+        }
+    ),
+
+    [UNAUTHORIZED_SESSION]: (state, { errors }) => mergeState(
+        state,
+        {
             errors
         }
     )

@@ -16,7 +16,7 @@ export const UUID = t.refinement(t.String, s =>
  * @return {ErrorType}
  */
 export const ErrorType = t.struct({
-    data: t.Object,
+    data: t.maybe(t.Object),
     status: t.Number,
     statusText: t.String
 }, 'ErrorType');
