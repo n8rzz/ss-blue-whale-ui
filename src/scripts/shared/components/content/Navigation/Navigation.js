@@ -47,14 +47,13 @@ const LINK_CONTENT = {
  */
 export default class Navigation extends Component {
     /**
+     * @for Navigation
      * @method _composeTextOrIcon
      * @param  {String} linkName
      * @return {String|JSX}
      */
     _composeTextOrIcon(linkName) {
-        return this.props.isCollapsed
-            ? LINK_CONTENT[linkName].ICON
-            : LINK_CONTENT[linkName].TEXT;
+        return this.props.isCollapsed ? LINK_CONTENT[linkName].ICON : LINK_CONTENT[linkName].TEXT;
     }
 
     // TODO: abstract out to new component
@@ -70,6 +69,7 @@ export default class Navigation extends Component {
     }
 
     /**
+     * @for Navigation
      * @method render
      * @return {JSX}
      */
@@ -99,7 +99,7 @@ export default class Navigation extends Component {
                         { this._composeNavigationItemLink('login', 'DASHBOARD') }
                     </li>
                     <li className="navigation-item">
-                        <a
+                        <a href="#"
                             className="navigation-item-link"
                             onClick={ this.onRequestToLogout }>
                             { this._composeTextOrIcon('LOGOUT') }
@@ -111,6 +111,7 @@ export default class Navigation extends Component {
     }
 
     /**
+     * @for Navigation
      * @method onRequestToLogout
      * @param {React.SyntheticEvent} event
      * @return {Function}
@@ -119,7 +120,7 @@ export default class Navigation extends Component {
     onRequestToLogout = event => {
         event.preventDefault();
 
-        console.log('onRequestToLogout');
+        this.props.onRequestToLogout();
     }
 }
 
@@ -142,5 +143,12 @@ Navigation.propTypes = {
      * @property isCollapsed
      * @type {Boolean}
      */
-    isCollapsed: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+    isCollapsed: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+
+    /**
+     * @property onRequestToLogout
+     * @type {Function}
+     * @required
+     */
+    onRequestToLogout: PropTypes.func.isRequired
 };

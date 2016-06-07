@@ -22,13 +22,13 @@ export default class Sidebar extends Component {
 
         stateUpdates.isCollapsed = false;
         if (localStorage.getItem(STORAGE_ITEM)) {
-            const storedIsCollapsed = localStorage.getItem(STORAGE_ITEM) === 'true'
+            const previousCollapsedState = localStorage.getItem(STORAGE_ITEM) === 'true'
                 ? true :
                 localStorage.getItem(STORAGE_ITEM) === 'false'
                     ? false :
                     null;
 
-            stateUpdates.isCollapsed = storedIsCollapsed;
+            stateUpdates.isCollapsed = previousCollapsedState;
         }
 
         this.state = stateUpdates;
@@ -59,7 +59,9 @@ export default class Sidebar extends Component {
                 </div>
 
                 <div className="sidebar-bd">
-                    <Navigation isCollapsed={ this.state.isCollapsed } />
+                    <Navigation
+                        isCollapsed={ this.state.isCollapsed }
+                        onRequestToLogout={ this.props.onRequestToLogout }/>
                 </div>
 
                 <div className="sidebar-ft">
@@ -101,4 +103,11 @@ Sidebar.displayName = 'Sidebar';
  * @type {Object}
  * @static
  */
-Sidebar.propTypes = {};
+Sidebar.propTypes = {
+    /**
+     * @property onRequestToLogout
+     * @type {Function}
+     * @required
+     */
+    onRequestToLogout: PropTypes.func.isRequired
+};
