@@ -1,4 +1,6 @@
 import { push } from 'react-router-redux';
+import _get from 'lodash/get';
+
 import SessionRepository from '../repositories/SessionRepository';
 import { ErrorType } from '../../BaseTypes';
 import {
@@ -68,5 +70,50 @@ export const unauthorizedSession = error => {
 
     return dispatch => {
         dispatch(unauthorizedSessionError(error));
+    };
+};
+
+export const DESTROY_SESSION_START = 'DESTROY_SESSION_START';
+export const DESTROY_SESSION_SUCCESS = 'DESTROY_SESSION_SUCCESS';
+export const DESTROY_SESSION_FAIL = 'DESTROY_SESSION_FAIL';
+
+const destroySessionStart = () => ({
+    type: DESTROY_SESSION_START
+});
+
+const destroySessionSuccess = () => ({
+    type: DESTROY_SESSION_SUCCESS
+});
+
+const destroySessionError = error => ({
+    type: DESTROY_SESSION_FAIL,
+    errors: error
+});
+
+/**
+ *
+ * @function destroySession
+ * @return {Function}
+ */
+export const destroySession = () => {
+    return (dispatch, getState) => {
+        dispatch(destroySessionStart());
+
+        const { session } = getState();
+        const sessionToken = _get(session, 'payload.access_token', null);
+
+        if (!sessionToken) {
+            dispatch(destroySessionError(new ErrorType({
+                status: 404,
+                statusText: 'No session found. Please log in.'
+            })));
+
+            return dispatch(push('/login'));
+        }
+
+        localStorage.removeItem('token');
+
+        dispatch(destroySessionSuccess());
+        return dispatch(push('/login'));
     };
 };

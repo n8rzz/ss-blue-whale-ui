@@ -10,11 +10,11 @@ import { ErrorType } from '../../domain/BaseTypes';
 
 /**
  * @property authError
- * @return {ErrorType}
+ * @type {ErrorType|Object}
  */
 const authError = new ErrorType({
     status: 401,
-    statusText: 'Unauthorized'
+    statusText: 'Unauthorized.  Please Login.'
 });
 
 /**
@@ -40,7 +40,7 @@ const writeAuthenticationMiddlewareLog = (action, token, session) => {
 };
 
 /**
- * Determine if a session token exists in localStorage or in the current state.
+ * Determine if a session token exists in localStorage or the current application state.
  *
  * Redirect to `/login` if no token is found.
  *

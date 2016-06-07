@@ -6,7 +6,11 @@ import {
     CREATE_SESSION_SUCCESS,
     CREATE_SESSION_FAIL,
 
-    UNAUTHORIZED_SESSION
+    UNAUTHORIZED_SESSION,
+
+    DESTROY_SESSION_START,
+    DESTROY_SESSION_SUCCESS,
+    DESTROY_SESSION_FAIL
 } from '../actions/SessionActions';
 
 const INITIAL_STATE = new SessionStateType({
@@ -42,6 +46,25 @@ export default createReducer(INITIAL_STATE, {
     ),
 
     [UNAUTHORIZED_SESSION]: (state, { errors }) => mergeState(
+        state,
+        {
+            errors
+        }
+    ),
+
+    [DESTROY_SESSION_START]: (state) => mergeState(
+        state,
+        {
+            isLoading: true
+        }
+    ),
+
+    [DESTROY_SESSION_SUCCESS]: (state) => mergeState(
+        state,
+        INITIAL_STATE
+    ),
+
+    [DESTROY_SESSION_FAIL]: (state, { errors }) => mergeState(
         state,
         {
             errors
