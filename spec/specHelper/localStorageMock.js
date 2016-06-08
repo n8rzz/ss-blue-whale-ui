@@ -12,7 +12,7 @@ const localStorageMock = (() => {
         },
 
         setItem: (key, value) => {
-            store[key] = value.toString();
+            store[key] = typeof value === 'object' ? JSON.stringify(value) : value.toString();
         },
 
         removeItem: (key) => {
