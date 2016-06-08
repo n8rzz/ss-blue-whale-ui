@@ -1,3 +1,4 @@
+/* eslint dot-notation: 0 */
 import axios from 'axios';
 import { push } from 'react-router-redux';
 import _get from 'lodash/get';

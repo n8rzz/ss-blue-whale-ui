@@ -100,3 +100,28 @@ ava('#_addSessionToStorage() adds the current _session to localStorage', t => {
     t.truthy(result !== null);
     t.truthy(result.access_token === ValidSessionResponseType.access_token);
 });
+
+ava('#clearSession() calls #_clearSessionInStorage()', t => {
+    const spy = sinon.spy(sessionService, '_clearSessionInStorage');
+
+    sessionService.clearSession();
+
+    t.truthy(spy.calledOnce);
+});
+
+ava('#clearSession() resets _session to an empty object', t => {
+    sessionService._session = ValidSessionResponseType;
+
+    sessionService.clearSession();
+    t.truthy(_isEmpty(sessionService._session));
+});
+
+ava('#_clearSessionInStorage() removes a stored session from localStorage', t => {
+    localStorage.setItem('session', ValidSessionResponseType);
+    sessionService._session = ValidSessionResponseType;
+
+    sessionService.clearSession();
+    const sessionInStorage = JSON.parse(localStorage.getItem('session'));
+
+    t.truthy(sessionInStorage === null);
+});

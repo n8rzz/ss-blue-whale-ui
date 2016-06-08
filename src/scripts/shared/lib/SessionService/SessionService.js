@@ -1,3 +1,4 @@
+/* eslint dot-notation: 0 */
 import _get from 'lodash/get';
 import { SessionResponseType } from '../../domain/session/types/SessionTypes';
 
@@ -85,6 +86,21 @@ export default class SessionService {
         localStorage.setItem(AUTH_TOKEN_KEY, this._session);
     }
 
+    /**
+     * Removes a stored session from localStorage if one exists
+     *
+     * @private
+     * @for SessionService
+     * @method _clearSessionInStorage
+     */
+    _clearSessionInStorage() {
+        if (!this._hasSessionInStorage()) {
+            return;
+        }
+
+        localStorage.removeItem(AUTH_TOKEN_KEY);
+    }
+
     // ///////////////////////////////////////////////////////
     // PUBLIC METHODS
     // ///////////////////////////////////////////////////////
@@ -122,5 +138,17 @@ export default class SessionService {
         this._session = this._getSessionFromStorage();
 
         return this._session;
+    }
+
+    /**
+     * Clear any session data currently in cache or storage
+     *
+     * @for SessionService
+     * @method clearSession
+     */
+    clearSession() {
+        this._clearSessionInStorage();
+
+        this._session = {};
     }
 }
