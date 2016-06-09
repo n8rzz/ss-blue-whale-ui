@@ -46,8 +46,6 @@ export const createSession = sessionFormValues => {
             .then(response => {
                 dispatch(createSessionSuccess(new SessionResponseType(response)));
 
-                // TODO: abstract to utility
-                localStorage.setItem('token', response.access_token);
                 axios.defaults.headers.common['Authorization'] = response.access_token;
 
                 return dispatch(push('/clients'));

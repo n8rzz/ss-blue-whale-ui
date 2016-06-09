@@ -83,7 +83,7 @@ export default class SessionService {
      * @method _addSessionToStorage
      */
     _addSessionToStorage() {
-        localStorage.setItem(AUTH_TOKEN_KEY, this._session);
+        localStorage.setItem(AUTH_TOKEN_KEY, JSON.stringify(this._session));
     }
 
     /**
