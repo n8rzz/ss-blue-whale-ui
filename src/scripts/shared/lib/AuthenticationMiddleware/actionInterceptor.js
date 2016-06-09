@@ -1,4 +1,9 @@
 import {
+    addSessionTokenToDefaultHeaders,
+    removeSessionTokenFromDefaultHeaders
+} from '../RequestHeaderService';
+
+import {
     CREATE_SESSION_START,
     CREATE_SESSION_SUCCESS,
 
@@ -54,9 +59,11 @@ export const isAllowedActionWithoutToken = ({ type }) => {
 export const sessionActionSuccessInterceptor = ({ type, payload }, sessionService) => {
     if (type === CREATE_SESSION_SUCCESS) {
         captureNewSessionInStorage(payload, sessionService);
+        addSessionTokenToDefaultHeaders(sessionService.token);
     }
 
     if (type === DESTROY_SESSION_SUCCESS) {
         destroyCurrentSessionInStorage(sessionService);
+        removeSessionTokenFromDefaultHeaders();
     }
 };

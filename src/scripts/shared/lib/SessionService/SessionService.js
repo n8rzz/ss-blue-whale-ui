@@ -3,11 +3,11 @@ import _get from 'lodash/get';
 import { SessionResponseType } from '../../domain/session/types/SessionTypes';
 
 /**
- * @property AUTH_TOKEN_KEY
+ * @property STORAGE_KEY
  * @type {string}
  * @final
  */
-const AUTH_TOKEN_KEY = 'session';
+const STORAGE_KEY = 'session';
 
 /**
  * Provides methods to store/retrieve _session data in memory and/or localStorage
@@ -51,7 +51,7 @@ export default class SessionService {
      * @return {Boolean}
      */
     _hasSessionInStorage() {
-        const sessionInStorage = localStorage.getItem(AUTH_TOKEN_KEY);
+        const sessionInStorage = localStorage.getItem(STORAGE_KEY);
 
         return sessionInStorage !== null;
     }
@@ -69,7 +69,7 @@ export default class SessionService {
             return null;
         }
 
-        const session = JSON.parse(localStorage.getItem(AUTH_TOKEN_KEY));
+        const session = JSON.parse(localStorage.getItem(STORAGE_KEY));
         const sessionResponseType = new SessionResponseType(session);
 
         return sessionResponseType;
@@ -83,7 +83,7 @@ export default class SessionService {
      * @method _addSessionToStorage
      */
     _addSessionToStorage() {
-        localStorage.setItem(AUTH_TOKEN_KEY, JSON.stringify(this._session));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this._session));
     }
 
     /**
@@ -98,7 +98,7 @@ export default class SessionService {
             return;
         }
 
-        localStorage.removeItem(AUTH_TOKEN_KEY);
+        localStorage.removeItem(STORAGE_KEY);
     }
 
     // ///////////////////////////////////////////////////////

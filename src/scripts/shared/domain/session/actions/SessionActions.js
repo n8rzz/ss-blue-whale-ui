@@ -1,5 +1,4 @@
 /* eslint dot-notation: 0 */
-import axios from 'axios';
 import { push } from 'react-router-redux';
 import _get from 'lodash/get';
 
@@ -45,9 +44,6 @@ export const createSession = sessionFormValues => {
         return SessionRepository.createSession(sessionFormValues)
             .then(response => {
                 dispatch(createSessionSuccess(new SessionResponseType(response)));
-
-                axios.defaults.headers.common['Authorization'] = response.access_token;
-
                 return dispatch(push('/clients'));
             })
             .catch(error => dispatch(createSessionError(new ErrorType(error))));
@@ -111,14 +107,8 @@ export const destroySession = () => {
                 statusText: 'No session found. Please log in.'
             })));
 
-            // TODO: abstract into a utility
-            axios.defaults.headers.common['Authorization'] = null;
             return dispatch(push('/login'));
         }
-
-        // TODO: abstract into a utility
-        localStorage.removeItem('token');
-        axios.defaults.headers.common['Authorization'] = null;
 
         dispatch(destroySessionSuccess());
         return dispatch(push('/login'));
