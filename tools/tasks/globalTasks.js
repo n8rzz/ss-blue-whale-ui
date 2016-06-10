@@ -53,14 +53,6 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
-    var runSequence = require('run-sequence');
 
     gulp.task('clean', ['clean:dest:assets']);
-    gulp.task('release', function() {
-        runSequence(
-            'build',
-            'bump',
-            'tag'
-        );
-    });
 }
