@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
     addSessionTokenToDefaultHeaders,
     removeSessionTokenFromDefaultHeaders
@@ -6,11 +8,16 @@ import {
 import {
     CREATE_SESSION_START,
     CREATE_SESSION_SUCCESS,
-
     DESTROY_SESSION_SUCCESS,
-
     UNAUTHORIZED_SESSION,
 } from '../../domain/session/actions/SessionActions';
+
+/**
+ * @property AUTH_HEADER_KEY
+ * @type {string}
+ * @final
+ */
+const AUTH_HEADER_KEY = 'Authorization';
 
 /**
  *
@@ -57,6 +64,8 @@ export const isAllowedActionWithoutToken = ({ type }) => {
  * @param {SessionService|class} sessionService
  */
 export const sessionActionSuccessInterceptor = ({ type, payload }, sessionService) => {
+    const defaultAuthorizationHeader = axios.defaults.headers.common[AUTH_HEADER_KEY];
+
     if (type === CREATE_SESSION_SUCCESS) {
         captureNewSessionInStorage(payload, sessionService);
         addSessionTokenToDefaultHeaders(sessionService.token);
@@ -65,5 +74,9 @@ export const sessionActionSuccessInterceptor = ({ type, payload }, sessionServic
     if (type === DESTROY_SESSION_SUCCESS) {
         destroyCurrentSessionInStorage(sessionService);
         removeSessionTokenFromDefaultHeaders();
+    }
+
+    if (typeof defaultAuthorizationHeader === 'undefined' && sessionService.token !== null) {
+        addSessionTokenToDefaultHeaders(sessionService.token);
     }
 };
