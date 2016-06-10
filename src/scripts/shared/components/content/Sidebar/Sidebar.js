@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames  from 'classNames';
 import SidebarTrigger from './SidebarTrigger';
 import Navigation from '../../content/Navigation/Navigation';
 
@@ -21,16 +22,28 @@ export default class Sidebar extends Component {
 
         stateUpdates.isCollapsed = false;
         if (localStorage.getItem(STORAGE_ITEM)) {
-            const storedIsCollapsed = localStorage.getItem(STORAGE_ITEM) === 'true'
+            const previousCollapsedState = localStorage.getItem(STORAGE_ITEM) === 'true'
                 ? true :
                 localStorage.getItem(STORAGE_ITEM) === 'false'
                     ? false :
                     null;
 
-            stateUpdates.isCollapsed = storedIsCollapsed;
+            stateUpdates.isCollapsed = previousCollapsedState;
         }
 
         this.state = stateUpdates;
+    }
+
+    /**
+     * @for Sidebar
+     * @method buildClassNames
+     * @return {Function|String} classNames
+     */
+    buildClassNames() {
+        return classNames({
+            sidebar: true,
+            'mix-sidebar_collapsed': this.state.isCollapsed
+        });
     }
 
     /**
@@ -39,16 +52,16 @@ export default class Sidebar extends Component {
      * @return {JSX}
      */
     render() {
-        const sidebarClassnames = this.state.isCollapsed ? 'sidebar mix-sidebar_collapsed' : 'sidebar';
-
         return (
-            <div className={ sidebarClassnames }>
+            <div className={ this.buildClassNames() }>
                 <div className="sidebar-hd">
                     <button>DASHBOARD</button>
                 </div>
 
                 <div className="sidebar-bd">
-                    <Navigation isCollapsed={ this.state.isCollapsed } />
+                    <Navigation
+                        isCollapsed={ this.state.isCollapsed }
+                        onRequestToLogout={ this.props.onRequestToLogout }/>
                 </div>
 
                 <div className="sidebar-ft">
@@ -90,4 +103,11 @@ Sidebar.displayName = 'Sidebar';
  * @type {Object}
  * @static
  */
-Sidebar.propTypes = {};
+Sidebar.propTypes = {
+    /**
+     * @property onRequestToLogout
+     * @type {Function}
+     * @required
+     */
+    onRequestToLogout: PropTypes.func.isRequired
+};

@@ -30,6 +30,14 @@ const LINK_CONTENT = {
     TASK_ITEMS: {
         TEXT: 'Task Items',
         ICON: <span className="entypo-list"></span>
+    },
+    DASHBOARD: {
+        TEXT: 'Dashboard',
+        ICON: <span className="entypo-cog"></span>
+    },
+    LOGOUT: {
+        TEXT: 'Logout',
+        ICON: <span className="entypo-logout"></span>
     }
 };
 
@@ -39,17 +47,29 @@ const LINK_CONTENT = {
  */
 export default class Navigation extends Component {
     /**
+     * @for Navigation
      * @method _composeTextOrIcon
      * @param  {String} linkName
      * @return {String|JSX}
      */
     _composeTextOrIcon(linkName) {
-        return this.props.isCollapsed
-            ? LINK_CONTENT[linkName].ICON
-            : LINK_CONTENT[linkName].TEXT;
+        return this.props.isCollapsed ? LINK_CONTENT[linkName].ICON : LINK_CONTENT[linkName].TEXT;
+    }
+
+    // TODO: abstract out to new component
+    _composeNavigationItemLink(url, linkItem) {
+        return (
+            <Link
+                to={ `/${url}` }
+                className="navigation-item-link"
+                activeClassName="navigation-item-link_isActive">
+                { this._composeTextOrIcon(linkItem) }
+            </Link>
+        );
     }
 
     /**
+     * @for Navigation
      * @method render
      * @return {JSX}
      */
@@ -58,50 +78,49 @@ export default class Navigation extends Component {
             <div className="navigation">
                 <ul>
                     <li className="navigation-item">
-                        <Link
-                            to="/clients"
-                            className="navigation-item-link"
-                            activeClassName="navigation-item-link_isActive">
-                            { this._composeTextOrIcon('CLIENTS') }
-                        </Link>
+                        { this._composeNavigationItemLink('clients', 'CLIENTS') }
                         <ul>
                             <li className="navigation-item">
-                                <Link
-                                    className="navigation-item-link"
-                                    to="/clients/create"
-                                    activeClassName="navigation-item-link_isActive">
-                                    { this._composeTextOrIcon('CREATE_CLIENT') }
-                                </Link>
+                                { this._composeNavigationItemLink('clients/create', 'CREATE_CLIENT') }
                             </li>
                         </ul>
                     </li>
                     <li className="navigation-item">
-                        <Link
-                            to="/projects"
-                            className="navigation-item-link"
-                            activeClassName="navigation-item-link_isActive">
-                            { this._composeTextOrIcon('PROJECTS') }
-                        </Link>
+                        { this._composeNavigationItemLink('projects', 'PROJECTS') }
                     </li>
                     <li className="navigation-item">
-                        <Link
-                            to="/projectTypes"
-                            className="navigation-item-link"
-                            activeClassName="navigation-item-link_isActive">
-                            { this._composeTextOrIcon('PROJECT_TYPES') }
-                        </Link>
+                        { this._composeNavigationItemLink('projectTypes', 'PROJECT_TYPES') }
                     </li>
                     <li className="navigation-item">
-                        <Link
-                            to="/taskItems"
+                        { this._composeNavigationItemLink('taskItems', 'TASK_ITEMS') }
+                    </li>
+                    <li className="navigation-item">
+                        {/* TODO: change link to 'dashboard' */}
+                        { this._composeNavigationItemLink('login', 'DASHBOARD') }
+                    </li>
+                    <li className="navigation-item">
+                        <a href="#"
                             className="navigation-item-link"
-                            activeClassName="navigation-item-link_isActive">
-                            { this._composeTextOrIcon('TASK_ITEMS') }
-                        </Link>
+                            onClick={ this.onRequestToLogout }>
+                            { this._composeTextOrIcon('LOGOUT') }
+                        </a>
                     </li>
                 </ul>
             </div>
         );
+    }
+
+    /**
+     * @for Navigation
+     * @method onRequestToLogout
+     * @param {React.SyntheticEvent} event
+     * @return {Function}
+     * @callback
+     */
+    onRequestToLogout = event => {
+        event.preventDefault();
+
+        this.props.onRequestToLogout();
     }
 }
 
@@ -124,5 +143,12 @@ Navigation.propTypes = {
      * @property isCollapsed
      * @type {Boolean}
      */
-    isCollapsed: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+    isCollapsed: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+
+    /**
+     * @property onRequestToLogout
+     * @type {Function}
+     * @required
+     */
+    onRequestToLogout: PropTypes.func.isRequired
 };
