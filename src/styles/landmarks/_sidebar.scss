@@ -25,9 +25,15 @@
     @include base-transition;
 }
 
+// .sidebar-hd {}
+
 .sidebar-hd > button {
     @include sidebar-action-bar;
 }
+
+// .sidebar-hd > a {
+//     color: inherit;
+// }
 
 // .sidebar-bd {}
 
