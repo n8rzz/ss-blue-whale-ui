@@ -11,11 +11,10 @@ import SessionService from '../shared/lib/SessionService/SessionService';
 let sessionService = new SessionService();
 
 export default function(reducer, routes) {
-    const shouldUseAuthLogger = false;
     const store = applyMiddleware(
         thunk,
         routerMiddleware(browserHistory),
-        authenticationMiddleware(push, sessionService, shouldUseAuthLogger)
+        authenticationMiddleware(push, sessionService)
     )((global.devToolsExtension ? global.devToolsExtension()(createStore) : createStore))(reducer());
 
     // connect redux-simple-router to the app's history and store

@@ -1,6 +1,5 @@
 import t from 'tcomb';
 
-import logger from './logger';
 import { retrieveSessionToken } from './tokenStorageHelper';
 import {
     isLoginPathname,
@@ -8,7 +7,11 @@ import {
     sessionActionSuccessInterceptor
 } from './actionInterceptor';
 
-import { unauthorizedSession } from '../../domain/session/actions/SessionActions';
+import {
+    CREATE_SESSION_SUCCESS,
+    unauthorizedSession
+} from '../../domain/session/actions/SessionActions';
+
 import { ErrorType } from '../../domain/BaseTypes';
 
 /**
@@ -19,6 +22,13 @@ const authError = new ErrorType({
     status: 401,
     statusText: 'Unauthorized.  Please Login.'
 });
+
+const addStoredSessionToAppState = (dispatch, sessionService) => {
+    dispatch({
+        type: CREATE_SESSION_SUCCESS,
+        payload: sessionService.session
+    });
+}
 
 /**
  *
@@ -38,15 +48,13 @@ const redirectToLogin = (dispatch, push) => {
  *
  * @function authenticationMiddleware
  * @param {Function} push
- * @param {Boolean} shouldUseLogger
  * @return {Function}
  */
-export const authenticationMiddleware = (push, sessionService, shouldUseLogger = true) => {
+export const authenticationMiddleware = (push, sessionService) => {
     return ({ dispatch, getState }) => next => action => {
         const session = getState().session;
         const token = retrieveSessionToken(sessionService);
 
-        logger(shouldUseLogger, action, token, session);
         sessionActionSuccessInterceptor(action, sessionService);
 
         if (isLoginPathname(action) || isAllowedActionWithoutToken(action)) {
@@ -55,6 +63,10 @@ export const authenticationMiddleware = (push, sessionService, shouldUseLogger =
 
         if (t.Nil.is(token) && t.Nil.is(session.payload)) {
             return redirectToLogin(dispatch, push);
+        }
+
+        if (!t.Nil.is(token) && t.Nil.is(session.payload)) {
+            addStoredSessionToAppState(dispatch, sessionService);
         }
 
         next(action);

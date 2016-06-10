@@ -31,6 +31,15 @@ export default class SessionService {
 
     /**
      * @for SessionService
+     * @property session
+     * @return {SessionResponseType} _session
+     */
+    get session() {
+        return this._session;
+    }
+
+    /**
+     * @for SessionService
      * @property token
      * @return {String} _session.access_token
      */

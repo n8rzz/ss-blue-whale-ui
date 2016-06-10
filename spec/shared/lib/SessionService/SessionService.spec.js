@@ -20,6 +20,16 @@ ava('SessionService initializes _session as null', t => {
     t.truthy(_isEmpty(sessionService._session));
 });
 
+ava('.session returns an empty object if no session exists', t => {
+    t.truthy(_isEmpty(sessionService.session));
+});
+
+ava('.session returns the cached session', t => {
+    sessionService._session = ValidSessionResponseType;
+
+    t.truthy(sessionService.session === ValidSessionResponseType);
+});
+
 ava('.token returns null if no access_token exists', t => {
     t.truthy(sessionService.token === null);
 });

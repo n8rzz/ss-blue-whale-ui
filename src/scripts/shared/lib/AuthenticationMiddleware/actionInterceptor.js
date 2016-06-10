@@ -75,8 +75,4 @@ export const sessionActionSuccessInterceptor = ({ type, payload }, sessionServic
         destroyCurrentSessionInStorage(sessionService);
         removeSessionTokenFromDefaultHeaders();
     }
-
-    if (typeof defaultAuthorizationHeader === 'undefined' && sessionService.token !== null) {
-        addSessionTokenToDefaultHeaders(sessionService.token);
-    }
 };
