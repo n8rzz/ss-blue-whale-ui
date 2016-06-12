@@ -46,11 +46,21 @@ ava('createProjectType dispatches success action when data resolves successfully
     ProjectTypeRepository.createProjectType = sinon.stub().resolves(ValidProjectTypeCreationType);
     await createProjectType(ValidProjectTypeCreationType)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 4);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === CREATE_PROJECT_TYPE_SUCCESS);
     t.truthy(objectPassedToSecondDispatch.payload === ValidProjectTypeCreationType);
+});
+
+ava('createProjectType dispatches showFlashMessageWithTimedRemoval ', async t => {
+    const dispatchSpy = sinon.spy();
+    ProjectTypeRepository.createProjectType = sinon.stub().resolves(ValidProjectTypeCreationType);
+    await createProjectType(ValidProjectTypeCreationType)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(typeof objectPassedToSecondDispatch === 'function');
 });
 
 ava('createProjectType dispatches react-router-redux `push` action that routes to `/projectTypes` url', async t => {
@@ -58,7 +68,7 @@ ava('createProjectType dispatches react-router-redux `push` action that routes t
     ProjectTypeRepository.createProjectType = sinon.stub().resolves(ValidProjectTypeCreationType);
     await createProjectType(ValidProjectTypeCreationType)(dispatchSpy);
 
-    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(3).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
     t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/projectTypes');

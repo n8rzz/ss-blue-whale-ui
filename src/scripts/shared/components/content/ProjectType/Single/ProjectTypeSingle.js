@@ -38,7 +38,7 @@ export default class ProjectTypeSingle extends Component {
      */
     render() {
         return (
-            <div>
+            <div className="wrapper">
                 <VerticalRhythm increment={ 1 }>
                     <Form
                         ref="saveProjectTypeForm"

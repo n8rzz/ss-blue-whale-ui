@@ -38,7 +38,7 @@ ava('removeProjectType dispatches success action when data resolves successfully
     ProjectTypeRepository.removeProjectType = sinon.stub().resolves();
     await removeProjectType(PROJECT_TYPE_ID)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 4);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === REMOVE_PROJECT_TYPE_SUCCESS);
@@ -54,12 +54,22 @@ ava('removeProjectType dispatches success action with a `null` payload', async t
     t.truthy(objectPassedToSecondDispatch.payload === null);
 });
 
-ava('removeProjectType dispatches react-router-redux `push` action that routes to `/projectTypes` url', async t => {
+ava('removeProjectType dispatches showFlashMessageWithTimedRemoval', async t => {
     const dispatchSpy = sinon.spy();
     ProjectTypeRepository.removeProjectType = sinon.stub().resolves();
     await removeProjectType(PROJECT_TYPE_ID)(dispatchSpy);
 
     const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(typeof objectPassedToSecondDispatch === 'function');
+});
+
+ava('removeProjectType dispatches react-router-redux `push` action that routes to `/projectTypes` url', async t => {
+    const dispatchSpy = sinon.spy();
+    ProjectTypeRepository.removeProjectType = sinon.stub().resolves();
+    await removeProjectType(PROJECT_TYPE_ID)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(3).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
     t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/projectTypes');

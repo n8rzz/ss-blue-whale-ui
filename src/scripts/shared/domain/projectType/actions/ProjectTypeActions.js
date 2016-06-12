@@ -1,4 +1,8 @@
 import { push } from 'react-router-redux';
+
+import { showFlashMessageWithTimedRemoval } from '../../flashMessage/actions/FlashMessageActions';
+import { MESSAGES } from '../../Messages';
+
 import ProjectTypeRepository from '../repositories/ProjectTypeRepository';
 import {
     ProjectTypeCreationType,
@@ -26,7 +30,7 @@ const createProjectTypeError = errors => ({
 
 export const createProjectType = projectTypeFormValues => {
     if (!ProjectTypeCreationType.is(projectTypeFormValues)) {
-        throw new TypeError('Invalid ProjectType. Form values must be a ProjectTypeCreationType');
+        throw new TypeError(MESSAGES.PROJECT_TYPE.ERROR.INVALID_PROJECT_TYPE_CREATION_TYPE);
     }
 
     return dispatch => {
@@ -35,6 +39,10 @@ export const createProjectType = projectTypeFormValues => {
         return ProjectTypeRepository.createProjectType(projectTypeFormValues)
             .then(response => {
                 dispatch(createProjectTypeSuccess(response));
+                dispatch(showFlashMessageWithTimedRemoval({
+                    type: 'SUCCESS',
+                    content: MESSAGES.PROJECT_TYPE.SUCCESS.CREATE_SUCCESS
+                }));
                 return dispatch(push('/projectTypes'));
             })
             .catch(error => dispatch(createProjectTypeError(error)));
@@ -89,7 +97,7 @@ const saveProjectTypeError = errors => ({
 
 export const saveProjectType = (id, projectTypeFormValues) => {
     if (!ProjectTypeType.is(projectTypeFormValues)) {
-        throw new TypeError('Invalid ProjectType. Form values must be a ProjectTypeType');
+        throw new TypeError(MESSAGES.PROJECT_TYPE.ERROR.INVALID_PROJECT_TYPE_TYPE);
     }
 
     return dispatch => {
@@ -127,6 +135,10 @@ export const removeProjectType = id => {
         return ProjectTypeRepository.removeProjectType(id)
             .then(() => {
                 dispatch(removeProjectTypeSuccess());
+                dispatch(showFlashMessageWithTimedRemoval({
+                    type: 'SUCCESS',
+                    content: MESSAGES.PROJECT_TYPE.SUCCESS.DELETE_SUCCESS
+                }));
                 return dispatch(push('/projectTypes'));
             })
             .catch(error => dispatch(removeProjectTypeError(error)));

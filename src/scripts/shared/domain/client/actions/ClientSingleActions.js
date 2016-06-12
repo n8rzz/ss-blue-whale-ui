@@ -1,7 +1,6 @@
 import { push } from 'react-router-redux';
 
 import { showFlashMessageWithTimedRemoval } from '../../flashMessage/actions/FlashMessageActions';
-
 import { MESSAGES } from '../../Messages';
 
 import ClientRepository from '../repositories/ClientRepository';
