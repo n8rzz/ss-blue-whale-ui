@@ -1,5 +1,6 @@
 import t from 'tcomb';
 import { BaseStateType } from '../../BaseTypes';
+import { UsStateAbbreviationEnum } from '../../baseTypes/UsStateAbbreviationEnum';
 import { ClientContactType } from '../../clientContact/types/ClientContactTypes';
 import { NoteType } from '../../note/types/NoteTypes';
 
@@ -14,7 +15,7 @@ export const ClientCreationType = t.struct({
     address_1: t.maybe(t.String),
     address_2: t.maybe(t.String),
     city: t.maybe(t.String),
-    state: t.maybe(t.String),
+    state: t.maybe(UsStateAbbreviationEnum),
     zip: t.maybe(t.String),
     // TODO: create refinement for phone number
     fax: t.maybe(t.String),
