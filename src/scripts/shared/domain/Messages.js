@@ -27,5 +27,15 @@ export const MESSAGES = {
             INVALID_PROJECT_TYPE_CREATION_TYPE: 'Invalid ProjectType. Form values must be a ProjectTypeCreationType',
             INVALID_PROJECT_TYPE_TYPE: 'Invalid Project Type type. Form values must be a ProjectTypeType'
         }
+    },
+    TASK_ITEM: {
+        SUCCESS: {
+            CREATE_SUCCESS: 'Task Item created successfully.',
+            DELETE_SUCCESS: 'Task Item deleted successfully.'
+        },
+        ERROR: {
+            INVALID_TASK_ITEM_CREATION_TYPE: 'Invalid TaskItem type. Form values must be a TaskItemCreationType',
+            INVALID_TASK_ITEM_TYPE: 'Invalid TaskItem type. Form values must be a TaskItemType'
+        }
     }
 };

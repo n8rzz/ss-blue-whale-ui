@@ -1,4 +1,8 @@
 import { push } from 'react-router-redux';
+
+import { showFlashMessageWithTimedRemoval } from '../../flashMessage/actions/FlashMessageActions';
+import { MESSAGES } from '../../Messages';
+
 import TaskItemRepository from '../repositories/TaskItemRepository';
 import {
     TaskItemCreationType,
@@ -31,7 +35,7 @@ const createTaskItemError = errors => ({
  */
 export const createTaskItem = taskItemFormValues => {
     if (!TaskItemCreationType.is(taskItemFormValues)) {
-        throw new TypeError('Invalid TaskItem type. Form values must be a TaskItemCreationType');
+        throw new TypeError(MESSAGES.TASK_ITEM.ERROR.INVALID_TASK_ITEM_CREATION_TYPE);
     }
 
     return dispatch => {
@@ -40,6 +44,10 @@ export const createTaskItem = taskItemFormValues => {
         return TaskItemRepository.createTaskItem(taskItemFormValues)
             .then(response => {
                 dispatch(createTaskItemSuccess(response));
+                dispatch(showFlashMessageWithTimedRemoval({
+                    type: 'SUCCESS',
+                    content: MESSAGES.TASK_ITEM.SUCCESS.CREATE_SUCCESS
+                }));
                 return dispatch(push('/taskItems'));
             })
             .catch(error => dispatch(createTaskItemError(error)));
@@ -110,7 +118,7 @@ const saveTaskItemError = errors => ({
  */
 export const saveTaskItem = (id, taskItemFormValues) => {
     if (!TaskItemType.is(taskItemFormValues)) {
-        throw new TypeError('Invalid Client type. Form values must be a TaskItemType');
+        throw new TypeError(MESSAGES.TASK_ITEM.ERROR.INVALID_TASK_ITEM_TYPE);
     }
 
     return dispatch => {
@@ -152,6 +160,10 @@ export const deleteTaskItem = id => {
         return TaskItemRepository.deleteTaskItem(id)
             .then(response => {
                 dispatch(deleteTaskItemSuccess(response));
+                dispatch(showFlashMessageWithTimedRemoval({
+                    type: 'SUCCESS',
+                    content: MESSAGES.TASK_ITEM.SUCCESS.DELETE_SUCCESS
+                }));
                 return dispatch(push('/taskItems'));
             })
             .catch(error => dispatch(deleteTaskItemError(error)));
