@@ -35,10 +35,20 @@ ava('deleteTaskItem dispatches success action when data resolves successfully', 
     TaskItemRepository.deleteTaskItem = sinon.stub().resolves();
     await deleteTaskItem(TASK_ITEM_ID)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 4);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === DELETE_TASK_ITEM_SUCCESS);
+});
+
+ava('deleteTaskItem dispatches showFlashMessageWithTimedRemoval', async t => {
+    const dispatchSpy = sinon.spy();
+    TaskItemRepository.deleteTaskItem = sinon.stub().resolves();
+    await deleteTaskItem(TASK_ITEM_ID)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(typeof objectPassedToSecondDispatch === 'function');
 });
 
 ava('deleteTaskItem dispatches react-router-redux `push` action that routes to `/taskItems` url', async t => {
@@ -46,7 +56,7 @@ ava('deleteTaskItem dispatches react-router-redux `push` action that routes to `
     TaskItemRepository.deleteTaskItem = sinon.stub().resolves();
     await deleteTaskItem(TASK_ITEM_ID)(dispatchSpy);
 
-    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(3).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
     t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/taskItems');

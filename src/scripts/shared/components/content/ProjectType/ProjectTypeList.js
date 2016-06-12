@@ -56,6 +56,16 @@ export default class ProjectTypeList extends Component {
             </div>
         );
     }
+
+    /**
+     * @for ProjectTypeList
+     * @method onRowClick
+     * @param {React.SyntheticEvent} event
+     * @callback
+     */
+    onRowClick = event => {
+        event.preventDefault();
+    };
 }
 
 /**

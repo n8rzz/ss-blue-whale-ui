@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 
 import session from './domain/session/reducers/sessionReducer';
 import createUser from './domain/registration/reducers/registrationReducer';
+import flashMessage from './domain/flashMessage/reducers/flashMessageReducer';
 import clients from './domain/client/reducers/clientListReducer';
 import client from './domain/client/reducers/ClientSingleReducer';
 import projectTypes from './domain/projectType/reducers/projectTypeListReducer';
@@ -13,6 +14,7 @@ import taskItem from './domain/taskItem/reducers/taskItemSingleReducer';
 export default () => combineReducers({
     session,
     createUser,
+    flashMessage,
     clients,
     client,
     projectTypes,

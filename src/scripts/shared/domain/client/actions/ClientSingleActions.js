@@ -1,4 +1,8 @@
 import { push } from 'react-router-redux';
+
+import { showFlashMessageWithTimedRemoval } from '../../flashMessage/actions/FlashMessageActions';
+import { MESSAGES } from '../../Messages';
+
 import ClientRepository from '../repositories/ClientRepository';
 import {
     ClientCreationType,
@@ -31,7 +35,7 @@ const createClientError = errors => ({
  */
 export const createClient = (clientFormValues) => {
     if (!ClientCreationType.is(clientFormValues)) {
-        throw new TypeError('Invalid Client type. Form values must be a ClientCreationType');
+        throw new TypeError(MESSAGES.CLIENT.ERROR.INVALID_CLIENT_CREATION_TYPE);
     }
 
     return dispatch => {
@@ -40,6 +44,10 @@ export const createClient = (clientFormValues) => {
         return ClientRepository.createClient(clientFormValues)
             .then(response => {
                 dispatch(createClientSuccess(response));
+                dispatch(showFlashMessageWithTimedRemoval({
+                    type: 'SUCCESS',
+                    content: MESSAGES.CLIENT.SUCCESS.CREATE_SUCCESS
+                }));
                 return dispatch(push('/clients'));
             })
             .catch(error => dispatch(createClientError(error)));
@@ -73,7 +81,7 @@ const saveClientError = errors => ({
  */
 export const saveClient = (id, clientFormValues) => {
     if (!ClientPreviewType.is(clientFormValues)) {
-        throw new TypeError('Invalid Client type. Form values must be a ClientPreviewType');
+        throw new TypeError(MESSAGES.CLIENT.ERROR.INVALID_CLIENT_PREVIEW_TYPE);
     }
 
     return dispatch => {
@@ -153,6 +161,10 @@ export const deleteClient = id => {
         return ClientRepository.deleteClient(id)
             .then(response => {
                 dispatch(deleteClientSuccess(response));
+                dispatch(showFlashMessageWithTimedRemoval({
+                    type: 'SUCCESS',
+                    content: MESSAGES.CLIENT.SUCCESS.DELETE_SUCCESS
+                }));
                 return dispatch(push('/clients'));
             })
             .catch(error => dispatch(deleteClientError(error)));

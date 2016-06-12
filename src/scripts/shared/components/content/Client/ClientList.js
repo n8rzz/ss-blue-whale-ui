@@ -46,12 +46,49 @@ class ClientList extends Component {
     }
 
     /**
+     * @for ClientList
+     * @method _composeSearchBar
+     * @return {JSX}
+     */
+    _composeSearchBar() {
+        const { filteredClientList } = this.state;
+        const { clients } = this.props;
+
+        let filteredItemCount = null;
+        if (clients.length > filteredClientList.length) {
+            filteredItemCount = (
+                <li>
+                    <div className="txt mix-txt_light">
+                        { `${filteredClientList.length} of ${clients.length}` }
+                    </div>
+                </li>
+            );
+        }
+
+        return (
+            <VerticalRhythm increment={ 1 }>
+                {/* TODO: Abstract to SearchComponent */}
+                <ul className="hlist hlist_loose">
+                    <li>
+                        <input
+                            type="text"
+                            ref="searchQuery"
+                            placeholder="search"
+                            onChange={ this.onSearchChange } />
+                    </li>
+                    { filteredItemCount }
+                </ul>
+            </VerticalRhythm>
+        );
+    }
+
+    /**
      *
      * @method _composeTableBody
      * @return {JSX}
      */
     _composeTableBody() {
-        const bodyRowChildren = _map(this.props.clients, (row, index) => {
+        const bodyRowChildren = _map(this.state.filteredClientList, (row, index) => {
             const clientLinkString = `/clients/${row.id}`;
 
             return (
@@ -88,18 +125,7 @@ class ClientList extends Component {
             <div className="wrapper">
                 <FlashMessage />
 
-                {/* TODO: Abstract to SearchComponent */}
-                <VerticalRhythm increment={ 1 }>
-                    <ul>
-                        <li>
-                            <input
-                                type="text"
-                                ref="searchQuery"
-                                placeholder="search"
-                                onChange={ this.onSearchChange } />
-                        </li>
-                    </ul>
-                </VerticalRhythm>
+                { this._composeSearchBar() }
 
                 <Table headingList={ ['id', 'name', 'status', 'city', 'state'] } >
                     { this._composeTableBody() }
