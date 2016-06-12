@@ -23,22 +23,29 @@ const authError = new ErrorType({
     statusText: 'Unauthorized.  Please Login.'
 });
 
-const addStoredSessionToAppState = (dispatch, sessionService) => {
-    dispatch({
-        type: CREATE_SESSION_SUCCESS,
-        payload: sessionService.session
-    });
-}
-
 /**
  *
- * @method redirectToLogin
+ * @function redirectToLogin
  * @param {Function} dispatch
  * @param {Function} push
  */
 const redirectToLogin = (dispatch, push) => {
     dispatch(unauthorizedSession(authError));
     dispatch(push('/login'));
+};
+
+/**
+ *
+ * @function addStoredSessionToAppState
+ * @param  {Function} dispatch]
+ * @param  {SessionService|class} sessionService
+ * @return {Function}
+ */
+const addStoredSessionToAppState = (dispatch, sessionService) => {
+    dispatch({
+        type: CREATE_SESSION_SUCCESS,
+        payload: sessionService.session
+    });
 };
 
 /**

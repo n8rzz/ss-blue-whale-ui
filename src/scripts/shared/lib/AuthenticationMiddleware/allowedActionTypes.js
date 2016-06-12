@@ -1,7 +1,6 @@
 import {
     CREATE_SESSION_START,
     CREATE_SESSION_SUCCESS,
-    DESTROY_SESSION_SUCCESS,
     UNAUTHORIZED_SESSION,
 } from '../../domain/session/actions/SessionActions';
 
