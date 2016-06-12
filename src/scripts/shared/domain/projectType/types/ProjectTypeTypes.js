@@ -1,5 +1,5 @@
 import t from 'tcomb';
-import { BaseStateType } from '../../BaseTypes';
+import { BaseStateType } from '../../baseTypes/BaseTypes';
 
 /**
  * @type ProjectTypeCreationType

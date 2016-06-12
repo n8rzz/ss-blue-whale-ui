@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import _get from 'lodash/get';
 
 import SessionRepository from '../repositories/SessionRepository';
-import { ErrorType } from '../../BaseTypes';
+import { ErrorType } from '../../baseTypes/BaseTypes';
 import {
     SessionRequestType,
     SessionResponseType

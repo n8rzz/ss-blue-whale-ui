@@ -11,7 +11,7 @@ import {
 
 import {
     VALID_BASE_STATE_TYPE
-} from '../../mocks/BaseTypes';
+} from '../../mocks/baseTypes/BaseTypes';
 
 export const ValidSessionRequestType = new SessionRequestType(VALID_SESSION_CREATION_REQUEST);
 

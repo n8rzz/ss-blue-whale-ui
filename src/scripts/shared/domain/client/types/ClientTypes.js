@@ -1,8 +1,17 @@
 import t from 'tcomb';
-import { BaseStateType } from '../../BaseTypes';
+import { BaseStateType } from '../../baseTypes/BaseTypes';
 import { UsStateAbbreviationEnum } from '../../baseTypes/UsStateAbbreviationEnum';
 import { ClientContactType } from '../../clientContact/types/ClientContactTypes';
 import { NoteType } from '../../note/types/NoteTypes';
+
+/**
+ * @type ClientStatusEnum
+ * @return {ClientStatusEnum}
+ */
+const ClientStatusEnum = t.enums({
+    Active: 'Active',
+    Inactive: 'Inactive'
+}, 'ClientStatusEnum');
 
 /**
  * @type ClientCreationType
@@ -10,8 +19,7 @@ import { NoteType } from '../../note/types/NoteTypes';
  */
 export const ClientCreationType = t.struct({
     name: t.String,
-    // TODO: replace with enum
-    status: t.String,
+    status: ClientStatusEnum,
     address_1: t.maybe(t.String),
     address_2: t.maybe(t.String),
     city: t.maybe(t.String),

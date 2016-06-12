@@ -7,7 +7,7 @@ import {
     ErrorType,
     BaseStateType,
     TypeOrNull
-} from '../../../src/scripts/shared/domain/BaseTypes';
+} from '../../../src/scripts/shared/domain/baseTypes/BaseTypes';
 
 import {
     VALID_POSITIVE,
@@ -15,7 +15,7 @@ import {
     VALID_ERROR_RESPONSE,
     VALID_BASE_STATE_TYPE,
     INVALID_BASE_STATE_TYPE
-} from '../../specHelper/mocks/BaseTypes';
+} from '../../specHelper/mocks/baseTypes/BaseTypes';
 
 ava('Positive refinement is a number greater than 0', t => {
     t.is(Positive(13), 13);

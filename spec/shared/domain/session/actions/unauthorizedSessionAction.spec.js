@@ -7,7 +7,7 @@ import {
     unauthorizedSession
 } from '../../../../../src/scripts/shared/domain/session/actions/SessionActions';
 
-import { ErrorType } from '../../../../../src/scripts/shared/domain/BaseTypes';
+import { ErrorType } from '../../../../../src/scripts/shared/domain/baseTypes/BaseTypes';
 
 const errorToThrow = new ErrorType({
     data: {},

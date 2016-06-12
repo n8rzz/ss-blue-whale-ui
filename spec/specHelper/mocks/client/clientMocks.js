@@ -105,7 +105,7 @@ export const VALID_CLIENT_LIST_API_RESPONSE = [
         'address_1': '123 Wallaby Way',
         'address_2': null,
         'city': 'Sydney',
-        'state': 'Tx',
+        'state': 'TX',
         'zip': '77432',
         'fax': '555-867-5310',
         'phone': '555-867-5309',
