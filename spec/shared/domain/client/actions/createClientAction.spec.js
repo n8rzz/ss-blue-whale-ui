@@ -46,11 +46,21 @@ ava('createClient dispatches success action when data resolves successfully', as
     ClientRepository.createClient = sinon.stub().resolves(ValidClientCreationType);
     await createClient(ValidClientCreationType)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 4);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === CREATE_CLIENT_SUCCESS);
     t.truthy(objectPassedToSecondDispatch.payload === ValidClientCreationType);
+});
+
+ava('createClient dispatches showFlashMessageWithTimedRemoval', async t => {
+    const dispatchSpy = sinon.spy();
+    ClientRepository.createClient = sinon.stub().resolves(ValidClientCreationType);
+    await createClient(ValidClientCreationType)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(typeof objectPassedToSecondDispatch === 'function');
 });
 
 ava('createClient dispatches react-router-redux `push` action that routes to `/clients` url', async t => {
@@ -58,7 +68,7 @@ ava('createClient dispatches react-router-redux `push` action that routes to `/c
     ClientRepository.createClient = sinon.stub().resolves(ValidClientCreationType);
     await createClient(ValidClientCreationType)(dispatchSpy);
 
-    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(3).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
     t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/clients');

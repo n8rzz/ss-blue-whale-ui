@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'React';
+import { connect } from 'react-redux';
 import classNames from 'classNames';
 
 /**
  * @class FlashMessage
  * @extends React/Component
  */
-export default class FlashMessage extends Component {
+class FlashMessage extends Component {
     /**
      * @for FlashMessage
      * @method _composeFlashContent
@@ -27,9 +28,9 @@ export default class FlashMessage extends Component {
     buildClassNames() {
         return classNames({
             alert: true,
-            'alert-success': this.props.type === 'success',
-            'alert-warning': this.props.type === 'warning',
-            'alert-error': this.props.type === 'error'
+            'alert-success': this.props.type === 'SUCCESS',
+            'alert-warning': this.props.type === 'WARNING',
+            'alert-error': this.props.type === 'ERROR'
         });
     }
 
@@ -39,8 +40,7 @@ export default class FlashMessage extends Component {
      * @return {JSX}
      */
     render() {
-        if (this.props.content.length === 0 || this.props.type === '') {
-            console.warn('DEPRECATION WARNING: The FlashMessage component will require both `type` and `content` props in v0.8.0. Please update the calling component');
+        if (!this.props.flashMessage) {
             return null;
         }
 
@@ -69,15 +69,21 @@ FlashMessage.propTypes = {
      * @property type
      * @type {String}
      */
-    type: PropTypes.oneOf(['success', 'error', 'warning']),
+    type: PropTypes.string,
 
     /**
      * @property content
      * @type{String|Object|Array}
      * @required
      */
-    // content: PropTypes.oneOf([PropTypes.string, PropTypes.object, PropTypes.array]).isRequired
-    content: PropTypes.any
+    content: PropTypes.string,
+
+    /**
+     * @property flashMessage
+     * @type {FlashMessageType|Object}
+     */
+    // TODO: remove this prop and make the other two optional
+    flashMessage: PropTypes.object
 };
 
 /**
@@ -86,6 +92,39 @@ FlashMessage.propTypes = {
  * @static
  */
 FlashMessage.defaultProps = {
-    type: 'error',
-    content: []
+    type: '',
+    content: ''
 };
+
+/**
+ * @function mapStoreToProps
+ * @param  {Object} state
+ * @return {Object}
+ */
+const mapStoreToProps = state => ({
+    flashMessage: state.flashMessage.payload
+});
+
+/**
+ *
+ * @function
+ */
+const mapDispatchToProps = () => ({});
+
+/**
+ *
+ * @function
+ */
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    if (!stateProps.flashMessage) {
+        return Object.assign({}, ownProps, stateProps, dispatchProps);
+    }
+
+    return Object.assign({}, ownProps, stateProps, dispatchProps, stateProps.flashMessage);
+};
+
+export default connect(
+    mapStoreToProps,
+    mapDispatchToProps,
+    mergeProps
+)(FlashMessage);

@@ -35,10 +35,20 @@ ava('deleteClient dispatches success action when data resolves successfully', as
     ClientRepository.deleteClient = sinon.stub().resolves();
     await deleteClient(CLIENT_ID)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 3);
+    t.truthy(dispatchSpy.callCount === 4);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === DELETE_CLIENT_SUCCESS);
+});
+
+ava('deleteClient dispatches showFlashMessageWithTimedRemoval', async t => {
+    const dispatchSpy = sinon.spy();
+    ClientRepository.deleteClient = sinon.stub().resolves();
+    await deleteClient(CLIENT_ID)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(typeof objectPassedToSecondDispatch === 'function');
 });
 
 ava('deleteClient dispatches react-router-redux `push` action that routes to `/clients` url', async t => {
@@ -46,7 +56,7 @@ ava('deleteClient dispatches react-router-redux `push` action that routes to `/c
     ClientRepository.deleteClient = sinon.stub().resolves();
     await deleteClient(CLIENT_ID)(dispatchSpy);
 
-    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(3).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === ROUTER_HISTORY_METHOD);
     t.truthy(objectPassedToSecondDispatch.payload.args[0] === '/clients');
