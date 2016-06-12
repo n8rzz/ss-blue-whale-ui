@@ -9,20 +9,24 @@ import { FlashMessageType } from '../types/FlashMessageTypes';
 const DEFAULT_REMOVAL_DELAY = 8000;
 
 /**
- * @property INVALID_INTERVAL_ID
+ * @property INVALID_TIMER_ID
  * @type {number}
  * @default -1
  * @final
  */
-const INVALID_INTERVAL_ID = -1;
+const INVALID_TIMER_ID = -1;
 
 export const FLASH_MESSAGE_SHOW = 'FLASH_MESSAGE_SHOW';
 export const FLASH_MESSAGE_SHOW_WITH_REMOVAL_TIMER = 'FLASH_MESSAGE_SHOW_WITH_REMOVAL_TIMER';
 export const FLASH_MESSAGE_START_REMOVAL_TIMER = 'FLASH_MESSAGE_START_REMOVAL_TIMER';
 export const FLASH_MESSAGE_STOP_REMOVAL_TIMER = 'FLASH_MESSAGE_STOP_REMOVAL_TIMER';
-export const FLASH_MESSAGE_HIDE = 'FLASH_MESSAGE_HIDE';
+export const FLASH_MESSAGE_REMOVE = 'FLASH_MESSAGE_REMOVE';
 
 /**
+ * Show a flash message.
+ *
+ * This action could be used by itself to show a flash message. `clearFlashMessage` would also need to be
+ * called in order to remove the flash message.
  *
  * @function showFlashMessage
  * @param {FlashMessageType} flashMessage
@@ -34,13 +38,14 @@ export const showFlashMessage = flashMessage => ({
 });
 
 /**
+ * Stop a removal timer if one exists.
  *
  * @function stopFlashMessageRemovalTimer
  */
 export const stopFlashMessageRemovalTimer = () => (dispatch, getState) => {
     const { flashMessage } = getState();
 
-    if (flashMessage.timerId === INVALID_INTERVAL_ID) {
+    if (flashMessage.timerId === INVALID_TIMER_ID) {
         return;
     }
 
@@ -49,16 +54,18 @@ export const stopFlashMessageRemovalTimer = () => (dispatch, getState) => {
 };
 
 /**
+ * Remove a flash message
  *
  * @function clearFlashMessage
- * @return {O}
+ * @return {Object}
  */
 export const clearFlashMessage = () => ({
-    type: FLASH_MESSAGE_HIDE
+    type: FLASH_MESSAGE_REMOVE
 });
 
 
 /**
+ * Remove existing flash message after a set delay.
  *
  * @function startFlashMessageRemovalTimer
  */
@@ -78,6 +85,10 @@ export const startFlashMessageRemovalTimer = (delayTimer = DEFAULT_REMOVAL_DELAY
 };
 
 /**
+ * Show a FlashMessage and after a specified length of time, remove that message.
+ *
+ * This is a combination action that calls various other actions. Each of those actions could be called
+ * individually if one needed more control over a flash message.
  *
  * @function showFlashMessageWithTimedRemoval
  * @param  {FlashMessageType} flashMessage

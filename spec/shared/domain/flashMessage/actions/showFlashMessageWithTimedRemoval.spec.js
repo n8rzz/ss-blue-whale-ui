@@ -6,7 +6,7 @@ import {
     FLASH_MESSAGE_SHOW,
     FLASH_MESSAGE_START_REMOVAL_TIMER,
     showFlashMessageWithTimedRemoval
-} from '../../../../../src/scripts/shared/domain/flashMessage/actions/timedRemovalFlashMessage';
+} from '../../../../../src/scripts/shared/domain/flashMessage/actions/FlashMessageActions';
 
 import { VALID_FLASH_MESSAGE_TYPE } from '../../../../specHelper/mocks/flashMessage/FlashMessageMocks';
 

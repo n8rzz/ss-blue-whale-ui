@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import {
     FLASH_MESSAGE_STOP_REMOVAL_TIMER,
     stopFlashMessageRemovalTimer
-} from '../../../../../src/scripts/shared/domain/flashMessage/actions/timedRemovalFlashMessage';
+} from '../../../../../src/scripts/shared/domain/flashMessage/actions/FlashMessageActions';
 
 import { ValidFlashMessageStateType } from '../../../../specHelper/fixtures/flashMessage/FlashMessageFixtures';
 

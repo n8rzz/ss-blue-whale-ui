@@ -25,5 +25,5 @@ export const FlashMessageType = t.struct({
  */
 export const FlashMessageStateType = t.struct({
     timerId: t.Number,
-    payload: FlashMessageType
+    payload: t.maybe(FlashMessageType)
 }, 'FlashMessageStateType');

@@ -1,12 +1,12 @@
 import ava from 'ava';
 
 import {
-    FLASH_MESSAGE_HIDE,
+    FLASH_MESSAGE_REMOVE,
     clearFlashMessage
-} from '../../../../../src/scripts/shared/domain/flashMessage/actions/timedRemovalFlashMessage';
+} from '../../../../../src/scripts/shared/domain/flashMessage/actions/FlashMessageActions';
 
-ava('clearFlashMessage dispatches FLASH_MESSAGE_HIDE type', t => {
+ava('clearFlashMessage dispatches FLASH_MESSAGE_REMOVE type', t => {
     const result = clearFlashMessage();
 
-    t.truthy(result.type === FLASH_MESSAGE_HIDE);
+    t.truthy(result.type === FLASH_MESSAGE_REMOVE);
 });

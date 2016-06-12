@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import {
     addSessionTokenToDefaultHeaders,
     removeSessionTokenFromDefaultHeaders
@@ -12,12 +10,7 @@ import {
     UNAUTHORIZED_SESSION,
 } from '../../domain/session/actions/SessionActions';
 
-/**
- * @property AUTH_HEADER_KEY
- * @type {string}
- * @final
- */
-const AUTH_HEADER_KEY = 'Authorization';
+import { ALLOWED_ACTION_TYPES } from './allowedActionTypes';
 
 /**
  *
@@ -54,7 +47,7 @@ export const isLoginPathname = ({ type, payload }) => {
  * @return {Boolean}
  */
 export const isAllowedActionWithoutToken = ({ type }) => {
-    return type === CREATE_SESSION_START || type === CREATE_SESSION_SUCCESS || type === UNAUTHORIZED_SESSION;
+    return ALLOWED_ACTION_TYPES.indexOf(type) > -1;
 };
 
 /**
@@ -64,8 +57,6 @@ export const isAllowedActionWithoutToken = ({ type }) => {
  * @param {SessionService|class} sessionService
  */
 export const sessionActionSuccessInterceptor = ({ type, payload }, sessionService) => {
-    const defaultAuthorizationHeader = axios.defaults.headers.common[AUTH_HEADER_KEY];
-
     if (type === CREATE_SESSION_SUCCESS) {
         captureNewSessionInStorage(payload, sessionService);
         addSessionTokenToDefaultHeaders(sessionService.token);

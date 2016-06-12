@@ -3,7 +3,7 @@ import ava from 'ava';
 import {
     FLASH_MESSAGE_SHOW,
     showFlashMessage
-} from '../../../../../src/scripts/shared/domain/flashMessage/actions/timedRemovalFlashMessage';
+} from '../../../../../src/scripts/shared/domain/flashMessage/actions/FlashMessageActions';
 
 import { ValidFlashMessageType } from '../../../../specHelper/fixtures/flashMessage/FlashMessageFixtures';
 

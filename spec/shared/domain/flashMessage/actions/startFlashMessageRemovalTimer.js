@@ -5,9 +5,9 @@ import sinon from 'sinon';
 import {
     FLASH_MESSAGE_START_REMOVAL_TIMER,
     FLASH_MESSAGE_STOP_REMOVAL_TIMER,
-    FLASH_MESSAGE_HIDE,
+    FLASH_MESSAGE_REMOVE,
     startFlashMessageRemovalTimer
-} from '../../../../../src/scripts/shared/domain/flashMessage/actions/timedRemovalFlashMessage';
+} from '../../../../../src/scripts/shared/domain/flashMessage/actions/FlashMessageActions';
 
 import { ValidFlashMessageStateType } from '../../../../specHelper/fixtures/flashMessage/FlashMessageFixtures';
 
@@ -63,7 +63,7 @@ ava('startFlashMessageRemovalTimer dispatches the timerId with the timerId retur
     t.truthy(objectPassedToDispatch.timerId === INTERVAL_ID);
 });
 
-ava('startFlashMessageRemovalTimer dispatches FLASH_MESSAGE_START_REMOVAL_TIMER, FLASH_MESSAGE_STOP_REMOVAL_TIMER, FLASH_MESSAGE_HIDE', async t => {
+ava('startFlashMessageRemovalTimer dispatches FLASH_MESSAGE_START_REMOVAL_TIMER, FLASH_MESSAGE_STOP_REMOVAL_TIMER, FLASH_MESSAGE_REMOVE', async t => {
     const timerDelay = 10000;
     const getStateStub = () => ({ flashMessage: ValidFlashMessageStateType });
     const clock = sinon.useFakeTimers();
@@ -71,7 +71,7 @@ ava('startFlashMessageRemovalTimer dispatches FLASH_MESSAGE_START_REMOVAL_TIMER,
     const possibleActions = [
         FLASH_MESSAGE_START_REMOVAL_TIMER,
         FLASH_MESSAGE_STOP_REMOVAL_TIMER,
-        FLASH_MESSAGE_HIDE
+        FLASH_MESSAGE_REMOVE
     ];
 
     t.plan(actionIndicies.length);
