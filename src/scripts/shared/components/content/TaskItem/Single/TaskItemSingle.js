@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
 import { TaskItemType } from '../../../../domain/taskItem/types/TaskItemTypes';
+import FlashMessage from '../../FlashMessage/FlashMessage';
 import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
 
@@ -42,6 +43,8 @@ export default class TaskItemSingle extends Component {
     render() {
         return (
             <div className="wrapper">
+                <FlashMessage />
+
                 <VerticalRhythm increment={ 1 }>
                     <Form
                         ref="taskItemForm"

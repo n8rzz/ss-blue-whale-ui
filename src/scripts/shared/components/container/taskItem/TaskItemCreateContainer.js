@@ -14,7 +14,7 @@ class TaskItemCreateContainer extends Component {
      */
     render() {
         return (
-            <div>
+            <div className="wrapper">
                 <TaskItemCreate
                     onCreateTaskItem={ this.props.createTaskItem }/>
             </div>

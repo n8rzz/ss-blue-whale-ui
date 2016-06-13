@@ -38,7 +38,7 @@ export default class TaskItemCreate extends Component {
      */
     render() {
         return (
-            <div className="wrapper">
+            <div>
                 <Form
                     ref="createTaskItemForm"
                     options={ FORM_OPTIONS }

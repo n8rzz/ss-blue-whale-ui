@@ -41,7 +41,7 @@ export const createProjectType = projectTypeFormValues => {
                 dispatch(createProjectTypeSuccess(response));
                 dispatch(showFlashMessageWithTimedRemoval({
                     type: 'SUCCESS',
-                    content: MESSAGES.PROJECT_TYPE.SUCCESS.CREATE_SUCCESS
+                    content: MESSAGES.PROJECT_TYPE.SUCCESS.CREATE
                 }));
                 return dispatch(push('/projectTypes'));
             })
@@ -104,7 +104,13 @@ export const saveProjectType = (id, projectTypeFormValues) => {
         dispatch(saveProjectTypeStart());
 
         return ProjectTypeRepository.saveProjectType(id, projectTypeFormValues)
-            .then(response => dispatch(saveProjectTypeSuccess(response)))
+            .then(response => {
+                dispatch(saveProjectTypeSuccess(response));
+                dispatch(showFlashMessageWithTimedRemoval({
+                    type: 'SUCCESS',
+                    content: MESSAGES.PROJECT_TYPE.SUCCESS.SAVE
+                }));
+            })
             .catch(error => dispatch(saveProjectTypeError(error)));
     };
 };
@@ -137,7 +143,7 @@ export const removeProjectType = id => {
                 dispatch(removeProjectTypeSuccess());
                 dispatch(showFlashMessageWithTimedRemoval({
                     type: 'SUCCESS',
-                    content: MESSAGES.PROJECT_TYPE.SUCCESS.DELETE_SUCCESS
+                    content: MESSAGES.PROJECT_TYPE.SUCCESS.DELETE
                 }));
                 return dispatch(push('/projectTypes'));
             })

@@ -46,7 +46,7 @@ export const createTaskItem = taskItemFormValues => {
                 dispatch(createTaskItemSuccess(response));
                 dispatch(showFlashMessageWithTimedRemoval({
                     type: 'SUCCESS',
-                    content: MESSAGES.TASK_ITEM.SUCCESS.CREATE_SUCCESS
+                    content: MESSAGES.TASK_ITEM.SUCCESS.CREATE
                 }));
                 return dispatch(push('/taskItems'));
             })
@@ -125,7 +125,13 @@ export const saveTaskItem = (id, taskItemFormValues) => {
         dispatch(saveTaskItemStart());
 
         return TaskItemRepository.saveTaskItem(id, taskItemFormValues)
-            .then(response => dispatch(saveTaskItemSuccess(response)))
+            .then(response => {
+                dispatch(saveTaskItemSuccess(response));
+                dispatch(showFlashMessageWithTimedRemoval({
+                    type: 'SUCCESS',
+                    content: MESSAGES.TASK_ITEM.SUCCESS.SAVE
+                }));
+            })
             .catch(error => dispatch(saveTaskItemError(error)));
     };
 };
@@ -162,7 +168,7 @@ export const deleteTaskItem = id => {
                 dispatch(deleteTaskItemSuccess(response));
                 dispatch(showFlashMessageWithTimedRemoval({
                     type: 'SUCCESS',
-                    content: MESSAGES.TASK_ITEM.SUCCESS.DELETE_SUCCESS
+                    content: MESSAGES.TASK_ITEM.SUCCESS.DELETE
                 }));
                 return dispatch(push('/taskItems'));
             })
