@@ -6,6 +6,17 @@ import { ProjectTypeType } from '../../../../domain/projectType/types/ProjectTyp
 
 const Form = t.form.Form;
 
+const FORM_OPTIONS = {
+    fields: {
+        id: {
+            type: 'hidden'
+        },
+        dueDate: {
+            type: 'date'
+        }
+    }
+};
+
 /**
  * @class ProjectTypeSingle
  * @extends React/Component
@@ -42,9 +53,16 @@ export default class ProjectTypeSingle extends Component {
                 <VerticalRhythm increment={ 1 }>
                     <Form
                         ref="saveProjectTypeForm"
+                        options={ FORM_OPTIONS }
                         type={ ProjectTypeType }
                         value={ this.state.saveProjectTypeFormValues }
                         onChange={ this.onChange } />
+                </VerticalRhythm>
+
+                <VerticalRhythm increment={ 1 }>
+                    <div>
+                        [[ SELECT TASK ITEMS ]]
+                    </div>
                 </VerticalRhythm>
 
                 <Button onClick={ this.onRemoveProjectType }>Remove Project Type</Button>
@@ -59,6 +77,7 @@ export default class ProjectTypeSingle extends Component {
      * @param {Object} formValues
      * @callback
      */
+    // TODO: is this needed?
     onChange = (formValues) => {
         this.setState({
             saveProjectTypeFormValues: formValues

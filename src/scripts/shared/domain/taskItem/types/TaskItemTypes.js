@@ -10,6 +10,8 @@ import { BaseStateType } from '../../baseTypes/BaseTypes';
 export const TaskItemCreationType = t.struct({
     name: t.String,
     description: t.String,
+    startDate: t.maybe(t.String),
+    endDate: t.maybe(t.String)
     // sortOrder: t.Number
 }, 'TaskItemCreationType');
 
@@ -20,9 +22,7 @@ export const TaskItemCreationType = t.struct({
  * @return {TaskItemType}
  */
 export const TaskItemType = TaskItemCreationType.extend({
-    id: t.Number,
-    startDate: t.maybe(t.String),
-    endDate: t.maybe(t.String)
+    id: t.Number
 }, 'TaskItemType');
 
 /**

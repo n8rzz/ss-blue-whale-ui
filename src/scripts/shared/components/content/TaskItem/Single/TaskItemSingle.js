@@ -6,6 +6,20 @@ import Button from '../../../layout/Button/Button';
 
 const Form = t.form.Form;
 
+const FORM_OPTIONS = {
+    fields: {
+        id: {
+            type: 'hidden'
+        },
+        startDate: {
+            type: 'date'
+        },
+        endDate: {
+            type: 'date'
+        }
+    }
+};
+
 /**
  * @class TaskItemSingle
  * @extends React/Component
@@ -31,6 +45,7 @@ export default class TaskItemSingle extends Component {
                 <VerticalRhythm increment={ 1 }>
                     <Form
                         ref="taskItemForm"
+                        options={ FORM_OPTIONS }
                         type={ TaskItemType }
                         value={ this.state.taskItemFormValues }
                         onChange={ this.onFormChange } />

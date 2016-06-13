@@ -26,6 +26,7 @@ class TaskItemList extends Component {
                         <Link className="link" to={ taskItemUrlString  }>{ taskItem.name }</Link>
                     </td>
                     <td>{ taskItem.startDate }</td>
+                    <td>{ taskItem.endDate }</td>
                 </tr>
             );
         });
@@ -50,7 +51,7 @@ class TaskItemList extends Component {
             <div className="wrapper">
                 <FlashMessage />
 
-                <Table headingList={ ['id', 'name', 'start date'] } >
+                <Table headingList={ ['id', 'name', 'start date', 'end date'] } >
                     { this._composeTableBody() }
                 </Table>
             </div>

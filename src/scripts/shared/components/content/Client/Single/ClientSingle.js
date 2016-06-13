@@ -9,6 +9,26 @@ import Button from '../../../layout/Button/Button';
 
 const Form = t.form.Form;
 
+const FORM_OPTIONS = {
+    fields: {
+        id: {
+            type: 'hidden'
+        },
+        fax: {
+            type: 'tel'
+        },
+        phone: {
+            type: 'tel'
+        },
+        email: {
+            type: 'email'
+        },
+        website: {
+            type: 'url'
+        }
+    }
+};
+
 /**
  * @class ClientSingle
  * @extends React/Component
@@ -85,8 +105,9 @@ export default class ClientSingle extends Component {
                         <VerticalRhythm increment={ 1 }>
                             <Form
                                 ref="clientForm"
-                                value={ this.state.clientFormValues }
-                                type={ ClientPreviewType } />
+                                options={ FORM_OPTIONS }
+                                type={ ClientPreviewType }
+                                value={ this.state.clientFormValues } />
                         </VerticalRhythm>
 
                         <Button isSubmit onClick={ this.onRemoveClient }>Delete Client</Button>

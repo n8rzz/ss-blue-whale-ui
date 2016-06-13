@@ -5,6 +5,20 @@ import Button from '../../../layout/Button/Button';
 
 const Form = t.form.Form;
 
+const FORM_OPTIONS = {
+    fields: {
+        id: {
+            type: 'hidden'
+        },
+        startDate: {
+            type: 'date'
+        },
+        endDate: {
+            type: 'date'
+        }
+    }
+};
+
 /**
  * @class TaskItemCreate
  */
@@ -27,6 +41,7 @@ export default class TaskItemCreate extends Component {
             <div className="wrapper">
                 <Form
                     ref="createTaskItemForm"
+                    options={ FORM_OPTIONS }
                     type={ TaskItemCreationType }
                     value={ this.state.createTaskItemFormValues }
                     onChange={ this.onChange } />
