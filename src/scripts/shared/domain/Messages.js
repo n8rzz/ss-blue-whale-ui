@@ -10,8 +10,9 @@
 export const MESSAGES = {
     CLIENT: {
         SUCCESS: {
-            CREATE_SUCCESS: 'Client created successfully.',
-            DELETE_SUCCESS: 'Client deleted successfully.'
+            CREATE: 'Client created successfully.',
+            SAVE: 'Client updated successfully.',
+            DELETE: 'Client deleted successfully.'
         },
         ERROR: {
             INVALID_CLIENT_CREATION_TYPE: 'Invalid Client type. Form values must be a ClientCreationType',
@@ -20,8 +21,9 @@ export const MESSAGES = {
     },
     PROJECT_TYPE: {
         SUCCESS: {
-            CREATE_SUCCESS: 'Project Type created successfully.',
-            DELETE_SUCCESS: 'Project Type deleted successfully.'
+            CREATE: 'Project Type created successfully.',
+            SAVE: 'Project Type updated successfully.',
+            DELETE: 'Project Type deleted successfully.'
         },
         ERROR: {
             INVALID_PROJECT_TYPE_CREATION_TYPE: 'Invalid ProjectType. Form values must be a ProjectTypeCreationType',
@@ -30,8 +32,9 @@ export const MESSAGES = {
     },
     TASK_ITEM: {
         SUCCESS: {
-            CREATE_SUCCESS: 'Task Item created successfully.',
-            DELETE_SUCCESS: 'Task Item deleted successfully.'
+            CREATE: 'Task Item created successfully.',
+            SAVE: 'TaskItem updated successfully,',
+            DELETE: 'Task Item deleted successfully.'
         },
         ERROR: {
             INVALID_TASK_ITEM_CREATION_TYPE: 'Invalid TaskItem type. Form values must be a TaskItemCreationType',

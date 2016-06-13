@@ -19,7 +19,7 @@ export default class ProjectTypeList extends Component {
             const projectTypeLink = `/projectTypes/${projectType.id}`;
 
             return (
-                <tr key={ index } onClick={ () => this.onRowClick(index) }>
+                <tr key={ index } onClick={ (event) => this.onRowClick(event, index) }>
                     <td>{ projectType.id }</td>
                     <td>
                         <Link className="link" to={ projectTypeLink  }>{ projectType.name }</Link>
@@ -61,9 +61,10 @@ export default class ProjectTypeList extends Component {
      * @for ProjectTypeList
      * @method onRowClick
      * @param {React.SyntheticEvent} event
+     * @param {Number} projectTypeIndex
      * @callback
      */
-    onRowClick = event => {
+    onRowClick = (event, projectTypeIndex) => {
         event.preventDefault();
     };
 }

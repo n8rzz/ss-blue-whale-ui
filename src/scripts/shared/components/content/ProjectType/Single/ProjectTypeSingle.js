@@ -1,10 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
+import FlashMessage from '../../FlashMessage/FlashMessage';
 import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
 import { ProjectTypeType } from '../../../../domain/projectType/types/ProjectTypeTypes';
 
 const Form = t.form.Form;
+
+const FORM_OPTIONS = {
+    fields: {
+        id: {
+            type: 'hidden'
+        },
+        dueDate: {
+            type: 'date'
+        }
+    }
+};
 
 /**
  * @class ProjectTypeSingle
@@ -39,12 +51,21 @@ export default class ProjectTypeSingle extends Component {
     render() {
         return (
             <div className="wrapper">
+                <FlashMessage />
+
                 <VerticalRhythm increment={ 1 }>
                     <Form
                         ref="saveProjectTypeForm"
+                        options={ FORM_OPTIONS }
                         type={ ProjectTypeType }
                         value={ this.state.saveProjectTypeFormValues }
                         onChange={ this.onChange } />
+                </VerticalRhythm>
+
+                <VerticalRhythm increment={ 1 }>
+                    <div>
+                        [[ SELECT TASK ITEMS ]]
+                    </div>
                 </VerticalRhythm>
 
                 <Button onClick={ this.onRemoveProjectType }>Remove Project Type</Button>
@@ -59,6 +80,7 @@ export default class ProjectTypeSingle extends Component {
      * @param {Object} formValues
      * @callback
      */
+    // TODO: is this needed?
     onChange = (formValues) => {
         this.setState({
             saveProjectTypeFormValues: formValues

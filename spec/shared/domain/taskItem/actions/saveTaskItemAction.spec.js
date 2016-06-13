@@ -43,11 +43,21 @@ ava('saveTaskItem dispatches success action when data resolves successfully', as
     TaskItemRepository.saveTaskItem = sinon.stub().resolves(ValidTaskItemType);
     await saveTaskItem(TASK_ITEM_ID, ValidTaskItemType)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === SAVE_TASK_ITEM_SUCCESS);
     t.truthy(objectPassedToSecondDispatch.payload === ValidTaskItemType);
+});
+
+ava('saveTaskItem dispatches showFlashMessageWithTimedRemoval', async t => {
+    const dispatchSpy = sinon.spy();
+    TaskItemRepository.saveTaskItem = sinon.stub().resolves(ValidTaskItemType);
+    await saveTaskItem(TASK_ITEM_ID, ValidTaskItemType)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(typeof objectPassedToSecondDispatch === 'function');
 });
 
 ava.before(() => {

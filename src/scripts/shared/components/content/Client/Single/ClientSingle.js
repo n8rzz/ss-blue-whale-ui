@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
 import { ClientPreviewType } from '../../../../domain/client/types/ClientTypes';
+import FlashMessage from '../../FlashMessage/FlashMessage';
 import Tabs from '../../../layout/Tabs/Tabs';
 import ClientContactContainer from '../../../container/clientContact/ClientContactContainer';
 import NoteContainer from '../../../container/note/NoteContainer';
@@ -8,6 +9,26 @@ import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
 
 const Form = t.form.Form;
+
+const FORM_OPTIONS = {
+    fields: {
+        id: {
+            type: 'hidden'
+        },
+        fax: {
+            type: 'tel'
+        },
+        phone: {
+            type: 'tel'
+        },
+        email: {
+            type: 'email'
+        },
+        website: {
+            type: 'url'
+        }
+    }
+};
 
 /**
  * @class ClientSingle
@@ -79,36 +100,41 @@ export default class ClientSingle extends Component {
      */
     render() {
         return (
-            <Tabs>
-                <Tabs.Tab title="Main">
-                    <VerticalRhythm increment={ 2 }>
-                        <VerticalRhythm increment={ 1 }>
-                            <Form
-                                ref="clientForm"
-                                value={ this.state.clientFormValues }
-                                type={ ClientPreviewType } />
+            <div className="wrapper">
+                <Tabs>
+                    <Tabs.Tab title="Main">
+                        <FlashMessage />
+
+                        <VerticalRhythm increment={ 2 }>
+                            <VerticalRhythm increment={ 1 }>
+                                <Form
+                                    ref="clientForm"
+                                    options={ FORM_OPTIONS }
+                                    type={ ClientPreviewType }
+                                    value={ this.state.clientFormValues } />
+                            </VerticalRhythm>
+
+                            <Button isSubmit onClick={ this.onRemoveClient }>Delete Client</Button>
+                            <Button isSubmit onClick={ this.onSubmit } >Update Client</Button>
                         </VerticalRhythm>
 
-                        <Button isSubmit onClick={ this.onRemoveClient }>Delete Client</Button>
-                        <Button isSubmit onClick={ this.onSubmit } >Update Client</Button>
-                    </VerticalRhythm>
-
-                        { this._composeClientContacts() }
-                </Tabs.Tab>
-                <Tabs.Tab title="Projects">
-                    <div>
-                        PROJECTS
-                    </div>
-                </Tabs.Tab>
-                <Tabs.Tab title="History">
-                    <div>
-                        CLOSED PROJECTS
-                    </div>
-                </Tabs.Tab>
-                <Tabs.Tab title="Notes">
-                    { this._composeClientNotes() }
-                </Tabs.Tab>
-            </Tabs>
+                            { this._composeClientContacts() }
+                    </Tabs.Tab>
+                    <Tabs.Tab title="Projects">
+                        <div>
+                            PROJECTS
+                        </div>
+                    </Tabs.Tab>
+                    <Tabs.Tab title="History">
+                        <div>
+                            CLOSED PROJECTS
+                        </div>
+                    </Tabs.Tab>
+                    <Tabs.Tab title="Notes">
+                        { this._composeClientNotes() }
+                    </Tabs.Tab>
+                </Tabs>
+            </div>
         );
     }
 

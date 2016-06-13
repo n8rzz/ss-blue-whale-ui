@@ -1,10 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
 import { TaskItemType } from '../../../../domain/taskItem/types/TaskItemTypes';
+import FlashMessage from '../../FlashMessage/FlashMessage';
 import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
 
 const Form = t.form.Form;
+
+const FORM_OPTIONS = {
+    fields: {
+        id: {
+            type: 'hidden'
+        },
+        startDate: {
+            type: 'date'
+        },
+        endDate: {
+            type: 'date'
+        }
+    }
+};
 
 /**
  * @class TaskItemSingle
@@ -28,9 +43,12 @@ export default class TaskItemSingle extends Component {
     render() {
         return (
             <div className="wrapper">
+                <FlashMessage />
+
                 <VerticalRhythm increment={ 1 }>
                     <Form
                         ref="taskItemForm"
+                        options={ FORM_OPTIONS }
                         type={ TaskItemType }
                         value={ this.state.taskItemFormValues }
                         onChange={ this.onFormChange } />

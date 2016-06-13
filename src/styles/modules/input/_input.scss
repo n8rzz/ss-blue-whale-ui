@@ -6,13 +6,6 @@
     margin-bottom: $VERTICAL_SPACING_1X;
 }
 
-input {
-    min-width: 200px;
-    padding: 4px 7px;
-    border-radius: 2px;
-    border: 1px solid #cccccc;
-}
-
 .control-label {
     display: block;
     padding-right: $HORIZONTAL_SPACING_1X;
@@ -20,6 +13,35 @@ input {
     font-size: $FONT_SIZE_HALF;
 }
 
+input {
+    min-width: 200px;
+    padding: 4px 7px;
+    border-radius: 2px;
+    border: 1px solid #cccccc;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-clear-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+// nesting selectors here to simplify inheritence
+.has-error {
+    input,
+    select {
+        border: 1px solid #ff0000; // TODO: move color to _vars
+    }
+
+    label {
+        color: #ff0000;
+    }
+}
+
+
+select {
+    width: 200px;
+}
 
 // .input {
 //     width: 100%;

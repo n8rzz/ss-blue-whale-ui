@@ -43,11 +43,21 @@ ava('saveProjectType dispatches success action when data resolves successfully',
     ProjectTypeRepository.saveProjectType = sinon.stub().resolves(ValidProjectTypeType);
     await saveProjectType(PROJECT_TYPE_ID, ValidProjectTypeType)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === SAVE_PROJECT_TYPE_SUCCESS);
     t.truthy(objectPassedToSecondDispatch.payload === ValidProjectTypeType);
+});
+
+ava('saveProjectType dispatches showFlashMessageWithTimedRemoval', async t => {
+    const dispatchSpy = sinon.spy();
+    ProjectTypeRepository.saveProjectType = sinon.stub().resolves(ValidProjectTypeType);
+    await saveProjectType(PROJECT_TYPE_ID, ValidProjectTypeType)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(typeof objectPassedToSecondDispatch === 'function');
 });
 
 ava.before(() => {

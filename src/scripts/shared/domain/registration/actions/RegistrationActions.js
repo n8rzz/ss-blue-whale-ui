@@ -1,6 +1,6 @@
 import { push } from 'react-router-redux';
 import RegistrationRepository from '../repositories/RegistrationRepository';
-import { ErrorType } from '../../BaseTypes';
+import { ErrorType } from '../../baseTypes/BaseTypes';
 import {
     RegistrationRequestType
 } from '../types/RegistrationTypes';

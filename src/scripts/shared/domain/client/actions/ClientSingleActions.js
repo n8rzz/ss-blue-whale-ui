@@ -46,7 +46,7 @@ export const createClient = (clientFormValues) => {
                 dispatch(createClientSuccess(response));
                 dispatch(showFlashMessageWithTimedRemoval({
                     type: 'SUCCESS',
-                    content: MESSAGES.CLIENT.SUCCESS.CREATE_SUCCESS
+                    content: MESSAGES.CLIENT.SUCCESS.CREATE
                 }));
                 return dispatch(push('/clients'));
             })
@@ -88,7 +88,13 @@ export const saveClient = (id, clientFormValues) => {
         dispatch(saveClientStart());
 
         return ClientRepository.saveClient(id, clientFormValues)
-            .then(response => dispatch(saveClientSuccess(response)))
+            .then(response => {
+                dispatch(saveClientSuccess(response));
+                dispatch(showFlashMessageWithTimedRemoval({
+                    type: 'SUCCESS',
+                    content: MESSAGES.CLIENT.SUCCESS.SAVE
+                }));
+            })
             .catch(error => dispatch(saveClientError(error)));
     };
 };
@@ -163,7 +169,7 @@ export const deleteClient = id => {
                 dispatch(deleteClientSuccess(response));
                 dispatch(showFlashMessageWithTimedRemoval({
                     type: 'SUCCESS',
-                    content: MESSAGES.CLIENT.SUCCESS.DELETE_SUCCESS
+                    content: MESSAGES.CLIENT.SUCCESS.DELETE
                 }));
                 return dispatch(push('/clients'));
             })

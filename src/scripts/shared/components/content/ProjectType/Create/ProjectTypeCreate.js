@@ -6,6 +6,14 @@ import { ProjectTypeCreationType } from '../../../../domain/projectType/types/Pr
 
 const Form = t.form.Form;
 
+const FORM_OPTIONS = {
+    fields: {
+        dueDate: {
+            type: 'date'
+        }
+    }
+};
+
 /**
  * @class ProjectTypeCreate
  * @extends React/Component
@@ -22,6 +30,7 @@ export default class ProjectTypeCreate extends Component {
                 <VerticalRhythm increment={ 1 }>
                     <Form
                         ref="createProjectTypeForm"
+                        options={ FORM_OPTIONS }
                         type={ ProjectTypeCreationType } />
                 </VerticalRhythm>
 

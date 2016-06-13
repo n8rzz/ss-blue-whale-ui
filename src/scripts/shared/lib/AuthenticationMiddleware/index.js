@@ -12,7 +12,7 @@ import {
     unauthorizedSession
 } from '../../domain/session/actions/SessionActions';
 
-import { ErrorType } from '../../domain/BaseTypes';
+import { ErrorType } from '../../domain/baseTypes/BaseTypes';
 
 /**
  * @property authError

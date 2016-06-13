@@ -2,10 +2,29 @@ import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
 import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
-
 import { ClientCreationType } from '../../../../domain/client/types/ClientTypes';
 
 const Form = t.form.Form;
+
+const FORM_OPTIONS = {
+    fields: {
+        id: {
+            type: 'hidden'
+        },
+        fax: {
+            type: 'tel'
+        },
+        phone: {
+            type: 'tel'
+        },
+        email: {
+            type: 'email'
+        },
+        website: {
+            type: 'url'
+        }
+    }
+};
 
 /**
  * @class ClientCreate
@@ -22,6 +41,7 @@ export default class ClientCreate extends Component {
                 <VerticalRhythm increment={ 1 }>
                     <Form
                         ref="createClientForm"
+                        options={ FORM_OPTIONS }
                         type={ ClientCreationType } />
                 </VerticalRhythm>
 

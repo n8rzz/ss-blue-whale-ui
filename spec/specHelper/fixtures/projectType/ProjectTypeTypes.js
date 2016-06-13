@@ -6,7 +6,7 @@ import {
 
 import {
     VALID_BASE_STATE_TYPE
-} from '../../mocks/BaseTypes';
+} from '../../mocks/baseTypes/BaseTypes';
 
 import {
     ProjectTypeCreationType,
