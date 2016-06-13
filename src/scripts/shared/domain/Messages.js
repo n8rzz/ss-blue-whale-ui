@@ -10,8 +10,9 @@
 export const MESSAGES = {
     CLIENT: {
         SUCCESS: {
-            CREATE_SUCCESS: 'Client created successfully.',
-            DELETE_SUCCESS: 'Client deleted successfully.'
+            CREATE: 'Client created successfully.',
+            SAVE: 'Client updated successfully.',
+            DELETE: 'Client deleted successfully.'
         },
         ERROR: {
             INVALID_CLIENT_CREATION_TYPE: 'Invalid Client type. Form values must be a ClientCreationType',

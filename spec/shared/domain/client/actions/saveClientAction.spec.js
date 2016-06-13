@@ -43,11 +43,21 @@ ava('saveClient dispatches success action when data resolves successfully', asyn
     ClientRepository.saveClient = sinon.stub().resolves(ValidClientType);
     await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === SAVE_CLIENT_SUCCESS);
     t.truthy(objectPassedToSecondDispatch.payload === ValidClientType);
+});
+
+ava('saveClient dispatches showFlashMessageWithTimedRemoval', async t => {
+    const dispatchSpy = sinon.spy();
+    ClientRepository.saveClient = sinon.stub().resolves(ValidClientType);
+    await saveClient(CLIENT_ID, ValidClientPreviewType)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(typeof objectPassedToSecondDispatch === 'function');
 });
 
 ava.before(() => {
