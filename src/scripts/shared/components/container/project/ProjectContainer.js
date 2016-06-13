@@ -57,20 +57,8 @@ ProjectContainer.propTypes = {};
 //     };
 // }
 //
-// /**
-//  * @method mergeProps
-//  * @param {Object} state
-//  * @param {Object} dispatch
-//  * @param {Object} ownProps
-//  * @return {Object}
-//  */
-// function mergeProps(state, dispatch, ownProps) {
-//     return Object.assign({}, state, ownProps);
-// }
-//
 // export default connect(
 //     mapStateToProps,
-//     mapDispatchToProps,
-//     mergeProps
+//     mapDispatchToProps
 // )(ProjectContainer);
 export default ProjectContainer;
