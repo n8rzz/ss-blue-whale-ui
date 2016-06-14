@@ -10,10 +10,10 @@ export default {
     /**
      * Get a list of all `Projects`
      *
-     * @function getClientList
+     * @function getProjectList
      * @return {ProjectListType}
      */
-    getClientList: () => {
+    getProjectList: () => {
         return request.get(`${ENDPOINT}`)
             .then(response => new ProjectListType(response.data))
             .catch(error => {
