@@ -50,3 +50,62 @@ export const VALID_PROJECT_RESPONSE = {
         }
     ]
 };
+
+export const VALID_PROJECT_LIST_RESPONSE = [
+    {
+        'id': 1,
+        'startDate': '2016-04-02T23:08:04.000Z',
+        'completedDate': '2016-04-04T23:08:04.000Z',
+        'dueDate': null,
+        'client': {
+            'id': 1,
+            'name': 'Leonie Kling',
+            'address_1': '745 Wiza Gardens',
+            'address_2': 'Suite 877',
+            'city': 'Gislasonton',
+            'state': 'OH',
+            'zip': '34243',
+            'fax': '347-779-6304 x60554',
+            'phone': '693.408.9026',
+            'email': 'juston@willms.org',
+            'website': 'orn.name',
+            'entity': 'Individual',
+            'joinDate': '2013-04-29T04:37:14.729Z',
+            'status': 'Active'
+        },
+        'project_type': {
+            'id': 1,
+            'name': 'eum',
+            'description': 'Qui est voluptates voluptatem.',
+            'dueDate': '2016-03-26'
+        }
+    },
+    {
+        'id': 2,
+        'startDate': '2016-04-02T23:08:04.000Z',
+        'completedDate': '2016-04-04T23:08:04.000Z',
+        'dueDate': null,
+        'client': {
+            'id': 9,
+            'name': 'Closets, Closets, Closets, Closets',
+            'address_1': null,
+            'address_2': null,
+            'city': null,
+            'state': null,
+            'zip': null,
+            'fax': null,
+            'phone': null,
+            'email': null,
+            'website': null,
+            'entity': null,
+            'joinDate': '2016-05-08T23:58:27.906Z',
+            'status': 'Active'
+        },
+        'project_type': {
+            'id': 8,
+            'name': 'Monthly Payroll',
+            'description': 'Monthly Payroll',
+            'dueDate': '2016-06-30'
+        }
+    }
+]

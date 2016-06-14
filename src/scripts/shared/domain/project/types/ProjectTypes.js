@@ -19,6 +19,20 @@ export const ProjectCreationType = t.struct({
 }, 'ProjectCreationType');
 
 /**
+ * @property ProjectPreviewType
+ * @type {ProjectPreviewType}
+ * @return {ProjectPreviewType}
+ */
+export const ProjectPreviewType = t.struct({
+    id: t.Number,
+    startDate: t.String,
+    completedDate: t.maybe(t.String),
+    dueDate: t.maybe(t.String),
+    client: ClientPreviewType,
+    project_type: ProjectTypeType
+}, 'ProjectPreviewType');
+
+/**
  * @property ProjectType
  * @type {ProjectType}
  * @return {ProjectType}
@@ -35,6 +49,13 @@ export const ProjectType = t.struct({
 }, 'ProjectType');
 
 /**
+* @property ProjectListType
+* @type {ProjectListType}
+* @return {ProjectListType}
+ */
+export const ProjectListType = t.list(ProjectPreviewType, 'ProjectListType');
+
+/**
  * @property ProjectStateType
  * @type {ProjectStateType}
  * @return {ProjectStateType}
@@ -49,5 +70,5 @@ export const ProjectStateType = BaseStateType.extend({
  * @return {ProjectListStateType}
  */
 export const ProjectListStateType = BaseStateType.extend({
-    payload: t.maybe(t.list(ProjectType))
+    payload: t.maybe(ProjectListType)
 }, 'ProjectListStateType');
