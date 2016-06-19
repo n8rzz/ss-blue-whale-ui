@@ -18,7 +18,7 @@ import {
     VALID_PROJECT_LIST_RESPONSE
 } from '../../mocks/project/ProjectMocks';
 
-export const ValidProjectCreationRequest = new ProjectCreationRequestType(VALID_PROJECT_CREATION_REQUEST);
+export const ValidProjectCreationRequestType = new ProjectCreationRequestType(VALID_PROJECT_CREATION_REQUEST);
 
 export const ValidProjectPreviewType = new ProjectPreviewType(VALID_PROJECT_RESPONSE);
 

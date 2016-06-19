@@ -17,7 +17,7 @@ import {
 } from '../../../../specHelper/mocks/project/ProjectMocks';
 
 import {
-    ValidProjectCreationRequest,
+    ValidProjectCreationRequestType,
     ValidProjectPreviewType,
     ValidProjectType,
     ValidProjectListType,
@@ -29,7 +29,7 @@ ava('ProjectCreationRequestType', t => {
     t.throws(() => new ProjectCreationRequestType(''));
 
     t.notThrows(() => new ProjectCreationRequestType(VALID_PROJECT_CREATION_REQUEST));
-    t.truthy(ProjectCreationRequestType.is(ValidProjectCreationRequest));
+    t.truthy(ProjectCreationRequestType.is(ValidProjectCreationRequestType));
 });
 
 ava('ProjectPreviewType', t => {

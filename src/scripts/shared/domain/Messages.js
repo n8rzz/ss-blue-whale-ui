@@ -19,6 +19,16 @@ export const MESSAGES = {
             INVALID_CLIENT_PREVIEW_TYPE: 'Invalid Client type. Form values must be a ClientPreviewType'
         }
     },
+    PROJECT: {
+        SUCCESS: {
+            CREATE: 'Project created successfully.',
+            SAVE: 'Project updated successfully.',
+            DELETE: 'Project deleted successfully.'
+        },
+        ERROR: {
+            INVALID_PROJECT_CREATION_REQUEST_TYPE: 'Invalid Project type. Form values must be a ProjectCreationRequestType'
+        }
+    },
     PROJECT_TYPE: {
         SUCCESS: {
             CREATE: 'Project Type created successfully.',
