@@ -1,7 +1,10 @@
 import request from 'axios';
+
 import {
-    ProjectListType
+    ProjectListType,
+    ProjectType
 } from '../types/ProjectTypes';
+
 import { ENDPOINTS } from '../../endpoints';
 
 const ENDPOINT = `${ENDPOINTS}/projects`;
@@ -16,6 +19,19 @@ export default {
     getProjectList: () => {
         return request.get(`${ENDPOINT}`)
             .then(response => new ProjectListType(response.data))
+            .catch(error => {
+                throw error;
+            });
+    },
+
+    /**
+     * @function createProject
+     * @param {ProjectCreationRequestType} projectCreationRequest
+     * @return {ProjectType}
+     */
+    createProject: projectCreationRequest => {
+        return request.post(`${ENDPOINT}`, projectCreationRequest)
+            .then(response => new ProjectType(response.data))
             .catch(error => {
                 throw error;
             });
