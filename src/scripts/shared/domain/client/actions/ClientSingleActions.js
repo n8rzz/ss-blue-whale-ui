@@ -2,6 +2,7 @@ import { push } from 'react-router-redux';
 
 import { showFlashMessageWithTimedRemoval } from '../../flashMessage/actions/FlashMessageActions';
 import { MESSAGES } from '../../Messages';
+import { getProjectTypeList } from '../../projectType/actions/ProjectTypeListActions';
 
 import ClientRepository from '../repositories/ClientRepository';
 import {
@@ -33,7 +34,7 @@ const createClientError = errors => ({
  * @param {ClientCreationType|Object} clientFormValues
  * @return {Function}
  */
-export const createClient = (clientFormValues) => {
+export const createClient = clientFormValues => {
     if (!ClientCreationType.is(clientFormValues)) {
         throw new TypeError(MESSAGES.CLIENT.ERROR.INVALID_CLIENT_CREATION_TYPE);
     }
@@ -129,7 +130,10 @@ export const getSingleClient = id => {
         dispatch(getSingleClientStart());
 
         return ClientRepository.getSingleClient(id)
-            .then(response => dispatch(getSingleClientSuccess(response)))
+            .then(response => {
+                dispatch(getSingleClientSuccess(response));
+                return dispatch(getProjectTypeList());
+            })
             .catch(error => {
                 console.error(error);
                 dispatch(getSingleClientError(error));

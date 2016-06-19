@@ -4,6 +4,7 @@ import { ClientPreviewType } from '../../../../domain/client/types/ClientTypes';
 import FlashMessage from '../../FlashMessage/FlashMessage';
 import Tabs from '../../../layout/Tabs/Tabs';
 import ClientContactContainer from '../../../container/clientContact/ClientContactContainer';
+import ClientProjectsContainer from '../../../container/client/ClientProjectsContainer';
 import NoteContainer from '../../../container/note/NoteContainer';
 import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
@@ -99,6 +100,7 @@ export default class ClientSingle extends Component {
      * @return {JSX}
      */
     render() {
+        console.log(this.props);
         return (
             <div className="wrapper">
                 <Tabs>
@@ -118,12 +120,11 @@ export default class ClientSingle extends Component {
                             <Button isSubmit onClick={ this.onSubmit } >Update Client</Button>
                         </VerticalRhythm>
 
-                            { this._composeClientContacts() }
+                        { this._composeClientContacts() }
+
                     </Tabs.Tab>
                     <Tabs.Tab title="Projects">
-                        <div>
-                            PROJECTS
-                        </div>
+                        <ClientProjectsContainer />
                     </Tabs.Tab>
                     <Tabs.Tab title="History">
                         <div>

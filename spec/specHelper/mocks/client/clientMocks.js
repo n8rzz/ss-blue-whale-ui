@@ -17,45 +17,56 @@ export const VALID_CLIENT_CREATION_REQUEST = {
  * @type {ClientType|Object}
  */
 export const VALID_SINGLE_CLIENT_API_RESPONSE = {
-    'id': 1,
-    'name': 'Leonie Kling',
-    'status': 'Active',
-    'address_1': '745 Wiza Gardens',
-    'address_2': 'Suite 877',
-    'city': 'Gislasonton',
-    'state': 'OH',
-    'zip': '34243',
-    'fax': '347-779-6304 x60554',
-    'phone': '693.408.9026',
-    'email': 'juston@willms.org',
-    'website': 'orn.name',
-    'entity': 'Individual',
-    'joinDate': '2013-04-29T04:37:14.729Z',
+    'id': 9,
+    'name': 'Closets, Closets, Closets, Closets',
+    'address_1': null,
+    'address_2': null,
+    'city': null,
+    'state': null,
+    'zip': null,
+    'fax': null,
+    'phone': null,
+    'email': null,
+    'website': null,
+    'entity': null,
+    'joinDate': '2016-05-08T23:58:27.906Z',
     'status': 'Active',
     'client_contacts': [
         {
-            'id': 3,
-            'position': 'The Boss',
-            'name': 'Jenny Doe',
-            'businessPhone': '555-867-5309',
+            'id': 7,
+            'position': 'Sir',
+            'name': 'Red Forman',
+            'businessPhone': null,
             'mobilePhone': null,
-            'email': 'jenny_doe@example.com'
-        }
-    ],
-    'notes': [
-        {
-            'id': 8,
-            'content': 'Grooving slowly',
-            'notable_id': 1,
-            'created_at': '2016-05-02T02:41:50.979Z'
+            'email': null,
+            'client_id': 9
         },
         {
-            'id': 7,
-            'content': 'Long Before These Crowded Streets, here stood my Dreaming Tree.',
-            'notable_id': 1,
-            'created_at': '2016-05-02T00:17:51.812Z'
+            'id': 6,
+            'position': 'His Royal Dudeness',
+            'name': 'The Dude',
+            'businessPhone': null,
+            'mobilePhone': null,
+            'email': null,
+            'client_id': 9
         }
-    ]
+    ],
+    'projects': [
+        {
+            'id': 2,
+            'startDate': '2016-04-02',
+            'completedDate': '2016-04-04',
+            'dueDate': null,
+            'project_type': {
+                'id': 8,
+                'name': 'Monthly Payroll',
+                'description': 'Monthly Payroll',
+                'dueDate': '2016-06-30',
+                'task_items': []
+            }
+        }
+    ],
+    'notes': []
 };
 
 /**

@@ -48,7 +48,9 @@ export const ClientPreviewType = ClientCreationType.extend({
 export const ClientType = ClientCreationType.extend({
     id: t.Number,
     client_contacts: t.list(t.maybe(ClientContactType)),
-    notes: t.list(t.maybe(NoteType))
+    notes: t.list(t.maybe(NoteType)),
+    // TODO: replace with new ClientProjectsType
+    projects: t.list(t.maybe(t.Object))
 }, 'ClientType');
 
 /**

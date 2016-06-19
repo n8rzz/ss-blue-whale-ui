@@ -2,7 +2,7 @@
 import ava from 'ava';
 
 import {
-    ProjectCreationType,
+    ProjectCreationRequestType,
     ProjectPreviewType,
     ProjectType,
     ProjectListType,
@@ -25,11 +25,11 @@ import {
     ValidProjectListStateType
 } from '../../../../specHelper/fixtures/project/ProjectFixtures';
 
-ava('ProjectCreationType', t => {
-    t.throws(() => new ProjectCreationType(''));
+ava('ProjectCreationRequestType', t => {
+    t.throws(() => new ProjectCreationRequestType(''));
 
-    t.notThrows(() => new ProjectCreationType(VALID_PROJECT_CREATION_REQUEST));
-    t.truthy(ProjectCreationType.is(ValidProjectCreationRequest));
+    t.notThrows(() => new ProjectCreationRequestType(VALID_PROJECT_CREATION_REQUEST));
+    t.truthy(ProjectCreationRequestType.is(ValidProjectCreationRequest));
 });
 
 ava('ProjectPreviewType', t => {

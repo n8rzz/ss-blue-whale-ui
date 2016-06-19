@@ -1,22 +1,49 @@
 import t from 'tcomb';
 
+import { reduceListToIdNameEnumeration } from '../../../lib/formHelpers/reduceListToIdNameEnumeration';
+
 import { BaseStateType } from '../../baseTypes/BaseTypes';
 import { ClientPreviewType } from '../../client/types/ClientTypes';
-import { ProjectTypeType } from '../../projectType/types/ProjectTypeTypes';
+import {
+    ProjectTypeType,
+    ProjectTypeListType
+} from '../../projectType/types/ProjectTypeTypes';
 import { NoteType } from '../../note/types/NoteTypes';
 
 /**
- * @property ProjectCreationType
- * @type {ProjectCreationType}
- * @return {ProjectCreationType}
+ * @function buildProjectCreationFormType
+ * @param {ProjectTypeListType} projectTypeList
+ * @return {ProjectCreationFormType}
  */
-export const ProjectCreationType = t.struct({
+export const buildProjectCreationFormType = projectTypeList => {
+    if (!ProjectTypeListType.is(projectTypeList)) {
+        throw new TypeError('Invalid parameter. Expected projectTypeList to be a ProjectTypeListType.');
+    }
+
+    // TODO: the enum declaration may need to move to the helper file
+    const projectTypeFormEnum = reduceListToIdNameEnumeration(projectTypeList);
+
+    return t.struct({
+        client_id: t.Number,
+        project_type_id: t.enums(projectTypeFormEnum),
+        startDate: t.String,
+        endDate: t.maybe(t.String),
+        completedDate: t.maybe(t.String)
+    }, 'ProjectCreationFormType');
+};
+
+/**
+ * @property ProjectCreationRequestType
+ * @type {ProjectCreationRequestType}
+ * @return {ProjectCreationRequestType}
+ */
+export const ProjectCreationRequestType = t.struct({
     client_id: t.Number,
     project_type_id: t.Number,
     startDate: t.String,
     endDate: t.maybe(t.String),
     completedDate: t.maybe(t.String)
-}, 'ProjectCreationType');
+}, 'ProjectCreationRequestType');
 
 /**
  * @property ProjectPreviewType
