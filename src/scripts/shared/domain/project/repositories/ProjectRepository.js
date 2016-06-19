@@ -25,6 +25,8 @@ export default {
     },
 
     /**
+     * Create a new `Project`
+     *
      * @function createProject
      * @param {ProjectCreationRequestType} projectCreationRequest
      * @return {ProjectType}

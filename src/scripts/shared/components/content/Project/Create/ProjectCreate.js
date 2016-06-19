@@ -105,7 +105,7 @@ export default class ProjectCreate extends Component {
             }
 
             const projectCreationRequest = new ProjectCreationRequestType(createProjectFormValues);
-            // this.props.createNewProject(projectCreationRequest);
+            this.props.onCreateProject(projectCreationRequest);
         }
     }
 }
@@ -138,9 +138,9 @@ ProjectCreate.propTypes = {
     projectTypes: PropTypes.array.isRequired,
 
     /**
-     * @property createNewProject
+     * @property onCreateProject
      * @type {Function}
      * @required
      */
-    createNewProject: PropTypes.func.isRequired
+    onCreateProject: PropTypes.func.isRequired
 };

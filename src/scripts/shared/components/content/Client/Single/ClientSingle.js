@@ -100,7 +100,6 @@ export default class ClientSingle extends Component {
      * @return {JSX}
      */
     render() {
-        console.log(this.props);
         return (
             <div className="wrapper">
                 <Tabs>
@@ -124,6 +123,8 @@ export default class ClientSingle extends Component {
 
                     </Tabs.Tab>
                     <Tabs.Tab title="Projects">
+                        <FlashMessage />
+
                         <ClientProjectsContainer />
                     </Tabs.Tab>
                     <Tabs.Tab title="History">

@@ -140,7 +140,7 @@ class ClientList extends Component {
      * @callback
      */
     onRowClick(rowIndex) {
-        console.log(this.props.clients[rowIndex]);
+        // console.log(this.props.clients[rowIndex]);
     }
 
 

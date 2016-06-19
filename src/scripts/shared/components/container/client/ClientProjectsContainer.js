@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { createProject } from '../../../domain/project/actions/ProjectSingleActions';
 import { getProjectTypeList } from '../../../domain/projectType/actions/ProjectTypeListActions';
 import ProjectCreate from '../../content/Project/Create/ProjectCreate';
 
@@ -11,15 +12,25 @@ class ClientProjectsContainer extends Component {
 
     /**
      * @for ClientProjectsContainer
+     * @method _composeCreateProject
+     * @return {JSX}
+     */
+    _composeCreateProject() {
+        return (
+            <ProjectCreate
+                client={ this.props.client }
+                projectTypes={ this.props.projectTypes }
+                onCreateProject={ this.props.createProject }/>
+        );
+    }
+
+    /**
+     * @for ClientProjectsContainer
      * @method render
      * @return {JSX}
      */
     render() {
-        return (
-            <ProjectCreate
-                client={ this.props.client }
-                projectTypes={ this.props.projectTypes } />
-        );
+        return this._composeCreateProject();
     }
 }
 
@@ -52,7 +63,13 @@ ClientProjectsContainer.propTypes = {
      * @property getProjectTypeList
      * @type {Function}
      */
-    getProjectTypeList: PropTypes.func
+    getProjectTypeList: PropTypes.func,
+
+    /**
+     * @property createProject
+     * @type {Function}
+     */
+    createProject: PropTypes.func
 };
 
 /**
@@ -71,7 +88,8 @@ const mapStoreToProps = state => ({
  * @return {Object}
  */
 const mapDispatchToProps = dispatch => ({
-    getProjectTypeList: () => dispatch(getProjectTypeList())
+    getProjectTypeList: () => dispatch(getProjectTypeList()),
+    createProject: projectCreationRequest => dispatch(createProject(projectCreationRequest))
 });
 
 export default connect(

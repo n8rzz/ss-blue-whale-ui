@@ -1,5 +1,5 @@
 import { showFlashMessageWithTimedRemoval } from '../../flashMessage/actions/FlashMessageActions';
-import { MESSAGES } from '../../Messages'
+import { MESSAGES } from '../../Messages';
 
 import ProjectRepository from '../repositories/ProjectRepository';
 
@@ -24,9 +24,10 @@ const createProjectError = errors => ({
 });
 
 /**
+ * Given a valid ProjectCreationRequestType, create a new `Project`.
  *
  * @function createProject
- * @param {Object} projectCreationRequest
+ * @param {ProjectCreationRequestType} projectCreationRequest
  */
 export const createProject = projectCreationRequest => {
     if (!ProjectCreationRequestType.is(projectCreationRequest)) {
