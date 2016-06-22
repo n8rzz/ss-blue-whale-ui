@@ -55,10 +55,6 @@ export default class ProjectCreate extends Component {
      */
     render() {
         const FORM_TYPE = buildProjectCreationFormType(this.props.projectTypes);
-        // FORM_OPTIONS.fields.project_type_id.options = this.props.projectTypes.map(projectType => {
-        //     console.log({ value: projectType.id, text: projectType.name });
-        //     return { value: projectType.id, text: projectType.name };
-        // });
 
         return (
             <div>
@@ -68,7 +64,10 @@ export default class ProjectCreate extends Component {
                     options={ FORM_OPTIONS }
                     type={ FORM_TYPE } />
 
-                <Button>Cancel</Button>
+                <Button
+                    onClick={ this.props.onRequestToCancel }>
+                    Cancel
+                </Button>
                 <Button
                     isSubmit={ true }
                     onClick={ this.onSubmit }>
@@ -142,5 +141,12 @@ ProjectCreate.propTypes = {
      * @type {Function}
      * @required
      */
-    onCreateProject: PropTypes.func.isRequired
+    onCreateProject: PropTypes.func.isRequired,
+
+    /**
+     * @property onRequestToCancel
+     * @type {Function}
+     * @required
+     */
+    onRequestToCancel: PropTypes.func.isRequired
 };

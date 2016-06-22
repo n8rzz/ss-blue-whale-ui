@@ -2,13 +2,25 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createProject } from '../../../domain/project/actions/ProjectSingleActions';
 import { getProjectTypeList } from '../../../domain/projectType/actions/ProjectTypeListActions';
+import ClientProjectList from '../../content/Client/ClientProjectList/ClientProjectList'
 import ProjectCreate from '../../content/Project/Create/ProjectCreate';
+import Button from '../../layout/Button/Button';
 
 /**
  * @class ClientProjectsContainer
  * @extends React/Component
  */
 class ClientProjectsContainer extends Component {
+    /**
+     * @constructor
+     */
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            shouldShowCreate: false
+        };
+    }
 
     /**
      * @for ClientProjectsContainer
@@ -16,11 +28,32 @@ class ClientProjectsContainer extends Component {
      * @return {JSX}
      */
     _composeCreateProject() {
+        if (!this.state.shouldShowCreate) {
+            return (
+                <Button
+                    onClick={ this.onToggleCreate }>
+                    Create new Project
+                </Button>
+            );
+        }
+
         return (
             <ProjectCreate
                 client={ this.props.client }
                 projectTypes={ this.props.projectTypes }
-                onCreateProject={ this.props.createProject }/>
+                onCreateProject={ this.props.createProject }
+                onRequestToCancel={ this.onToggleCreate } />
+        );
+    }
+
+    /**
+     * @for ClientProjectsContainer
+     * @method _composeClientProjectList
+     * @return {JSX}
+     */
+    _composeClientProjectList() {
+        return (
+            <ClientProjectList />
         );
     }
 
@@ -30,8 +63,25 @@ class ClientProjectsContainer extends Component {
      * @return {JSX}
      */
     render() {
-        return this._composeCreateProject();
+        return (
+            <div>
+                { this._composeCreateProject() }
+                { this._composeClientProjectList() }
+            </div>
+        );
     }
+
+    /**
+     * @for ClientProjectsContainer
+     * @method onToggleCreate
+     * @param {React.SyntheticEvent} event
+     * @callback
+     */
+    onToggleCreate = event => {
+        event.preventDefault();
+
+        this.setState({ shouldShowCreate: !this.state.shouldShowCreate });
+    };
 }
 
 /**

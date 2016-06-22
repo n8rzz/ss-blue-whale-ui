@@ -37,6 +37,7 @@ export const buildProjectCreationFormType = projectTypeList => {
  * @type {ProjectCreationRequestType}
  * @return {ProjectCreationRequestType}
  */
+// TODO: change to function that returns a struct. add t.match to handle string/number values of project_type_id
 export const ProjectCreationRequestType = t.struct({
     client_id: t.Number,
     project_type_id: t.Number,
