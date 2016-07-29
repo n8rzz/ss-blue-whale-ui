@@ -27,6 +27,10 @@ export const VALID_SINGLE_CLIENT_API_RESPONSE = {
     'fax': null,
     'phone': null,
     'email': null,
+    'emailPrimary': null,
+    'emailSecondary': null,
+    'dbaName': null,
+    'spouseName': null,
     'website': null,
     'entity': null,
     'joinDate': '2016-05-08T23:58:27.906Z',
@@ -85,6 +89,10 @@ export const VALID_CLIENT_REQUEST = {
     'fax': null,
     'phone': null,
     'email': null,
+    'emailPrimary': null,
+    'emailSecondary': null,
+    'dbaName': null,
+    'spouseName': null,
     'website': null
 };
 
@@ -107,6 +115,10 @@ export const VALID_CLIENT_LIST_API_RESPONSE = [
         'fax': null,
         'phone': null,
         'email': null,
+        'emailPrimary': null,
+        'emailSecondary': null,
+        'dbaName': null,
+        'spouseName': null,
         'website': null
     },
     {
@@ -121,6 +133,10 @@ export const VALID_CLIENT_LIST_API_RESPONSE = [
         'fax': '555-867-5310',
         'phone': '555-867-5309',
         'email': 'c4@example.com',
+        'emailPrimary': null,
+        'emailSecondary': null,
+        'dbaName': null,
+        'spouseName': null,
         'website': 'http://www.closetsallover.com'
     }
 ];

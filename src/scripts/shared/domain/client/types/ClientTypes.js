@@ -31,7 +31,12 @@ export const ClientCreationType = t.struct({
     // TODO: create refinement for email address
     email: t.maybe(t.String),
     // TODO create refinement for urls
-    website: t.maybe(t.String)
+    website: t.maybe(t.String),
+    emailPrimary: t.maybe(t.String),
+    emailSecondary: t.maybe(t.String),
+    dbaName: t.maybe(t.String),
+    spouseName: t.maybe(t.String)
+
 }, 'ClientCreationType');
 
 export const ClientPreviewType = ClientCreationType.extend({
