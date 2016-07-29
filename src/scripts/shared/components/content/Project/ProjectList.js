@@ -88,26 +88,28 @@ class ProjectList extends Component {
      * @return {JSX}
      */
     _composeTableBody() {
-        const bodyRowChildren = _map(this.state.filteredProjectList, (row, index) => {
+        const bodyRowChildren = _map(this.state.filteredProjectList, (project, index) => {
             return (
                 <tr key={ index } onClick={ () => this.onRowClick(index) }>
-                    <td>{ row.id }</td>
+                    <td>{ project.id }</td>
                     <td>
                         <Link
-                            to={ `/clients/${row.client.id}` }
+                            to={ `/clients/${project.client.id}` }
                             className="link">
-                            { row.client.name }
+                            { project.client.name }
                         </Link>
                     </td>
                     <td>
                         <Link
-                            to={ `/projectTypes/${row.project_type.id}` }
+                            to={ `/projectTypes/${project.project_type.id}` }
                             className="link">
-                            { row.project_type.name }
+                            { project.project_type.name }
                         </Link>
                     </td>
-                    <td>{ row.startDate }</td>
-                    <td>{ row.dueDate }</td>
+                    <td>queued,in progress,closed,complete</td>
+                    <td>{ project.startDate }</td>
+                    <td>{ project.dueDate }</td>
+                    <td>TASK</td>
                 </tr>
             );
         });
@@ -135,7 +137,7 @@ class ProjectList extends Component {
 
                 { this._composeSearchBar() }
 
-                <Table headingList={ ['id', 'client', 'type', 'start date', 'due date'] } >
+                <Table headingList={ ['id', 'client', 'type', 'status', 'start date', 'due date', 'current task'] } >
                     { this._composeTableBody() }
                 </Table>
             </div>

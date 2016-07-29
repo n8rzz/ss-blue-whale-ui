@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createProject } from '../../../domain/project/actions/ProjectSingleActions';
 import { getProjectTypeList } from '../../../domain/projectType/actions/ProjectTypeListActions';
-import ClientProjectList from '../../content/Client/ClientProjectList/ClientProjectList'
+import ClientProjectList from '../../content/Client/ClientProjectList/ClientProjectList';
 import ProjectCreate from '../../content/Project/Create/ProjectCreate';
+import VerticalRhythm from '../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../layout/Button/Button';
 
 /**
@@ -30,10 +31,12 @@ class ClientProjectsContainer extends Component {
     _composeCreateProject() {
         if (!this.state.shouldShowCreate) {
             return (
-                <Button
-                    onClick={ this.onToggleCreate }>
-                    Create new Project
-                </Button>
+                <VerticalRhythm increment={ 1 }>
+                    <Button
+                        onClick={ this.onToggleCreate }>
+                        Create new Project
+                    </Button>
+                </VerticalRhythm>
             );
         }
 
@@ -52,8 +55,12 @@ class ClientProjectsContainer extends Component {
      * @return {JSX}
      */
     _composeClientProjectList() {
+        if (this.state.shouldShowCreate) {
+            return null;
+        }
+
         return (
-            <ClientProjectList />
+            <ClientProjectList projects={ this.props.client.projects }/>
         );
     }
 
