@@ -11,6 +11,17 @@ import {
 import { NoteType } from '../../note/types/NoteTypes';
 
 /**
+ * @property ProjectStatusEnum
+ * @return {ProjectStatusEnum}
+ */
+const ProjectStatusEnum = t.enums({
+    Scheduled: 'Scheduled',
+    Active: 'Active',
+    Closed: 'Closed',
+    Complete: 'Complete'
+}, 'ProjectStatusEnum');
+
+/**
  * @function buildProjectCreationFormType
  * @param {ProjectTypeListType} projectTypeList
  * @return {ProjectCreationFormType}
@@ -23,9 +34,13 @@ export const buildProjectCreationFormType = projectTypeList => {
     // TODO: the enum declaration may need to move to the helper file
     const projectTypeFormEnum = reduceListToIdNameEnumeration(projectTypeList);
 
+    // TODO: extract to BaseProjectCreationRequestType and extend it with the project_type_id enum
     return t.struct({
         client_id: t.Number,
         project_type_id: t.enums(projectTypeFormEnum),
+        status: ProjectStatusEnum,
+        isRecurring: t.Boolean,
+        leadTimeDays: t.maybe(t.Number),
         startDate: t.String,
         endDate: t.maybe(t.String),
         completedDate: t.maybe(t.String)
@@ -42,6 +57,9 @@ export const ProjectCreationRequestType = t.struct({
     client_id: t.Number,
     project_type_id: t.Number,
     startDate: t.String,
+    status: ProjectStatusEnum,
+    isRecurring: t.Boolean,
+    leadTimeDays: t.maybe(t.Number),
     endDate: t.maybe(t.String),
     completedDate: t.maybe(t.String)
 }, 'ProjectCreationRequestType');

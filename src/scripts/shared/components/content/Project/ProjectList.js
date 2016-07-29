@@ -106,7 +106,7 @@ class ProjectList extends Component {
                             { project.project_type.name }
                         </Link>
                     </td>
-                    <td>queued,in progress,closed,complete</td>
+                    <td>{ project.status }</td>
                     <td>{ project.startDate }</td>
                     <td>{ project.dueDate }</td>
                     <td>TASK</td>

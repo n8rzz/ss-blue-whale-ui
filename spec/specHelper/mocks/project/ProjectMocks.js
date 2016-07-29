@@ -2,6 +2,9 @@ export const VALID_PROJECT_CREATION_REQUEST = {
     'startDate': 'Sat, 02 Apr 2016 23:08:04 UTC +00:00',
     'endDate': 'Sun, 03 Apr 2016 23:08:04 UTC +00:00',
     'completedDate': 'Mon, 04 Apr 2016 23:08:04 UTC +00:00',
+    'status': 'Active',
+    'isRecurring': true,
+    'leadTimeDays': 5,
     'client_id': 9,
     'project_type_id': 8
 };
@@ -10,6 +13,9 @@ export const VALID_PROJECT_RESPONSE = {
     'id': 2,
     'startDate': '2016-04-02T23:08:04.000Z',
     'completedDate': '2016-04-04T23:08:04.000Z',
+    'status': 'Active',
+    'isRecurring': true,
+    'leadTimeDays': 5,
     'dueDate': null,
     'client': {
         'id': 9,
@@ -57,6 +63,9 @@ export const VALID_PROJECT_LIST_RESPONSE = [
         'startDate': '2016-04-02T23:08:04.000Z',
         'completedDate': '2016-04-04T23:08:04.000Z',
         'dueDate': null,
+        'status': 'Active',
+        'isRecurring': true,
+        'leadTimeDays': 5,
         'client': {
             'id': 1,
             'name': 'Leonie Kling',
@@ -108,4 +117,4 @@ export const VALID_PROJECT_LIST_RESPONSE = [
             'dueDate': '2016-06-30'
         }
     }
-]
+];
