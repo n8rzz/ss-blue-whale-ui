@@ -10,6 +10,7 @@ import { BaseStateType } from '../../baseTypes/BaseTypes';
 export const TaskItemCreationType = t.struct({
     name: t.String,
     description: t.String,
+    isControllable: t.Boolean,
     startDate: t.maybe(t.String),
     endDate: t.maybe(t.String)
     // sortOrder: t.Number

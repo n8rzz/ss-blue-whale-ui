@@ -13,7 +13,7 @@ import ClientCreateContainer from './components/container/client/ClientCreateCon
 import ClientSingleContainer from './components/container/client/ClientSingleContainer';
 import { getSingleClient } from './domain/client/actions/ClientSingleActions';
 
-import ProjectContainer from './components/container/project/ProjectContainer';
+import ProjectListContainer from './components/container/project/ProjectListContainer';
 
 import ProjectTypeRoot from './components/content//ProjectType/ProjectTypeRoot';
 import ProjectTypeContainer from './components/container/projectType/ProjectTypeContainer';
@@ -44,7 +44,7 @@ export default function(store) {
                     onEnter={ nextState => store.dispatch(getSingleClient(nextState.params.id)) }/>
             </Route>
 
-            <Route component={ ProjectContainer } path="projects" />
+            <Route component={ ProjectListContainer } path="projects" />
 
             <Route component={ ProjectTypeRoot } path="projectTypes">
                 <IndexRoute component={ ProjectTypeContainer } />

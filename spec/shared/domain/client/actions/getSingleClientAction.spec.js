@@ -41,11 +41,21 @@ ava('getSingleClient dispatches success action when data resolves successfully',
     ClientRepository.getSingleClient = sinon.stub().resolves(ValidClientType);
     await getSingleClient(ValidClientType.id)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 2);
+    t.truthy(dispatchSpy.callCount === 3);
     const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === GET_SINGLE_CLIENT_SUCCESS);
     t.truthy(objectPassedToSecondDispatch.payload === ValidClientType);
+});
+
+ava('getSingleClient calls .getProjectTypeList() when data resolves successfully', async t => {
+    const dispatchSpy = sinon.spy();
+    ClientRepository.getSingleClient = sinon.stub().resolves(ValidClientType);
+    await getSingleClient(ValidClientType.id)(dispatchSpy);
+
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
+
+    t.truthy(typeof objectPassedToSecondDispatch === 'function');
 });
 
 ava.before(() => {

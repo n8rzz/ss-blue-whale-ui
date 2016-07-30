@@ -16,13 +16,13 @@ import _map from 'lodash/map';
 const SEARCH_DELAY_IN_MS = 80;
 
 /**
- * @class ClientList
+ * @class ProjectList
  * @extends React/Component
  */
-class ClientList extends Component {
+class ProjectList extends Component {
 
     /**
-     * @for ClientList
+     * @for ProjectList
      * @constructor
      * @param  {Object} props
      */
@@ -30,36 +30,36 @@ class ClientList extends Component {
         super(props);
 
         this.state = {
-            filteredClientList: props.clients
+            filteredProjectList: props.projects
         };
     }
 
     /**
-     * @for ClientList
+     * @for ProjectList
      * @method componentWillReceiveProps
      * @param {Object} nextProps
      */
     componentWillReceiveProps(nextProps) {
         this.setState({
-            filteredClientList: nextProps.clients
+            filteredProjectList: nextProps.projects
         });
     }
 
     /**
-     * @for ClientList
+     * @for ProjectList
      * @method _composeSearchBar
      * @return {JSX}
      */
     _composeSearchBar() {
-        const { filteredClientList } = this.state;
-        const { clients } = this.props;
+        const { filteredProjectList } = this.state;
+        const { projects } = this.props;
 
         let filteredItemCount = null;
-        if (clients.length > filteredClientList.length) {
+        if (projects.length > filteredProjectList.length) {
             filteredItemCount = (
                 <li>
                     <div className="txt mix-txt_light">
-                        { `${filteredClientList.length} of ${clients.length}` }
+                        { `${filteredProjectList.length} of ${projects.length}` }
                     </div>
                 </li>
             );
@@ -71,7 +71,7 @@ class ClientList extends Component {
                 <ul className="hlist hlist_loose">
                     <li>
                         <input
-                            type="text"
+                            type="search"
                             ref="searchQuery"
                             placeholder="search"
                             onChange={ this.onSearchChange } />
@@ -88,18 +88,28 @@ class ClientList extends Component {
      * @return {JSX}
      */
     _composeTableBody() {
-        const bodyRowChildren = _map(this.state.filteredClientList, (row, index) => {
-            const clientLinkString = `/clients/${row.id}`;
-
+        const bodyRowChildren = _map(this.state.filteredProjectList, (project, index) => {
             return (
                 <tr key={ index } onClick={ () => this.onRowClick(index) }>
-                    <td>{ row.id }</td>
+                    <td>{ project.id }</td>
                     <td>
-                        <Link className="link" to={ clientLinkString  }>{ row.name }</Link>
+                        <Link
+                            to={ `/clients/${project.client.id}` }
+                            className="link">
+                            { project.client.name }
+                        </Link>
                     </td>
-                    <td>{ row.status }</td>
-                    <td>{ row.city }</td>
-                    <td>{ row.state }</td>
+                    <td>
+                        <Link
+                            to={ `/projectTypes/${project.project_type.id}` }
+                            className="link">
+                            { project.project_type.name }
+                        </Link>
+                    </td>
+                    <td>{ project.status }</td>
+                    <td>{ project.startDate }</td>
+                    <td>{ project.dueDate }</td>
+                    <td>TASK</td>
                 </tr>
             );
         });
@@ -112,12 +122,12 @@ class ClientList extends Component {
     }
 
     /**
-     * @for ClientList
+     * @for ProjectList
      * @method render
      * @return {JSX}
      */
     render() {
-        if (this.props.clients.length === 0) {
+        if (this.props.projects.length === 0) {
             return null;
         }
 
@@ -127,7 +137,7 @@ class ClientList extends Component {
 
                 { this._composeSearchBar() }
 
-                <Table headingList={ ['id', 'name', 'status', 'city', 'state'] } >
+                <Table headingList={ ['id', 'client', 'type', 'status', 'start date', 'due date', 'current task'] } >
                     { this._composeTableBody() }
                 </Table>
             </div>
@@ -140,7 +150,7 @@ class ClientList extends Component {
      * @callback
      */
     onRowClick(rowIndex) {
-        // console.log(this.props.clients[rowIndex]);
+        console.log(this.props.projects[rowIndex]);
     }
 
 
@@ -154,12 +164,12 @@ class ClientList extends Component {
     onSearchChangeDebounced = _debounce((serachQuery) => this.onSearchQueryChange(serachQuery), SEARCH_DELAY_IN_MS)
 
     onSearchQueryChange = searchQuery => {
-        const filteredClientList = _filter(this.props.clients, (client) => {
-            return _includes(client.name.toLowerCase(), searchQuery.toLowerCase());
+        const filteredProjectList = _filter(this.props.projects, (project) => {
+            return _includes(project.client.name.toLowerCase(), searchQuery.toLowerCase());
         });
 
         this.setState({
-            filteredClientList
+            filteredProjectList
         });
     }
 }
@@ -169,20 +179,20 @@ class ClientList extends Component {
  * @type {String}
  * @static
  */
-ClientList.displayName = 'ClientList';
+ProjectList.displayName = 'ProjectList';
 
 /**
  * @property propTypes
  * @type {Object}
  * @static
  */
-ClientList.propTypes = {
+ProjectList.propTypes = {
     /**
-     * @props clients
-     * @type {ClientListType}
+     * @props projects
+     * @type {ProjectListType}
      * @required
      */
-    clients: PropTypes.array.isRequired
+    projects: PropTypes.array.isRequired
 };
 
-export default ClientList;
+export default ProjectList;

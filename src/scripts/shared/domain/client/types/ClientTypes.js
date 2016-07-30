@@ -8,10 +8,22 @@ import { NoteType } from '../../note/types/NoteTypes';
  * @type ClientStatusEnum
  * @return {ClientStatusEnum}
  */
-const ClientStatusEnum = t.enums({
-    Active: 'Active',
-    Inactive: 'Inactive'
-}, 'ClientStatusEnum');
+const ClientStatusEnum = t.enums.of([
+    'Active',
+    'Inactive'
+], 'ClientStatusEnum');
+
+/**
+ * @type ClientEntityEnum
+ * @return {ClientEntityEnum}
+ */
+const ClientEntityEnum = t.enums.of([
+    'Individual',
+    'S-Corp',
+    'C-Corp',
+    'Partnership',
+    'LLC'
+], 'ClientEntityEnum');
 
 /**
  * @type ClientCreationType
@@ -20,6 +32,7 @@ const ClientStatusEnum = t.enums({
 export const ClientCreationType = t.struct({
     name: t.String,
     status: ClientStatusEnum,
+    entity: ClientEntityEnum,
     address_1: t.maybe(t.String),
     address_2: t.maybe(t.String),
     city: t.maybe(t.String),
@@ -31,7 +44,12 @@ export const ClientCreationType = t.struct({
     // TODO: create refinement for email address
     email: t.maybe(t.String),
     // TODO create refinement for urls
-    website: t.maybe(t.String)
+    website: t.maybe(t.String),
+    emailPrimary: t.maybe(t.String),
+    emailSecondary: t.maybe(t.String),
+    dbaName: t.maybe(t.String),
+    spouseName: t.maybe(t.String)
+
 }, 'ClientCreationType');
 
 export const ClientPreviewType = ClientCreationType.extend({
@@ -48,7 +66,9 @@ export const ClientPreviewType = ClientCreationType.extend({
 export const ClientType = ClientCreationType.extend({
     id: t.Number,
     client_contacts: t.list(t.maybe(ClientContactType)),
-    notes: t.list(t.maybe(NoteType))
+    notes: t.list(t.maybe(NoteType)),
+    // TODO: replace with new ClientProjectsType
+    projects: t.list(t.maybe(t.Object))
 }, 'ClientType');
 
 /**

@@ -14,7 +14,7 @@ import {
 
 const POSSIBLE_ACTIONS = [
     'CREATE_SESSION_START',
-    'GET_CLIENT_LIST',
+    'GET_CLIENT_LIST'
 ];
 
 const pushStub = sinon.stub();
@@ -45,9 +45,9 @@ ava('authenticationMiddleware returns an action if a session token exists', t =>
     sessionService._session = ValidSessionResponseType;
 
     const mockNext = action => {
-        t.truthy(action.type === POSSIBLE_ACTIONS[0])
+        t.truthy(action.type === POSSIBLE_ACTIONS[0]);
 
-        return action
+        return action;
     };
 
     t.plan(2);
@@ -64,8 +64,8 @@ ava('authenticationMiddleware redirects to `/login` if no token exists', t => {
 
     let calledNextAction;
     const mockNext = action => {
-        calledNextAction = action
-        return action
+        calledNextAction = action;
+        return action;
     };
 
     const result = authenticationMiddleware(pushStub, sessionService)(reduxMiddlewareStub)(mockNext)({
