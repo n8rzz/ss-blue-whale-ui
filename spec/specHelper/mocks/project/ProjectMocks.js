@@ -20,6 +20,7 @@ export const VALID_PROJECT_RESPONSE = {
     'client': {
         'id': 9,
         'name': 'Closets, Closets, Closets, Closets',
+        'entity': 'S-Corp',
         'address_1': null,
         'address_2': null,
         'city': null,
@@ -29,7 +30,6 @@ export const VALID_PROJECT_RESPONSE = {
         'phone': null,
         'email': null,
         'website': null,
-        'entity': null,
         'joinDate': '2016-05-08T23:58:27.906Z',
         'status': 'Active'
     },
@@ -37,6 +37,7 @@ export const VALID_PROJECT_RESPONSE = {
         'id': 8,
         'name': 'Monthly Payroll',
         'description': 'Monthly Payroll',
+        'repeatWhenComplete': true,
         'dueDate': '2016-06-30'
     },
     'time_entries': [
@@ -69,6 +70,7 @@ export const VALID_PROJECT_LIST_RESPONSE = [
         'client': {
             'id': 1,
             'name': 'Leonie Kling',
+            'entity': 'S-Corp',
             'address_1': '745 Wiza Gardens',
             'address_2': 'Suite 877',
             'city': 'Gislasonton',
@@ -78,7 +80,6 @@ export const VALID_PROJECT_LIST_RESPONSE = [
             'phone': '693.408.9026',
             'email': 'juston@willms.org',
             'website': 'orn.name',
-            'entity': 'Individual',
             'joinDate': '2013-04-29T04:37:14.729Z',
             'status': 'Active'
         },
@@ -86,6 +87,7 @@ export const VALID_PROJECT_LIST_RESPONSE = [
             'id': 1,
             'name': 'eum',
             'description': 'Qui est voluptates voluptatem.',
+            'repeatWhenComplete': true,
             'dueDate': '2016-03-26'
         }
     },
@@ -97,6 +99,7 @@ export const VALID_PROJECT_LIST_RESPONSE = [
         'client': {
             'id': 9,
             'name': 'Closets, Closets, Closets, Closets',
+            'entity': 'S-Corp',
             'address_1': null,
             'address_2': null,
             'city': null,
@@ -106,7 +109,6 @@ export const VALID_PROJECT_LIST_RESPONSE = [
             'phone': null,
             'email': null,
             'website': null,
-            'entity': null,
             'joinDate': '2016-05-08T23:58:27.906Z',
             'status': 'Active'
         },
@@ -114,6 +116,7 @@ export const VALID_PROJECT_LIST_RESPONSE = [
             'id': 8,
             'name': 'Monthly Payroll',
             'description': 'Monthly Payroll',
+            'repeatWhenComplete': true,
             'dueDate': '2016-06-30'
         }
     }

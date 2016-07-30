@@ -1,6 +1,13 @@
 import t from 'tcomb';
 import { BaseStateType } from '../../baseTypes/BaseTypes';
 
+const ProjectTypeScheduleEnum = t.enums.of([
+    'Weekly',
+    'Monthly',
+    'Quarterly',
+    'Yearly'
+], 'ProjectTypeScheduleEnum');
+
 /**
  * @type ProjectTypeCreationType
  * @return {ProjectTypeCreationType}
@@ -8,6 +15,9 @@ import { BaseStateType } from '../../baseTypes/BaseTypes';
 export const ProjectTypeCreationType = t.struct({
     name: t.String,
     description: t.String,
+    repeatWhenComplete: t.Boolean,
+    recurringSchedule: t.maybe(ProjectTypeScheduleEnum),
+    nextRecurringDate: t.maybe(t.String),
     dueDate: t.maybe(t.String)
     // TODO: update to reference TaskItemType
     // task_items: t.maybe(t.list(t.String))

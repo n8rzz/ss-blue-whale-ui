@@ -8,10 +8,22 @@ import { NoteType } from '../../note/types/NoteTypes';
  * @type ClientStatusEnum
  * @return {ClientStatusEnum}
  */
-const ClientStatusEnum = t.enums({
-    Active: 'Active',
-    Inactive: 'Inactive'
-}, 'ClientStatusEnum');
+const ClientStatusEnum = t.enums.of([
+    'Active',
+    'Inactive'
+], 'ClientStatusEnum');
+
+/**
+ * @type ClientEntityEnum
+ * @return {ClientEntityEnum}
+ */
+const ClientEntityEnum = t.enums.of([
+    'Individual',
+    'S-Corp',
+    'C-Corp',
+    'Partnership',
+    'LLC'
+], 'ClientEntityEnum');
 
 /**
  * @type ClientCreationType
@@ -20,6 +32,7 @@ const ClientStatusEnum = t.enums({
 export const ClientCreationType = t.struct({
     name: t.String,
     status: ClientStatusEnum,
+    entity: ClientEntityEnum,
     address_1: t.maybe(t.String),
     address_2: t.maybe(t.String),
     city: t.maybe(t.String),

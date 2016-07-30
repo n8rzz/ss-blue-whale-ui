@@ -7,7 +7,8 @@
 
 export const VALID_CLIENT_CREATION_REQUEST = {
     'name': 'Closets, Closets, Closets, Closets',
-    'status': 'Active'
+    'status': 'Active',
+    'entity': 'Partnership'
 };
 
 /**
@@ -19,6 +20,7 @@ export const VALID_CLIENT_CREATION_REQUEST = {
 export const VALID_SINGLE_CLIENT_API_RESPONSE = {
     'id': 9,
     'name': 'Closets, Closets, Closets, Closets',
+    'entity': 'Partnership',
     'address_1': null,
     'address_2': null,
     'city': null,
@@ -32,7 +34,6 @@ export const VALID_SINGLE_CLIENT_API_RESPONSE = {
     'dbaName': null,
     'spouseName': null,
     'website': null,
-    'entity': null,
     'joinDate': '2016-05-08T23:58:27.906Z',
     'status': 'Active',
     'client_contacts': [
@@ -81,6 +82,7 @@ export const VALID_CLIENT_REQUEST = {
     'id': 1,
     'name': 'Jim Bob\'s Auto & Detailing',
     'status': 'Active',
+    'entity': 'Partnership',
     'address_1': null,
     'address_2': null,
     'city': null,
@@ -107,6 +109,7 @@ export const VALID_CLIENT_LIST_API_RESPONSE = [
         'id': 1,
         'name': 'Jim Bob\'s Auto & Detailing',
         'status': 'Active',
+        'entity': 'S-Corp',
         'address_1': null,
         'address_2': null,
         'city': null,
@@ -124,6 +127,7 @@ export const VALID_CLIENT_LIST_API_RESPONSE = [
     {
         'id': 2,
         'name': 'Closets, Closets, Closets, Closets',
+        'entity': 'S-Corp',
         'status': 'Active',
         'address_1': '123 Wallaby Way',
         'address_2': null,

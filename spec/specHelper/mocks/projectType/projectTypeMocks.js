@@ -7,6 +7,9 @@ export const VALID_PROJECT_TYPE_CREATION_REQUEST = {
     'name': '1040',
     'description': 'Individual',
     'dueDate': null,
+    'repeatWhenComplete': true,
+    'recurringSchedule': 'Yearly',
+    'nextRecurringDate': null,
     'task_items': []
 };
 
@@ -34,6 +37,9 @@ export const VALID_PROJECT_TYPE_LIST_API_RESPONSE = [
         'name': 'C-Crop',
         'description': 'C-Corp',
         'dueDate': null,
+        'repeatWhenComplete': true,
+        'recurringSchedule': null,
+        'nextRecurringDate': null,
         'task_items': []
     },
     VALID_PROJECT_TYPE_API_RESPONSE
