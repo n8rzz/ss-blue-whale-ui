@@ -8,7 +8,7 @@ import {
     showFlashMessageWithTimedRemoval
 } from '../../../../../src/scripts/shared/domain/flashMessage/actions/FlashMessageActions';
 
-import { VALID_FLASH_MESSAGE_TYPE } from '../../../../specHelper/mocks/flashMessage/FlashMessageMocks';
+import { VALID_FLASH_MESSAGE_TYPE } from '../../../../specHelper/mocks/flashMessage/flashMessageMocks';
 
 const DELAY_TIMER = 5000;
 

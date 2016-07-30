@@ -1,3 +1,7 @@
+/**
+ * @property VALID_PROJECT_CREATION_REQUEST
+ * @type {Object}
+ */
 export const VALID_PROJECT_CREATION_REQUEST = {
     'startDate': 'Sat, 02 Apr 2016 23:08:04 UTC +00:00',
     'endDate': 'Sun, 03 Apr 2016 23:08:04 UTC +00:00',

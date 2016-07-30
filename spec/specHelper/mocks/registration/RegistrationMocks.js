@@ -11,6 +11,7 @@ export const VALID_REGISTRATION_REQUEST = {
 };
 
 /**
+ * 
  * @property VALID_REGISTRATION_RESPONSE
  * @type {Object}
  * @final

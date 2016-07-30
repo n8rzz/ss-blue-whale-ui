@@ -16,7 +16,7 @@ import {
 import {
     VALID_REGISTRATION_REQUEST,
     VALID_REGISTRATION_RESPONSE
-} from '../../../../specHelper/mocks/registration/RegistrationMocks';
+} from '../../../../specHelper/mocks/registration/registrationMocks';
 
 ava('RegistrationRequestType', t => {
     t.throws(() => RegistrationRequestType(''));

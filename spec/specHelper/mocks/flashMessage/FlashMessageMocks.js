@@ -1,4 +1,5 @@
 /**
+ * 
  * @property VALID_FLASH_MESSAGE_TYPE
  * @type {Object}
  * @final

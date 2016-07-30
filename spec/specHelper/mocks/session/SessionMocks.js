@@ -1,4 +1,5 @@
 /**
+ * 
  * @property VALID_SESSION_CREATION_REQUEST
  * @type {Object}
  * @final
@@ -9,6 +10,7 @@ export const VALID_SESSION_CREATION_REQUEST = {
 };
 
 /**
+ *
  * @property VALID_SESSION_RESPONSE
  * @type {Object}
  * @final

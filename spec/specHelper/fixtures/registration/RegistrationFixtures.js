@@ -7,7 +7,7 @@ import {
 import {
     VALID_REGISTRATION_REQUEST,
     VALID_REGISTRATION_RESPONSE
-} from '../../../specHelper/mocks/registration/RegistrationMocks';
+} from '../../../specHelper/mocks/registration/registrationMocks';
 
 import {
     VALID_BASE_STATE_TYPE

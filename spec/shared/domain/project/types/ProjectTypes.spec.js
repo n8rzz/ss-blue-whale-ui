@@ -14,7 +14,7 @@ import {
     VALID_PROJECT_CREATION_REQUEST,
     VALID_PROJECT_RESPONSE,
     VALID_PROJECT_LIST_RESPONSE
-} from '../../../../specHelper/mocks/project/ProjectMocks';
+} from '../../../../specHelper/mocks/project/projectMocks';
 
 import {
     ValidProjectCreationRequestType,

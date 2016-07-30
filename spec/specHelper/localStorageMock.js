@@ -1,4 +1,4 @@
-import { VALID_SESSION_RESPONSE } from '../specHelper/mocks/session/SessionMocks';
+import { VALID_SESSION_RESPONSE } from '../specHelper/mocks/session/sessionMocks';
 
 const localStorageMock = (() => {
     let store = {};

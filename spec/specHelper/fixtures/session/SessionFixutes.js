@@ -7,7 +7,7 @@ import {
 import {
     VALID_SESSION_CREATION_REQUEST,
     VALID_SESSION_RESPONSE
-} from '../../../specHelper/mocks/session/SessionMocks';
+} from '../../../specHelper/mocks/session/sessionMocks';
 
 import {
     VALID_BASE_STATE_TYPE

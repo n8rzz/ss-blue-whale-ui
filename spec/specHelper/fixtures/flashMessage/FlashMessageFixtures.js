@@ -6,7 +6,7 @@ import {
 import {
     VALID_FLASH_MESSAGE_TYPE,
     VALID_FLASH_MESSAGE_STATE_TYPE
-} from '../../mocks/flashMessage/FlashMessageMocks';
+} from '../../mocks/flashMessage/flashMessageMocks';
 
 export const ValidFlashMessageType = new FlashMessageType(VALID_FLASH_MESSAGE_TYPE);
 

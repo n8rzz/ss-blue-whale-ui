@@ -8,7 +8,7 @@ import {
 import {
     VALID_FLASH_MESSAGE_TYPE,
     VALID_FLASH_MESSAGE_STATE_TYPE
-} from '../../../../specHelper/mocks/flashMessage/FlashMessageMocks';
+} from '../../../../specHelper/mocks/flashMessage/flashMessageMocks';
 
 import {
     ValidFlashMessageType,

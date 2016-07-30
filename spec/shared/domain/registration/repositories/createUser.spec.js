@@ -4,7 +4,7 @@ import nock from 'nock';
 import {
     VALID_REGISTRATION_REQUEST,
     VALID_REGISTRATION_RESPONSE
-} from '../../../../specHelper/mocks/registration/RegistrationMocks';
+} from '../../../../specHelper/mocks/registration/registrationMocks';
 import {
     RegistrationResponseType
 } from '../../../../../src/scripts/shared/domain/registration/types/RegistrationTypes';

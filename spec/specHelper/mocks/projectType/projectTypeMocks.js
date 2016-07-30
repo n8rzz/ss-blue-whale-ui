@@ -1,5 +1,4 @@
 /**
- *
  * @property VALID_PROJECT_TYPE_CREATION_REQUEST
  * @type {ProjectTypeType}
  */
