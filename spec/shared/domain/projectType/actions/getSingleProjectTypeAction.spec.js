@@ -43,8 +43,8 @@ ava('getProjectType dispatches success action when data resolves successfully', 
     ProjectTypeRepository.getProjectType = sinon.stub().resolves(ValidProjectTypeType);
     await getProjectType(PROJECT_TYPE_ID)(dispatchSpy);
 
-    t.truthy(dispatchSpy.callCount === 2);
-    const objectPassedToSecondDispatch = dispatchSpy.getCall(1).args[0];
+    t.truthy(dispatchSpy.callCount === 3);
+    const objectPassedToSecondDispatch = dispatchSpy.getCall(2).args[0];
 
     t.truthy(objectPassedToSecondDispatch.type === GET_PROJECT_TYPE_SUCCESS);
     t.truthy(objectPassedToSecondDispatch.payload === ValidProjectTypeType);

@@ -21,6 +21,7 @@ class ProjectTypeSingleContainer extends Component {
             <div>
                 <ProjectTypeSingle
                     projectType={ this.props.projectType }
+                    taskItems={ this.props.taskItems }
                     onSaveProjectType={ this.props.saveProjectType }
                     onRemoveProjectType={ this.props.removeProjectType }/>
             </div>
@@ -47,6 +48,12 @@ ProjectTypeSingleContainer.propTypes = {
     projectType: PropTypes.object,
 
     /**
+     * @property taskItems
+     * @type {Array}
+     */
+    taskItems: PropTypes.array,
+
+    /**
      * @props saveProjectType
      * @type {Function}
      */
@@ -66,7 +73,8 @@ ProjectTypeSingleContainer.propTypes = {
  */
 const mapStateToProps = (state) => {
     return {
-        projectType: state.projectType.payload
+        projectType: state.projectType.payload,
+        taskItems: state.taskItems.payload
     };
 };
 

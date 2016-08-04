@@ -1,8 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import t from 'tcomb-form';
+import _keys from 'lodash/keys';
+import _omitBy from 'lodash/omitBy';
+import _forOwn from 'lodash/forOwn';
+
 import FlashMessage from '../../FlashMessage/FlashMessage';
 import VerticalRhythm from '../../../repeater/VerticalRhythm/VerticalRhythm';
 import Button from '../../../layout/Button/Button';
+import TaskItemSelectionForm from './TaskItemSelectionForm';
 import { ProjectTypeType } from '../../../../domain/projectType/types/ProjectTypeTypes';
 
 const Form = t.form.Form;
@@ -11,6 +16,12 @@ const FORM_OPTIONS = {
     fields: {
         id: {
             type: 'hidden'
+        },
+        repeatWhenComplete: {
+            type: 'checkbox'
+        },
+        nextRecurringDate: {
+            type: 'date'
         },
         dueDate: {
             type: 'date'
@@ -63,9 +74,9 @@ export default class ProjectTypeSingle extends Component {
                 </VerticalRhythm>
 
                 <VerticalRhythm increment={ 1 }>
-                    <div>
-                        [[ SELECT TASK ITEMS ]]
-                    </div>
+                    <TaskItemSelectionForm
+                        ref="taskItemForm"
+                        taskItems={ this.props.taskItems } />
                 </VerticalRhythm>
 
                 <Button onClick={ this.onRemoveProjectType }>Remove Project Type</Button>
@@ -111,9 +122,19 @@ export default class ProjectTypeSingle extends Component {
         event.preventDefault();
 
         const saveProjectTypeFormValues = this.refs.saveProjectTypeForm.getValue();
+        const taskItemFormValues = this.refs.taskItemForm.getValue();
 
-        if (!t.Nil.is(saveProjectTypeFormValues)) {
-            this.props.onSaveProjectType(this.props.projectType.id, saveProjectTypeFormValues);
+        if (!t.Nil.is(saveProjectTypeFormValues) && !t.Nil.is(taskItemFormValues)) {
+            const taskItemIds = [];
+            _forOwn(taskItemFormValues, (value, key) => {
+                if (value) {
+                    const taskItemId = parseInt(key, 10);
+                    taskItemIds.push(taskItemId);
+                }
+            });
+
+            console.log(taskItemFormValues, taskItemIds);
+            // this.props.onSaveProjectType(this.props.projectType.id, saveProjectTypeFormValues);
         }
     }
 }
@@ -136,6 +157,13 @@ ProjectTypeSingle.propTypes = {
      * @type {Object}
      */
     projectType: PropTypes.object,
+
+    /**
+     * @property taskItems
+     * @type {Array}
+     */
+    taskItems: PropTypes.array,
+
     /**
      * @property onSaveProjectType
      * @type {Function}

@@ -9,6 +9,8 @@ import {
     ProjectTypeType
 } from '../types/ProjectTypeTypes';
 
+import { getTaskItemList } from '../../taskItem/actions/TaskItemListActions';
+
 export const CREATE_PROJECT_TYPE_START = 'CREATE_PROJECT_TYPE_START';
 export const CREATE_PROJECT_TYPE_SUCCESS = 'CREATE_PROJECT_TYPE_SUCCESS';
 export const CREATE_PROJECT_TYPE_FAIL = 'CREATE_PROJECT_TYPE_FAIL';
@@ -72,7 +74,10 @@ export const getProjectType = id => dispatch => {
     dispatch(getProjectTypeStart());
 
     return ProjectTypeRepository.getProjectType(id)
-        .then(response => dispatch(getProjectTypeSuccess(response)))
+        .then(response => {
+            dispatch(getTaskItemList());
+            dispatch(getProjectTypeSuccess(response));
+        })
         .catch(error => dispatch(getProjectTypeError(error)));
 };
 

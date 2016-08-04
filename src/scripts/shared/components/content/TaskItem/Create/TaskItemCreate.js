@@ -6,9 +6,13 @@ import Button from '../../../layout/Button/Button';
 const Form = t.form.Form;
 
 const FORM_OPTIONS = {
+    order: ['name', 'description', 'startDate', 'endDate', 'isControllable'],
     fields: {
         id: {
             type: 'hidden'
+        },
+        isControllable: {
+            type: 'checkbox'
         },
         startDate: {
             type: 'date'

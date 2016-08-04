@@ -1,6 +1,11 @@
 import t from 'tcomb';
 import { BaseStateType } from '../../baseTypes/BaseTypes';
 
+/**
+ *
+ * @property ProjectTypeScheduleEnum
+ * @return {ProjectTypeScheduleEnum}
+ */
 const ProjectTypeScheduleEnum = t.enums.of([
     'Weekly',
     'Monthly',

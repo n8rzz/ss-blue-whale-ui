@@ -20,6 +20,11 @@ input {
     border: 1px solid #cccccc;
 }
 
+input[type=checkbox],
+input[type=radio] {
+    min-width: auto;
+}
+
 input[type=date]::-webkit-inner-spin-button,
 input[type=date]::-webkit-clear-button {
     -webkit-appearance: none;

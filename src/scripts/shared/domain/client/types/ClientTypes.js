@@ -32,7 +32,7 @@ const ClientEntityEnum = t.enums.of([
 export const ClientCreationType = t.struct({
     name: t.String,
     status: ClientStatusEnum,
-    entity: ClientEntityEnum,
+    entity: t.maybe(ClientEntityEnum),
     address_1: t.maybe(t.String),
     address_2: t.maybe(t.String),
     city: t.maybe(t.String),
